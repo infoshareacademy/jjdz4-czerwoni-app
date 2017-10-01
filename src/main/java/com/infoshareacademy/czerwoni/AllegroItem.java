@@ -1,5 +1,4 @@
 package com.infoshareacademy.czerwoni;
-package pl.isa.parserXML;
 
         import java.util.ArrayList;
         import java.util.List;
@@ -57,8 +56,8 @@ class AllegroCategoryModel {
         }
     }
 
-    public int id;
-    public String Name;
+    private int id;
+    private String Name;
     public List<AllegroCategoryModel> childCategories;
     public AllegroCategoryModel parentCategory;
 
@@ -73,7 +72,7 @@ class AllegroCategoryModel {
 }
 
 class AllegroExample {
-    public AllegroExample {
+    public AllegroExample() {
         List<AllegroCategoryModel> level3 = new ArrayList<AllegroCategoryModel>();
 
         List<AllegroCategoryModel> level2 = new ArrayList<AllegroCategoryModel>();
