@@ -1,20 +1,35 @@
 package com.infoshareacademy.czerwoni;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
 import java.util.ArrayList;
 
+
+@JacksonXmlRootElement(localName = "ns1:item")
 public class AllegroCategory {
 
-    private int catId;
+    @JacksonXmlProperty(localName = "ns1:catId")
+    private String catId;
+
+    @JacksonXmlProperty(localName = "ns1:catName")
     private String catName;
-    private int catPosition;
-    private int catParent;
-    private boolean catIsProductCatalogueEnabled;
+
+    @JacksonXmlProperty(localName = "ns1:catPosition")
+    private String catPosition;
+
+    @JacksonXmlProperty(localName = "catParent")
+    private String catParent;
+
+    @JacksonXmlProperty(localName = "catIsProductCatalogueEnabled")
+    private String catIsProductCatalogueEnabled;
+
     private ArrayList<AllegroCategory> categoryChild;
 
-    public AllegroCategory(int catId,
+    public AllegroCategory(String catId,
                            String catName,
-                           int catPosition,
-                           int catParent) {
+                           String catPosition,
+                           String catParent) {
 
         this.catId = catId;
         this.catName = catName;
@@ -22,11 +37,11 @@ public class AllegroCategory {
         this.catParent = catParent;
     }
 
-    public int getCatId() {
+    public String getCatId() {
         return catId;
     }
 
-    public void setCatId(int catId) {
+    public void setCatId(String catId) {
         this.catId = catId;
     }
 
@@ -38,27 +53,27 @@ public class AllegroCategory {
         this.catName = catName;
     }
 
-    public int getCatPosition() {
+    public String getCatPosition() {
         return catPosition;
     }
 
-    public void setCatPosition(int catPosition) {
+    public void setCatPosition(String catPosition) {
         this.catPosition = catPosition;
     }
 
-    public int getCatParent() {
+    public String getCatParent() {
         return catParent;
     }
 
-    public void setCatParent(int catParent) {
+    public void setCatParent(String catParent) {
         this.catParent = catParent;
     }
 
-    public boolean isCatIsProductCatalogueEnabled() {
+    public String isCatIsProductCatalogueEnabled() {
         return catIsProductCatalogueEnabled;
     }
 
-    public void setCatIsProductCatalogueEnabled(boolean catIsProductCatalogueEnabled) {
+    public void setCatIsProductCatalogueEnabled(String catIsProductCatalogueEnabled) {
         this.catIsProductCatalogueEnabled = catIsProductCatalogueEnabled;
     }
 
@@ -68,5 +83,17 @@ public class AllegroCategory {
 
     public void setCategoryChild(ArrayList<AllegroCategory> categoryChild) {
         this.categoryChild = categoryChild;
+    }
+
+    @Override
+    public String toString() {
+        return "AllegroCategory{" +
+                "catId=" + catId +
+                ", catName='" + catName + '\'' +
+                ", catPosition=" + catPosition +
+                ", catParent=" + catParent +
+                ", catIsProductCatalogueEnabled=" + catIsProductCatalogueEnabled +
+                ", categoryChild=" + categoryChild +
+                '}';
     }
 }
