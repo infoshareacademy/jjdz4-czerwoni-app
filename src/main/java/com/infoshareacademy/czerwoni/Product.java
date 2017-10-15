@@ -2,7 +2,7 @@ package com.infoshareacademy.czerwoni;
 
 class Product extends Object {
 
-    // http://www.produktywsieci.gs1.pl/Subpage/FieldsScope
+    // http://www.produktywsieci.gs1.pl/Subpage/FieldsScope  http://www.produktywsieci.gs1.pl/apidocs/index#!/ApiProducts/ApiProducts_Get
     private String GTIN;
     private String brandOwner;
     private String manufacturerName;
@@ -10,8 +10,20 @@ class Product extends Object {
     private String itemName;
     private String description;
     private String countryOfOrigin;
-    private String picture;  // Link do marketingowego obrazka produktu w rozmiarze L (około 800x600)
+    private String productImage;  // Link do marketingowego obrazka produktu w rozmiarze L (około 800x600)
     private String URL;      // Link do strony produktu, ewentualnie link do strony właściciela marki
+
+    public Product(String GTIN, String brandOwner, String manufacturerName, String brandName, String itemName, String description, String countryOfOrigin, String productImage, String URL) {
+        this.GTIN = GTIN;
+        this.brandOwner = brandOwner;
+        this.manufacturerName = manufacturerName;
+        this.brandName = brandName;
+        this.itemName = itemName;
+        this.description = description;
+        this.countryOfOrigin = countryOfOrigin;
+        this.productImage = productImage;
+        this.URL = URL;
+    }
 
     String getGTIN() {
         return GTIN;
@@ -45,8 +57,8 @@ class Product extends Object {
         return countryOfOrigin;
     }
 
-    public String getPicture() {
-        return picture;
+    public String getProductImage() {
+        return productImage;
     }
 
     public String getURL() {
