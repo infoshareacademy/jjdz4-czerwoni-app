@@ -9,11 +9,14 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class ParseXML {
 
-    public static void main(String args[]) {
+ /*   public static void main(String args[]) {
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        Category cat = new Category();
+        Scanner key = new Scanner(System.in);
         try {
 
             File fXmlFile = new File("Categories.xml");
@@ -58,7 +61,7 @@ public class ParseXML {
             e.printStackTrace();
         }
     }
-
+*/
 }
 
 
