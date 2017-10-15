@@ -11,7 +11,7 @@ public class AllegroCategories {
 
     @JacksonXmlProperty(localName = "ns1:item")
     @JacksonXmlElementWrapper(useWrapping = false)
-    private ArrayList<AllegroCategory> allegroCategory;
+    ArrayList<AllegroCategory> allegroCategory;
 
     public ArrayList<AllegroCategory> getAllegroCategory() {
         return allegroCategory;

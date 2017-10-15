@@ -10,21 +10,21 @@ import java.util.ArrayList;
 public class AllegroCategory {
 
     @JacksonXmlProperty(localName = "ns1:catId")
-    private String catId;
+    String catId;
 
     @JacksonXmlProperty(localName = "ns1:catName")
-    private String catName;
+    String catName;
 
     @JacksonXmlProperty(localName = "ns1:catPosition")
-    private String catPosition;
+    String catPosition;
 
-    @JacksonXmlProperty(localName = "catParent")
-    private String catParent;
+    @JacksonXmlProperty(localName = "ns1:catParent")
+    String catParent;
 
-    @JacksonXmlProperty(localName = "catIsProductCatalogueEnabled")
-    private String catIsProductCatalogueEnabled;
+    @JacksonXmlProperty(localName = "ns1:catIsProductCatalogueEnabled")
+    String catIsProductCatalogueEnabled;
 
-    private ArrayList<AllegroCategory> categoryChild;
+    ArrayList<AllegroCategory> categoryChild;
 
     public AllegroCategory(String catId,
                            String catName,
