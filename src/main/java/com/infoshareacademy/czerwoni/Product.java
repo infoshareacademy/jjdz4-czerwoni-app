@@ -12,7 +12,6 @@ class Product extends Object {
     private String countryOfOrigin;
     private String picture;  // Link do marketingowego obrazka produktu w rozmiarze L (około 800x600)
     private String URL;      // Link do strony produktu, ewentualnie link do strony właściciela marki
-    // private BinaryBitmap image
 
     String getGTIN() {
         return GTIN;
@@ -24,6 +23,34 @@ class Product extends Object {
 
     String getBrandOwner() {
         return brandOwner;
+    }
+
+    public String getManufacturerName() {
+        return manufacturerName;
+    }
+
+    public String getBrandName() {
+        return brandName;
+    }
+
+    public String getItemName() {
+        return itemName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getCountryOfOrigin() {
+        return countryOfOrigin;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public String getURL() {
+        return URL;
     }
 
     @Override
