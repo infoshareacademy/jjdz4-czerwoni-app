@@ -1,36 +1,22 @@
 package com.infoshareacademy.czerwoni;
 
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 import java.util.ArrayList;
 
 
-@JacksonXmlRootElement(localName = "ns1:item")
 public class AllegroCategory {
 
-    @JacksonXmlProperty(localName = "ns1:catId")
-    String catId;
-
-    @JacksonXmlProperty(localName = "ns1:catName")
-    String catName;
-
-    @JacksonXmlProperty(localName = "ns1:catPosition")
-    String catPosition;
-
-    @JacksonXmlProperty(localName = "ns1:catParent")
-    String catParent;
-
-    @JacksonXmlProperty(localName = "ns1:catIsProductCatalogueEnabled")
-    String catIsProductCatalogueEnabled;
-
-    ArrayList<AllegroCategory> categoryChild;
+    private String catId;
+    private String catName;
+    private String catPosition;
+    private String catParent;
+    private String catIsProductCatalogueEnabled;
+    private ArrayList<AllegroCategory> categoryChild;
 
     public AllegroCategory(String catId,
                            String catName,
                            String catPosition,
                            String catParent) {
-
         this.catId = catId;
         this.catName = catName;
         this.catPosition = catPosition;
