@@ -1,11 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Categories SYSTEM "Categories.dtd">
 
 <Categories>
 	<questions>
-		<quest-item id="1">Jak lubisz spędzać wolny czas?</quest-item>
-		<quest-item id="2">Co najbardziej lubisz robić w domu?</quest-item>
-		<quest-item id="3">Jaki rodzaj aktywności jest dla ciebie najlepszy?</quest-item>
-		<quest-item id="4">Jakie prace domowe wykonujesz najczęściej?</quest-item>
+		<quest-item id="1" question="Jak lubisz spędzać wolny czas?">
+			<answer-item id="1" goto-quest-id="2">a) W wolnym czasie chcę poprostu odpocząć i zostać w domu.</answer-item>
+			<answer-item id="2" goto-quest-id="3">b) Lubię spędzać czas aktywnie.</answer-item>
+			<answer-item id="3" goto-quest-id="4">c) Nie mam czasu wolnego, mam dużo obowiązków domowych.</answer-item>
+		</quest-item>
+		<quest-item id="2" question="Co najbardziej lubisz robić w domu?">
+			<answer-item id="4" goto-quest-id="0">a) Najbardzie lubię oglądać telewizję.</answer-item>
+			<answer-item id="5" goto-quest-id="0">b) Lubię grać w gry komputerowe.</answer-item>
+			<answer-item id="6" goto-quest-id="0">c) Lubię słuchać muzuki.</answer-item>
+		</quest-item>
+		<quest-item id="3" question="Jaki rodzaj aktywności jest dla ciebie najlepszy?">
+			<answer-item id="7" goto-quest-id="0">a) Najbardziej lubię biegać.</answer-item>
+			<answer-item id="8" goto-quest-id="0">b) Bardzo często jeżdżę na rowerze.</answer-item>
+			<answer-item id="9" goto-quest-id="0">c) Lubię chodzoć na siłownie.</answer-item>
+		</quest-item>
+		<quest-item id="4" question="Jakie prace domowe wykonujesz najczęściej?">
+			<answer-item id="10" goto-quest-id="0">a) Pracuję w ogrodzie.</answer-item>
+			<answer-item id="11" goto-quest-id="0">b) Naprawiam lub buduję coś nowego.</answer-item>
+			<answer-item id="12" goto-quest-id="0">c) Sprzątam.</answer-item>
+		</quest-item>
 	</questions>
 	<cat-item>
 		<cat-item-id>1</cat-item-id>
@@ -14,7 +31,7 @@
 		<cat-item-position>1</cat-item-position>
 		<cat-item-visible>true</cat-item-visible>
         <quest-goto-id>2</quest-goto-id>
-		<cat-item-answer question="1">a) W wolnym czasie chcę poprostu odpocząć i zostać w domu.</cat-item-answer>
+		<cat-item-answer-id>1</cat-item-answer-id>
 	</cat-item>
 	<cat-item>
 		<cat-item-id>2</cat-item-id>
@@ -23,7 +40,7 @@
 		<cat-item-position>2</cat-item-position>
 		<cat-item-visible>true</cat-item-visible>
         <quest-goto-id>3</quest-goto-id>
-		<cat-item-answer question="1">b) Lubię spędzać czas aktywnie.</cat-item-answer>
+		<cat-item-answer-id>2</cat-item-answer-id>
 	</cat-item>
 	<cat-item>
 		<cat-item-id>3</cat-item-id>
@@ -32,7 +49,7 @@
 		<cat-item-position>3</cat-item-position>
 		<cat-item-visible>true</cat-item-visible>
         <quest-goto-id>4</quest-goto-id>
-		<cat-item-answer question="1">c) Nie mam czasu wolnego, mam dużo obowiązków domowych.</cat-item-answer>
+		<cat-item-answer-id>3</cat-item-answer-id>
 	</cat-item>
 	<cat-item>
 		<cat-item-id>4</cat-item-id>
@@ -41,7 +58,7 @@
 		<cat-item-position>1</cat-item-position>
 		<cat-item-visible>true</cat-item-visible>
         <quest-goto-id>0</quest-goto-id>
-		<cat-item-answer question="2">a) Najbardzie lubię oglądać telewizję.</cat-item-answer>
+		<cat-item-answer-id>4</cat-item-answer-id>
 	</cat-item>
 	<cat-item>
 		<cat-item-id>5</cat-item-id>
@@ -50,7 +67,7 @@
 		<cat-item-position>2</cat-item-position>
 		<cat-item-visible>true</cat-item-visible>
         <quest-goto-id>0</quest-goto-id>
-		<cat-item-answer question="2">b) Lubię grać w gry komputerowe.</cat-item-answer>
+		<cat-item-answer-id>5</cat-item-answer-id>
 	</cat-item>
 	<cat-item>
 		<cat-item-id>6</cat-item-id>
@@ -59,7 +76,7 @@
 		<cat-item-position>3</cat-item-position>
 		<cat-item-visible>true</cat-item-visible>
         <quest-goto-id>0</quest-goto-id>
-		<cat-item-answer question="2">c) Lubię słuchać muzuki.</cat-item-answer>
+		<cat-item-answer-id>6</cat-item-answer-id>
 	</cat-item>
 	<cat-item>
 		<cat-item-id>7</cat-item-id>
@@ -68,7 +85,7 @@
 		<cat-item-position>1</cat-item-position>
 		<cat-item-visible>true</cat-item-visible>
         <quest-goto-id>0</quest-goto-id>
-		<cat-item-answer question="3">a) Najbardziej lubię biegać.</cat-item-answer>
+		<cat-item-answer-id>7</cat-item-answer-id>
 	</cat-item>
 	<cat-item>
 		<cat-item-id>8</cat-item-id>
@@ -77,7 +94,7 @@
 		<cat-item-position>2</cat-item-position>
 		<cat-item-visible>true</cat-item-visible>
         <quest-goto-id>0</quest-goto-id>
-		<cat-item-answer question="3">b) Bardzo często jeżdżę na rowerze.</cat-item-answer>
+		<cat-item-answer-id>8</cat-item-answer-id>
 	</cat-item>
 	<cat-item>
 		<cat-item-id>9</cat-item-id>
@@ -86,7 +103,7 @@
 		<cat-item-position>3</cat-item-position>
 		<cat-item-visible>true</cat-item-visible>
         <quest-goto-id>0</quest-goto-id>
-		<cat-item-answer question="3">c) Lubię chodzoć na siłownie.</cat-item-answer>
+		<cat-item-answer-id>9</cat-item-answer-id>
 	</cat-item>
 	<cat-item>
 		<cat-item-id>10</cat-item-id>
@@ -95,7 +112,7 @@
 		<cat-item-position>1</cat-item-position>
 		<cat-item-visible>true</cat-item-visible>
         <quest-goto-id>0</quest-goto-id>
-		<cat-item-answer question="4">a) Pracuję w ogrodzie.</cat-item-answer>
+		<cat-item-answer-id>10</cat-item-answer-id>
 	</cat-item>
 	<cat-item>
 		<cat-item-id>11</cat-item-id>
@@ -104,7 +121,7 @@
 		<cat-item-position>2</cat-item-position>
 		<cat-item-visible>true</cat-item-visible>
         <quest-goto-id>0</quest-goto-id>
-		<cat-item-answer question="4">b) Naprawiam lub buduję coś nowego.</cat-item-answer>
+		<cat-item-answer-id>11</cat-item-answer-id>
 	</cat-item>
 	<cat-item>
 		<cat-item-id>12</cat-item-id>
@@ -113,6 +130,6 @@
 		<cat-item-position>3</cat-item-position>
 		<cat-item-visible>true</cat-item-visible>
         <quest-goto-id>0</quest-goto-id>
-		<cat-item-answer question="4">c) Sprzątam.</cat-item-answer>
+		<cat-item-answer-id>12</cat-item-answer-id>
 	</cat-item>
 </Categories>
