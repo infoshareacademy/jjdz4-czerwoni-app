@@ -6,28 +6,28 @@ import java.util.ArrayList;
 
 public class AllegroCategory {
 
-    private String catId;
+    private Integer catId;
     private String catName;
-    private String catPosition;
-    private String catParent;
+    private Integer catPosition;
+    private Integer catParent;
     private String catIsProductCatalogueEnabled;
     private ArrayList<AllegroCategory> categoryChild;
 
-    public AllegroCategory(String catId,
+    public AllegroCategory(Integer catId,
                            String catName,
-                           String catPosition,
-                           String catParent) {
+                           Integer catPosition,
+                           Integer catParent) {
         this.catId = catId;
         this.catName = catName;
         this.catPosition = catPosition;
         this.catParent = catParent;
     }
 
-    public String getCatId() {
+    public Integer getCatId() {
         return catId;
     }
 
-    public void setCatId(String catId) {
+    public void setCatId(Integer catId) {
         this.catId = catId;
     }
 
@@ -39,19 +39,19 @@ public class AllegroCategory {
         this.catName = catName;
     }
 
-    public String getCatPosition() {
+    public Integer getCatPosition() {
         return catPosition;
     }
 
-    public void setCatPosition(String catPosition) {
+    public void setCatPosition(Integer catPosition) {
         this.catPosition = catPosition;
     }
 
-    public String getCatParent() {
+    public Integer getCatParent() {
         return catParent;
     }
 
-    public void setCatParent(String catParent) {
+    public void setCatParent(Integer catParent) {
         this.catParent = catParent;
     }
 

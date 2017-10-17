@@ -16,22 +16,35 @@ import java.util.ArrayList;
 public class ParseXmlAllegroCategories {
 
 
-    public static ArrayList deserialization() throws IOException, SAXException, ParserConfigurationException {
+    public static ArrayList deserialization()  {
 
         File file = new File("Allegro_cathegories_2016-02-13.xml");
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-        Document document = documentBuilder.parse(file);
+        DocumentBuilder documentBuilder = null;
+        try {
+            documentBuilder = documentBuilderFactory.newDocumentBuilder();
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        }
+        Document document = null;
+        try {
+            document = documentBuilder.parse(file);
+        } catch (SAXException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         document.getDocumentElement().normalize();
         NodeList nodeList = document.getElementsByTagName("ns1:item");
         ArrayList<AllegroCategory> allegroCategories = new ArrayList<AllegroCategory>();
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node node = nodeList.item(i);
             Element element = (Element) node;
-            allegroCategories.add(new AllegroCategory(element.getElementsByTagName("ns1:catId").item(0).getTextContent(),
+            allegroCategories.add(new AllegroCategory(
+                    Integer.parseInt(element.getElementsByTagName("ns1:catId").item(0).getTextContent()),
                     element.getElementsByTagName("ns1:catName").item(0).getTextContent(),
-                            element.getElementsByTagName("ns1:catPosition").item(0).getTextContent(),
-                            element.getElementsByTagName("ns1:catParent").item(0).getTextContent()));
+                    Integer.parseInt(element.getElementsByTagName("ns1:catPosition").item(0).getTextContent()),
+                    Integer.parseInt(element.getElementsByTagName("ns1:catParent").item(0).getTextContent())));
         }
         return allegroCategories;
     }
