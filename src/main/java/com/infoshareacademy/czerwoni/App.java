@@ -41,9 +41,12 @@ public class App {
                             System.out.println("WORK IN PROGRESS");
                             break;
                         case 6:
-                            printOut();
+                            System.out.println("WORK IN PROGRESS (JZ4CS-7)"); // TODO: JZ4CS-7
                             break;
                         case 7:
+                            printOut();
+                            break;
+                        case 8:
                             System.out.println("BYE BYE we hope to see You soon!");
                             onOff = false;
                             break;
@@ -62,8 +65,9 @@ public class App {
             System.out.println("3: Ebay research");
             System.out.println("4: Allegro direct category picker");
             System.out.println("5: Check all WTUW categories tree");
-            System.out.println("6: MENU");
-            System.out.println("7: QUIT APP");
+            System.out.println("6: Identify product using barcode image");
+            System.out.println("7: MENU");
+            System.out.println("8: QUIT APP");
         }
 
     }
