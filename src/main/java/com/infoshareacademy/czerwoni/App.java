@@ -18,7 +18,6 @@ public class App
         System.out.print("\nWprowadź numer kategorii: ");
         Scanner keyScanner = new Scanner(System.in);
         int enteredKey = keyScanner.nextInt();
-
         AllegroCategoryPrinter.printChildCategories(allegroCategories, enteredKey);
     }
 }

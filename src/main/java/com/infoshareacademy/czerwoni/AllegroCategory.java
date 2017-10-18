@@ -13,10 +13,10 @@ public class AllegroCategory {
     private String catIsProductCatalogueEnabled;
     private ArrayList<AllegroCategory> categoryChild;
 
-    public AllegroCategory(Integer catId,
+    public AllegroCategory(int catId,
                            String catName,
-                           Integer catPosition,
-                           Integer catParent) {
+                           int catPosition,
+                           int catParent) {
         this.catId = catId;
         this.catName = catName;
         this.catPosition = catPosition;
