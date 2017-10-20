@@ -11,6 +11,8 @@ import java.util.Base64;
 class ProductProcessor {
 
     static private String getProductDataFromAPI(String barcode) {
+        final int statusCodeOK = 200;
+        String response = null;
 
         try {
             String webAPI = "http://www.produktywsieci.gs1.pl/api/products/" + barcode + "?aggregation=SOCIAL";
@@ -24,14 +26,16 @@ class ProductProcessor {
             httpURLConnection.setRequestProperty("Accept", "application/json");
             httpURLConnection.setRequestProperty("Authorization", "Basic " + authEncoding);
 
-            if (httpURLConnection.getResponseCode() != 200) {
-                httpURLConnection.disconnect();
-                return "failed (HTTP error code : "
-                        + httpURLConnection.getResponseCode() + "-" + httpURLConnection.getResponseMessage() + ")";
-            /*    throw new RuntimeException("Failed : HTTP error code : "
+            /* if (httpURLConnection.getResponseCode() != statusCodeOK) {
+                throw new RuntimeException("Failed : HTTP error code : "
                         + httpURLConnection.getResponseCode() + "-" +httpURLConnection.getResponseMessage());
-            */
-            }
+            }*/
+
+            response = (httpURLConnection.getResponseCode() == statusCodeOK) ?
+                    "success" : "failed (HTTP error code : "
+                    + httpURLConnection.getResponseCode() + "-" + httpURLConnection.getResponseMessage() + ")";
+
+            httpURLConnection.disconnect();
 
             /*
         JSONObject productJSON = new JSONObject();  // productJSON = API.product.get(productBarcode);
@@ -58,15 +62,18 @@ class ProductProcessor {
        return product.toString;
 
         return productJSON.get("GTIN").toString();  */
-            httpURLConnection.disconnect();
+
 
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+            // e.printStackTrace();
+            System.out.println("Malformed URL has occurred");
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        } /* finally {
+            //   return response;  // return productJSON.get("GTIN").toString();
+        }  */
+        return response;
 
-        return "success";  // return productJSON.get("GTIN").toString();
     }
 
     static String identifyProductFromImage(String imageFilename) {
