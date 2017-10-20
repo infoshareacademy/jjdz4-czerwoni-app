@@ -18,7 +18,7 @@ class BarCodeReader {
 
     private static String decodeBarcode(File imageFile, Map<DecodeHintType, Object> decodeHints) throws Exception {
         if ((imageFile == null) || (imageFile.getName().trim().isEmpty()))
-            throw new IllegalArgumentException("Plik nie znaleziony lub błedna nazwa.");
+            throw new IllegalArgumentException("File not found or enetered incorrect name.");
 
         BufferedImage bufferedImage;
         try {
@@ -27,7 +27,7 @@ class BarCodeReader {
             throw new Exception(e.getMessage());
         }
         if (bufferedImage == null)
-            throw new IllegalArgumentException("Nie udało wczytać sie pliku...");
+            throw new IllegalArgumentException("Reading file failed...");
         LuminanceSource luminanceSource = new BufferedImageLuminanceSource(bufferedImage);
 
 
@@ -44,7 +44,7 @@ class BarCodeReader {
 
             decodedBarcode = String.valueOf(tmpResult.getText());
         } catch (NotFoundException e) {
-            throw new Exception("BarCodeReader.decodeBarcode - wyjątek: " + e.toString() + " - " + e.getMessage());
+            throw new Exception("BarCodeReader.decodeBarcode - exception: " + e.toString() + " - " + e.getMessage());
         }
 
         return decodedBarcode;
@@ -63,7 +63,7 @@ class BarCodeReader {
 
 
         } catch (Exception e) {
-            System.out.println("decodeBarcodeFromFile - " + "wyjątek: " + e.getMessage());
+            System.out.println("decodeBarcodeFromFile - " + "exception: " + e.getMessage());
         }
         return barcodeString;
     }

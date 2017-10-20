@@ -2,35 +2,38 @@ package com.infoshareacademy.czerwoni;
 
 class Product extends Object {
 
-    // http://www.produktywsieci.gs1.pl/Subpage/FieldsScope  http://www.produktywsieci.gs1.pl/apidocs/index#!/ApiProducts/ApiProducts_Get
+    // http://www.produktywsieci.gs1.pl/Subpage/FieldsScope
+    // http://www.produktywsieci.gs1.pl/apidocs/index#!/ApiProducts/ApiProducts_Get
     private String GTIN;
     private String brandOwner;
     private String manufacturerName;
     private String brandName;
-    private String itemName;
+    private String productName;
     private String description;
     private String countryOfOrigin;
     private String productImage;  // Link do marketingowego obrazka produktu w rozmiarze L (około 800x600)
-    private String URL;      // Link do strony produktu, ewentualnie link do strony właściciela marki
+    private String URL;           // Link do strony produktu, ewentualnie link do strony właściciela marki
+    private boolean legal;
 
-    public Product(String GTIN, String brandOwner, String manufacturerName, String brandName, String itemName, String description, String countryOfOrigin, String productImage, String URL) {
+    public Product(String GTIN, String brandOwner, String manufacturerName, String brandName, String productName, String description, String countryOfOrigin, String productImage, String URL, boolean isLegal) {
         this.GTIN = GTIN;
         this.brandOwner = brandOwner;
         this.manufacturerName = manufacturerName;
         this.brandName = brandName;
-        this.itemName = itemName;
+        this.productName = productName;
         this.description = description;
         this.countryOfOrigin = countryOfOrigin;
         this.productImage = productImage;
         this.URL = URL;
+        this.legal = isLegal;
     }
 
     String getGTIN() {
         return GTIN;
     }
 
-    void  setGTIN(String GTIN){
-       this.GTIN = GTIN;
+    void setGTIN(String GTIN) {
+        this.GTIN = GTIN;
     }
 
     String getBrandOwner() {
@@ -45,8 +48,8 @@ class Product extends Object {
         return brandName;
     }
 
-    public String getItemName() {
-        return itemName;
+    public String getProductName() {
+        return productName;
     }
 
     public String getDescription() {
@@ -65,13 +68,17 @@ class Product extends Object {
         return URL;
     }
 
+    public boolean isLegal() {
+        return legal;
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         return stringBuilder
                 .append(GTIN)
                 .append(" - ")
-                .append(itemName)
+                .append(productName)
                 .append(" - ")
                 .append(description).toString();
     }
