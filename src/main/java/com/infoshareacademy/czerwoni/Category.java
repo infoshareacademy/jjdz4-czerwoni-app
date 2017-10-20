@@ -74,7 +74,7 @@ public class Category {
 
     ArrayList<Category> getCategoryList() {
         ArrayList<Category> categoryArrayList = new ArrayList<>();
-        ParseXML docXML = new ParseXML();
+        ParseXML docXML = new ParseXML("Categories.xml");
         Document doc = docXML.getXMLDocument();
         NodeList categoryNodeList = doc.getElementsByTagName("cat-item");
         for (int k = 0; k < categoryNodeList.getLength(); k++) {

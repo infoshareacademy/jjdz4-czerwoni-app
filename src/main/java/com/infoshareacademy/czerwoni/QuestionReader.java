@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 class QuestionReader {
     private ArrayList<Question> questionArrayList = new ArrayList<>();
-    private ParseXML docXML = new ParseXML();
+    private ParseXML docXML = new ParseXML("Categories.xml");
 
     ArrayList<Question> getQuestionList() {
             Document doc = docXML.getXMLDocument();
