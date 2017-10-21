@@ -107,6 +107,7 @@ public class Category {
                             break;
                         case "cat-item-answer-id":
                             category.setCategoryAnswerId(Integer.parseInt(catDetailElement.getTextContent()));
+                            break;
                     }
                 }
 
