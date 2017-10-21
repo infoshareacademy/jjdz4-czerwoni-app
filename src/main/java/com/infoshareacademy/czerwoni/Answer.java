@@ -1,9 +1,18 @@
 package com.infoshareacademy.czerwoni;
 
 public class Answer {
+
+    private int answerId;
     private String answerName;
     private int relatedQuest;
 
+    public int getAnswerId() {
+        return answerId;
+    }
+
+    public void setAnswerId(int answerId) {
+        this.answerId = answerId;
+    }
 
     public String getAnswerName() {
         return answerName;
