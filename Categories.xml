@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Categories SYSTEM "Categories.dtd">
+
+<Categories>
+	<questions>
+		<quest-item id="1" question="Jak lubisz spędzać wolny czas?">
+			<answer-item id="1" goto-quest-id="2">a) W wolnym czasie chcę poprostu odpocząć i zostać w domu.</answer-item>
+			<answer-item id="2" goto-quest-id="3">b) Lubię spędzać czas aktywnie.</answer-item>
+			<answer-item id="3" goto-quest-id="4">c) Nie mam czasu wolnego, mam dużo obowiązków domowych.</answer-item>
+		</quest-item>
+		<quest-item id="2" question="Co najbardziej lubisz robić w domu?">
+			<answer-item id="4" goto-quest-id="0">a) Najbardzie lubię oglądać telewizję.</answer-item>
+			<answer-item id="5" goto-quest-id="0">b) Lubię grać w gry komputerowe.</answer-item>
+			<answer-item id="6" goto-quest-id="0">c) Lubię słuchać muzuki.</answer-item>
+		</quest-item>
+		<quest-item id="3" question="Jaki rodzaj aktywności jest dla ciebie najlepszy?">
+			<answer-item id="7" goto-quest-id="0">a) Najbardziej lubię biegać.</answer-item>
+			<answer-item id="8" goto-quest-id="5">b) Bardzo często jeżdżę na rowerze.</answer-item>
+			<answer-item id="9" goto-quest-id="0">c) Lubię chodzić na siłownie.</answer-item>
+		</quest-item>
+		<quest-item id="4" question="Jakie prace domowe wykonujesz najczęściej?">
+			<answer-item id="10" goto-quest-id="0">a) Pracuję w ogrodzie.</answer-item>
+			<answer-item id="11" goto-quest-id="0">b) Naprawiam lub buduję coś nowego.</answer-item>
+			<answer-item id="12" goto-quest-id="0">c) Sprzątam.</answer-item>
+		</quest-item>
+		<quest-item id="5" question="Na jakim rowerze lubisz jeździc najbardziej?">
+			<answer-item id="13" goto-quest-id="0">a) Na rowerze górskim.</answer-item>
+			<answer-item id="14" goto-quest-id="0">b) Na rowerze szosowym.</answer-item>
+			<answer-item id="15" goto-quest-id="0">c) Na rowerze turystycznym.</answer-item>
+		</quest-item>
+	</questions>
+	<cat-item>
+		<cat-item-id>1</cat-item-id>
+		<cat-item-name>Elektronika</cat-item-name>
+		<cat-item-parent>0</cat-item-parent>
+		<cat-item-position>1</cat-item-position>
+		<cat-item-visible>true</cat-item-visible>
+        <quest-goto-id>2</quest-goto-id>
+		<cat-item-answer-id>1</cat-item-answer-id>
+	</cat-item>
+	<cat-item>
+		<cat-item-id>2</cat-item-id>
+		<cat-item-name>Sport i turystyka</cat-item-name>
+		<cat-item-parent>0</cat-item-parent>
+		<cat-item-position>2</cat-item-position>
+		<cat-item-visible>true</cat-item-visible>
+        <quest-goto-id>3</quest-goto-id>
+		<cat-item-answer-id>2</cat-item-answer-id>
+	</cat-item>
+	<cat-item>
+		<cat-item-id>3</cat-item-id>
+		<cat-item-name>Dom i zdrowie</cat-item-name>
+		<cat-item-parent>0</cat-item-parent>
+		<cat-item-position>3</cat-item-position>
+		<cat-item-visible>true</cat-item-visible>
+        <quest-goto-id>4</quest-goto-id>
+		<cat-item-answer-id>3</cat-item-answer-id>
+	</cat-item>
+	<cat-item>
+		<cat-item-id>4</cat-item-id>
+		<cat-item-name>Telewizory</cat-item-name>
+		<cat-item-parent>1</cat-item-parent>
+		<cat-item-position>1</cat-item-position>
+		<cat-item-visible>true</cat-item-visible>
+        <quest-goto-id>0</quest-goto-id>
+		<cat-item-answer-id>4</cat-item-answer-id>
+	</cat-item>
+	<cat-item>
+		<cat-item-id>5</cat-item-id>
+		<cat-item-name>Komputery</cat-item-name>
+		<cat-item-parent>1</cat-item-parent>
+		<cat-item-position>2</cat-item-position>
+		<cat-item-visible>true</cat-item-visible>
+        <quest-goto-id>0</quest-goto-id>
+		<cat-item-answer-id>5</cat-item-answer-id>
+	</cat-item>
+	<cat-item>
+		<cat-item-id>6</cat-item-id>
+		<cat-item-name>Audio</cat-item-name>
+		<cat-item-parent>1</cat-item-parent>
+		<cat-item-position>3</cat-item-position>
+		<cat-item-visible>true</cat-item-visible>
+        <quest-goto-id>0</quest-goto-id>
+		<cat-item-answer-id>6</cat-item-answer-id>
+	</cat-item>
+	<cat-item>
+		<cat-item-id>7</cat-item-id>
+		<cat-item-name>Bieganie</cat-item-name>
+		<cat-item-parent>2</cat-item-parent>
+		<cat-item-position>1</cat-item-position>
+		<cat-item-visible>true</cat-item-visible>
+        <quest-goto-id>0</quest-goto-id>
+		<cat-item-answer-id>7</cat-item-answer-id>
+	</cat-item>
+	<cat-item>
+		<cat-item-id>8</cat-item-id>
+		<cat-item-name>Rowery</cat-item-name>
+		<cat-item-parent>2</cat-item-parent>
+		<cat-item-position>2</cat-item-position>
+		<cat-item-visible>true</cat-item-visible>
+        <quest-goto-id>5</quest-goto-id>
+		<cat-item-answer-id>8</cat-item-answer-id>
+	</cat-item>
+	<cat-item>
+		<cat-item-id>9</cat-item-id>
+		<cat-item-name>Siłownia</cat-item-name>
+		<cat-item-parent>2</cat-item-parent>
+		<cat-item-position>3</cat-item-position>
+		<cat-item-visible>true</cat-item-visible>
+        <quest-goto-id>0</quest-goto-id>
+		<cat-item-answer-id>9</cat-item-answer-id>
+	</cat-item>
+	<cat-item>
+		<cat-item-id>10</cat-item-id>
+		<cat-item-name>Ogród</cat-item-name>
+		<cat-item-parent>3</cat-item-parent>
+		<cat-item-position>1</cat-item-position>
+		<cat-item-visible>true</cat-item-visible>
+        <quest-goto-id>0</quest-goto-id>
+		<cat-item-answer-id>10</cat-item-answer-id>
+	</cat-item>
+	<cat-item>
+		<cat-item-id>11</cat-item-id>
+		<cat-item-name>Narzędzia</cat-item-name>
+		<cat-item-parent>3</cat-item-parent>
+		<cat-item-position>2</cat-item-position>
+		<cat-item-visible>true</cat-item-visible>
+        <quest-goto-id>0</quest-goto-id>
+		<cat-item-answer-id>11</cat-item-answer-id>
+	</cat-item>
+	<cat-item>
+		<cat-item-id>12</cat-item-id>
+		<cat-item-name>Meble</cat-item-name>
+		<cat-item-parent>3</cat-item-parent>
+		<cat-item-position>3</cat-item-position>
+		<cat-item-visible>true</cat-item-visible>
+        <quest-goto-id>0</quest-goto-id>
+		<cat-item-answer-id>12</cat-item-answer-id>
+	</cat-item>
+	<cat-item>
+		<cat-item-id>13</cat-item-id>
+		<cat-item-name>Rowery górskie</cat-item-name>
+		<cat-item-parent>8</cat-item-parent>
+		<cat-item-position>1</cat-item-position>
+		<cat-item-visible>true</cat-item-visible>
+		<quest-goto-id>0</quest-goto-id>
+		<cat-item-answer-id>13</cat-item-answer-id>
+	</cat-item>
+	<cat-item>
+		<cat-item-id>13</cat-item-id>
+		<cat-item-name>Rowery szosowe</cat-item-name>
+		<cat-item-parent>8</cat-item-parent>
+		<cat-item-position>2</cat-item-position>
+		<cat-item-visible>true</cat-item-visible>
+		<quest-goto-id>0</quest-goto-id>
+		<cat-item-answer-id>13</cat-item-answer-id>
+	</cat-item>
+	<cat-item>
+		<cat-item-id>14</cat-item-id>
+		<cat-item-name>Rowery turystyczne</cat-item-name>
+		<cat-item-parent>8</cat-item-parent>
+		<cat-item-position>3</cat-item-position>
+		<cat-item-visible>true</cat-item-visible>
+		<quest-goto-id>0</quest-goto-id>
+		<cat-item-answer-id>14</cat-item-answer-id>
+	</cat-item>
+</Categories>
