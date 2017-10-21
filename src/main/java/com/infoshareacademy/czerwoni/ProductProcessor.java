@@ -11,14 +11,15 @@ import java.util.Base64;
 class ProductProcessor {
 
     static private String getProductDataFromAPI(String barcode) {
-        final int statusCodeOK = 200;
         String response = null;
 
         try {
             String webAPI = "http://www.produktywsieci.gs1.pl/api/products/" + barcode + "?aggregation=SOCIAL";
-            String name = "test", password = "test123";
-            String authString = name + ":" + password;
-            String authEncoding = Base64.getEncoder().encodeToString((authString).getBytes("UTF-8")); // String authString = name + ":" + password;
+
+            final int statusCodeOK = 200;
+            final String authName = "mateusz@infoshareacademy.com", authToken = "cc2ef9333d20dbd97bfb395e1f82fd3b4e5ef8a1e1be37598ba60faf2256efac";
+            final String authString = authName + ":" + authToken;
+            final String authEncoding = Base64.getEncoder().encodeToString((authString).getBytes("UTF-8")); // String authString = name + ":" + password;
 
             URL urlAPI = new URL(webAPI);
             HttpURLConnection httpURLConnection = (HttpURLConnection) urlAPI.openConnection();
@@ -31,8 +32,8 @@ class ProductProcessor {
                         + httpURLConnection.getResponseCode() + "-" +httpURLConnection.getResponseMessage());
             }*/
 
-            response = (httpURLConnection.getResponseCode() == statusCodeOK) ?
-                    "success" : "failed (HTTP error code : "
+            response = ((httpURLConnection.getResponseCode() == statusCodeOK) ?
+                    "success : (" : "failed (HTTP error code : ")
                     + httpURLConnection.getResponseCode() + "-" + httpURLConnection.getResponseMessage() + ")";
 
             httpURLConnection.disconnect();
