@@ -6,15 +6,24 @@ public class AllegroCategoryPrinter {
 
     static ArrayList<AllegroCategory> currentCategory = new ArrayList<AllegroCategory>();
 
-    public static void printMainCategories(ArrayList<AllegroCategory> allegroCategories) {
-        currentCategory.clear();
+    private static void printCategory(ArrayList<AllegroCategory> allegroCategories,int categoryParent) {
         for (AllegroCategory allegroCategory : allegroCategories) {
-            if (allegroCategory.getCatParent() == 0) {
-                currentCategory.add(allegroCategory);
+            if (allegroCategory.getCatParent() == categoryParent) {
                 int orderNumber = allegroCategory.getCatPosition() + 1;
-                System.out.println(orderNumber + ") " + allegroCategory.getCatName());
+                currentCategory.add(allegroCategory);
+                if (allegroCategory.getCatParent() != 0) {
+                    System.out.println("    " + orderNumber + ") " + allegroCategory.getCatName());
+                }else {
+                    System.out.println(orderNumber + ") " + allegroCategory.getCatName());
+                }
             }
         }
+    }
+
+    public static void printMainCategories(ArrayList<AllegroCategory> allegroCategories) {
+        currentCategory.clear();
+        int categoryParent = 0;
+        printCategory(allegroCategories, categoryParent);
     }
 
     public static void printChildCategories(ArrayList<AllegroCategory> allegroCategories, String chosenCategory) {
@@ -22,22 +31,29 @@ public class AllegroCategoryPrinter {
         System.out.println(chosenCategory + " )"
                 + currentCategory.get(Integer.parseInt(chosenCategory)-1).getCatName() + "\n");
         currentCategory.clear();
-        for (AllegroCategory allegroCategory : allegroCategories) {
-            if (allegroCategory.getCatParent() == categoryParent) {
-                int orderNumber = allegroCategory.getCatPosition() + 1;
-                currentCategory.add(allegroCategory);
-                System.out.println("    " + orderNumber + ") " + allegroCategory.getCatName());
-            }
-        }
+        printCategory(allegroCategories, categoryParent);
         if(currentCategory.isEmpty()) {
             System.out.println("To jest ostatnia kategoria.");
         }
     }
 
     public static void printParentCategories(ArrayList<AllegroCategory> allegroCategories) {
-
+        int categoryParent = currentCategory.get(0).getCatParent();
+        for (AllegroCategory allegroCategory : allegroCategories) {
+            if (allegroCategory.getCatId() == categoryParent) {
+                categoryParent = allegroCategory.getCatParent();
+                if (categoryParent != 0) {
+                    int orderNumber = allegroCategory.getCatPosition() + 1;
+                    System.out.println(orderNumber + ") " + allegroCategory.getCatName() + "\n");
+                    break;
+                }
+            }
+        }
+        currentCategory.clear();
+        if (categoryParent == 0) {
+            AllegroCategoryPrinter.printMainCategories(allegroCategories);
+        } else {
+            printCategory(allegroCategories, categoryParent);
+        }
     }
-
-
-
 }
