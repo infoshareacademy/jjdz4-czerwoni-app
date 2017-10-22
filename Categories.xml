@@ -147,21 +147,21 @@
 		<cat-item-answer-id>13</cat-item-answer-id>
 	</cat-item>
 	<cat-item>
-		<cat-item-id>13</cat-item-id>
+		<cat-item-id>14</cat-item-id>
 		<cat-item-name>Rowery szosowe</cat-item-name>
 		<cat-item-parent>8</cat-item-parent>
 		<cat-item-position>2</cat-item-position>
 		<cat-item-visible>true</cat-item-visible>
 		<quest-goto-id>0</quest-goto-id>
-		<cat-item-answer-id>13</cat-item-answer-id>
+		<cat-item-answer-id>14</cat-item-answer-id>
 	</cat-item>
 	<cat-item>
-		<cat-item-id>14</cat-item-id>
+		<cat-item-id>15</cat-item-id>
 		<cat-item-name>Rowery turystyczne</cat-item-name>
 		<cat-item-parent>8</cat-item-parent>
 		<cat-item-position>3</cat-item-position>
 		<cat-item-visible>true</cat-item-visible>
 		<quest-goto-id>0</quest-goto-id>
-		<cat-item-answer-id>14</cat-item-answer-id>
+		<cat-item-answer-id>15</cat-item-answer-id>
 	</cat-item>
 </Categories>

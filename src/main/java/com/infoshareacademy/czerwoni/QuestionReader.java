@@ -27,6 +27,7 @@ class QuestionReader {
                     if (answerItem.getNodeType() == Node.ELEMENT_NODE) {
                         Element answer = (Element) answerItem;
                         Answer answerQ = new Answer();
+                        answerQ.setAnswerId(Integer.parseInt(answer.getAttribute("id")));
                         answerQ.setAnswerName(answer.getTextContent());
                         answerQ.setRelatedQuest(Integer.parseInt(answer.getAttribute("goto-quest-id")));
                         answerArrayList.add(answerQ);
