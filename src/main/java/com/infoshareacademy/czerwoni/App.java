@@ -25,6 +25,7 @@ public class App {
                         case 1:
                             System.out.println("WORK IN PROGRESS");
                             searchCategory.showCategory();
+                            System.out.println("");
                             break;
                         case 2:
                             System.out.println("WORK IN PROGRESS");
@@ -60,7 +61,7 @@ public class App {
 
         private static void printOut() {
             System.out.println("Welcome in What Do You Want app, pick your number please:");
-            System.out.println("1: Our categories browser");
+            System.out.println("1: Our categories browser (based on questions)");
             System.out.println("2: Allegro categories");
             System.out.println("3: Ebay research");
             System.out.println("4: Allegro direct category picker");
