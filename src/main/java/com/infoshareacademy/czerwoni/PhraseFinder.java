@@ -8,7 +8,6 @@ public class PhraseFinder {
     public String PhraseScanner(String s) {
         Scanner scanner = new Scanner(System.in);
 
-
         String phrase = scanner.nextLine();
         System.out.println(phrase);
 
@@ -16,7 +15,7 @@ public class PhraseFinder {
         return phrase;
     }
 
-    public void PhraseResearch(String s, ArrayList<AllegroCategory> allegroCategories) {
+    public static void PhraseResearch(String s, ArrayList<AllegroCategory> allegroCategories) {
 
         String search = s;
         for (AllegroCategory allegroCategory : allegroCategories) {

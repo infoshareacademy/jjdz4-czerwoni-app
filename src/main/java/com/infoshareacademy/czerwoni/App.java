@@ -35,7 +35,8 @@ public class App {
                             System.out.println("WORK IN PROGRESS");
                             break;
                         case 4:
-                            System.out.println("WORK IN PROGRESS");
+                            new PhraseFinder();
+                            //System.out.println("WORK IN PROGRESS");
                             break;
                         case 5:
                             System.out.println("WORK IN PROGRESS");
