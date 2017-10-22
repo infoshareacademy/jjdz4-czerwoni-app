@@ -11,9 +11,9 @@ public class App {
 
         public static void main(String[] args) {
             boolean onOff = true;
-            printOut();
 
             while (onOff) {
+                printOut();
                 Scanner scanner = new Scanner(System.in);
 
                 while (!scanner.hasNextInt()) {

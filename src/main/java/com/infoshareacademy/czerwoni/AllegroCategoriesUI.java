@@ -6,24 +6,23 @@ import java.util.Scanner;
 public class AllegroCategoriesUI {
 
     public static void UserInterface(ArrayList<AllegroCategory> allegroCategories) {
-
-        while (true) {
+        boolean finished = true;
+        while (true && finished) {
             try {
-                System.out.print("\nWprowadź numer kategorii: ");
+                System.out.print("Wprowadź komendę lub numer kategorii: ");
                 Scanner keyScanner = new Scanner(System.in);
                 String enteredKey = keyScanner.nextLine();
-                switch (enteredKey) {
-                    case "Main":
-                        AllegroCategoryPrinter.printMainCategories(allegroCategories);
-                        break;
+                switch (enteredKey.toLowerCase()) {
                     case "main":
                         AllegroCategoryPrinter.printMainCategories(allegroCategories);
                         break;
-                    case "Back":
-                        AllegroCategoryPrinter.printParentCategories(allegroCategories);
-                        break;
                     case "back":
                         AllegroCategoryPrinter.printParentCategories(allegroCategories);
+                        break;
+                    case "exit":
+                        finished = false;
+                        break;
+                    case "generate":
                         break;
                     default:
                         try {

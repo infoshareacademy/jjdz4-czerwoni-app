@@ -15,7 +15,6 @@ import java.util.ArrayList;
 
 public class ParseXmlAllegroCategories {
 
-
     public static ArrayList deserialization()  {
 
         File file = new File("Allegro_cathegories_2016-02-13.xml");
