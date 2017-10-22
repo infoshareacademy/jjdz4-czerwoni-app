@@ -16,23 +16,6 @@ public class App
         allegroCategories = ParseXmlAllegroCategories.deserialization();
         AllegroCategoryPrinter.printMainCategories(allegroCategories);
 
-        while (true) {
-            System.out.print("\nWprowadź numer kategorii: ");
-            Scanner keyScanner = new Scanner(System.in);
-            String enteredKey = keyScanner.nextLine();
-            char enteredKeyChar = enteredKey.charAt(0);
-            switch (enteredKeyChar) {
-                case 'm' : AllegroCategoryPrinter.printMainCategories(allegroCategories);
-                    break;
-                case 'M' : AllegroCategoryPrinter.printMainCategories(allegroCategories);
-                    break;
-                case 'b' : AllegroCategoryPrinter.printParentCategories(allegroCategories);
-                    break;
-                case 'B' : AllegroCategoryPrinter.printParentCategories(allegroCategories);
-                    break;
-                default: AllegroCategoryPrinter.printChildCategories(allegroCategories, enteredKey);
-                    break;
-            }
-        }
+        AllegroCategoriesUI.UserInterface(allegroCategories);
     }
 }
