@@ -71,6 +71,18 @@ public class AllegroCategory {
         this.categoryChild = categoryChild;
     }
 
+    public static String generateLink(AllegroCategory allegroCategory) {
+        String categoryName = allegroCategory.catName;
+        categoryName = categoryName.replace(" ", "-");
+        StringBuilder link = new StringBuilder();
+        link.append("https://allegro.pl/kategoria/")
+                .append(categoryName)
+                .append("-")
+                .append(allegroCategory.getCatId())
+                .append("?order=m\n");
+        return link.toString();
+    }
+
     @Override
     public String toString() {
         return "AllegroCategory{" +
