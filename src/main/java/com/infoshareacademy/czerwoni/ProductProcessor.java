@@ -23,12 +23,12 @@ class ProductProcessor {
             final String authName = "mateusz@infoshareacademy.com",
                     authToken = "cc2ef9333d20dbd97bfb395e1f82fd3b4e5ef8a1e1be37598ba60faf2256efac";
             final String authString = authName + ":" + authToken;
-            final String authEncoding = Base64.getEncoder().encodeToString((authString).getBytes("UTF-8")); // String authString = name + ":" + password;
+            final String authEncoding = Base64.getEncoder().encodeToString((authString).getBytes("UTF-8"));
 
             URL urlAPI = new URL(webAPI);
             HttpURLConnection httpURLConnection = (HttpURLConnection) urlAPI.openConnection();
             httpURLConnection.setRequestMethod("GET");
-            httpURLConnection.setRequestProperty("Accept", "application/json");
+            httpURLConnection.setRequestProperty("Accept", "text/json"); // "text/json"  "application/json"
             httpURLConnection.setRequestProperty("Authorization", "Basic " + authEncoding);
 
             /* if (httpURLConnection.getResponseCode() != statusCodeOK) {
@@ -45,6 +45,7 @@ class ProductProcessor {
             BufferedReader in =
                     new BufferedReader(new InputStreamReader(content));
             String respJSON = in.readLine();
+            // {"GTIN":"05900084063241","BrandOwner":"McCORMICK POLSKA S.A.","Brand":"Kamis","Manufacturer":null,"ProductName":"Kamis Musztarda grillowa 290 g","Description":null,"CountryOfOrigin":null,"ProductImage":"http://www.produktywsieci.pl/picture_cache/103/590/0084/05900084063241_MARKT_L.jpg","URL":"http://www.kamis.pl","IsLegal":true,"ModifiedDate":"2017-10-13T22:02:10.657"}
             Gson gson = new Gson();
             // Product product = gson.fromJson(in, Product.class);
             Product product = gson.fromJson(respJSON, Product.class);
@@ -55,41 +56,7 @@ class ProductProcessor {
                 response = "nulll";
             }
 
-        /*    while ((line = in.readLine()) != null) {
-                System.out.println(line);
-            } */
-
-
             httpURLConnection.disconnect();
-
-            // {"GTIN":"05900084063241","BrandOwner":"McCORMICK POLSKA S.A.","Brand":"Kamis","Manufacturer":null,"ProductName":"Kamis Musztarda grillowa 290 g","Description":null,"CountryOfOrigin":null,"ProductImage":"http://www.produktywsieci.pl/picture_cache/103/590/0084/05900084063241_MARKT_L.jpg","URL":"http://www.kamis.pl","IsLegal":true,"ModifiedDate":"2017-10-13T22:02:10.657"}
-
-            /*
-        JSONObject productJSON = new JSONObject();  // productJSON = API.product.get(productBarcode);
-        // tymczasowo:
-        productJSON.put("GTIN", productBarcode);
-
-           {"balance": 1000.21, "num":100, "is_vip":true, "name":"foo"}
-        productJSON =
-    {
-	"GTIN": "string",
-	"BrandOwner": "string",
-	"Brand": "string",
-	"Manufacturer": "string",
-	"ProductName": "string",
-	"Description": "string",
-	"CountryOfOrigin": "string",
-	"ProductImage": "string",
-	"URL": "string",
-	"IsLegal": true,
-	"ModifiedDate": "2017-10-15T17:21:52.447Z"
-    }
-
-       Product product = new Product (response.data);
-       return product.toString;
-
-        return productJSON.get("GTIN").toString();  */
-
 
         } catch (MalformedURLException e) {
             // e.printStackTrace();
@@ -112,30 +79,6 @@ class ProductProcessor {
 
         // http://produktywsieci.gs1.pl/apidocs/index#!/ApiProducts/ApiProducts_Get
         return getProductDataFromAPI(productBarcode);
-/*
-        JSONObject productJSON = new JSONObject();  // productJSON = API.product.get(productBarcode);
-        // tymczasowo:
-        productJSON.put("GTIN", productBarcode);
 
-           {"balance": 1000.21, "num":100, "is_vip":true, "name":"foo"}
-        productJSON =
-    {
-	"GTIN": "string",
-	"BrandOwner": "string",
-	"Brand": "string",
-	"Manufacturer": "string",
-	"ProductName": "string",
-	"Description": "string",
-	"CountryOfOrigin": "string",
-	"ProductImage": "string",
-	"URL": "string",
-	"IsLegal": true,
-	"ModifiedDate": "2017-10-15T17:21:52.447Z"
-    }
-
-       Product product = new Product (response.data);
-       return product.toString;
-
-        return productJSON.get("GTIN").toString();  */
     }
 }
