@@ -1,0 +1,16 @@
+<!ELEMENT Categories (questions, cat-item+)>
+<!ELEMENT questions (quest-item+)>
+<!ELEMENT quest-item (answer-item+)>
+    <!ATTLIST quest-item id CDATA #REQUIRED>
+    <!ATTLIST quest-item question CDATA #REQUIRED>
+        <!ELEMENT answer-item (#PCDATA)>
+            <!ATTLIST answer-item id CDATA #REQUIRED>
+            <!ATTLIST answer-item goto-quest-id CDATA #REQUIRED>
+<!ELEMENT cat-item (cat-item-id, cat-item-name, cat-item-parent, cat-item-position, cat-item-visible, quest-goto-id, cat-item-answer-id)>
+        <!ELEMENT cat-item-id (#PCDATA)>
+        <!ELEMENT cat-item-name (#PCDATA)>
+        <!ELEMENT cat-item-parent (#PCDATA)>
+        <!ELEMENT cat-item-position (#PCDATA)>
+        <!ELEMENT cat-item-visible (#PCDATA)>
+        <!ELEMENT quest-goto-id (#PCDATA)>
+        <!ELEMENT cat-item-answer-id (#PCDATA)>
