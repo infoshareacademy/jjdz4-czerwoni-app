@@ -1,8 +1,11 @@
 package com.infoshareacademy.czerwoni;
 
-import org.json.simple.JSONObject;
+import com.google.gson.Gson;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -17,7 +20,8 @@ class ProductProcessor {
             String webAPI = "http://www.produktywsieci.gs1.pl/api/products/" + barcode + "?aggregation=SOCIAL";
 
             final int statusCodeOK = 200;
-            final String authName = "mateusz@infoshareacademy.com", authToken = "cc2ef9333d20dbd97bfb395e1f82fd3b4e5ef8a1e1be37598ba60faf2256efac";
+            final String authName = "mateusz@infoshareacademy.com",
+                    authToken = "cc2ef9333d20dbd97bfb395e1f82fd3b4e5ef8a1e1be37598ba60faf2256efac";
             final String authString = authName + ":" + authToken;
             final String authEncoding = Base64.getEncoder().encodeToString((authString).getBytes("UTF-8")); // String authString = name + ":" + password;
 
@@ -36,7 +40,29 @@ class ProductProcessor {
                     "success : (" : "failed (HTTP error code : ")
                     + httpURLConnection.getResponseCode() + "-" + httpURLConnection.getResponseMessage() + ")";
 
+
+            InputStream content = httpURLConnection.getInputStream();
+            BufferedReader in =
+                    new BufferedReader(new InputStreamReader(content));
+            String respJSON = in.readLine();
+            Gson gson = new Gson();
+            // Product product = gson.fromJson(in, Product.class);
+            Product product = gson.fromJson(respJSON, Product.class);
+
+            if (product != null) {
+                response = product.toString();
+            } else {
+                response = "nulll";
+            }
+
+        /*    while ((line = in.readLine()) != null) {
+                System.out.println(line);
+            } */
+
+
             httpURLConnection.disconnect();
+
+            // {"GTIN":"05900084063241","BrandOwner":"McCORMICK POLSKA S.A.","Brand":"Kamis","Manufacturer":null,"ProductName":"Kamis Musztarda grillowa 290 g","Description":null,"CountryOfOrigin":null,"ProductImage":"http://www.produktywsieci.pl/picture_cache/103/590/0084/05900084063241_MARKT_L.jpg","URL":"http://www.kamis.pl","IsLegal":true,"ModifiedDate":"2017-10-13T22:02:10.657"}
 
             /*
         JSONObject productJSON = new JSONObject();  // productJSON = API.product.get(productBarcode);

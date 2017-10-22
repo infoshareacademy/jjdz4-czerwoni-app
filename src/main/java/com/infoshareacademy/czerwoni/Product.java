@@ -4,28 +4,26 @@ class Product extends Object {
 
     // http://www.produktywsieci.gs1.pl/Subpage/FieldsScope
     // http://www.produktywsieci.gs1.pl/apidocs/index#!/ApiProducts/ApiProducts_Get
+    // {"GTIN":"05900084063241","BrandOwner":"McCORMICK POLSKA S.A.","Brand":"Kamis","Manufacturer":null,
+    // "ProductName":"Kamis Musztarda grillowa 290 g","Description":null,"CountryOfOrigin":null,"ProductImage":"http://www.produktywsieci.pl/picture_cache/103/590/0084/05900084063241_MARKT_L.jpg","URL":"http://www.kamis.pl","IsLegal":true,"ModifiedDate":"2017-10-13T22:02:10.657"}
     private String GTIN;
-    private String brandOwner;
-    private String manufacturerName;
-    private String brandName;
-    private String productName;
-    private String description;
-    private String countryOfOrigin;
-    private String productImage;  // Link do marketingowego obrazka produktu w rozmiarze L (około 800x600)
+    private String BrandOwner;
+    private String Brand;
+    private String Manufacturer;
+    private String ProductName;
+    private String Description;
+    private String CountryOfOrigin;
+    private String ProductImage;  // Link do marketingowego obrazka produktu w rozmiarze L (około 800x600)
     private String URL;           // Link do strony produktu, ewentualnie link do strony właściciela marki
-    private boolean legal;
+    private boolean IsLegal;
+    private String ModifiedDate;
 
-    public Product(String GTIN, String brandOwner, String manufacturerName, String brandName, String productName, String description, String countryOfOrigin, String productImage, String URL, boolean isLegal) {
+    public Product(String GTIN, String brandOwner, String manufacturerName, String brandName, String productName) {
         this.GTIN = GTIN;
-        this.brandOwner = brandOwner;
-        this.manufacturerName = manufacturerName;
-        this.brandName = brandName;
-        this.productName = productName;
-        this.description = description;
-        this.countryOfOrigin = countryOfOrigin;
-        this.productImage = productImage;
-        this.URL = URL;
-        this.legal = isLegal;
+        this.BrandOwner = brandOwner;
+        this.Manufacturer = manufacturerName;
+        this.Brand = brandName;
+        this.ProductName = productName;
     }
 
     String getGTIN() {
@@ -37,31 +35,31 @@ class Product extends Object {
     }
 
     String getBrandOwner() {
-        return brandOwner;
+        return BrandOwner;
     }
 
-    public String getManufacturerName() {
-        return manufacturerName;
+    public String getManufacturer() {
+        return Manufacturer;
     }
 
-    public String getBrandName() {
-        return brandName;
+    public String getBrand() {
+        return Brand;
     }
 
     public String getProductName() {
-        return productName;
+        return ProductName;
     }
 
     public String getDescription() {
-        return description;
+        return Description;
     }
 
     public String getCountryOfOrigin() {
-        return countryOfOrigin;
+        return CountryOfOrigin;
     }
 
     public String getProductImage() {
-        return productImage;
+        return ProductImage;
     }
 
     public String getURL() {
@@ -69,7 +67,7 @@ class Product extends Object {
     }
 
     public boolean isLegal() {
-        return legal;
+        return IsLegal;
     }
 
     @Override
@@ -77,9 +75,12 @@ class Product extends Object {
         StringBuilder stringBuilder = new StringBuilder();
         return stringBuilder
                 .append(GTIN)
-                .append(" - ")
-                .append(productName)
-                .append(" - ")
-                .append(description).toString();
+                .append(" Product name: ")
+                .append(ProductName)
+                .append(", brand owner: ")
+                .append(BrandOwner)
+                .append(", brand name: ")
+                .append(Brand)
+                .toString();
     }
 }
