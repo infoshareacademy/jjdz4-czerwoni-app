@@ -2,19 +2,16 @@ package com.infoshareacademy.czerwoni;
 
 import java.util.Scanner;
 
-/**
- * Hello world!
- *
- */
 public class App {
 
         public static void main(String[] args) {
+            SearchCategory searchCategory = new SearchCategory();
             boolean onOff = true;
-            printOut();
+
 
             while (onOff) {
                 Scanner scanner = new Scanner(System.in);
-
+                    printOut();
                 while (!scanner.hasNextInt()) {
                     System.out.println("int, please");
                     scanner.nextLine();
@@ -27,6 +24,7 @@ public class App {
                     switch (choice) {
                         case 1:
                             System.out.println("WORK IN PROGRESS");
+                            searchCategory.showCategory();
                             break;
                         case 2:
                             System.out.println("WORK IN PROGRESS");
@@ -53,6 +51,8 @@ public class App {
                         default:
                             System.out.println("\nSOMETHING WENT WRONG TRY AGAIN\n");
                     }
+
+
                 }
             }
 
@@ -68,6 +68,8 @@ public class App {
             System.out.println("6: Identify product using barcode image");
             System.out.println("7: MENU");
             System.out.println("8: QUIT APP");
+            System.out.print("Wybierz opcję: ");
+            System.out.print("");
         }
 
     }
