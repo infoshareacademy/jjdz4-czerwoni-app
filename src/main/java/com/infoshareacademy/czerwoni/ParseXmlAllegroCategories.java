@@ -36,7 +36,7 @@ public class ParseXmlAllegroCategories {
         }
         document.getDocumentElement().normalize();
         NodeList nodeList = document.getElementsByTagName("ns1:item");
-        ArrayList<AllegroCategory> allegroCategories = new ArrayList<AllegroCategory>();
+        ArrayList<AllegroCategory> allegroCategories = new ArrayList<>();
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node node = nodeList.item(i);
             Element element = (Element) node;

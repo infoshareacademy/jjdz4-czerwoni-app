@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class AllegroCategoryPrinter {
 
     static ArrayList<AllegroCategory> currentCategory = new ArrayList<AllegroCategory>();
-    static ArrayList<AllegroCategory> parentCategory = new ArrayList<AllegroCategory>();
 
     private static void printCategory(ArrayList<AllegroCategory> allegroCategories,int categoryParent) {
         for (AllegroCategory allegroCategory : allegroCategories) {
@@ -19,6 +18,7 @@ public class AllegroCategoryPrinter {
                 }
             }
         }
+        System.out.println("\n[Main]");
     }
 
     public static void printMainCategories(ArrayList<AllegroCategory> allegroCategories) {
@@ -30,8 +30,8 @@ public class AllegroCategoryPrinter {
     public static void printChildCategories(ArrayList<AllegroCategory> allegroCategories, String chosenCategory) {
 
         int categoryParent = currentCategory.get(Integer.parseInt(chosenCategory)-1).getCatId();
-        System.out.println(chosenCategory + " )"
-                + currentCategory.get(Integer.parseInt(chosenCategory)-1).getCatName() + "\n");
+        System.out.println(chosenCategory + ") "
+                + currentCategory.get(Integer.parseInt(chosenCategory)-1).getCatName() + ":" + "\n");
         currentCategory.clear();
         printCategory(allegroCategories, categoryParent);
         if(currentCategory.isEmpty()) {
@@ -44,18 +44,17 @@ public class AllegroCategoryPrinter {
         for (AllegroCategory allegroCategory : allegroCategories) {
             if (allegroCategory.getCatId() == currentCategoryParent) {
                 currentCategoryParent = allegroCategory.getCatParent();
-                if (currentCategoryParent != 0) {
-                    int orderNumber = allegroCategory.getCatPosition() + 1;
-                    System.out.println(orderNumber + ") " + allegroCategory.getCatName() + "\n");
-                    break;
-                }
+                break;
+            }
+        }
+        for (AllegroCategory allegroCategory : allegroCategories) {
+            if (allegroCategory.getCatId() == currentCategoryParent) {
+                int parentOrderNumber = allegroCategory.getCatPosition() + 1;
+                System.out.println(parentOrderNumber + ") " + allegroCategory.getCatName() + "\n");
+                break;
             }
         }
         currentCategory.clear();
-        if (currentCategoryParent == 0) {
-            AllegroCategoryPrinter.printMainCategories(allegroCategories);
-        } else {
-            printCategory(allegroCategories, currentCategoryParent);
-        }
+        printCategory(allegroCategories, currentCategoryParent);
     }
 }

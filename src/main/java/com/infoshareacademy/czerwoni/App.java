@@ -33,8 +33,7 @@ public class App {
                             ArrayList<AllegroCategory> allegroCategories;
                             allegroCategories = ParseXmlAllegroCategories.deserialization();
                             AllegroCategoryPrinter.printMainCategories(allegroCategories);
-
-                            AllegroCategoriesUI.UserInterface(allegroCategories);;
+                            AllegroCategoriesUI.UserInterface(allegroCategories);
                             break;
                         case 3:
                             System.out.println("WORK IN PROGRESS");
