@@ -6,8 +6,8 @@ import java.util.Scanner;
 public class AllegroCategoriesUI {
 
     public static void UserInterface(ArrayList<AllegroCategory> allegroCategories) {
-        boolean finished = true;
-        while (finished) {
+        boolean finished = false;
+        while (!finished) {
             try {
                 System.out.print("Wprowadź komendę lub numer kategorii: ");
                 Scanner keyScanner = new Scanner(System.in);
@@ -20,7 +20,7 @@ public class AllegroCategoriesUI {
                         AllegroCategoryPrinter.printParentCategories(allegroCategories);
                         break;
                     case "exit":
-                        finished = false;
+                        finished = true;
                         break;
                     case "generate":
                         AllegroCategoryPrinter.generateLink(allegroCategories);
@@ -34,7 +34,7 @@ public class AllegroCategoriesUI {
                         }
                 }
             }catch (NumberFormatException e){
-                System.out.println("Wprowadzono niepoprawne dane!");
+                System.out.println("Wprowadzono niepoprawną komendę!");
             }
         }
     }
