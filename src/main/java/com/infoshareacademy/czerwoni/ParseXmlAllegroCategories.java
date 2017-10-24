@@ -15,6 +15,12 @@ import java.util.ArrayList;
 
 public class ParseXmlAllegroCategories {
 
+    /**
+     * Funkcja odczytująca dane z pliku XML, zawierającego kategorie Allegro
+     * i tworząca obiekty klasy AllegroCategory.
+     *
+     * @return - lista obiektów kategorii Allegro.
+     */
     public static ArrayList deserialization()  {
 
         File file = new File("Allegro_cathegories_2016-02-13.xml");
@@ -32,6 +38,8 @@ public class ParseXmlAllegroCategories {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (NullPointerException e) {
+            System.out.println("Nieprawidłowe dane w pliku!");
         }
         document.getDocumentElement().normalize();
         NodeList nodeList = document.getElementsByTagName("ns1:item");

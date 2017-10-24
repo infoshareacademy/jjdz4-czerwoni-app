@@ -71,6 +71,11 @@ public class AllegroCategory {
         this.categoryChild = categoryChild;
     }
 
+    /**
+     * Funkcja generująca String do kategorii Allegor i przekazuje go do funkcji drukującej.
+     *
+     * @return - String z linkiem do kategorii.
+     */
     public String generateLink() {
         String categoryName = this.catName;
         categoryName = categoryName.replace(" ", "-");

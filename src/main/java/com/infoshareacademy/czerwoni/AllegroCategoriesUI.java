@@ -5,6 +5,11 @@ import java.util.Scanner;
 
 public class AllegroCategoriesUI {
 
+    /**
+     * Funkcja sterująca poruszaniem się po drzewie kategorii i generowaniem linków.
+     *
+     * @param allegroCategories - Zbiór wszystkich kategorii Allegro.
+     */
     public static void UserInterface(ArrayList<AllegroCategory> allegroCategories) {
         boolean finished = false;
         while (!finished) {
@@ -17,15 +22,18 @@ public class AllegroCategoriesUI {
                         AllegroCategoryPrinter.printMainCategories(allegroCategories);
                         break;
                     case "back":
+                        System.out.println("\nPRZEGLĄDANIE KATEGORII ALLEGRO");
                         AllegroCategoryPrinter.printParentCategories(allegroCategories);
                         break;
                     case "exit":
                         finished = true;
+                        System.out.println("");
                         break;
                     case "generate":
                         AllegroCategoryPrinter.generateLink(allegroCategories);
                         break;
                     default:
+                        System.out.println("\nPRZEGLĄDANIE KATEGORII ALLEGRO");
                         try {
                             AllegroCategoryPrinter.printChildCategories(allegroCategories, enteredKey);
                             break;

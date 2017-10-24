@@ -8,6 +8,12 @@ public class AllegroCategoryPrinter {
 
     private static ArrayList<AllegroCategory> currentCategory = new ArrayList<>();
 
+    /**
+     * Funkcja generująca i drukująca żadaną listę kategorii.
+     *
+     * @param allegroCategories - Zbiór wszystkich kategorii Allegro.
+     * @param categoryParent - Numer Id kategorii nadrzędnej do kategorii wyświetlanych.
+     */
     private static void printCategory(ArrayList<AllegroCategory> allegroCategories,int categoryParent) {
         for (AllegroCategory allegroCategory : allegroCategories) {
             if (allegroCategory.getCatParent() == categoryParent) {
@@ -22,14 +28,25 @@ public class AllegroCategoryPrinter {
                 "[Exit - powrót do Menu Głównego]\n");
     }
 
+    /**
+     * Funkcja generująca zbiór kategorii głównych i drukująca ten zbiór na ekranie.
+     *
+     * @param allegroCategories - Zbiór wszystkich kategorii Allegro.
+     */
     public static void printMainCategories(ArrayList<AllegroCategory> allegroCategories) {
         currentCategory.clear();
-        System.out.println("\nPRZEGLĄDANIE KATEGORII");
+        System.out.println("\nPRZEGLĄDANIE KATEGORII ALLEGRO");
         System.out.println("\nKategorie główne:");
         int categoryParent = 0;
         printCategory(allegroCategories, categoryParent);
     }
 
+    /**
+     * Funkcja generująca zbiór kategorii podrzędnych do kategorii wybranej przez użytkownika.
+     *
+     * @param allegroCategories - Zbiór wszystkich kategorii Allegro.
+     * @param chosenCategory - numer kategorii wybranej przez użytkownika.
+     */
     public static void printChildCategories(ArrayList<AllegroCategory> allegroCategories, String chosenCategory) {
         int categoryParent = currentCategory.get(Integer.parseInt(chosenCategory)-1).getCatId();
         System.out.println("\n" + chosenCategory + ") "
@@ -41,6 +58,12 @@ public class AllegroCategoryPrinter {
         }
     }
 
+    /**
+     * Funkcja powracającą poziom wyżej i drukująca listę kategorii
+     * po wpisaniu przez użytkowanika odpowiedniej komendy.
+     *
+     * @param allegroCategories - Zbiór wszystkich kategorii Allegro.
+     */
     public static void printParentCategories(ArrayList<AllegroCategory> allegroCategories) {
         int currentCategoryParent = currentCategory.get(0).getCatParent();
         for (AllegroCategory allegroCategory : allegroCategories) {
@@ -61,8 +84,10 @@ public class AllegroCategoryPrinter {
     }
 
     /**
+     * Funkcja drukująca w konsoli Link do kategorii Allegro,
+     * na podstawie numeru kategorii wybranej przez użytkownika.
      *
-     * @param allegroCategories
+     * @param allegroCategories - Zbiór wszystkich kategorii Allegro.
      */
     public static void generateLink(ArrayList<AllegroCategory> allegroCategories) {
         System.out.println("\nGENEROWANIE LINKU DO KATEGORII\n");
