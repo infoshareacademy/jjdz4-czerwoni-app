@@ -23,8 +23,9 @@ public class App {
 
                     switch (choice) {
                         case 1:
-                            System.out.println("WORK IN PROGRESS");
+                            System.out.println("");
                             searchCategory.showCategory();
+                           // searchCategory.startQuiz();
                             System.out.println("");
                             break;
                         case 2:

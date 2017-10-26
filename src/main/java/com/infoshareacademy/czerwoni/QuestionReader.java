@@ -8,7 +8,9 @@ import java.util.ArrayList;
 
 class QuestionReader {
     private ArrayList<Question> questionArrayList = new ArrayList<>();
-    private ParseXML docXML = new ParseXML("Categories.xml");
+    private ParseXML docXML = new ParseXML("src/main/resources/Categories.xml");
+
+    //Metoda zwraca listę(obiektów klasy Question) wszystkich pytań i odpowiedzi
 
     ArrayList<Question> getQuestionList() {
             Document doc = docXML.getXMLDocument();

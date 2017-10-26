@@ -72,9 +72,12 @@ public class Category {
         this.categoryName = categoryName;
     }
 
+
+    //Metoda zwraca listę (obiektów klasy Category) wszystkich kategorii z pliku XML
+
     ArrayList<Category> getCategoryList() {
         ArrayList<Category> categoryArrayList = new ArrayList<>();
-        ParseXML docXML = new ParseXML("Categories.xml");
+        ParseXML docXML = new ParseXML("src/main/resources/Categories.xml");
         Document doc = docXML.getXMLDocument();
         NodeList categoryNodeList = doc.getElementsByTagName("cat-item");
         for (int k = 0; k < categoryNodeList.getLength(); k++) {

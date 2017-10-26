@@ -130,7 +130,7 @@
 	</cat-item>
 	<cat-item>
 		<cat-item-id>12</cat-item-id>
-		<cat-item-name>Meble</cat-item-name>
+		<cat-item-name>Utrzymanie czystości</cat-item-name>
 		<cat-item-parent>3</cat-item-parent>
 		<cat-item-position>3</cat-item-position>
 		<cat-item-visible>true</cat-item-visible>
