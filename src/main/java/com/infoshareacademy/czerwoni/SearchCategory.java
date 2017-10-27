@@ -7,6 +7,8 @@ class SearchCategory {
     private QuestionReader questionReader = new QuestionReader();
     private List<Question> questions = questionReader.getQuestionList();
     private String answerId;
+    private Category category = new Category();
+    private List<Category> categoryList = category.getCategoryList();
 
 
     String getAnswerId() {
@@ -23,26 +25,36 @@ class SearchCategory {
                 System.out.println(q.getQuestionName());
                 q.getAnswerList().forEach(s -> System.out.println(s.getAnswerName()));
                 System.out.print("Podaj odpowiedź [a,b,c]: ");
+                //sprawdzanie odpowiedzi
                 while (checkAnswer) {
                     String userAnswer = answerScanner.nextLine();
-                    if (userAnswer.toLowerCase().equals("a") || userAnswer.toLowerCase().equals("b") || userAnswer.toLowerCase().equals("c")){
+                    if (userAnswer.toLowerCase().equals("a") || userAnswer.toLowerCase().equals("b") || userAnswer.toLowerCase().equals("c")) {
                         System.out.println("");
                         for (Answer a : q.getAnswerList()) {
                             if (userAnswer.toLowerCase().equals(a.getAnswerName().substring(0, 1))) {
                                 this.answerId = String.valueOf(a.getAnswerId());
-                                //System.out.print("Twoja kategoria to: "+showCategory()+"Czy chcesz szukac dalej?: ");
-//                                String isContinue = answerScanner.nextLine();
-//                                if(isContinue.equals("T")) {
-                                   showQuestion(String.valueOf(a.getRelatedQuest()));
-//                                }
-//                                else {
-//                                    break;
-//                                }
+                                System.out.println("Twoja kategoria Allegro to: \033[33m" + getCategoryName(answerId) + "\033[0m\n");
+                                if (a.getRelatedQuest() != 0) {
+                                    System.out.print("Czy chcesz szukać dalej?(podaj T lu N): ");
+                                    String isOK = answerScanner.nextLine();
+                                    System.out.println("");
+                                    if (isOK.toLowerCase().equals("t")) {
+                                        showQuestion(String.valueOf(a.getRelatedQuest()));
+                                    } else {
+                                        System.out.println("\033[33mLink do Allegro\033[0m\n");
+                                        System.out.println("Naciśnij dowolny klawisz aby przejść do Menu\n");
+                                        answerScanner.nextLine();
+                                        break;
+                                    }
+                                } else {
+                                    System.out.println("\033[33mLink do Allegro\033[0m\n");
+                                    System.out.println("Naciśnij dowolny klawisz aby przejść do Menu\n");
+                                    answerScanner.nextLine();
+                                }
                             }
                         }
                         break;
-                    }
-                    else {
+                    } else {
                         System.out.print("Podałeś niepoprawną odpoowiedź, jescze raz: ");
                     }
                 }
@@ -52,30 +64,14 @@ class SearchCategory {
     }
 
     // Wyświetlenie wyniku - kategorii - po odpowiedzi na pytania
-    //TODO ta metoda powinna zwrócić String z kategorią która będzie przekazana do metody wyszukiwania
 
-    void showCategory() {
-        Category category = new Category();
-        List<Category> categoryList = category.getCategoryList();
-        SearchCategory searchCategory = new SearchCategory();
-        String id = "1";
-        String catId;
-        //String categoryResult = null;
-        searchCategory.showQuestion(id);
-        catId = searchCategory.getAnswerId();
+    String getCategoryName(String idCat) {
+        String categoryName = null;
         for (Category cat : categoryList) {
-            if (catId.equals(String.valueOf(cat.getCategoryId()))) {
-                System.out.println("Twoja kategoria Allegro to: \033[33m" + cat.getCategoryName()+"\033[0m");
-          //      categoryResult = category.getCategoryName();
+            if (idCat.equals(String.valueOf(cat.getCategoryId()))) {
+                categoryName = cat.getCategoryName();
             }
         }
-        //return categoryResult;
+        return categoryName;
     }
-
-
-//    void startQuiz(){
-//        showQuestion("1");
-//        showCategory();
-//        System.out.println("Twoja kategoria Allegro to: \033[33m" +showCategory()+"\033[0m");
-//    }
 }

@@ -24,8 +24,7 @@ public class App {
                     switch (choice) {
                         case 1:
                             System.out.println("");
-                            searchCategory.showCategory();
-                           // searchCategory.startQuiz();
+                            searchCategory.showQuestion("1");
                             System.out.println("");
                             break;
                         case 2:
