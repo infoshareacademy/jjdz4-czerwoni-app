@@ -6,7 +6,7 @@
         <!ELEMENT answer-item (#PCDATA)>
             <!ATTLIST answer-item id CDATA #REQUIRED>
             <!ATTLIST answer-item goto-quest-id CDATA #REQUIRED>
-<!ELEMENT cat-item (cat-item-id, cat-item-name, cat-item-parent, cat-item-position, cat-item-visible, quest-goto-id, cat-item-answer-id)>
+<!ELEMENT cat-item (cat-item-id, cat-item-name, cat-item-parent, cat-item-position, cat-item-visible, quest-goto-id, cat-item-answer-id, cat-item-link)>
         <!ELEMENT cat-item-id (#PCDATA)>
         <!ELEMENT cat-item-name (#PCDATA)>
         <!ELEMENT cat-item-parent (#PCDATA)>
@@ -14,3 +14,4 @@
         <!ELEMENT cat-item-visible (#PCDATA)>
         <!ELEMENT quest-goto-id (#PCDATA)>
         <!ELEMENT cat-item-answer-id (#PCDATA)>
+        <!ELEMENT cat-item-link (#PCDATA)>

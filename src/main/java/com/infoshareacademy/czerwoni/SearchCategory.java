@@ -10,15 +10,12 @@ class SearchCategory {
     private Category category = new Category();
     private List<Category> categoryList = category.getCategoryList();
 
-
-    String getAnswerId() {
-        return answerId;
-    }
-
-// Wyświetlanie pytąń i odpowiedzi
+    // Wyświetlanie pytąń i odpowiedzi
 
     void showQuestion(String id) {
         boolean checkAnswer = true;
+        boolean isFinish = true;
+        String isOK = null;
         Scanner answerScanner = new Scanner(System.in);
         for (Question q : questions) {
             if (id.equals(String.valueOf(q.getQuestionId()))) {
@@ -36,18 +33,25 @@ class SearchCategory {
                                 System.out.println("Twoja kategoria Allegro to: \033[33m" + getCategoryName(answerId) + "\033[0m\n");
                                 if (a.getRelatedQuest() != 0) {
                                     System.out.print("Czy chcesz szukać dalej?(podaj T lu N): ");
-                                    String isOK = answerScanner.nextLine();
-                                    System.out.println("");
+                                    while (isFinish) {
+                                        isOK = answerScanner.nextLine();
+                                        System.out.println("");
+                                        if (!(isOK.toLowerCase().equals("n")) && !(isOK.toLowerCase().equals("t"))) {
+                                            System.out.print("Wprowadziłeś niepoprawny znak, spróbuj jeszcze raz:  ");
+                                        } else {
+                                            isFinish = false;
+                                        }
+                                    }
                                     if (isOK.toLowerCase().equals("t")) {
                                         showQuestion(String.valueOf(a.getRelatedQuest()));
                                     } else {
-                                        System.out.println("\033[33mLink do Allegro\033[0m\n");
+                                        System.out.println("\033[33mLink do Allegro: " + getAllegroLink(answerId) + "\033[0m\n");
                                         System.out.println("Naciśnij dowolny klawisz aby przejść do Menu\n");
                                         answerScanner.nextLine();
                                         break;
                                     }
                                 } else {
-                                    System.out.println("\033[33mLink do Allegro\033[0m\n");
+                                    System.out.println("\033[33mLink do Allegro: " + getAllegroLink(answerId) + "\033[0m\n");
                                     System.out.println("Naciśnij dowolny klawisz aby przejść do Menu\n");
                                     answerScanner.nextLine();
                                 }
@@ -63,7 +67,7 @@ class SearchCategory {
 
     }
 
-    // Wyświetlenie wyniku - kategorii - po odpowiedzi na pytania
+    // Metoda zwraca nazwę kategori o zadanym id
 
     String getCategoryName(String idCat) {
         String categoryName = null;
@@ -73,5 +77,17 @@ class SearchCategory {
             }
         }
         return categoryName;
+    }
+
+    // Metoda zwraca link Allegro o zadanym id
+
+    String getAllegroLink(String idCat) {
+        String allegroLink = null;
+        for (Category cat : categoryList) {
+            if (idCat.equals(String.valueOf(cat.getCategoryId()))) {
+                allegroLink = cat.getCategoryAllegroLink();
+            }
+        }
+        return allegroLink;
     }
 }

@@ -37,6 +37,7 @@
 		<cat-item-visible>true</cat-item-visible>
         <quest-goto-id>2</quest-goto-id>
 		<cat-item-answer-id>1</cat-item-answer-id>
+		<cat-item-link>https://allegro.pl/dzial/elektronika</cat-item-link>
 	</cat-item>
 	<cat-item>
 		<cat-item-id>2</cat-item-id>
@@ -46,6 +47,7 @@
 		<cat-item-visible>true</cat-item-visible>
         <quest-goto-id>3</quest-goto-id>
 		<cat-item-answer-id>2</cat-item-answer-id>
+		<cat-item-link>https://allegro.pl/kategoria/sport-i-turystyka</cat-item-link>
 	</cat-item>
 	<cat-item>
 		<cat-item-id>3</cat-item-id>
@@ -55,6 +57,7 @@
 		<cat-item-visible>true</cat-item-visible>
         <quest-goto-id>4</quest-goto-id>
 		<cat-item-answer-id>3</cat-item-answer-id>
+		<cat-item-link>https://allegro.pl/dzial/dom-i-zdrowie</cat-item-link>
 	</cat-item>
 	<cat-item>
 		<cat-item-id>4</cat-item-id>
@@ -64,6 +67,7 @@
 		<cat-item-visible>true</cat-item-visible>
         <quest-goto-id>0</quest-goto-id>
 		<cat-item-answer-id>4</cat-item-answer-id>
+		<cat-item-link>https://allegro.pl/kategoria/tv-i-video-telewizory-5120?order=m</cat-item-link>
 	</cat-item>
 	<cat-item>
 		<cat-item-id>5</cat-item-id>
@@ -73,15 +77,17 @@
 		<cat-item-visible>true</cat-item-visible>
         <quest-goto-id>0</quest-goto-id>
 		<cat-item-answer-id>5</cat-item-answer-id>
+		<cat-item-link>https://allegro.pl/kategoria/komputery?order=m</cat-item-link>
 	</cat-item>
 	<cat-item>
 		<cat-item-id>6</cat-item-id>
-		<cat-item-name>Audio</cat-item-name>
+		<cat-item-name>Sprzęt audio</cat-item-name>
 		<cat-item-parent>1</cat-item-parent>
 		<cat-item-position>3</cat-item-position>
 		<cat-item-visible>true</cat-item-visible>
         <quest-goto-id>0</quest-goto-id>
 		<cat-item-answer-id>6</cat-item-answer-id>
+		<cat-item-link>https://allegro.pl/kategoria/sprzet-audio-dla-domu-11?order=m</cat-item-link>
 	</cat-item>
 	<cat-item>
 		<cat-item-id>7</cat-item-id>
@@ -91,6 +97,7 @@
 		<cat-item-visible>true</cat-item-visible>
         <quest-goto-id>0</quest-goto-id>
 		<cat-item-answer-id>7</cat-item-answer-id>
+		<cat-item-link>https://allegro.pl/kategoria/bieganie-147262?order=m</cat-item-link>
 	</cat-item>
 	<cat-item>
 		<cat-item-id>8</cat-item-id>
@@ -100,6 +107,7 @@
 		<cat-item-visible>true</cat-item-visible>
         <quest-goto-id>5</quest-goto-id>
 		<cat-item-answer-id>8</cat-item-answer-id>
+		<cat-item-link>https://allegro.pl/kategoria/rowery-i-akcesoria-16414?order=m</cat-item-link>
 	</cat-item>
 	<cat-item>
 		<cat-item-id>9</cat-item-id>
@@ -109,6 +117,7 @@
 		<cat-item-visible>true</cat-item-visible>
         <quest-goto-id>0</quest-goto-id>
 		<cat-item-answer-id>9</cat-item-answer-id>
+		<cat-item-link>https://allegro.pl/kategoria/silownia-i-fitness-19626?order=m</cat-item-link>
 	</cat-item>
 	<cat-item>
 		<cat-item-id>10</cat-item-id>
@@ -118,6 +127,7 @@
 		<cat-item-visible>true</cat-item-visible>
         <quest-goto-id>0</quest-goto-id>
 		<cat-item-answer-id>10</cat-item-answer-id>
+		<cat-item-link>https://allegro.pl/kategoria/ogrod-1532?order=m</cat-item-link>
 	</cat-item>
 	<cat-item>
 		<cat-item-id>11</cat-item-id>
@@ -127,6 +137,7 @@
 		<cat-item-visible>true</cat-item-visible>
         <quest-goto-id>0</quest-goto-id>
 		<cat-item-answer-id>11</cat-item-answer-id>
+		<cat-item-link>https://allegro.pl/kategoria/narzedzia-1536?order=m</cat-item-link>
 	</cat-item>
 	<cat-item>
 		<cat-item-id>12</cat-item-id>
@@ -136,6 +147,7 @@
 		<cat-item-visible>true</cat-item-visible>
         <quest-goto-id>0</quest-goto-id>
 		<cat-item-answer-id>12</cat-item-answer-id>
+		<cat-item-link>https://allegro.pl/kategoria/utrzymanie-czystosci-253343?order=m</cat-item-link>
 	</cat-item>
 	<cat-item>
 		<cat-item-id>13</cat-item-id>
@@ -145,6 +157,7 @@
 		<cat-item-visible>true</cat-item-visible>
 		<quest-goto-id>0</quest-goto-id>
 		<cat-item-answer-id>13</cat-item-answer-id>
+		<cat-item-link>https://allegro.pl/kategoria/rowery-mtb-gorskie-16483?order=m</cat-item-link>
 	</cat-item>
 	<cat-item>
 		<cat-item-id>14</cat-item-id>
@@ -154,6 +167,7 @@
 		<cat-item-visible>true</cat-item-visible>
 		<quest-goto-id>0</quest-goto-id>
 		<cat-item-answer-id>14</cat-item-answer-id>
+		<cat-item-link>https://allegro.pl/kategoria/rowery-szosowe-16484?order=m</cat-item-link>
 	</cat-item>
 	<cat-item>
 		<cat-item-id>15</cat-item-id>
@@ -163,5 +177,6 @@
 		<cat-item-visible>true</cat-item-visible>
 		<quest-goto-id>0</quest-goto-id>
 		<cat-item-answer-id>15</cat-item-answer-id>
+		<cat-item-link>https://allegro.pl/kategoria/rowery-crossowe-125055?order=m</cat-item-link>
 	</cat-item>
 </Categories>

@@ -7,7 +7,7 @@ import org.w3c.dom.NodeList;
 
 import java.util.ArrayList;
 
-public class Category {
+class Category {
     private int categoryId;
     private int categoryParent;
     private int categoryPosition;
@@ -15,8 +15,9 @@ public class Category {
     private String categoryName;
     private int categoryGoToId;
     private int categoryAnswerId;
+    private String categoryAllegroLink;
 
-    public int getCategoryId() {
+    int getCategoryId() {
         return categoryId;
     }
 
@@ -72,6 +73,14 @@ public class Category {
         this.categoryName = categoryName;
     }
 
+    String getCategoryAllegroLink() {
+        return categoryAllegroLink;
+    }
+
+    void setCategoryAllegroLink(String categoryAllegroLink) {
+        this.categoryAllegroLink = categoryAllegroLink;
+    }
+
 
     //Metoda zwraca listę (obiektów klasy Category) wszystkich kategorii z pliku XML
 
@@ -111,6 +120,9 @@ public class Category {
                         case "cat-item-answer-id":
                             category.setCategoryAnswerId(Integer.parseInt(catDetailElement.getTextContent()));
                             break;
+                        case "cat-item-link":
+                            category.setCategoryAllegroLink(catDetailElement.getTextContent());
+                            break;
                     }
                 }
 
@@ -121,6 +133,5 @@ public class Category {
         }
         return categoryArrayList;
     }
-
 
 }
