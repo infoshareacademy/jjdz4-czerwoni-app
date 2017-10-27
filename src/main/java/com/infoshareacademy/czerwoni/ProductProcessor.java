@@ -40,12 +40,11 @@ class ProductProcessor {
                     "success : (" : "failed (HTTP error code : ")
                     + httpURLConnection.getResponseCode() + "-" + httpURLConnection.getResponseMessage() + ")";
 
-
             InputStream content = httpURLConnection.getInputStream();
             BufferedReader in =
                     new BufferedReader(new InputStreamReader(content));
             String respJSON = in.readLine();
-            // {"GTIN":"05900084063241","BrandOwner":"McCORMICK POLSKA S.A.","Brand":"Kamis","Manufacturer":null,"ProductName":"Kamis Musztarda grillowa 290 g","Description":null,"CountryOfOrigin":null,"ProductImage":"http://www.produktywsieci.pl/picture_cache/103/590/0084/05900084063241_MARKT_L.jpg","URL":"http://www.kamis.pl","IsLegal":true,"ModifiedDate":"2017-10-13T22:02:10.657"}
+
             Gson gson = new Gson();
             // Product product = gson.fromJson(in, Product.class);
             Product product = gson.fromJson(respJSON, Product.class);
@@ -53,8 +52,9 @@ class ProductProcessor {
             if (product != null) {
                 response = product.toString();
             } else {
-                response = "nulll";
+                response = "null product";
             }
+            response = response + "\n";
 
             httpURLConnection.disconnect();
 
@@ -63,9 +63,7 @@ class ProductProcessor {
             System.out.println("Malformed URL has occurred");
         } catch (IOException e) {
             e.printStackTrace();
-        } /* finally {
-            //   return response;  // return productJSON.get("GTIN").toString();
-        }  */
+        }
         return response;
 
     }
@@ -73,12 +71,10 @@ class ProductProcessor {
     static String identifyProductFromImage(String imageFilename) {
         String productBarcode = BarCodeReader.decodeBarcodeFromFile(imageFilename);
         if (productBarcode.isEmpty()) {
-            return "No barcode found/decoded";
+            return "No barcode found/decoded\n";
         }
         System.out.println("Decoded barcode: " + productBarcode);
 
-        // http://produktywsieci.gs1.pl/apidocs/index#!/ApiProducts/ApiProducts_Get
         return getProductDataFromAPI(productBarcode);
-
     }
 }

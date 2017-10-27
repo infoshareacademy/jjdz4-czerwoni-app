@@ -1,11 +1,11 @@
 package com.infoshareacademy.czerwoni;
 
-class Product extends Object {
+class Product {
 
-    // http://www.produktywsieci.gs1.pl/Subpage/FieldsScope
-    // http://www.produktywsieci.gs1.pl/apidocs/index#!/ApiProducts/ApiProducts_Get
-    // {"GTIN":"05900084063241","BrandOwner":"McCORMICK POLSKA S.A.","Brand":"Kamis","Manufacturer":null,
-    // "ProductName":"Kamis Musztarda grillowa 290 g","Description":null,"CountryOfOrigin":null,"ProductImage":"http://www.produktywsieci.pl/picture_cache/103/590/0084/05900084063241_MARKT_L.jpg","URL":"http://www.kamis.pl","IsLegal":true,"ModifiedDate":"2017-10-13T22:02:10.657"}
+    /* konwencja nazewnicza pól obiektu wynika ze specyfikacji
+       obiektu JSON zwracanego przez API:
+       http://www.produktywsieci.gs1.pl/apidocs/index#!/ApiProducts/ApiProducts_Get
+    */
     private String GTIN;
     private String BrandOwner;
     private String Brand;
@@ -13,8 +13,8 @@ class Product extends Object {
     private String ProductName;
     private String Description;
     private String CountryOfOrigin;
-    private String ProductImage;  // Link do marketingowego obrazka produktu w rozmiarze L (około 800x600)
-    private String URL;           // Link do strony produktu, ewentualnie link do strony właściciela marki
+    private String ProductImage;
+    private String URL;
     private boolean IsLegal;
     private String ModifiedDate;
 
@@ -74,13 +74,13 @@ class Product extends Object {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         return stringBuilder
-                .append(GTIN)
-                .append(" Product name: ")
+                //.append(" Product name: ")
                 .append(ProductName)
+                .append(" (brand name: ")
+                .append(Brand)
                 .append(", brand owner: ")
                 .append(BrandOwner)
-                .append(", brand name: ")
-                .append(Brand)
+                .append(")")
                 .toString();
     }
 }

@@ -10,10 +10,10 @@ public class App {
 
         public static void main(String[] args) {
             boolean onOff = true;
-            printOut();
 
             while (onOff) {
                 Scanner scanner = new Scanner(System.in);
+                printOut();
 
                 while (!scanner.hasNextInt()) {
                     System.out.println("int, please");
@@ -41,18 +41,11 @@ public class App {
                             System.out.println("WORK IN PROGRESS");
                             break;
                         case 6:
-                            System.out.println("WORK IN PROGRESS (JZ4CS-7)"); // TODO: JZ4CS-7
-                            // final String fileName = "/home/mm/code-128_5900017043456.png";
-                            // https://www.generatorkodowkreskowych.pl/code-128/, kod np. 5900017043456
-
+                            // System.out.println("WORK IN PROGRESS (JZ4CS-7)");
                             System.out.println("Please enter path and filename: ");
                             Scanner pathScanner = new Scanner(System.in);
                             String fileName = pathScanner.nextLine();
-                            // System.out.println("podano: " + fileName);
                             System.out.println("Found product: " + ProductProcessor.identifyProductFromImage(fileName));
-                            // tu dac klase laczaca sie z API, ktora wewnatrz uzyje BarCodeReader.decodeBarcodeFromFile
-                            // ze zwroconym kodem wysylamy zapytanie do API, i na podst odp. tworzymy new Product
-                            // pathScanner.close();
                             break;
                         case 7:
                             printOut();

@@ -30,7 +30,6 @@ class BarCodeReader {
             throw new IllegalArgumentException("Reading file failed...");
         LuminanceSource luminanceSource = new BufferedImageLuminanceSource(bufferedImage);
 
-
         BinaryBitmap binaryBitmap = new BinaryBitmap(new HybridBinarizer(luminanceSource));
         MultiFormatReader multiFormatReader = new MultiFormatReader();
         Result tmpResult;
@@ -60,8 +59,6 @@ class BarCodeReader {
 
             File imgFile = new File(fileName);
             barcodeString = decodeBarcode(imgFile, decodeHintsMap);
-
-
         } catch (Exception e) {
             System.out.println("decodeBarcodeFromFile - " + "exception: " + e.getMessage());
         }
