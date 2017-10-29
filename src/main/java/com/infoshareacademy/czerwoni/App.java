@@ -42,10 +42,7 @@ public class App {
                             break;
                         case 6:
                             // System.out.println("WORK IN PROGRESS (JZ4CS-7)");
-                            System.out.println("Please enter path and filename: ");
-                            Scanner pathScanner = new Scanner(System.in);
-                            String fileName = pathScanner.nextLine();
-                            System.out.println("Found product: " + ProductProcessor.identifyProductFromImage(fileName));
+                            ProductProcessor.identifyProductFromImage();
                             break;
                         case 7:
                             printOut();

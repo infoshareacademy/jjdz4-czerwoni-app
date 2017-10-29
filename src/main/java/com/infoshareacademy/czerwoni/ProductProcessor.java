@@ -10,6 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Base64;
+import java.util.Scanner;
 
 /**
  * klasa obsługująca przetwarzanie produktu: odczytanie kodu kreskowego ze wskazanego pliku
@@ -83,16 +84,19 @@ class ProductProcessor {
      * metoda odczytuje kod kreskowy ze wskaznego pliku, następnie wysyła zapytanie do API,
      * i wyświetla informacje o zwróconym produkcie
      *
-     * @param imageFilename nazwa pliku (wraz ze scieżką) obrazka zawierajacego kod kreskowy
-     * @return szczegółowe informacje na temat odczytanego produktu
      */
-    static String identifyProductFromImage(String imageFilename) {
+    static void identifyProductFromImage() {
+        System.out.println("Podaj nazwę pliku z kodem kreskowym: ");  // "Please enter path and filename: "
+        Scanner pathScanner = new Scanner(System.in);
+        String imageFilename = pathScanner.nextLine();
+
         String productBarcode = BarCodeReader.decodeBarcodeFromFile(imageFilename);
         if (productBarcode.isEmpty()) {
-            return "No barcode found/decoded\n";
+            System.out.println("Nie znaleziono kodu kreskowego\n");  // // "No barcode found/decoded\n"
+        } else {
+            System.out.println("Odczytany kod kreskowy: " + productBarcode);  // "Decoded barcode: "
+            System.out.println("Zidentyfikowany produkt: " + getProductDataFromAPI(productBarcode));  // "Product found: "
         }
-        System.out.println("Decoded barcode: " + productBarcode);
 
-        return getProductDataFromAPI(productBarcode);
     }
 }

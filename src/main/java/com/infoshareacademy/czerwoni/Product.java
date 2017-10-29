@@ -78,9 +78,9 @@ class Product {
         return stringBuilder
                 //.append(" Product name: ")
                 .append(ProductName)
-                .append(" (brand name: ")
+                .append(" (nazwa marki: ")
                 .append(Brand)
-                .append(", brand owner: ")
+                .append(", właściciel marki: ")
                 .append(BrandOwner)
                 .append(")")
                 .toString();
