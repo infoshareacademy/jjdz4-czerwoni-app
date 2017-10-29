@@ -77,7 +77,16 @@ public class AllegroCategory {
      * @return - String z linkiem do kategorii.
      */
     public String generateLink() {
-        String categoryName = this.catName;
+        String categoryName = this.catName.replace('ł', 'l')
+                .replace('ó', 'o')
+                .replace('ż','z')
+                .replace('ź','z')
+                .replace('ś','s')
+                .replace('ć','c')
+                .replace('ę','e')
+                .replace('ą','a')
+                .replace('ń','n')
+                .replace(' ','-');
         categoryName = categoryName.replace(" ", "-");
         StringBuilder link = new StringBuilder();
         link.append("https://allegro.pl/kategoria/")
