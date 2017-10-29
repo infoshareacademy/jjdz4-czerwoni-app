@@ -53,13 +53,13 @@ class SearchCategory {
                                         showQuestion(String.valueOf(a.getRelatedQuest()));
                                     } else {
                                         System.out.println("\033[33mLink do Allegro: " + getAllegroLink(answerId) + "\033[0m\n");
-                                        System.out.println("Naciśnij dowolny klawisz aby przejść do Menu\n");
+                                        System.out.println("Naciśnij enter aby przejść do Menu\n");
                                         answerScanner.nextLine();
                                         break;
                                     }
                                 } else {
                                     System.out.println("\033[33mLink do Allegro: " + getAllegroLink(answerId) + "\033[0m\n");
-                                    System.out.println("Naciśnij dowolny klawisz aby przejść do Menu\n");
+                                    System.out.println("Naciśnij enter aby przejść do Menu\n");
                                     answerScanner.nextLine();
                                 }
                             }
