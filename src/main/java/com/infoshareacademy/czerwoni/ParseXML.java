@@ -9,17 +9,23 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class ParseXML {
+/**
+ * Klasa pozwala na  parsowanie pliku XML
+ */
+class ParseXML {
 
     private DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
     private Document doc;
     private String pathName;
 
-    public ParseXML(String pathName) {
+    ParseXML(String pathName) {
         this.pathName = pathName;
     }
 
-
+    /**
+     * Metoda zwraca document XML do obiektu typu Document
+     * @return document XML - obiekt klasy Document
+     */
     Document getXMLDocument() {
         try {
             File fXmlFile = new File(pathName);

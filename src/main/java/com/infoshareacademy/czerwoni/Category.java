@@ -7,6 +7,9 @@ import org.w3c.dom.NodeList;
 
 import java.util.ArrayList;
 
+/**
+ * Klasa opisuje kategorie z pliku XML
+ */
 class Category {
     private int categoryId;
     private int categoryParent;
@@ -81,9 +84,10 @@ class Category {
         this.categoryAllegroLink = categoryAllegroLink;
     }
 
-
-    //Metoda zwraca listę (obiektów klasy Category) wszystkich kategorii z pliku XML
-
+    /**
+     *Metoda pobiera dokument XML(obiekt klasy Document)i zwraca listę obiektów klasy Category - wszystkich kategorii z pliku XML
+     * @return Lista obiektó klasy Category
+     */
     ArrayList<Category> getCategoryList() {
         ArrayList<Category> categoryArrayList = new ArrayList<>();
         ParseXML docXML = new ParseXML("src/main/resources/Categories.xml");

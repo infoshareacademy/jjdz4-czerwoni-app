@@ -3,32 +3,35 @@ package com.infoshareacademy.czerwoni;
 
 import java.util.ArrayList;
 
-public class Question {
+/**
+ * Klasa opisuje pytania z pliku XML
+ */
+class Question {
     private int questionId;
     private String questionName;
     ArrayList<Answer> answerList = new ArrayList<>();
 
-    public int getQuestionId() {
+    int getQuestionId() {
         return questionId;
     }
 
-    public void setQuestionId(int questionId) {
+    void setQuestionId(int questionId) {
         this.questionId = questionId;
     }
 
-    public String getQuestionName() {
+    String getQuestionName() {
         return questionName;
     }
 
-    public void setQuestionName(String questionName) {
+    void setQuestionName(String questionName) {
         this.questionName = questionName;
     }
 
-    public ArrayList<Answer> getAnswerList() {
+    ArrayList<Answer> getAnswerList() {
         return answerList;
     }
 
-    public void setAnswerList(ArrayList<Answer> answerList) {
+    void setAnswerList(ArrayList<Answer> answerList) {
         this.answerList = answerList;
     }
 

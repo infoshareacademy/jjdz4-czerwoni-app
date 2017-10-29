@@ -3,6 +3,9 @@ package com.infoshareacademy.czerwoni;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Klasa udostępnia metody pozwalające na wyświetlanie pytań i szukoanie właściwych kategorii Allegro
+ */
 class SearchCategory {
     private QuestionReader questionReader = new QuestionReader();
     private List<Question> questions = questionReader.getQuestionList();
@@ -10,7 +13,11 @@ class SearchCategory {
     private Category category = new Category();
     private List<Category> categoryList = category.getCategoryList();
 
-    // Wyświetlanie pytąń i odpowiedzi
+    /**
+     * Metoda wyświetla pytąnia i odpowiedzi oraz przyjmuje odpowiedzi od użytkownika
+     * wywołuje metody getCategoryName(w celeu wyświetlenia odpowiedniej kategorii Allegro) oraz
+     * wywołuję metodę getAllegroLink(w celu wyświetlenia odpowiedniego linku Allegro
+      */
 
     void showQuestion(String id) {
         boolean checkAnswer = true;
@@ -67,7 +74,11 @@ class SearchCategory {
 
     }
 
-    // Metoda zwraca nazwę kategori o zadanym id
+    /**
+     * Metoda zwraca nazwę kategorii o zadanym id kategorii
+     * @param idCat id kategorii
+     * @return nazwa kategorii (w XML<cat-item-name>)
+     */
 
     String getCategoryName(String idCat) {
         String categoryName = null;
@@ -79,8 +90,11 @@ class SearchCategory {
         return categoryName;
     }
 
-    // Metoda zwraca link Allegro o zadanym id
-
+    /**
+     * Metoda zwraca link Allegro o zadanym id kategorii
+     * @param idCat id kategorii
+     * @return link Allegro (w XML <cat-item-link>)
+     */
     String getAllegroLink(String idCat) {
         String allegroLink = null;
         for (Category cat : categoryList) {

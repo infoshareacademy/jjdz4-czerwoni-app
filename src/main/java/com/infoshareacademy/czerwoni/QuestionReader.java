@@ -7,11 +7,17 @@ import org.w3c.dom.NodeList;
 
 import java.util.ArrayList;
 
+/**
+ * Klasa wspomaga czytanie dokumentu(klasa Document) XML i pozwala zapisać dane do obiektu
+ */
 class QuestionReader {
     private ArrayList<Question> questionArrayList = new ArrayList<>();
     private ParseXML docXML = new ParseXML("src/main/resources/Categories.xml");
 
-    //Metoda zwraca listę(obiektów klasy Question) wszystkich pytań i odpowiedzi
+    /**
+     * Metoda zwraca listę wszystkich pytań i odpowiedzi - obiekty klasy Question
+     * @return lista obiektó klasy Question
+     */
 
     ArrayList<Question> getQuestionList() {
         Document doc = docXML.getXMLDocument();
