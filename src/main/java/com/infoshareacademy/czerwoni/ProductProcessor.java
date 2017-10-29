@@ -11,8 +11,20 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Base64;
 
+/**
+ * klasa obsługująca przetwarzanie produktu: odczytanie kodu kreskowego ze wskazanego pliku
+ * oraz pobranie danych produktu z API na podstawie odczytanego kodu
+ */
 class ProductProcessor {
 
+
+    /**
+     * metoda pobierająca dane produktu z webowego interfejsu API
+     * na podstawie jego kodu kreskowego
+     *
+     * @param barcode kod kreskowy produktu
+     * @return szczegółowe informacje na temat odczytanego produktu
+     */
     static private String getProductDataFromAPI(String barcode) {
         String response = null;
 
@@ -59,7 +71,6 @@ class ProductProcessor {
             httpURLConnection.disconnect();
 
         } catch (MalformedURLException e) {
-            // e.printStackTrace();
             System.out.println("Malformed URL has occurred");
         } catch (IOException e) {
             e.printStackTrace();
@@ -68,6 +79,13 @@ class ProductProcessor {
 
     }
 
+    /**
+     * metoda odczytuje kod kreskowy ze wskaznego pliku, następnie wysyła zapytanie do API,
+     * i wyświetla informacje o zwróconym produkcie
+     *
+     * @param imageFilename nazwa pliku (wraz ze scieżką) obrazka zawierajacego kod kreskowy
+     * @return szczegółowe informacje na temat odczytanego produktu
+     */
     static String identifyProductFromImage(String imageFilename) {
         String productBarcode = BarCodeReader.decodeBarcodeFromFile(imageFilename);
         if (productBarcode.isEmpty()) {

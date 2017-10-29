@@ -12,10 +12,21 @@ import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.Map;
 
+/**
+ * rozpoznanie kodu kreskowego ze wskazanego pliku graficznego
+ */
 class BarCodeReader {
 
     private static BarcodeFormat DEFAULT_BARCODE_FORMAT = BarcodeFormat.CODE_128;
 
+    /**
+     * metoda odczytująca kod kreskowy z pliku graficznego przy wykorzystaniu biblioteki zxing
+     *
+     * @param imageFile   plik graficzny zawierający kod kreskowy do odczytania
+     * @param decodeHints mapa ustawień dla wbudowanego w bibliotekę czytnika kodu
+     * @return rozpoznany kod kreskowy
+     * @throws Exception wyjątek braku pliku, problemu z jego odczytaniem; wyjątek niepomyślnego odczytania kodu kreskowego
+     */
     private static String decodeBarcode(File imageFile, Map<DecodeHintType, Object> decodeHints) throws Exception {
         if ((imageFile == null) || (imageFile.getName().trim().isEmpty()))
             throw new IllegalArgumentException("File not found or enetered incorrect name.");
@@ -49,6 +60,13 @@ class BarCodeReader {
         return decodedBarcode;
     }
 
+    /**
+     * ogólna metoda odczytująca kod kreskowy z pliku graficznego
+     * (obecnie odczytująca kod tylko przy pomocy biblioteki zxing, może być rozszerzona o inne biblioteki)
+     *
+     * @param fileName nazwa pliku (wraz ze scieżką) obrazka zawierajacego kod kreskowy
+     * @return rozpoznany kod kreskowy
+     */
     static String decodeBarcodeFromFile(String fileName) {
         String barcodeString = "";
         try {

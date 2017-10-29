@@ -1,11 +1,13 @@
 package com.infoshareacademy.czerwoni;
 
+
+/**
+ * klasa produktu zwracanego przez API:
+ * http://www.produktywsieci.gs1.pl/apidocs/index#!/ApiProducts/ApiProducts_Get
+ * (konwencja nazewnicza pól obiektu wynika ze specyfikacji zwracanego modelu JSON)
+ */
 class Product {
 
-    /* konwencja nazewnicza pól obiektu wynika ze specyfikacji
-       obiektu JSON zwracanego przez API:
-       http://www.produktywsieci.gs1.pl/apidocs/index#!/ApiProducts/ApiProducts_Get
-    */
     private String GTIN;
     private String BrandOwner;
     private String Brand;
