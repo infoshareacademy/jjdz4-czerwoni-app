@@ -40,7 +40,7 @@ public class App {
                     System.out.println("WORK IN PROGRESS");
                     break;
                 case 6:
-                    System.out.println("WORK IN PROGRESS (JZ4CS-7)"); // TODO: JZ4CS-7
+                    ProductProcessor.identifyProductFromImage();
                     break;
                 case 7:
                     printOut();

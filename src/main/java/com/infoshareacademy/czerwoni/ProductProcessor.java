@@ -97,6 +97,7 @@ class ProductProcessor {
             System.out.println("Odczytany kod kreskowy: " + productBarcode);  // "Decoded barcode: "
             System.out.println("Zidentyfikowany produkt: " + getProductDataFromAPI(productBarcode));  // "Product found: "
         }
-
+        System.out.println("Naciśnij Enter aby wrócić do menu");
+        pathScanner.nextLine();
     }
 }
