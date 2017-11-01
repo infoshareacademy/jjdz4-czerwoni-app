@@ -13,12 +13,12 @@ public class App {
             Scanner scanner = new Scanner(System.in);
             printOut();
             while (!scanner.hasNextInt()) {
-                System.out.println("int, please");
+                System.out.println("podaj cyfrę ");
                 scanner.nextLine();
             }
             int choice;
             for (choice = scanner.nextInt(); choice < 1 || choice > 8; choice = scanner.nextInt()) {
-                System.out.println("INVALID VALUE! Pick valid number");
+                System.out.println("Błędna wartość! Proszę podać cyfrę od 1 do 8 ");
             }
 
             switch (choice) {
@@ -46,11 +46,11 @@ public class App {
                     printOut();
                     break;
                 case 8:
-                    System.out.println("BYE BYE we hope to see You soon!");
+                    System.out.println("Do zobaczenia wkrótce!");
                     onOff = false;
                     break;
                 default:
-                    System.out.println("\nSOMETHING WENT WRONG TRY AGAIN\n");
+                    System.out.println("\nCoś poszło nie tak, proszę spróbuj ponownie\n");
             }
 
 
@@ -59,15 +59,15 @@ public class App {
 
 
     private static void printOut() {
-        System.out.println("Welcome in What Do You Want app, pick your number please:");
-        System.out.println("1: Our categories browser (based on questions)");
-        System.out.println("2: Allegro categories");
-        System.out.println("3: Ebay research");
-        System.out.println("4: Allegro direct category picker");
-        System.out.println("5: Check all WTUW categories tree");
-        System.out.println("6: Identify product using barcode image");
+        System.out.println("Witamy w aplikacji What Do You Want: ");
+        System.out.println("1: Wyszukiwarka kategorii");
+        System.out.println("2: Kategorie allegro");
+        System.out.println("3: Wyszukiwarka Ebay - ale będzie coś innego");
+        System.out.println("4: Wybierz docelową kategorię po frazie");
+        System.out.println("5: Sprawdź wszystkie połączenia kategorii - drzewo");
+        System.out.println("6: Wyszukiwarka produktu poprzez kod kreskowy");
         System.out.println("7: MENU");
-        System.out.println("8: QUIT APP");
+        System.out.println("8: Wyjście z aplikacji");
         System.out.print("Wybierz opcję: ");
         System.out.print("");
     }
