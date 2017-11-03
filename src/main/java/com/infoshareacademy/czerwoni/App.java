@@ -3,10 +3,6 @@ package com.infoshareacademy.czerwoni;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/**
- * Hello world!
- *
- */
 public class App {
 
         public static void main(String[] args) {
@@ -30,7 +26,7 @@ public class App {
                             System.out.println("WORK IN PROGRESS");
                             break;
                         case 2:
-                            ArrayList<AllegroCategory> allegroCategories;
+                            ArrayList allegroCategories;
                             allegroCategories = ParseXmlAllegroCategories.deserialization();
                             AllegroCategoryPrinter.printMainCategories(allegroCategories);
                             AllegroCategoriesUI.UserInterface(allegroCategories);

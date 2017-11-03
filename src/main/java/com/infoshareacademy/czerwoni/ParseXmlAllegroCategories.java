@@ -22,7 +22,7 @@ public class ParseXmlAllegroCategories {
      * @return - lista obiektów kategorii Allegro.
      */
     public static ArrayList deserialization()  {
-        File file = new File("target/classes/Allegro_cathegories_2016-02-13.xml");
+        File file = new File("Allegro_cathegories_2016-02-13.xml");
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = null;
         try {
@@ -33,9 +33,7 @@ public class ParseXmlAllegroCategories {
         Document document = null;
         try {
             document = documentBuilder.parse(file);
-        } catch (SAXException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (SAXException | IOException e) {
             e.printStackTrace();
         } catch (NullPointerException e) {
             System.out.println("Nieprawidłowe dane w pliku!");
