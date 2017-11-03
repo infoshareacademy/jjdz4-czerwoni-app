@@ -34,7 +34,7 @@ public class App {
                     allegroCategories = ParseXmlAllegroCategories.deserialization();
                     AllegroCategoryPrinter.printMainCategories(allegroCategories);
                     AllegroCategoriesUI.UserInterface(allegroCategories);
-                    break;;
+                    break;
                 case 3:
                     System.out.println("WORK IN PROGRESS");
                     break;
