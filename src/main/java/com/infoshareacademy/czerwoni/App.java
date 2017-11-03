@@ -1,5 +1,6 @@
 package com.infoshareacademy.czerwoni;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class App {
@@ -28,7 +29,10 @@ public class App {
                     System.out.println("");
                     break;
                 case 2:
-                    System.out.println("WORK IN PROGRESS");
+                    ArrayList allegroCategories;
+                    allegroCategories = ParseXmlAllegroCategories.deserialization();
+                    AllegroCategoryPrinter.printMainCategories(allegroCategories);
+                    AllegroCategoriesUI.UserInterface(allegroCategories);
                     break;
                 case 3:
                     System.out.println("WORK IN PROGRESS");
