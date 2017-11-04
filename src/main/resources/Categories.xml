@@ -14,21 +14,31 @@
 			<answer-item id="6" goto-quest-id="0">c) Lubię słuchać muzuki.</answer-item>
 		</quest-item>
 		<quest-item id="3" question="Jaki rodzaj aktywności jest dla ciebie najlepszy?">
-			<answer-item id="7" goto-quest-id="0">a) Najbardziej lubię biegać.</answer-item>
-			<answer-item id="8" goto-quest-id="5">b) Bardzo często jeżdżę na rowerze.</answer-item>
-			<answer-item id="9" goto-quest-id="0">c) Lubię chodzić na siłownie.</answer-item>
+			<answer-item id="7" goto-quest-id="5">a) Najbardziej lubię biegać.</answer-item>
+			<answer-item id="8" goto-quest-id="6">b) Bardzo często jeżdżę na rowerze.</answer-item>
+			<answer-item id="9" goto-quest-id="7">c) Lubię chodzić na siłownie.</answer-item>
 		</quest-item>
 		<quest-item id="4" question="Jakie prace domowe wykonujesz najczęściej?">
 			<answer-item id="10" goto-quest-id="0">a) Pracuję w ogrodzie.</answer-item>
 			<answer-item id="11" goto-quest-id="0">b) Naprawiam lub buduję coś nowego.</answer-item>
 			<answer-item id="12" goto-quest-id="0">c) Sprzątam.</answer-item>
 		</quest-item>
-		<quest-item id="5" question="Na jakim rowerze lubisz jeździc najbardziej?">
+		<quest-item id="5" question="Jakie akcesoria/sprzęt do biegania jest dla Ciebie najważniejszy?">
+			<answer-item id="16" goto-quest-id="0">a) Dobre buty.</answer-item>
+			<answer-item id="17" goto-quest-id="0">b) Odzież.</answer-item>
+			<answer-item id="18" goto-quest-id="0">c) Odżywki/suplementy.</answer-item>
+		</quest-item>
+		<quest-item id="6" question="Na jakim rowerze lubisz jeździć najbardziej?">
 			<answer-item id="13" goto-quest-id="0">a) Na rowerze górskim.</answer-item>
 			<answer-item id="14" goto-quest-id="0">b) Na rowerze szosowym.</answer-item>
 			<answer-item id="15" goto-quest-id="0">c) Na rowerze turystycznym.</answer-item>
 		</quest-item>
+		<quest-item id="7" question="Jakie ćwiczenia preferujesz?">
+			<answer-item id="19" goto-quest-id="0">a) Fitness.</answer-item>
+			<answer-item id="20" goto-quest-id="0">b) Cwiczenia siłowe.</answer-item>
+		</quest-item>
 	</questions>
+
 	<cat-item>
 		<cat-item-id>1</cat-item-id>
 		<cat-item-name>Elektronika</cat-item-name>
@@ -105,13 +115,13 @@
 		<cat-item-parent>2</cat-item-parent>
 		<cat-item-position>2</cat-item-position>
 		<cat-item-visible>true</cat-item-visible>
-        <quest-goto-id>5</quest-goto-id>
+        <quest-goto-id>6</quest-goto-id>
 		<cat-item-answer-id>8</cat-item-answer-id>
 		<cat-item-link>https://allegro.pl/kategoria/rowery-i-akcesoria-16414?order=m</cat-item-link>
 	</cat-item>
 	<cat-item>
 		<cat-item-id>9</cat-item-id>
-		<cat-item-name>Siłownia</cat-item-name>
+		<cat-item-name>Siłownia i fitness</cat-item-name>
 		<cat-item-parent>2</cat-item-parent>
 		<cat-item-position>3</cat-item-position>
 		<cat-item-visible>true</cat-item-visible>
@@ -179,4 +189,54 @@
 		<cat-item-answer-id>15</cat-item-answer-id>
 		<cat-item-link>https://allegro.pl/kategoria/rowery-crossowe-125055?order=m</cat-item-link>
 	</cat-item>
+    <cat-item>
+		<cat-item-id>16</cat-item-id>
+		<cat-item-name>Obuwie do biegania</cat-item-name>
+		<cat-item-parent>7</cat-item-parent>
+		<cat-item-position>1</cat-item-position>
+		<cat-item-visible>true</cat-item-visible>
+		<quest-goto-id>0</quest-goto-id>
+		<cat-item-answer-id>16</cat-item-answer-id>
+		<cat-item-link>https://allegro.pl/kategoria/bieganie-obuwie-147264?order=m</cat-item-link>
+	</cat-item>
+    <cat-item>
+		<cat-item-id>17</cat-item-id>
+		<cat-item-name>Odzież do biegania</cat-item-name>
+		<cat-item-parent>7</cat-item-parent>
+		<cat-item-position>2</cat-item-position>
+		<cat-item-visible>true</cat-item-visible>
+		<quest-goto-id>0</quest-goto-id>
+		<cat-item-answer-id>17</cat-item-answer-id>
+		<cat-item-link>https://allegro.pl/kategoria/bieganie-odziez-147265?order=m</cat-item-link>
+	</cat-item>
+    <cat-item>
+		<cat-item-id>18</cat-item-id>
+		<cat-item-name>Odżywki i suplementy dla biegaczy</cat-item-name>
+		<cat-item-parent>7</cat-item-parent>
+		<cat-item-position>3</cat-item-position>
+		<cat-item-visible>true</cat-item-visible>
+		<quest-goto-id>0</quest-goto-id>
+		<cat-item-answer-id>18</cat-item-answer-id>
+		<cat-item-link>https://allegro.pl/kategoria/bieganie-odzywki-i-suplementy-147268?order=m</cat-item-link>
+	</cat-item>
+    <cat-item>
+        <cat-item-id>19</cat-item-id>
+        <cat-item-name>Fitness</cat-item-name>
+        <cat-item-parent>9</cat-item-parent>
+        <cat-item-position>1</cat-item-position>
+        <cat-item-visible>true</cat-item-visible>
+        <quest-goto-id>0</quest-goto-id>
+        <cat-item-answer-id>19</cat-item-answer-id>
+        <cat-item-link>https://allegro.pl/kategoria/silownia-i-fitness-fitness-110132?order=m</cat-item-link>
+    </cat-item>
+    <cat-item>
+        <cat-item-id>20</cat-item-id>
+        <cat-item-name>Siłownia</cat-item-name>
+        <cat-item-parent>9</cat-item-parent>
+        <cat-item-position>2</cat-item-position>
+        <cat-item-visible>true</cat-item-visible>
+        <quest-goto-id>0</quest-goto-id>
+        <cat-item-answer-id>20</cat-item-answer-id>
+        <cat-item-link>https://allegro.pl/kategoria/silownia-i-fitness-silownia-110145?order=m</cat-item-link>
+    </cat-item>
 </Categories>

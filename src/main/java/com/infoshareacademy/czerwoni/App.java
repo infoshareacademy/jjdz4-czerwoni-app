@@ -1,6 +1,5 @@
 package com.infoshareacademy.czerwoni;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class App {
@@ -16,10 +15,11 @@ public class App {
             while (!scanner.hasNextInt()) {
                 System.out.println("podaj cyfrę ");
                 scanner.nextLine();
+                System.out.print("");
             }
             int choice;
             for (choice = scanner.nextInt(); choice < 0 || choice > 5; choice = scanner.nextInt()) {
-                System.out.println("Błędna wartość! Proszę podać cyfrę od 0 do 4 ");
+                System.out.print("Błędna wartość! Proszę podać cyfrę od 0 do 4: ");
             }
 
             switch (choice) {
@@ -55,8 +55,9 @@ public class App {
 
 
     private static void printOut() {
-        System.out.println("\033[33mWitamy w aplikacji What Do You Want: \033[0m");
-        System.out.println("\033[33m=================================================\033[0m");
+        System.out.println("");
+        System.out.println("\033[33mWitamy w aplikacji - \"What Do You Want\" \033[0m");
+        System.out.println("\033[33m===============================================\033[0m");
         System.out.println("1: Wyszukiwarka kategorii na podstawie pytań");
         System.out.println("2: Kategorie allegro");
         System.out.println("3: Wybierz docelową kategorię po frazie");
@@ -64,7 +65,6 @@ public class App {
         System.out.println("\033[33m0: Wyjście z aplikacji\033[0m\n");
 
         System.out.print("Wybierz opcję: ");
-        System.out.print("");
     }
 
 }

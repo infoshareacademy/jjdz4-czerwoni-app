@@ -23,7 +23,7 @@ public class ParseXmlAllegroCategories {
      * @return - lista obiektów kategorii Allegro.
      */
     public static ArrayList deserialization()  {
-        File file = new File("target/classes/Allegro_cathegories_2016-02-13.xml");
+        File file = new File("src/main/resources/Allegro_cathegories_2016-02-13.xml");
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = null;
         try {
