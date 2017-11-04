@@ -18,8 +18,8 @@ public class App {
                 scanner.nextLine();
             }
             int choice;
-            for (choice = scanner.nextInt(); choice < 1 || choice > 8; choice = scanner.nextInt()) {
-                System.out.println("Błędna wartość! Proszę podać cyfrę od 1 do 8 ");
+            for (choice = scanner.nextInt(); choice < 0 || choice > 5; choice = scanner.nextInt()) {
+                System.out.println("Błędna wartość! Proszę podać cyfrę od 0 do 4 ");
             }
 
             switch (choice) {
@@ -29,24 +29,19 @@ public class App {
                     System.out.println("");
                     break;
                 case 2:
+                    System.out.println("");
                     AllegroCategoriesUI.UserInterface();
+                    System.out.println("");
                     break;
                 case 3:
-                    System.out.println("WORK IN PROGRESS");
+                    PhraseFinder.PhraseResearch();
+                    System.out.println();
                     break;
                 case 4:
-                    System.out.println("WORK IN PROGRESS");
-                    break;
-                case 5:
-                    System.out.println("WORK IN PROGRESS");
-                    break;
-                case 6:
                     ProductProcessor.identifyProductFromImage();
                     break;
-                case 7:
+                case 0:
                     printOut();
-                    break;
-                case 8:
                     System.out.println("Do zobaczenia wkrótce!");
                     onOff = false;
                     break;
@@ -60,15 +55,14 @@ public class App {
 
 
     private static void printOut() {
-        System.out.println("Witamy w aplikacji What Do You Want: ");
-        System.out.println("1: Wyszukiwarka kategorii");
+        System.out.println("\033[33mWitamy w aplikacji What Do You Want: \033[0m");
+        System.out.println("\033[33m=================================================\033[0m");
+        System.out.println("1: Wyszukiwarka kategorii na podstawie pytań");
         System.out.println("2: Kategorie allegro");
-        System.out.println("3: Wyszukiwarka Ebay - ale będzie coś innego");
-        System.out.println("4: Wybierz docelową kategorię po frazie");
-        System.out.println("5: Sprawdź wszystkie połączenia kategorii - drzewo");
-        System.out.println("6: Wyszukiwarka produktu poprzez kod kreskowy");
-        System.out.println("7: MENU");
-        System.out.println("8: Wyjście z aplikacji");
+        System.out.println("3: Wybierz docelową kategorię po frazie");
+        System.out.println("4: Wyszukiwarka produktu poprzez kod kreskowy");
+        System.out.println("\033[33m0: Wyjście z aplikacji\033[0m\n");
+
         System.out.print("Wybierz opcję: ");
         System.out.print("");
     }
