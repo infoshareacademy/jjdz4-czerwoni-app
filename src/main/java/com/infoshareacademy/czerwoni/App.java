@@ -29,10 +29,7 @@ public class App {
                     System.out.println("");
                     break;
                 case 2:
-                    ArrayList allegroCategories;
-                    allegroCategories = ParseXmlAllegroCategories.deserialization();
-                    AllegroCategoryPrinter.printMainCategories(allegroCategories);
-                    AllegroCategoriesUI.UserInterface(allegroCategories);
+                    AllegroCategoriesUI.UserInterface();
                     break;
                 case 3:
                     System.out.println("WORK IN PROGRESS");
