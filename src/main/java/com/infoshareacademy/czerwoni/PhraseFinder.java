@@ -1,11 +1,12 @@
 package com.infoshareacademy.czerwoni;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class PhraseFinder {
 
-    public String PhraseScanner(String s) {
+    public static String PhraseScanner() {
         Scanner scanner = new Scanner(System.in);
 
         String phrase = scanner.nextLine();
@@ -15,15 +16,18 @@ public class PhraseFinder {
         return phrase;
     }
 
-    public static void PhraseResearch(String s, ArrayList<AllegroCategory> allegroCategories) {
+    public static void PhraseResearch() {
 
-        String search = s;
+        ArrayList<AllegroCategory> allegroCategories = ParseXmlAllegroCategories.deserialization();
+        System.out.println("Podaj frazę, po której chciałbyś szukać");
+        String search = PhraseScanner();
+        int counter = 0;
         for (AllegroCategory allegroCategory : allegroCategories) {
-            if (allegroCategory.getCatName().contains(search)) {
-                System.out.println(allegroCategory.getCatName());
-            } else {
-                System.out.println("Shit happens. :0");
+                if (allegroCategory.getCatName().contains(search)) {
+                    System.out.println("Linki do Twojej kategorii: ");
+                    System.out.println(allegroCategory.generateLink());
+                }
             }
         }
     }
-}
+

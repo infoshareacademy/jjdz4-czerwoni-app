@@ -29,13 +29,17 @@ public class App {
                     System.out.println("");
                     break;
                 case 2:
+                    System.out.println("");
                     AllegroCategoriesUI.UserInterface();
+                    System.out.println("");
                     break;
                 case 3:
                     System.out.println("WORK IN PROGRESS");
                     break;
                 case 4:
-                    System.out.println("WORK IN PROGRESS");
+
+                    PhraseFinder.PhraseResearch();
+                    System.out.println();
                     break;
                 case 5:
                     System.out.println("WORK IN PROGRESS");
@@ -61,7 +65,7 @@ public class App {
 
     private static void printOut() {
         System.out.println("Witamy w aplikacji What Do You Want: ");
-        System.out.println("1: Wyszukiwarka kategorii");
+        System.out.println("1: Wyszukiwarka kategorii na podstawie pytań");
         System.out.println("2: Kategorie allegro");
         System.out.println("3: Wyszukiwarka Ebay - ale będzie coś innego");
         System.out.println("4: Wybierz docelową kategorię po frazie");
