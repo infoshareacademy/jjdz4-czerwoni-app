@@ -10,8 +10,6 @@ public class PhraseFinder {
         Scanner scanner = new Scanner(System.in);
 
         String phrase = scanner.nextLine();
-        System.out.println(phrase);
-
 
         return phrase;
     }
@@ -19,15 +17,28 @@ public class PhraseFinder {
     public static void PhraseResearch() {
 
         ArrayList<AllegroCategory> allegroCategories = ParseXmlAllegroCategories.deserialization();
-        System.out.println("Podaj frazę, po której chciałbyś szukać");
-        String search = PhraseScanner();
-        int counter = 0;
-        for (AllegroCategory allegroCategory : allegroCategories) {
-                if (allegroCategory.getCatName().contains(search)) {
-                    System.out.println("Linki do Twojej kategorii: ");
+        boolean counter = true;
+        while (counter) {
+            System.out.println("Podaj frazę, po której chciałbyś szukać");
+            String search = PhraseScanner();
+            if(search.toLowerCase().equals("exit")){
+                break;
+            }
+            int licznik = 0;
+
+
+            for (AllegroCategory allegroCategory : allegroCategories) {
+                licznik++;
+                if (allegroCategory.getCatName().toLowerCase().contains(search)) {
+                    System.out.println("Linki do kategorii: " + allegroCategory.getCatName());
                     System.out.println(allegroCategory.generateLink());
+                    counter = false;
+                    break;
                 }
             }
-        }
-    }
+            if(allegroCategories.size() == licznik){
+            System.out.println("Brak kategorii do podanej frazy! Spróbuj jeszcze raz");
 
+            }
+        }
+    }}
