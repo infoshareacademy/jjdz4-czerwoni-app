@@ -21,24 +21,19 @@ public class AllegroCategoriesUI {
                     String enteredKey = keyScanner.nextLine();
                     switch (enteredKey.toLowerCase()) {
                         case "main":
-                            System.out.print("\033[H\033[2J");
                             AllegroCategoryPrinter.printMainCategories(allegroCategories);
                             break;
                         case "back":
-                            System.out.print("\033[H\033[2J");
                             System.out.println("PRZEGLĄDANIE KATEGORII ALLEGRO");
                             AllegroCategoryPrinter.printParentCategories(allegroCategories);
                             break;
                         case "exit":
-                            System.out.print("\033[H\033[2J");
                             finished = true;
                             break;
                         case "generate":
                             AllegroCategoryPrinter.generateLink(allegroCategories);
-                            System.out.print("\033[H\033[2J");
                             break;
                         default:
-                            System.out.print("\033[H\033[2J");
                             System.out.println("PRZEGLĄDANIE KATEGORII ALLEGRO");
                             try {
                                 AllegroCategoryPrinter.printChildCategories(allegroCategories, enteredKey);
