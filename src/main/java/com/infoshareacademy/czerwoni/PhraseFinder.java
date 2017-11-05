@@ -19,7 +19,7 @@ public class PhraseFinder {
         ArrayList<AllegroCategory> allegroCategories = ParseXmlAllegroCategories.deserialization();
         boolean counter = true;
         while (counter) {
-            System.out.println("Podaj frazę, po której chciałbyś szukać");
+            System.out.print("Podaj frazę, po której chciałbyś szukać: ");
             String search = PhraseScanner();
             if(search.toLowerCase().equals("exit")){
                 break;
@@ -33,6 +33,8 @@ public class PhraseFinder {
                     System.out.println("Linki do kategorii: " + allegroCategory.getCatName());
                     System.out.println(allegroCategory.generateLink());
                     counter = false;
+                    System.out.println("Naciśnij enter aby przejść do Menu\n");
+                    PhraseScanner();
                     break;
                 }
             }
