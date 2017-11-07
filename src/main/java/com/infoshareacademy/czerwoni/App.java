@@ -34,7 +34,7 @@ public class App {
                     System.out.println("");
                     break;
                 case 3:
-                    PhraseFinder.PhraseResearch();
+                    PhraseFinder.phraseResearch();
                     System.out.println();
                     break;
                 case 4:
