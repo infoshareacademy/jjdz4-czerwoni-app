@@ -102,40 +102,41 @@ class Category {
                 Node categoryDetailNode = categoryDetailNodeList.item(i);
                 if (categoryDetailNode.getNodeType() == Node.ELEMENT_NODE) {
                     Element catDetailElement = (Element) categoryDetailNode;
-                    switch (catDetailElement.getTagName()) {
-                        case "cat-item-id":
-                            category.setCategoryId(Integer.parseInt(catDetailElement.getTextContent()));
-                            break;
-                        case "cat-item-name":
-                            category.setCategoryName(catDetailElement.getTextContent());
-                            break;
-                        case "cat-item-parent":
-                            category.setCategoryParent(Integer.parseInt(catDetailElement.getTextContent()));
-                            break;
-                        case "cat-item-position":
-                            category.setCategoryPosition(Integer.parseInt(catDetailElement.getTextContent()));
-                            break;
-                        case "cat-item-visible":
-                            category.setCategoryVisible(Boolean.parseBoolean(catDetailElement.getTextContent()));
-                            break;
-                        case "cat-goto-id":
-                            category.setCategoryGoToId(Integer.parseInt(catDetailElement.getTextContent()));
-                            break;
-                        case "cat-item-answer-id":
-                            category.setCategoryAnswerId(Integer.parseInt(catDetailElement.getTextContent()));
-                            break;
-                        case "cat-item-link":
-                            category.setCategoryAllegroLink(catDetailElement.getTextContent());
-                            break;
-                    }
+                    setCategoryBasedOnTagName(category, catDetailElement);
                 }
-
             }
-
             categoryArrayList.add(category);
-
         }
         return categoryArrayList;
+    }
+
+    private void setCategoryBasedOnTagName(Category category, Element catDetailElement) {
+        switch (catDetailElement.getTagName()) {
+            case "cat-item-id":
+                category.setCategoryId(Integer.parseInt(catDetailElement.getTextContent()));
+                break;
+            case "cat-item-name":
+                category.setCategoryName(catDetailElement.getTextContent());
+                break;
+            case "cat-item-parent":
+                category.setCategoryParent(Integer.parseInt(catDetailElement.getTextContent()));
+                break;
+            case "cat-item-position":
+                category.setCategoryPosition(Integer.parseInt(catDetailElement.getTextContent()));
+                break;
+            case "cat-item-visible":
+                category.setCategoryVisible(Boolean.parseBoolean(catDetailElement.getTextContent()));
+                break;
+            case "cat-goto-id":
+                category.setCategoryGoToId(Integer.parseInt(catDetailElement.getTextContent()));
+                break;
+            case "cat-item-answer-id":
+                category.setCategoryAnswerId(Integer.parseInt(catDetailElement.getTextContent()));
+                break;
+            case "cat-item-link":
+                category.setCategoryAllegroLink(catDetailElement.getTextContent());
+                break;
+        }
     }
 
 }
