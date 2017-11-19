@@ -1,12 +1,15 @@
 package com.infoshareacademy.czerwoni.allegro;
 
 import com.infoshareacademy.czerwoni.parse.ParseXmlAllegroCategories;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class AllegroCategoriesUI {
+
+    private static final Logger logger = LogManager.getLogger(AllegroCategoriesUI.class.getName());
 
     /**
      * Funkcja sterująca poruszaniem się po drzewie kategorii i generowaniem linków.
@@ -35,6 +38,7 @@ public class AllegroCategoriesUI {
                             break;
                         case "generate":
                             AllegroCategoryPrinter.generateLink(allegroCategories);
+                            logger.info("Generowanie linku do wybranej kategorii.");
                             break;
                         default:
                             System.out.println("PRZEGLĄDANIE KATEGORII ALLEGRO");
