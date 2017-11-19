@@ -1,4 +1,4 @@
-package com.infoshareacademy.czerwoni;
+package com.infoshareacademy.czerwoni.product;
 
 import com.google.zxing.*;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;

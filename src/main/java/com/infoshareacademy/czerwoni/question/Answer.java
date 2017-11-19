@@ -1,15 +1,15 @@
-package com.infoshareacademy.czerwoni;
+package com.infoshareacademy.czerwoni.question;
 
 /**
  * Klasa opisująca odpowiedzi do pytań
  */
-class Answer {
+public class Answer {
 
     private int answerId;
     private String answerName;
     private int relatedQuest;
 
-    int getAnswerId() {
+    public int getAnswerId() {
         return answerId;
     }
 
@@ -17,7 +17,7 @@ class Answer {
         this.answerId = answerId;
     }
 
-    String getAnswerName() {
+    public String getAnswerName() {
         return answerName;
     }
 
@@ -25,7 +25,7 @@ class Answer {
         this.answerName = answerName;
     }
 
-    int getRelatedQuest() {
+    public int getRelatedQuest() {
         return relatedQuest;
     }
 

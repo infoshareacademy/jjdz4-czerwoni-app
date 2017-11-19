@@ -1,5 +1,10 @@
 package com.infoshareacademy.czerwoni;
 
+import com.infoshareacademy.czerwoni.allegro.AllegroCategoriesUI;
+import com.infoshareacademy.czerwoni.allegro.PhraseFinder;
+import com.infoshareacademy.czerwoni.category.SearchCategory;
+import com.infoshareacademy.czerwoni.product.ProductProcessor;
+
 import java.util.Scanner;
 
 public class App {
