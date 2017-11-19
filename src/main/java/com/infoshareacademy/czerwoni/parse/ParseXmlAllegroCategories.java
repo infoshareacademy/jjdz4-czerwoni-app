@@ -13,6 +13,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ParseXmlAllegroCategories {
 
@@ -22,7 +23,7 @@ public class ParseXmlAllegroCategories {
      *
      * @return - lista obiektów kategorii Allegro.
      */
-    public static ArrayList deserialization()  {
+    public static List<AllegroCategory> deserialization()  {
         File file = new File("src/main/resources/Allegro_cathegories_2016-02-13.xml");
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = null;

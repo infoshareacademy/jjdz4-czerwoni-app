@@ -3,6 +3,7 @@ package com.infoshareacademy.czerwoni.allegro;
 import com.infoshareacademy.czerwoni.parse.ParseXmlAllegroCategories;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class PhraseFinder {
@@ -17,7 +18,7 @@ public class PhraseFinder {
 
     public static void phraseResearch() {
 
-        ArrayList<AllegroCategory> allegroCategories = ParseXmlAllegroCategories.deserialization();
+        List<AllegroCategory> allegroCategories = ParseXmlAllegroCategories.deserialization();
         boolean counter = true;
         boolean hasCategory = false;
         while (counter) {
