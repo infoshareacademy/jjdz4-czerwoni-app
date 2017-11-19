@@ -1,4 +1,6 @@
-package com.infoshareacademy.czerwoni;
+package com.infoshareacademy.czerwoni.allegro;
+
+import com.infoshareacademy.czerwoni.parse.ParseXmlAllegroCategories;
 
 import java.util.ArrayList;
 import java.util.Scanner;

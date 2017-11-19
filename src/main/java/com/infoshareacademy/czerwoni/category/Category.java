@@ -1,5 +1,6 @@
-package com.infoshareacademy.czerwoni;
+package com.infoshareacademy.czerwoni.category;
 
+import com.infoshareacademy.czerwoni.parse.ParseXML;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;

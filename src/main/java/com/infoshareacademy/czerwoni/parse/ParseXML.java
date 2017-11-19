@@ -1,4 +1,4 @@
-package com.infoshareacademy.czerwoni;
+package com.infoshareacademy.czerwoni.parse;
 
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
@@ -12,13 +12,13 @@ import java.io.InputStream;
 /**
  * Klasa pozwala na  parsowanie pliku XML
  */
-class ParseXML {
+public class ParseXML {
 
     private DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
     private Document doc;
     private String pathName;
 
-    ParseXML(String pathName) {
+    public ParseXML(String pathName) {
         this.pathName = pathName;
     }
 
@@ -26,7 +26,7 @@ class ParseXML {
      * Metoda zwraca document XML do obiektu typu Document
      * @return document XML - obiekt klasy Document
      */
-    Document getXMLDocument() {
+    public Document getXMLDocument() {
         try {
             File fXmlFile = new File(pathName);
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();

@@ -1,4 +1,4 @@
-package com.infoshareacademy.czerwoni;
+package com.infoshareacademy.czerwoni.question;
 
 
 import java.util.ArrayList;
@@ -6,12 +6,12 @@ import java.util.ArrayList;
 /**
  * Klasa opisuje pytania z pliku XML
  */
-class Question {
+public class Question {
     private int questionId;
     private String questionName;
     ArrayList<Answer> answerList = new ArrayList<>();
 
-    int getQuestionId() {
+    public int getQuestionId() {
         return questionId;
     }
 
@@ -19,7 +19,7 @@ class Question {
         this.questionId = questionId;
     }
 
-    String getQuestionName() {
+    public String getQuestionName() {
         return questionName;
     }
 
@@ -27,11 +27,11 @@ class Question {
         this.questionName = questionName;
     }
 
-    ArrayList<Answer> getAnswerList() {
+    public ArrayList<Answer> getAnswerList() {
         return answerList;
     }
 
-    void setAnswerList(ArrayList<Answer> answerList) {
+    public void setAnswerList(ArrayList<Answer> answerList) {
         this.answerList = answerList;
     }
 

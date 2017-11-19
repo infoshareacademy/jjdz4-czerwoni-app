@@ -1,5 +1,6 @@
-package com.infoshareacademy.czerwoni;
+package com.infoshareacademy.czerwoni.question;
 
+import com.infoshareacademy.czerwoni.parse.ParseXML;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 /**
  * Klasa wspomaga czytanie dokumentu(klasa Document) XML i pozwala zapisać dane do obiektu
  */
-class QuestionReader {
+public class QuestionReader {
     private ArrayList<Question> questionArrayList = new ArrayList<>();
     private ParseXML docXML = new ParseXML("src/main/resources/Categories.xml");
 
@@ -19,7 +20,7 @@ class QuestionReader {
      * @return lista obiektó klasy Question
      */
 
-    ArrayList<Question> getQuestionList() {
+    public ArrayList<Question> getQuestionList() {
         Document doc = docXML.getXMLDocument();
         NodeList questList = doc.getElementsByTagName("quest-item");
 

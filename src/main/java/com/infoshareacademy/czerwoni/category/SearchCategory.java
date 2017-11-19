@@ -1,4 +1,8 @@
-package com.infoshareacademy.czerwoni;
+package com.infoshareacademy.czerwoni.category;
+
+import com.infoshareacademy.czerwoni.question.Answer;
+import com.infoshareacademy.czerwoni.question.Question;
+import com.infoshareacademy.czerwoni.question.QuestionReader;
 
 import java.util.List;
 import java.util.Scanner;
@@ -6,7 +10,7 @@ import java.util.Scanner;
 /**
  * Klasa udostępnia metody pozwalające na wyświetlanie pytań i szukoanie właściwych kategorii Allegro
  */
-class SearchCategory {
+public class SearchCategory {
     private QuestionReader questionReader = new QuestionReader();
     private List<Question> questions = questionReader.getQuestionList();
     private String answerId;
@@ -19,7 +23,7 @@ class SearchCategory {
      * wywołuję metodę getAllegroLink(w celu wyświetlenia odpowiedniego linku Allegro
       */
 
-    void showQuestion(String id) {
+    public void showQuestion(String id) {
         boolean checkAnswer = true;
         boolean isFinish = true;
         String isOK = null;

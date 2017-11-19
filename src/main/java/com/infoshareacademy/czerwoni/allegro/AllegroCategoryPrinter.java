@@ -1,4 +1,4 @@
-package com.infoshareacademy.czerwoni;
+package com.infoshareacademy.czerwoni.allegro;
 
 import java.util.ArrayList;
 import java.util.Objects;

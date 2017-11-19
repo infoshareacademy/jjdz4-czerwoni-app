@@ -1,4 +1,4 @@
-package com.infoshareacademy.czerwoni;
+package com.infoshareacademy.czerwoni.product;
 
 import com.google.gson.Gson;
 
@@ -16,7 +16,7 @@ import java.util.Scanner;
  * klasa obsługująca przetwarzanie produktu: odczytanie kodu kreskowego ze wskazanego pliku
  * oraz pobranie danych produktu z API na podstawie odczytanego kodu
  */
-class ProductProcessor {
+public class ProductProcessor {
 
 
     /**
@@ -85,7 +85,7 @@ class ProductProcessor {
      * i wyświetla informacje o zwróconym produkcie
      *
      */
-    static void identifyProductFromImage() {
+    public static void identifyProductFromImage() {
         System.out.println("Podaj nazwę pliku z kodem kreskowym: ");  // "Please enter path and filename: "
         Scanner pathScanner = new Scanner(System.in);
         String imageFilename = pathScanner.nextLine();
