@@ -4,6 +4,7 @@ import com.infoshareacademy.czerwoni.allegro.AllegroCategory;
 import com.infoshareacademy.czerwoni.parse.ParseXmlAllegroCategories;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class BreadcrumbsCategories {
 
@@ -14,7 +15,7 @@ public class BreadcrumbsCategories {
      Telefony i Akcesoria < -- Telefony komórkowe < - - Nokia
      ***/
 
-        ArrayList<AllegroCategory> allegroCategories = ParseXmlAllegroCategories.deserialization();
+        List<AllegroCategory> allegroCategories = ParseXmlAllegroCategories.deserialization();
         StringBuilder sB = new StringBuilder();
         int idHelper = idAtm;
         //System.out.println("wchodzi do petli alC"+ idAtm);

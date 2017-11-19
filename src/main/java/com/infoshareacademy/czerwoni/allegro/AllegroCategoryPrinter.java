@@ -1,6 +1,7 @@
 package com.infoshareacademy.czerwoni.allegro;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -15,7 +16,7 @@ public class AllegroCategoryPrinter {
      * @param allegroCategories - Zbiór wszystkich kategorii Allegro.
      * @param categoryParent - Numer Id kategorii nadrzędnej do kategorii wyświetlanych.
      */
-    private static void printCategory(ArrayList<AllegroCategory> allegroCategories,int categoryParent) {
+    private static void printCategory(List<AllegroCategory> allegroCategories,int categoryParent) {
         for (AllegroCategory allegroCategory : allegroCategories) {
             if (allegroCategory.getCatParent() == categoryParent) {
                 int orderNumber = allegroCategory.getCatPosition() + 1;
@@ -34,7 +35,7 @@ public class AllegroCategoryPrinter {
      *
      * @param allegroCategories - Zbiór wszystkich kategorii Allegro.
      */
-    public static void printMainCategories(ArrayList<AllegroCategory> allegroCategories) {
+    public static void printMainCategories(List<AllegroCategory> allegroCategories) {
         currentCategory.clear();
         System.out.println("\nPRZEGLĄDANIE KATEGORII ALLEGRO");
         System.out.println("\nKategorie główne:");
@@ -48,7 +49,7 @@ public class AllegroCategoryPrinter {
      * @param allegroCategories - Zbiór wszystkich kategorii Allegro.
      * @param chosenCategory - numer kategorii wybranej przez użytkownika.
      */
-    public static void printChildCategories(ArrayList<AllegroCategory> allegroCategories, String chosenCategory) {
+    public static void printChildCategories(List<AllegroCategory> allegroCategories, String chosenCategory) {
         int categoryParent = currentCategory.get(Integer.parseInt(chosenCategory)-1).getCatId();
         System.out.println("\n" + chosenCategory + ") "
                 + currentCategory.get(Integer.parseInt(chosenCategory)-1).getCatName() + ":");
@@ -63,7 +64,7 @@ public class AllegroCategoryPrinter {
      *
      * @param allegroCategories - Zbiór wszystkich kategorii Allegro.
      */
-    public static void printParentCategories(ArrayList<AllegroCategory> allegroCategories) {
+    public static void printParentCategories(List<AllegroCategory> allegroCategories) {
         int currentCategoryParent;
         if (currentCategory.isEmpty()) {
             currentCategoryParent = parentCategory.getCatParent();
@@ -93,7 +94,7 @@ public class AllegroCategoryPrinter {
      *
      * @param allegroCategories - Zbiór wszystkich kategorii Allegro.
      */
-    public static void generateLink(ArrayList<AllegroCategory> allegroCategories) {
+    public static void generateLink(List<AllegroCategory> allegroCategories) {
         System.out.println("\nGENEROWANIE LINKU DO KATEGORII");
 
             boolean finished = false;

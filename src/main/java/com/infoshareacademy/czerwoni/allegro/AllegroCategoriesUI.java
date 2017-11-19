@@ -3,6 +3,7 @@ package com.infoshareacademy.czerwoni.allegro;
 import com.infoshareacademy.czerwoni.parse.ParseXmlAllegroCategories;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class AllegroCategoriesUI {
@@ -12,7 +13,7 @@ public class AllegroCategoriesUI {
      *
      */
     public static void UserInterface() {
-        ArrayList allegroCategories = ParseXmlAllegroCategories.deserialization();
+        List<AllegroCategory> allegroCategories = ParseXmlAllegroCategories.deserialization();
         if (!(allegroCategories.isEmpty())) {
         AllegroCategoryPrinter.printMainCategories(allegroCategories);
             boolean finished = false;
