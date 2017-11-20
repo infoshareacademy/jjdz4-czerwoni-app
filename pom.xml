@@ -15,6 +15,7 @@
 
   <modules>
       <module>konsola</module>
+    <module>web</module>
   </modules>
 
   <build>
@@ -28,6 +29,11 @@
             <source>${java.version}</source>
             <target>${java.version}</target>
           </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-war-plugin</artifactId>
+          <version>3.2.0</version>
         </plugin>
       </plugins>
     </pluginManagement>
