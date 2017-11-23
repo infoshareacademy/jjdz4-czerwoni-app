@@ -1,6 +1,7 @@
 package com.infoshareacademy.czerwoni.parse;
 
 
+import com.infoshareacademy.czerwoni.App;
 import com.infoshareacademy.czerwoni.allegro.AllegroCategory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -24,7 +25,7 @@ public class ParseXmlAllegroCategories {
      * @return - lista obiektów kategorii Allegro.
      */
     public static List<AllegroCategory> deserialization()  {
-        File file = new File("src/main/resources/Allegro_cathegories_2016-02-13.xml");
+        InputStream xmlStream = App.class.getClassLoader().getResourceAsStream("Allegro_cathegories_2016-02-13.xml");
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = null;
         try {
@@ -37,7 +38,7 @@ public class ParseXmlAllegroCategories {
         ArrayList<AllegroCategory> allegroCategories = new ArrayList<>();
         while (!finished) {
             try {
-                document = documentBuilder.parse(file);
+                document = documentBuilder.parse(xmlStream);
             } catch (FileNotFoundException e) {
                 System.out.println("Nie znalezio pliku z kategoriami allegro!");
                 finished = true;
