@@ -1,12 +1,20 @@
 package com.infoshareacademy.czerwoni.category;
 
-import com.infoshareacademy.czerwoni.parse.ParseXML;
+import com.infoshareacademy.czerwoni.App;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+
+import static com.infoshareacademy.czerwoni.parse.ParseXml.getXMLDocument;
 
 /**
  * Klasa opisuje kategorie z pliku XML
@@ -91,8 +99,7 @@ class Category {
      */
     ArrayList<Category> getCategoryList() {
         ArrayList<Category> categoryArrayList = new ArrayList<>();
-        ParseXML docXML = new ParseXML("src/main/resources/Categories.xml");
-        Document doc = docXML.getXMLDocument();
+        Document doc = getXMLDocument();
         NodeList categoryNodeList = doc.getElementsByTagName("cat-item");
         for (int k = 0; k < categoryNodeList.getLength(); k++) {
             Category category = new Category();
