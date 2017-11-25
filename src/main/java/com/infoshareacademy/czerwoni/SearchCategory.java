@@ -1,5 +1,9 @@
 package com.infoshareacademy.czerwoni;
 
+import org.apache.logging.log4j.spi.AbstractLogger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,6 +16,7 @@ class SearchCategory {
     private String answerId;
     private Category category = new Category();
     private List<Category> categoryList = category.getCategoryList();
+    private static Logger logger = LoggerFactory.getLogger(SearchCategory.class.getName());
 
     /**
      * Metoda wyświetla pytąnia i odpowiedzi oraz przyjmuje odpowiedzi od użytkownika
@@ -23,9 +28,11 @@ class SearchCategory {
         boolean checkAnswer = true;
         boolean isFinish = true;
         String isOK = null;
+        int countQuest = 0;
         Scanner answerScanner = new Scanner(System.in);
         for (Question q : questions) {
             if (id.equals(String.valueOf(q.getQuestionId()))) {
+                logger.debug("Pytanie "+countQuest++);
                 System.out.println(q.getQuestionName());
                 q.getAnswerList().forEach(s -> System.out.println(s.getAnswerName()));
                 System.out.print("Podaj odpowiedź [a,b,c]: ");
@@ -38,6 +45,7 @@ class SearchCategory {
                             if (userAnswer.toLowerCase().equals(a.getAnswerName().substring(0, 1))) {
                                 this.answerId = String.valueOf(a.getAnswerId());
                                 System.out.println("Twoja kategoria Allegro to: \033[33m" + getCategoryName(answerId) + "\033[0m\n");
+                                logger.info("Kategoria Allegro została znalieziona");
                                 if (a.getRelatedQuest() != 0) {
                                     System.out.print("Czy chcesz szukać dalej?(podaj T lu N): ");
                                     while (isFinish) {
@@ -45,6 +53,7 @@ class SearchCategory {
                                         System.out.println("");
                                         if (!(isOK.toLowerCase().equals("n")) && !(isOK.toLowerCase().equals("t"))) {
                                             System.out.print("Wprowadziłeś niepoprawny znak, spróbuj jeszcze raz:  ");
+                                            logger.info("Wprowadzono niepoprawny znak - czy szukać dalej?");
                                         } else {
                                             isFinish = false;
                                         }
@@ -66,7 +75,7 @@ class SearchCategory {
                         }
                         break;
                     } else {
-                        System.out.print("Podałeś niepoprawną odpoowiedź, jescze raz: ");
+                        System.out.print("Podałeś niepoprawną odpoowiedź, jesscze raz: ");
                     }
                 }
             }
