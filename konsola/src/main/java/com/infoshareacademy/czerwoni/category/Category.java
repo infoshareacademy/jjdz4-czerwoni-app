@@ -91,7 +91,7 @@ class Category {
      */
     ArrayList<Category> getCategoryList() {
         ArrayList<Category> categoryArrayList = new ArrayList<>();
-        ParseXML docXML = new ParseXML("src/main/resources/Categories.xml");
+        ParseXML docXML = new ParseXML("konsola/src/main/resources/Categories.xml");
         Document doc = docXML.getXMLDocument();
         NodeList categoryNodeList = doc.getElementsByTagName("cat-item");
         for (int k = 0; k < categoryNodeList.getLength(); k++) {

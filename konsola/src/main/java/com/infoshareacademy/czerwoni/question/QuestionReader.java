@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class QuestionReader {
     private ArrayList<Question> questionArrayList = new ArrayList<>();
-    private ParseXML docXML = new ParseXML("src/main/resources/Categories.xml");
+    private ParseXML docXML = new ParseXML("konsola/src/main/resources/Categories.xml");
 
     /**
      * Metoda zwraca listę wszystkich pytań i odpowiedzi - obiekty klasy Question
