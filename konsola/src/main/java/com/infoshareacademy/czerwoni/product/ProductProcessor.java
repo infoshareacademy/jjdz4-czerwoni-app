@@ -1,6 +1,8 @@
 package com.infoshareacademy.czerwoni.product;
 
 import com.google.gson.Gson;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,6 +20,7 @@ import java.util.Scanner;
  */
 public class ProductProcessor {
 
+    private static Logger logger = LoggerFactory.getLogger(ProductProcessor.class);
 
     /**
      * metoda pobierająca dane produktu z webowego interfejsu API
@@ -86,6 +89,8 @@ public class ProductProcessor {
      *
      */
     public static void identifyProductFromImage() {
+
+        logger.info("uruchomiono identyfikację produktu na podst. kodu kreskowego");
         System.out.println("Podaj nazwę pliku z kodem kreskowym: ");  // "Please enter path and filename: "
         Scanner pathScanner = new Scanner(System.in);
         String imageFilename = pathScanner.nextLine();
@@ -93,6 +98,7 @@ public class ProductProcessor {
         String productBarcode = BarCodeReader.decodeBarcodeFromFile(imageFilename);
         if (productBarcode.isEmpty()) {
             System.out.println("Nie znaleziono kodu kreskowego\n");  // // "No barcode found/decoded\n"
+            logger.error("Nie znaleziono kodu kreskowego");
         } else {
             System.out.println("Odczytany kod kreskowy: " + productBarcode);  // "Decoded barcode: "
             System.out.println("Zidentyfikowany produkt: " + getProductDataFromAPI(productBarcode));  // "Product found: "

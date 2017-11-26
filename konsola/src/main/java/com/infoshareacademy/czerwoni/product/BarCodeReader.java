@@ -3,6 +3,8 @@ package com.infoshareacademy.czerwoni.product;
 import com.google.zxing.*;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -69,6 +71,7 @@ class BarCodeReader {
      * @return rozpoznany kod kreskowy
      */
     static String decodeBarcodeFromFile(String fileName) {
+        Logger logger = LoggerFactory.getLogger(BarCodeReader.class.getName());
         String barcodeString = "";
 
             Map<DecodeHintType, Object> decodeHintsMap = new EnumMap<>(DecodeHintType.class);
@@ -80,6 +83,7 @@ class BarCodeReader {
             barcodeString = decodeBarcode(imgFile, decodeHintsMap);
         } catch (Exception e) {
             System.out.println("Problem z odczytem pliku: " + fileName);  // decodeBarcodeFromFile - exception:  + e.getMessage()
+            logger.error("logger Problem z odczytem pliku: " + fileName);
         }
         return barcodeString;
     }
