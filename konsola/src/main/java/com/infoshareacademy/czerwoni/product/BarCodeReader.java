@@ -83,7 +83,7 @@ class BarCodeReader {
             barcodeString = decodeBarcode(imgFile, decodeHintsMap);
         } catch (Exception e) {
             System.out.println("Problem z odczytem pliku: " + fileName);  // decodeBarcodeFromFile - exception:  + e.getMessage()
-            logger.error("logger Problem z odczytem pliku: " + fileName);
+            logger.error("Problem z odczytem pliku: " + fileName);
         }
         return barcodeString;
     }

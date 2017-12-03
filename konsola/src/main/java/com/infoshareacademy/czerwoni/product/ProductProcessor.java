@@ -53,8 +53,9 @@ public class ProductProcessor {
             }*/
 
             response = ((httpURLConnection.getResponseCode() == statusCodeOK) ?
-                    "success : (" : "failed (HTTP error code : ")
+                    "success (" : "failed (HTTP error code : ")
                     + httpURLConnection.getResponseCode() + "-" + httpURLConnection.getResponseMessage() + ")";
+            logger.debug("connection to: " + webAPI + ", response: " + httpURLConnection.getResponseCode() + "-" + httpURLConnection.getResponseMessage());
 
             InputStream content = httpURLConnection.getInputStream();
             BufferedReader in =
