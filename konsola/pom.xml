@@ -9,6 +9,7 @@
         <artifactId>organizer-zakupowy</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+
     <artifactId>konsola</artifactId>
     <packaging>jar</packaging>
     <name>organizer-zakupowy (wersja konsolowa)</name>
