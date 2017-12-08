@@ -76,8 +76,10 @@ public class ProductProcessor {
             httpURLConnection.disconnect();
 
         } catch (MalformedURLException e) {
-            System.out.println("Malformed URL has occurred");
+            // System.out.println("Malformed URL has occurred");
+            logger.error("Malformed URL has occurred");
         } catch (IOException e) {
+            logger.error(e.getMessage());
             e.printStackTrace();
         }
         return response;
@@ -102,7 +104,9 @@ public class ProductProcessor {
             logger.error("Nie znaleziono kodu kreskowego");
         } else {
             System.out.println("Odczytany kod kreskowy: " + productBarcode);  // "Decoded barcode: "
-            System.out.println("Zidentyfikowany produkt: " + getProductDataFromAPI(productBarcode));  // "Product found: "
+            String productData = getProductDataFromAPI(productBarcode);
+            System.out.println("Zidentyfikowany produkt: " + productData);  // "Product found: "
+            logger.trace("odczytany kod: " + productBarcode + "; produkt: " + productData);
         }
         System.out.println("Naciśnij Enter aby wrócić do menu");
         pathScanner.nextLine();
