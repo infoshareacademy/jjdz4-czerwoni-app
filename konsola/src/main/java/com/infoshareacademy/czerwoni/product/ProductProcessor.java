@@ -30,6 +30,7 @@ public class ProductProcessor {
      * @return szczegółowe informacje na temat odczytanego produktu
      */
     static private String getProductDataFromAPI(String barcode) {
+        String LOG_ERR_MSG = "wyjątek w ProductProcessor.getProductDataFromAPI()";
         String response = null;
 
         try {
@@ -76,10 +77,9 @@ public class ProductProcessor {
             httpURLConnection.disconnect();
 
         } catch (MalformedURLException e) {
-            // System.out.println("Malformed URL has occurred");
-            logger.error("Malformed URL has occurred");
+            logger.error(LOG_ERR_MSG, e);
         } catch (IOException e) {
-            logger.error(e.getMessage());
+            logger.error(LOG_ERR_MSG, e);
             e.printStackTrace();
         }
         return response;
@@ -100,8 +100,9 @@ public class ProductProcessor {
 
         String productBarcode = BarCodeReader.decodeBarcodeFromFile(imageFilename);
         if (productBarcode.isEmpty()) {
-            System.out.println("Nie znaleziono kodu kreskowego\n");  // // "No barcode found/decoded\n"
-            logger.error("Nie znaleziono kodu kreskowego");
+            String msg = "Nie znaleziono kodu kreskowego\n";
+            System.out.println(msg);  // // "No barcode found/decoded\n"
+            logger.error(msg);
         } else {
             System.out.println("Odczytany kod kreskowy: " + productBarcode);  // "Decoded barcode: "
             String productData = getProductDataFromAPI(productBarcode);
