@@ -7,7 +7,7 @@ import org.w3c.dom.NodeList;
 
 import java.util.ArrayList;
 
-import static com.infoshareacademy.czerwoni.parse.ParseXml.getXMLDocument;
+import static com.infoshareacademy.czerwoni.parse.ParseXML.getXMLDocument;
 
 /**
  * Klasa wspomaga czytanie dokumentu(klasa Document) XML i pozwala zapisać dane do obiektu

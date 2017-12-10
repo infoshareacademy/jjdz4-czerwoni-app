@@ -10,7 +10,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class ParseXml {
+public class ParseXML {
 
     public static Document getXMLDocument() {
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();

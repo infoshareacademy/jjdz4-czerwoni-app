@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-import static com.infoshareacademy.czerwoni.parse.ParseXml.getXMLDocument;
+import static com.infoshareacademy.czerwoni.parse.ParseXML.getXMLDocument;
 
 /**
  * Klasa opisuje kategorie z pliku XML
