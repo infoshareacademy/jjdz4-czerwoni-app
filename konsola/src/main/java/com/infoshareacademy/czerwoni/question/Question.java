@@ -1,14 +1,21 @@
 package com.infoshareacademy.czerwoni.question;
 
 
+import javax.persistence.*;
 import java.util.ArrayList;
 
 /**
  * Klasa opisuje pytania z pliku XML
  */
+@Entity
+@Table(name = "Question")
 public class Question {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int questionId;
+    @Column
     private String questionName;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "Question")
     ArrayList<Answer> answerList = new ArrayList<>();
 
     public int getQuestionId() {

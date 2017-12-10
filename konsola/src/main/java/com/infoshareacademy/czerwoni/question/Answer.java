@@ -6,10 +6,16 @@ import javax.persistence.*;
  * Klasa opisująca odpowiedzi do pytań
  */
 @Entity
+@Table(name = "Answer")
 public class Answer {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int answerId;
+    @Column
     private String answerName;
+    @ManyToOne
+    @JoinColumn(name = "Question", nullable = false)
     private int relatedQuest;
 
     public int getAnswerId() {
