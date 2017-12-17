@@ -3,20 +3,21 @@ package com.infoshareacademy.czerwoni.domain;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Klasa opisuje pytania z pliku XML
  */
 @Entity
-@Table(name = "Question")
 public class Question {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int questionId;
     @Column
     private String questionName;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "Question")
-    ArrayList<Answer> answerList = new ArrayList<>();
+    @JoinColumn(name = "question_id")
+    List<Answer> answerList = new ArrayList<>();
 
     public int getQuestionId() {
         return questionId;
@@ -34,7 +35,7 @@ public class Question {
         this.questionName = questionName;
     }
 
-    public ArrayList<Answer> getAnswerList() {
+    public List<Answer> getAnswerList() {
         return answerList;
     }
 
