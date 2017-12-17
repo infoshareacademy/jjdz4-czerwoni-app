@@ -3,6 +3,8 @@ package com.infoshareacademy.czerwoni.product;
 import com.google.zxing.*;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -18,6 +20,7 @@ import java.util.Map;
 class BarCodeReader {
 
     private static BarcodeFormat DEFAULT_BARCODE_FORMAT = BarcodeFormat.CODE_128;
+    private static Logger logger = LoggerFactory.getLogger(BarCodeReader.class);
 
     /**
      * metoda odczytująca kod kreskowy z pliku graficznego przy wykorzystaniu biblioteki zxing
@@ -55,7 +58,8 @@ class BarCodeReader {
 
             decodedBarcode = String.valueOf(tmpResult.getText());
         } catch (NotFoundException e) {
-            throw new Exception("BarCodeReader.decodeBarcode - exception: " + e.toString() + " - " + e.getMessage());
+            logger.warn("wyjątek w BarCodeReader.decodeBarcode()", e);
+            throw e;
         }
 
         return decodedBarcode;
@@ -69,6 +73,7 @@ class BarCodeReader {
      * @return rozpoznany kod kreskowy
      */
     static String decodeBarcodeFromFile(String fileName) {
+
         String barcodeString = "";
 
             Map<DecodeHintType, Object> decodeHintsMap = new EnumMap<>(DecodeHintType.class);
@@ -79,7 +84,9 @@ class BarCodeReader {
             File imgFile = new File(fileName);
             barcodeString = decodeBarcode(imgFile, decodeHintsMap);
         } catch (Exception e) {
-            System.out.println("Problem z odczytem pliku: " + fileName);  // decodeBarcodeFromFile - exception:  + e.getMessage()
+            String msg = "Problem z odczytem pliku: " + fileName;
+            System.out.println(msg);
+            logger.error(msg, e);
         }
         return barcodeString;
     }
