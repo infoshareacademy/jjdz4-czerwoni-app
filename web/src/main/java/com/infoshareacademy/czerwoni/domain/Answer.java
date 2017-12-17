@@ -15,7 +15,7 @@ public class Answer {
     @Column
     private String answerName;
     @ManyToOne
-    @JoinColumn(name = "Question", nullable = false)
+    @JoinColumn(name = "question_id")
     private int relatedQuest;
 
     public int getAnswerId() {
