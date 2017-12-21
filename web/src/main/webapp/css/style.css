@@ -1,0 +1,54 @@
+.dropdown > div > a:hover{
+    background-color:#888888;
+}
+
+.dropdown > button > div:hover {
+    background-color: #888888;
+}
+
+.dropdown > button > img {
+    max-height: 25px;
+}
+
+a {
+    color: aliceblue;
+}
+
+a > h1 > i {
+    font-size: 40px;
+}
+
+div > a:hover {
+    color: white;
+    background-color: #888888;
+    text-decoration: none;
+}
+
+.container {
+    color: aliceblue;
+    min-height: 500px;
+}
+
+.nav-item {
+    border-left-style: solid;
+}
+
+.nav{
+    background-color: #777777;
+}
+.nav-item:hover {
+    background-color: #888888;
+}
+
+form {
+    color: aliceblue;
+}
+
+i {
+    font-size: 20px;
+}
+
+button:hover {
+    cursor: pointer;
+    color: #888888;
+}
