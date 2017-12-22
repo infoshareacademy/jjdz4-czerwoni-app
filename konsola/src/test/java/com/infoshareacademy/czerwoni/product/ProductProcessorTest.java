@@ -19,19 +19,19 @@ public class ProductProcessorTest {
     /*
     taki przypadek w praktyce nie zaistnieje, gdyz jest zabezpieczenie przed nim,
     tj. nie dojdzie wtedy do wywołania funkcji getProductDataFromAPI()
-    */
+
     @Test
     public void getProductDataFromAPI_nullArg() {
         ProductProcessor.getProductDataFromAPI(null);
-    }
+    }  */
 
     /*
     taki przypadek w praktyce nie zaistnieje, gdyz jest zabezpieczenie przed nim,
     tj. nie dojdzie wtedy do wywołania funkcji getProductDataFromAPI()
-    */
+
     @Test
     public void getProductDataFromAPI_emptyArg() {
         ProductProcessor.getProductDataFromAPI("");
-    }
+    } */
 
 }
