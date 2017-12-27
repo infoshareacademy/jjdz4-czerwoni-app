@@ -14,7 +14,7 @@ a {
     color: aliceblue;
 }
 
-a > h1 > i {
+body > div > div > div > a > h1 > i {
     font-size: 40px;
 }
 
@@ -26,7 +26,11 @@ div > a:hover {
 
 .container {
     color: aliceblue;
-    min-height: 500px;
+    min-height: 5000px;
+}
+
+div.dropdown {
+    color: aliceblue;
 }
 
 .nav-item {
