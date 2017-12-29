@@ -3,6 +3,8 @@ package com.infoshareacademy.czerwoni.parse;
 
 import com.infoshareacademy.czerwoni.App;
 import com.infoshareacademy.czerwoni.allegro.AllegroCategory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -17,6 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ParseXmlAllegroCategories {
+
+    private static Logger logger = LoggerFactory.getLogger(ParseXmlAllegroCategories.class);
 
     /**
      * Funkcja odczytująca dane z pliku XML, zawierającego kategorie Allegro
@@ -40,13 +44,17 @@ public class ParseXmlAllegroCategories {
             try {
                 document = documentBuilder.parse(xmlStream);
             } catch (FileNotFoundException e) {
-                System.out.println("Nie znalezio pliku z kategoriami allegro!");
+                String msg = "Nie znaleziono pliku z kategoriami allegro!";
+                System.out.println(msg);
+                logger.error(msg, e);
                 finished = true;
                 break;
             } catch (SAXException | IOException e) {
                 e.printStackTrace();
             } catch (NullPointerException e) {
-                System.out.println("Nieprawidłowe dane w pliku!");
+                String msg = "Nieprawidłowe dane w pliku!";
+                System.out.println(msg);
+                logger.error(msg, e);
                 finished = true;
                 break;
             }
@@ -61,6 +69,7 @@ public class ParseXmlAllegroCategories {
                         Integer.parseInt(element.getElementsByTagName("ns1:catPosition").item(0).getTextContent()),
                         Integer.parseInt(element.getElementsByTagName("ns1:catParent").item(0).getTextContent())));
             }
+            logger.info("Poprawny odczyt pliku XML.");
             finished = true;
         }
         return allegroCategories;
