@@ -1,5 +1,8 @@
 package com.infoshareacademy.czerwoni.allegro;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -9,6 +12,7 @@ public class AllegroCategoryPrinter {
 
     private static ArrayList<AllegroCategory> currentCategory = new ArrayList<>();
     private static AllegroCategory parentCategory;
+    private static Logger logger = LoggerFactory.getLogger(AllegroCategoryPrinter.class);
 
     /**
      * Funkcja generująca i drukująca żadaną listę kategorii.
@@ -122,6 +126,7 @@ public class AllegroCategoryPrinter {
                                 for (AllegroCategory allegroCategory : allegroCategories) {
                                     if (Objects.equals(allegroCategory.getCatId(), currentCategory.get(Integer.parseInt(enteredKey) - 1).getCatId())) {
                                         System.out.println("\nLink: " + allegroCategory.generateLink());
+                                        logger.info("Wygenerowano link do kategorii: " + allegroCategory.getCatName());
                                     }
                                 }
                         }

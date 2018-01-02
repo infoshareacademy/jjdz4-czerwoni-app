@@ -1,12 +1,16 @@
 package com.infoshareacademy.czerwoni.allegro;
 
 import com.infoshareacademy.czerwoni.parse.ParseXmlAllegroCategories;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Scanner;
 
 public class AllegroCategoriesUI {
+
+    private static Logger logger = LoggerFactory.getLogger(AllegroCategoriesUI.class);
 
     /**
      * Funkcja sterująca poruszaniem się po drzewie kategorii i generowaniem linków.
@@ -42,7 +46,9 @@ public class AllegroCategoriesUI {
                                 AllegroCategoryPrinter.printChildCategories(allegroCategories, enteredKey);
                                 break;
                             } catch (IndexOutOfBoundsException e) {
-                                System.out.println("Wprowadzono niepoprawny numer kategorii!");
+                                String msg = "Wprowadzono niepoprawny numer kategorii!";
+                                System.out.println(msg);
+                                logger.debug(msg, e);
                             }
                     }
                 } catch (NumberFormatException e) {

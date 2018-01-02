@@ -1,0 +1,8 @@
+
+.icon-user:before { content: '\e800'; } /* '' */
+.icon-barcode:before { content: '\e801'; } /* '' */
+.icon-tags:before { content: '\e802'; } /* '' */
+.icon-cart-plus:before { content: '\f217'; } /* '' */
+.icon-cart-arrow-down:before { content: '\f218'; } /* '' */
+.icon-shopping-basket:before { content: '\f291'; } /* '' */
+.icon-search:before { content: '\f50d'; } /* '' */

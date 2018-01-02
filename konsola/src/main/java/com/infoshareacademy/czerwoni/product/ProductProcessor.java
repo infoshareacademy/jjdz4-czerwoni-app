@@ -1,6 +1,8 @@
 package com.infoshareacademy.czerwoni.product;
 
 import com.google.gson.Gson;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,6 +20,7 @@ import java.util.Scanner;
  */
 public class ProductProcessor {
 
+    private static Logger logger = LoggerFactory.getLogger(ProductProcessor.class);
 
     /**
      * metoda pobierająca dane produktu z webowego interfejsu API
@@ -27,6 +30,7 @@ public class ProductProcessor {
      * @return szczegółowe informacje na temat odczytanego produktu
      */
     static private String getProductDataFromAPI(String barcode) {
+        String LOG_ERR_MSG = "wyjątek w ProductProcessor.getProductDataFromAPI()";
         String response = null;
 
         try {
@@ -50,8 +54,9 @@ public class ProductProcessor {
             }*/
 
             response = ((httpURLConnection.getResponseCode() == statusCodeOK) ?
-                    "success : (" : "failed (HTTP error code : ")
+                    "success (" : "failed (HTTP error code : ")
                     + httpURLConnection.getResponseCode() + "-" + httpURLConnection.getResponseMessage() + ")";
+            logger.debug("connection to: " + webAPI + ", response: " + httpURLConnection.getResponseCode() + "-" + httpURLConnection.getResponseMessage());
 
             InputStream content = httpURLConnection.getInputStream();
             BufferedReader in =
@@ -72,8 +77,9 @@ public class ProductProcessor {
             httpURLConnection.disconnect();
 
         } catch (MalformedURLException e) {
-            System.out.println("Malformed URL has occurred");
+            logger.error(LOG_ERR_MSG, e);
         } catch (IOException e) {
+            logger.error(LOG_ERR_MSG, e);
             e.printStackTrace();
         }
         return response;
@@ -86,16 +92,22 @@ public class ProductProcessor {
      *
      */
     public static void identifyProductFromImage() {
+
+        logger.info("uruchomiono identyfikację produktu na podst. kodu kreskowego");
         System.out.println("Podaj nazwę pliku z kodem kreskowym: ");  // "Please enter path and filename: "
         Scanner pathScanner = new Scanner(System.in);
         String imageFilename = pathScanner.nextLine();
 
         String productBarcode = BarCodeReader.decodeBarcodeFromFile(imageFilename);
         if (productBarcode.isEmpty()) {
-            System.out.println("Nie znaleziono kodu kreskowego\n");  // // "No barcode found/decoded\n"
+            String msg = "Nie znaleziono kodu kreskowego\n";
+            System.out.println(msg);  // // "No barcode found/decoded\n"
+            logger.error(msg);
         } else {
             System.out.println("Odczytany kod kreskowy: " + productBarcode);  // "Decoded barcode: "
-            System.out.println("Zidentyfikowany produkt: " + getProductDataFromAPI(productBarcode));  // "Product found: "
+            String productData = getProductDataFromAPI(productBarcode);
+            System.out.println("Zidentyfikowany produkt: " + productData);  // "Product found: "
+            logger.trace("odczytany kod: " + productBarcode + "; produkt: " + productData);
         }
         System.out.println("Naciśnij Enter aby wrócić do menu");
         pathScanner.nextLine();
