@@ -1,7 +1,5 @@
 package com.infoshareacademy.czerwoni.question;
 
-import javax.persistence.*;
-
 /**
  * Klasa opisująca odpowiedzi do pytań
  */
