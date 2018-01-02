@@ -1,7 +1,6 @@
 package com.infoshareacademy.czerwoni.question;
 
 
-import javax.persistence.*;
 import java.util.ArrayList;
 
 /**

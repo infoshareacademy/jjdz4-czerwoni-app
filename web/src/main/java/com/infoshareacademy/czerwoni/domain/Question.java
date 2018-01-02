@@ -2,6 +2,7 @@ package com.infoshareacademy.czerwoni.domain;
 
 
 import javax.persistence.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,17 +13,20 @@ import java.util.List;
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(nullable = false, unique = true)
     private int questionId;
+
     @Column
     private String questionName;
+    private int questionLevel;
+
     @OneToMany
     @JoinColumn(name = "question_id")
-    List<Answer> answerList = new ArrayList<>();
+    private List<Answer> answerList = new ArrayList<>();
 
     public int getQuestionId() {
         return questionId;
     }
-
     void setQuestionId(int questionId) {
         this.questionId = questionId;
     }
@@ -31,18 +35,38 @@ public class Question {
         return questionName;
     }
 
-    void setQuestionName(String questionName) {
+    public void setQuestionName(String questionName) {
         this.questionName = questionName;
+    }
+
+
+    public int getQuestionLevel() {
+        return questionLevel;
+    }
+
+    public void setQuestionLevel(int questionLevel) {
+        this.questionLevel = questionLevel;
     }
 
     public List<Answer> getAnswerList() {
         return answerList;
     }
 
-    public void setAnswerList(ArrayList<Answer> answerList) {
+    public void setAnswerList(List<Answer> answerList) {
         this.answerList = answerList;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Question) {
+            Question other = (Question) o;
+            return this.questionId == other.questionId;
+        }
+        return false;
+    }
 
-
+    @Override
+    public int hashCode() {
+        return this.questionId;
+    }
 }

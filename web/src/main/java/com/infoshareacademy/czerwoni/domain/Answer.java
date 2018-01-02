@@ -6,17 +6,19 @@ import javax.persistence.*;
  * Klasa opisująca odpowiedzi do pytań
  */
 @Entity
-@Table(name = "Answer")
+@NamedQueries({
+        @NamedQuery(name = "selectAll", query = "from Answer")
+})
 public class Answer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false, unique = true)
     private int answerId;
-    @Column
+    @Column(nullable = false)
     private String answerName;
-    @ManyToOne
-    @JoinColumn(name = "question_id")
-    private int relatedQuest;
+    @OneToOne(orphanRemoval = true)
+    private Question relatedQuest;
 
     public int getAnswerId() {
         return answerId;
@@ -34,11 +36,25 @@ public class Answer {
         this.answerName = answerName;
     }
 
-    public int getRelatedQuest() {
+
+    public Question getRelatedQuest() {
         return relatedQuest;
     }
 
-    void setRelatedQuest(int relatedQuest) {
+    public void setRelatedQuest(Question relatedQuest) {
         this.relatedQuest = relatedQuest;
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Answer) {
+            Answer other = (Answer) o;
+            return this.answerId == other.answerId;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return this.answerId;
     }
 }

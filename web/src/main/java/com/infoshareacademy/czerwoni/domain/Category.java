@@ -5,6 +5,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+
 import java.util.ArrayList;
 
 import static com.infoshareacademy.czerwoni.parse.ParseXML.getXMLDocument;
@@ -12,6 +13,7 @@ import static com.infoshareacademy.czerwoni.parse.ParseXML.getXMLDocument;
 /**
  * Klasa opisuje kategorie z pliku XML
  */
+
 class Category {
     private int categoryId;
     private int categoryParent;
