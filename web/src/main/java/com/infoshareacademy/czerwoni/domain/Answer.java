@@ -1,6 +1,9 @@
 package com.infoshareacademy.czerwoni.domain;
 
+import org.hibernate.annotations.Proxy;
+
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Klasa opisująca odpowiedzi do pytań
@@ -9,7 +12,7 @@ import javax.persistence.*;
 @NamedQueries({
         @NamedQuery(name = "selectAll", query = "from Answer")
 })
-public class Answer {
+public class Answer implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

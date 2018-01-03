@@ -1,8 +1,11 @@
 package com.infoshareacademy.czerwoni.domain;
 
 
+import org.hibernate.annotations.Proxy;
+
 import javax.persistence.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +13,7 @@ import java.util.List;
  * Klasa opisuje pytania z pliku XML
  */
 @Entity
-public class Question {
+public class Question{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false, unique = true)
