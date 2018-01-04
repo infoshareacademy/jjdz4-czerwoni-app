@@ -23,7 +23,7 @@ public class Question{
     private String questionName;
     private int questionLevel;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "question_id")
     private List<Answer> answerList = new ArrayList<>();
 

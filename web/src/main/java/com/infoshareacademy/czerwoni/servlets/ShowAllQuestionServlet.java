@@ -18,7 +18,7 @@ public class ShowAllQuestionServlet extends HttpServlet {
     QuestionAnswerDao questionAnswerDaoBean;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        Question question = questionAnswerDaoBean.getQuestionById(1);
+        Question question = questionAnswerDaoBean.getQuestionById(2);
         request.setAttribute("questionName", question.getQuestionName());
         request.setAttribute("questionLevel", question.getQuestionLevel());
         request.setAttribute("answers", question.getAnswerList());

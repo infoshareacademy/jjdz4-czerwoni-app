@@ -20,7 +20,7 @@ public class Answer implements Serializable{
     private int answerId;
     @Column(nullable = false)
     private String answerName;
-    @OneToOne(orphanRemoval = true)
+    @OneToOne
     private Question relatedQuest;
 
     public int getAnswerId() {

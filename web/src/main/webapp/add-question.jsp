@@ -25,5 +25,8 @@
         </form>
     </c:if>
 </div>
+
+<%@ include file="add-answer.jsp" %>
+
 </body>
 </html>
