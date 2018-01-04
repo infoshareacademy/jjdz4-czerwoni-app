@@ -4,25 +4,20 @@ package com.infoshareacademy.czerwoni.domain;
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Klasa opisuje pytania z pliku XML
- */
 @Entity
 @NamedQueries({
         @NamedQuery(name = "selectAllQuestions", query = "from Question ")
 })
 public class Question{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, unique = true)
     private int questionId;
 
-    @Column
+    @Column(nullable = false)
     private String questionName;
     private int questionLevel;
 
