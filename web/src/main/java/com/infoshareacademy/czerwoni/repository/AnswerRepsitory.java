@@ -17,6 +17,6 @@ public class AnswerRepsitory {
     }
 
     public List<Answer> getAllAnswers(){
-        return entityManager.createNamedQuery("selectAll").getResultList();
+        return entityManager.createNamedQuery("selectAllAnswers").getResultList();
     }
 }

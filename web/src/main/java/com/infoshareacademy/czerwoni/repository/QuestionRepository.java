@@ -5,6 +5,7 @@ import com.infoshareacademy.czerwoni.domain.Question;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 @Stateless
 public class QuestionRepository {
@@ -17,6 +18,10 @@ public class QuestionRepository {
 
     public Question getQuestionById(int id){
         return entityManager.find(Question.class, id);
+    }
+
+    public List<Question> getAllQuestions(){
+        return entityManager.createNamedQuery("selectAllQuestions").getResultList();
     }
 
 }

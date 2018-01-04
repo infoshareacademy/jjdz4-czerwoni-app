@@ -13,6 +13,9 @@ import java.util.List;
  * Klasa opisuje pytania z pliku XML
  */
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "selectAllQuestions", query = "from Question ")
+})
 public class Question{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

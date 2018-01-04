@@ -10,7 +10,7 @@ import java.io.Serializable;
  */
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "selectAll", query = "from Answer")
+        @NamedQuery(name = "selectAllAnswers", query = "from Answer")
 })
 public class Answer implements Serializable{
 

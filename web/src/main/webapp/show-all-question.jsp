@@ -7,14 +7,17 @@
 </head>
 <body>
 <div>
-    <form method="get" action="show-all-question">
-        <label>Treść pytania: </label><input name="questionName" size="100" type="text" value="${questionName}"/> <br/><br/>
-        <label>Poziom pytania: </label><input name="questionLevel" type="text" value="${questionLevel}"/> <br /><br />
-        <label>Wybierz odpowiedź nadrzędną: </label><br/>
-           <c:forEach var="list" items="${answers}">
-               <label><input name="answerRadio" type="radio" value="${list.answerName}"/>${list.answerName}</label><br/>
-           </c:forEach>
-    </form>
+    <ol>
+        <c:forEach var="list" items="${questionList}">
+            <li>${list.questionName} (poziom: ${list.questionLevel})
+                <ol type="a">
+                    <c:forEach var="alist" items="${list.answerList}">
+                        <li>${alist.answerName}</li>
+                    </c:forEach>
+                </ol>
+            </li>
+        </c:forEach>
+    </ol>
 </div>
 </body>
 </html>

@@ -13,6 +13,7 @@ public interface QuestionAnswerDao {
     void addQuestion(Question question);
     Question getQuestionById(int id);
     List<Answer> getAllAnswers();
+    List<Question>getAllQuestions();
 
 
 
