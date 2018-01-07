@@ -3,15 +3,14 @@
 
 <html>
 <head>
-    <title>Przypisz odpowiedź nadrzędną</title>
+    <title>Wybór kategorii na podstawie pytań</title>
 </head>
 <body>
+<h2>Wybór kategorii na podstawie pytań</h2>
 <div>
-    <form method="get" action="show-all-question">
-        <label>Treść pytania: </label><input name="questionName" size="100" type="text" value="${questionName}"/> <br/><br/>
-        <label>Poziom pytania: </label><input name="questionLevel" type="text" value="${questionLevel}"/> <br /><br />
-        <label>Wybierz odpowiedź nadrzędną: </label><br/>
-        <c:forEach var="list" items="${answers}">
+    <form method="post" action="questions">
+        <div>${question.questionName}</div>
+        <c:forEach var="list" items="${question.answerList}">
             <label><input name="answerRadio" type="radio" value="${list.answerName}"/>${list.answerName}</label><br/>
         </c:forEach>
     </form>
