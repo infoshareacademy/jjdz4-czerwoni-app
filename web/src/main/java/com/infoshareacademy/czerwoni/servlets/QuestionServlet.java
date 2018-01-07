@@ -5,7 +5,7 @@ import com.infoshareacademy.czerwoni.domain.Answer;
 import com.infoshareacademy.czerwoni.domain.Question;
 
 import javax.inject.Inject;
-import javax.jms.Session;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,10 +22,13 @@ public class QuestionServlet extends HttpServlet {
     QuestionAnswerDao questionAnswerDaoBean;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        Question question = questionAnswerDaoBean.getQuestionById(1);
+        Integer answerId = Integer.parseInt(request.getParameter("answerRadio"));
+        Answer answer = questionAnswerDaoBean.getAnswerById(answerId);
+        System.out.println("Wybrana odpowiedź to: "+answerId);
+        Question question = questionAnswerDaoBean.getQuestionById(answer.getRelatedQuest().getQuestionId());
         HttpSession session = request.getSession();
         session.setAttribute("question",question);
+        session.setAttribute("answer",answer);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("question.jsp");
         requestDispatcher.forward(request,response);
 
@@ -33,5 +36,10 @@ public class QuestionServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        Question question = questionAnswerDaoBean.getQuestionById(1);
+        HttpSession session = request.getSession();
+        session.setAttribute("question",question);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("question.jsp");
+        requestDispatcher.forward(request,response);
     }
 }

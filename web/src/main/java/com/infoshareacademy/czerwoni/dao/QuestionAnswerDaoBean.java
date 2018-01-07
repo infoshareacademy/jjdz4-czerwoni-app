@@ -34,6 +34,10 @@ public class QuestionAnswerDaoBean implements QuestionAnswerDao {
     public List<Question> getAllQuestions(){
         return questionRepository.getAllQuestions();
     }
+    @Override
+    public Answer getAnswerById(int id){
+        return answerRepsitory.getAnswerById(id);
+    }
 
 
 }

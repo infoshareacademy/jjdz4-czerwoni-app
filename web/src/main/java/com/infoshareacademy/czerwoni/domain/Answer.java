@@ -21,7 +21,18 @@ public class Answer implements Serializable{
     @Column(nullable = false)
     private String answerName;
     @OneToOne
+    private Category relatedCategory;
+    @OneToOne
     private Question relatedQuest;
+
+
+    public Category getRelatedCategory() {
+        return relatedCategory;
+    }
+
+    public void setRelatedCategory(Category relatedCategory) {
+        this.relatedCategory = relatedCategory;
+    }
 
     public int getAnswerId() {
         return answerId;

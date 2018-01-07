@@ -19,4 +19,8 @@ public class AnswerRepsitory {
     public List<Answer> getAllAnswers(){
         return entityManager.createNamedQuery("selectAllAnswers").getResultList();
     }
+
+    public Answer getAnswerById(int id){
+        return entityManager.find(Answer.class, id);
+    }
 }

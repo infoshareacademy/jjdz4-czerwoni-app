@@ -8,11 +8,14 @@
 <body>
 <h2>Wybór kategorii na podstawie pytań</h2>
 <div>
-    <form method="post" action="questions">
+    <form method="post" action="show-category">
         <div>${question.questionName}</div>
         <c:forEach var="list" items="${question.answerList}">
-            <label><input name="answerRadio" type="radio" value="${list.answerName}"/>${list.answerName}</label><br/>
+            <div>
+                <label><input name="answerRadio" type="radio" value="${list.answerId}"/>${list.answerName}</label><br/>
+            </div>
         </c:forEach>
+        <input type="submit" name="questions" value="Dalej">
     </form>
 </div>
 </body>

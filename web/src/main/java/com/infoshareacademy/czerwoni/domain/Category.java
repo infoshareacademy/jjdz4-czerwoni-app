@@ -4,7 +4,7 @@ package com.infoshareacademy.czerwoni.domain;
 import javax.persistence.*;
 
 @Entity
-class Category {
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, unique = true)
@@ -12,8 +12,6 @@ class Category {
     @Column(nullable = false)
     private String categoryName;
     private String categoryAllegroLink;
-    @OneToOne
-    private Answer relatedAnswer;
 
     public int getCategoryId() {
         return categoryId;
@@ -39,11 +37,4 @@ class Category {
         this.categoryAllegroLink = categoryAllegroLink;
     }
 
-    public Answer getRelatedAnswer() {
-        return relatedAnswer;
-    }
-
-    public void setRelatedAnswer(Answer relatedAnswer) {
-        this.relatedAnswer = relatedAnswer;
-    }
 }
