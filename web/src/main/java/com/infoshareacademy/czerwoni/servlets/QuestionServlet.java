@@ -24,7 +24,6 @@ public class QuestionServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Integer answerId = Integer.parseInt(request.getParameter("answerRadio"));
         Answer answer = questionAnswerDaoBean.getAnswerById(answerId);
-        System.out.println("Wybrana odpowiedź to: "+answerId);
         Question question = questionAnswerDaoBean.getQuestionById(answer.getRelatedQuest().getQuestionId());
         HttpSession session = request.getSession();
         session.setAttribute("question",question);

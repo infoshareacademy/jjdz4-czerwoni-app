@@ -7,6 +7,7 @@
     <style><%@include file="css/style.css"%></style>
 </head>
 <body>
+<div id="container">
 <h2 id="questionTitle">Wybór kategorii na podstawie pytań</h2>
 <div class="questionForm">
     <form method="post" action="show-category">
@@ -16,8 +17,11 @@
                 <input name="answerRadio" type="radio" value="${list.answerId}"/>${list.answerName}<br/><br/>
             </div>
         </c:forEach>
-        <input type="submit" name="questions" value="Dalej">
+        <div class="errorMessage">${noChoiceError}</div>
+        <div><input class="button" type="submit" name="questions" value="Dalej"></div>
+        <div class="homeButton"><a href="index.html">Home</a> </div>
     </form>
+</div>
 </div>
 </body>
 </html>
