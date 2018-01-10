@@ -2,6 +2,7 @@ package com.infoshareacademy.czerwoni.servlets;
 
 import com.infoshareacademy.czerwoni.dao.QuestionAnswerDao;
 import com.infoshareacademy.czerwoni.domain.Answer;
+import com.infoshareacademy.czerwoni.domain.Question;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
@@ -19,16 +20,22 @@ public class AssignParentAnswerServlet extends HttpServlet {
     QuestionAnswerDao questionAnswerDaoBean;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String homeButton = request.getParameter("home");
+
         String assignAnswerButton = request.getParameter("assign-parent-answer");
-        if(homeButton!=null){
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("home.jsp");
-            requestDispatcher.forward(request,response);
-        } else if (assignAnswerButton!=null){
+        if (assignAnswerButton!=null){
         List<Answer> answersList = questionAnswerDaoBean.getAllAnswers();
         request.setAttribute("answersList", answersList);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("assign-parent-answer.jsp");
         requestDispatcher.forward(request,response);
+        }
+
+        String addParentAnswerButton = request.getParameter("add-parent-answer");
+        if(addParentAnswerButton!=null){
+            Answer answer = questionAnswerDaoBean.getAnswerById(Integer.parseInt(request.getParameter("answer")));
+            Question question = (Question) request.getSession().getAttribute("question");
+            answer.setRelatedQuest(question);
+            questionAnswerDaoBean.addAnswer(answer);
+
         }
     }
 }

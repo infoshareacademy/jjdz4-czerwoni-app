@@ -15,6 +15,7 @@ public interface QuestionAnswerDao {
     List<Answer> getAllAnswers();
     List<Question>getAllQuestions();
     Answer getAnswerById(int id);
+    void addAnswer(Answer answer);
 
 
 

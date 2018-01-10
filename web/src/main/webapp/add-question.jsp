@@ -4,29 +4,24 @@
 <html>
 <head>
     <title>Dodawanie i edycja pytań</title>
+    <style><%@include file="css/style.css"%></style>
 </head>
 <body>
-<div>
+<div id="container">
     <c:if test="${sessionScope.mode != 'editMode'}">
-    <form method="post" action="add-question">
-        <label>Treść pytania: </label><input name="questionName" type="text" value="${sessionScope.questionName}"/> <br/><br/>
-        <label>Poziom pytania: </label><input name="questionLevel" type="text" value="${sessionScope.questionLevel}"/> <br /><br />
-        <input type="submit" name="add-question" value="Dodaj"/>
-    </form>
+        <form method="post" action="add-question">
+            <label>Treść pytania: </label><input name="questionName" type="text" value="${sessionScope.question.questionName}"/> <br/><br/>
+            <label>Poziom pytania: </label><input name="questionLevel" type="text" value="${sessionScope.guestion.questionLevel}"/> <br /><br />
+            <input class="button" type="submit" name="add-question" value="Dodaj"/>
+        </form>
     </c:if>
-</div>
-<div>
     <c:if test="${sessionScope.mode == 'editMode'}">
         <form method="post" action="assign-parent-answer">
-            <label>Treść pytania: </label><input name="questionName" type="text" value="${sessionScope.questionName}"/> <br/><br/>
-            <label>Poziom pytania: </label><input name="questionLevel" type="text" value="${sessionScope.questionLevel}"/> <br /><br />
-            <input type="submit" name="assign-parent-answer" value="Przypisz pytanie"/>
-            <input type="submit" name="home" value="Strona główna"/>
+            Pytanie: ${sessionScope.question.questionName}, poziom: ${sessionScope.question.questionLevel} <br/><br/>
+            <input class="button" type="submit" name="assign-parent-answer" value="Przypisz pytanie do odpowiedzi nadrzędnej"/>
+            <div class="homeButton"><a href="index.html">Home</a> </div>
         </form>
     </c:if>
 </div>
-
-<%@ include file="add-answer.jsp" %>
-
 </body>
 </html>

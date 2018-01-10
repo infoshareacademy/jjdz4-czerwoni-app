@@ -89,7 +89,7 @@ button:hover {
 .button {
     background-color: #005580;
     color: aliceblue;
-    width: 90px;
+    width: auto;
     height: 42px;
     font-size: 14px;
     text-align: center;

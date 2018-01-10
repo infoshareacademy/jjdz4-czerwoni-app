@@ -6,18 +6,18 @@
     <title>Przypisz odpowiedź nadrzędną</title>
 </head>
 <body>
-<div>
+<div id="container">
     <form method="post" action="assign-parent-answer">
-        <label>Treść pytania: </label><input name="questionName" type="text" value="${sessionScope.questionName}"/> <br/><br/>
-        <label>Poziom pytania: </label><input name="questionLevel" type="text" value="${sessionScope.questionLevel}"/> <br /><br />
+        <label>Treść pytania: </label><input name="questionName" type="text" value="${sessionScope.question.questionName}"/> <br/><br/>
+        <label>Poziom pytania: </label><input name="questionLevel" type="text" value="${sessionScope.question.questionLevel}"/> <br /><br />
         <label>Wybierz odpowiedź nadrzędną: </label>
         <select name="answer">
             <option value="wybierz odpowiedź">Wybierz odpowiedź</option>
             <c:forEach var="list" items="${answersList}">
-                <option value="${list.answerName}">${list.answerName}</option>
+                <option value="${list.answerId}">${list.answerName}</option>
             </c:forEach>
         </select>
-        <input type="submit" name="assign-parent-answer" value="Dodaj"/>
+        <input class="button" type="submit" name="add-parent-answer" value="Dodaj"/>
     </form>
 </div>
 </body>

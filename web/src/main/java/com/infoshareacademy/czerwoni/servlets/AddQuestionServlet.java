@@ -27,8 +27,7 @@ public class AddQuestionServlet extends HttpServlet {
         question.setQuestionLevel(questionLevel);
         questionAnswerDaoBean.addQuestion(question);
         HttpSession session = request.getSession();
-        session.setAttribute("questionName",question.getQuestionName());
-        session.setAttribute("questionLevel", question.getQuestionLevel());
+        session.setAttribute("question",question);
         session.setAttribute("mode", "editMode");
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-question.jsp");
         requestDispatcher.forward(request,response);

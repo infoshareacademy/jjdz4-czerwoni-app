@@ -38,6 +38,10 @@ public class QuestionAnswerDaoBean implements QuestionAnswerDao {
     public Answer getAnswerById(int id){
         return answerRepsitory.getAnswerById(id);
     }
+    @Override
+    public void addAnswer(Answer answer){
+        answerRepsitory.addAnswer(answer);
+    }
 
 
 }

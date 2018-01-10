@@ -22,23 +22,15 @@ public class Answer implements Serializable{
     private String answerName;
     @OneToOne
     private Category relatedCategory;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY,optional = false)
     private Question relatedQuest;
 
-
-    public Category getRelatedCategory() {
-        return relatedCategory;
-    }
-
-    public void setRelatedCategory(Category relatedCategory) {
-        this.relatedCategory = relatedCategory;
-    }
 
     public int getAnswerId() {
         return answerId;
     }
 
-    void setAnswerId(int answerId) {
+    public void setAnswerId(int answerId) {
         this.answerId = answerId;
     }
 
@@ -46,8 +38,16 @@ public class Answer implements Serializable{
         return answerName;
     }
 
-    void setAnswerName(String answerName) {
+    public void setAnswerName(String answerName) {
         this.answerName = answerName;
+    }
+
+    public Category getRelatedCategory() {
+        return relatedCategory;
+    }
+
+    public void setRelatedCategory(Category relatedCategory) {
+        this.relatedCategory = relatedCategory;
     }
 
 
