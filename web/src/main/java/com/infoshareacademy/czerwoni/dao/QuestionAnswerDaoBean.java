@@ -42,6 +42,10 @@ public class QuestionAnswerDaoBean implements QuestionAnswerDao {
     public void addAnswer(Answer answer){
         answerRepsitory.addAnswer(answer);
     }
+    @Override
+    public void updateAnswer(Answer answer){
+        answerRepsitory.updateAnswer(answer);
+    }
 
 
 }

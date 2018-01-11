@@ -14,6 +14,8 @@ import java.io.IOException;
 
 @WebServlet("add-answer")
 public class AddAnswerServlet extends HttpServlet {
+
+
     @Inject
     QuestionAnswerDao questionAnswerDaoBean;
 
@@ -21,16 +23,9 @@ public class AddAnswerServlet extends HttpServlet {
         String answerName = request.getParameter("answerName");
         Answer answer = new Answer();
         answer.setAnswerName(answerName);
-        Question question = questionAnswerDaoBean.getQuestionById(21);
-        answer.setRelatedQuest(question);
+//        Question question = questionAnswerDaoBean.getQuestionById(21);
+//        answer.setRelatedQuest(question);
 
-        questionAnswerDaoBean.addAnswer(answer);
-
-    }
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        Answer answer = questionAnswerDaoBean.getAnswerById(23);
-        Question question = questionAnswerDaoBean.getQuestionById(21);
-        answer.setRelatedQuest(question);
         questionAnswerDaoBean.addAnswer(answer);
 
     }

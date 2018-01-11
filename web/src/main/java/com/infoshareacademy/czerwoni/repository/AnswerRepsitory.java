@@ -16,6 +16,10 @@ public class AnswerRepsitory {
         entityManager.persist(answer);
     }
 
+    public void updateAnswer(Answer answer){
+        entityManager.merge(answer);
+    }
+
     public List<Answer> getAllAnswers(){
         return entityManager.createNamedQuery("selectAllAnswers").getResultList();
     }

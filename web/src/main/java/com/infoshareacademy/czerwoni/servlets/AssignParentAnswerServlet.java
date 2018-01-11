@@ -4,7 +4,7 @@ import com.infoshareacademy.czerwoni.dao.QuestionAnswerDao;
 import com.infoshareacademy.czerwoni.domain.Answer;
 import com.infoshareacademy.czerwoni.domain.Question;
 
-import javax.inject.Inject;
+import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +16,7 @@ import java.util.List;
 
 @WebServlet("assign-parent-answer")
 public class AssignParentAnswerServlet extends HttpServlet {
-    @Inject
+    @EJB
     QuestionAnswerDao questionAnswerDaoBean;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -34,7 +34,7 @@ public class AssignParentAnswerServlet extends HttpServlet {
             Answer answer = questionAnswerDaoBean.getAnswerById(Integer.parseInt(request.getParameter("answer")));
             Question question = (Question) request.getSession().getAttribute("question");
             answer.setRelatedQuest(question);
-            questionAnswerDaoBean.addAnswer(answer);
+            questionAnswerDaoBean.updateAnswer(answer);
 
         }
     }

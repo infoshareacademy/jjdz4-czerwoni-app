@@ -11,8 +11,8 @@
 <h2 id="questionTitle">Wybór kategorii na podstawie pytań</h2>
 <div class="questionForm">
     <form method="post" action="show-category">
-        <div id="questionName">${question.questionName}</div><br/>
-        <c:forEach var="list" items="${question.answerList}">
+        <div id="questionName">${sessionScope.question.questionName}</div><br/>
+        <c:forEach var="list" items="${sessionScope.question.answerList}">
             <div id="annswerName">
                 <input name="answerRadio" type="radio" value="${list.answerId}"/>${list.answerName}<br/><br/>
             </div>

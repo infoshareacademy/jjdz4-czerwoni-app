@@ -29,6 +29,7 @@ public class ShowCategoryServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Integer answerId;
+        HttpSession session = request.getSession();
         try {
             answerId = Integer.parseInt(request.getParameter("answerRadio"));
         }

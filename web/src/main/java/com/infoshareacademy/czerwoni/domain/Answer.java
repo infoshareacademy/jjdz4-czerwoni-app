@@ -1,6 +1,5 @@
 package com.infoshareacademy.czerwoni.domain;
 
-import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -20,11 +19,10 @@ public class Answer implements Serializable{
     private int answerId;
     @Column(nullable = false)
     private String answerName;
-    @OneToOne
+    @OneToOne//(fetch = FetchType.LAZY,optional = false)
     private Category relatedCategory;
-    @OneToOne(fetch = FetchType.LAZY,optional = false)
+    @OneToOne//(fetch = FetchType.LAZY,optional = false)
     private Question relatedQuest;
-
 
     public int getAnswerId() {
         return answerId;
