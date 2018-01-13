@@ -46,6 +46,14 @@ public class QuestionAnswerDaoBean implements QuestionAnswerDao {
     public void updateAnswer(Answer answer){
         answerRepsitory.updateAnswer(answer);
     }
+    @Override
+    public List<Answer> getAnswersWithoutRelatedQuestion(){
+        return answerRepsitory.getAnswersWithoutRelatedQuestions();
+    }
+    @Override
+    public void updateQuestion(Question question){
+        questionRepository.updateQuestion(question);
+    }
 
 
 }

@@ -7,4 +7,5 @@ import javax.ejb.Local;
 @Local
 public interface CategoryDao {
     Category getCategoryById(int id);
+    void addCategory(Category category);
 }

@@ -23,7 +23,7 @@ public class AssignParentAnswerServlet extends HttpServlet {
 
         String assignAnswerButton = request.getParameter("assign-parent-answer");
         if (assignAnswerButton!=null){
-        List<Answer> answersList = questionAnswerDaoBean.getAllAnswers();
+        List<Answer> answersList = questionAnswerDaoBean.getAnswersWithoutRelatedQuestion();
         request.setAttribute("answersList", answersList);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("assign-parent-answer.jsp");
         requestDispatcher.forward(request,response);

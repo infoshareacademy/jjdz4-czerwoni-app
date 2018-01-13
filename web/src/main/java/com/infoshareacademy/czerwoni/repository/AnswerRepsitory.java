@@ -27,4 +27,8 @@ public class AnswerRepsitory {
     public Answer getAnswerById(int id){
         return entityManager.find(Answer.class, id);
     }
+
+    public List<Answer> getAnswersWithoutRelatedQuestions(){
+        return entityManager.createNamedQuery("selectWithoutRelatedQuest").getResultList();
+    }
 }

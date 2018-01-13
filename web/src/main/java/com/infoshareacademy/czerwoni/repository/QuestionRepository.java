@@ -24,4 +24,7 @@ public class QuestionRepository {
         return entityManager.createNamedQuery("selectAllQuestions").getResultList();
     }
 
+    public void updateQuestion(Question question) {
+        entityManager.merge(question);
+    }
 }

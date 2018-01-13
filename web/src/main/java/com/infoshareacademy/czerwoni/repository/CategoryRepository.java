@@ -14,4 +14,7 @@ public class CategoryRepository {
     public Category getCategoryById(int id){
         return entityManager.find(Category.class, id);
     }
+    public void addCategory(Category category){
+        entityManager.persist(category);
+    }
 }

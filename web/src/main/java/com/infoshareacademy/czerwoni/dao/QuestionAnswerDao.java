@@ -17,7 +17,6 @@ public interface QuestionAnswerDao {
     Answer getAnswerById(int id);
     void addAnswer(Answer answer);
     void updateAnswer(Answer answer);
-
-
-
+    List<Answer> getAnswersWithoutRelatedQuestion();
+    void updateQuestion(Question question);
 }

@@ -4,12 +4,10 @@ package com.infoshareacademy.czerwoni.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 
-/**
- * Klasa opisująca odpowiedzi do pytań
- */
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "selectAllAnswers", query = "from Answer")
+        @NamedQuery(name = "selectAllAnswers", query = "from Answer"),
+        @NamedQuery(name = "selectWithoutRelatedQuest", query = "from Answer where relatedQuest=null")
 })
 public class Answer implements Serializable{
 

@@ -1,6 +1,7 @@
 package com.infoshareacademy.czerwoni.dao;
 
 import com.infoshareacademy.czerwoni.domain.Category;
+import com.infoshareacademy.czerwoni.domain.Question;
 import com.infoshareacademy.czerwoni.repository.CategoryRepository;
 
 import javax.ejb.Stateless;
@@ -14,5 +15,9 @@ public class CategoryDaoBean implements CategoryDao{
     @Override
     public Category getCategoryById(int id){
         return categoryRepository.getCategoryById(id);
+    }
+    @Override
+    public void addCategory(Category category){
+        categoryRepository.addCategory(category);
     }
 }
