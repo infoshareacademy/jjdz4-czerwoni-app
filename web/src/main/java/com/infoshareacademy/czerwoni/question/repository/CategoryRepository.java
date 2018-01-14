@@ -1,6 +1,6 @@
-package com.infoshareacademy.czerwoni.repository;
+package com.infoshareacademy.czerwoni.question.repository;
 
-import com.infoshareacademy.czerwoni.domain.Category;
+import com.infoshareacademy.czerwoni.question.domain.Category;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

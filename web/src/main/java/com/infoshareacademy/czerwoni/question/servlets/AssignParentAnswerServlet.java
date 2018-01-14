@@ -1,8 +1,8 @@
-package com.infoshareacademy.czerwoni.servlets;
+package com.infoshareacademy.czerwoni.question.servlets;
 
-import com.infoshareacademy.czerwoni.dao.QuestionAnswerDao;
-import com.infoshareacademy.czerwoni.domain.Answer;
-import com.infoshareacademy.czerwoni.domain.Question;
+import com.infoshareacademy.czerwoni.question.dao.QuestionAnswerDao;
+import com.infoshareacademy.czerwoni.question.domain.Answer;
+import com.infoshareacademy.czerwoni.question.domain.Question;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;

@@ -1,4 +1,4 @@
-package com.infoshareacademy.czerwoni.servlets;
+package com.infoshareacademy.czerwoni.question.servlets;
 
 import java.io.*;
 import java.util.logging.Level;

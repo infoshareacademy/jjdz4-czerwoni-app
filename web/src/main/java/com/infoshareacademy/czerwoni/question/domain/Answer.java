@@ -1,4 +1,4 @@
-package com.infoshareacademy.czerwoni.domain;
+package com.infoshareacademy.czerwoni.question.domain;
 
 
 import javax.persistence.*;

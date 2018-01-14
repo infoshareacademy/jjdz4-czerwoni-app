@@ -1,9 +1,9 @@
-package com.infoshareacademy.czerwoni.dao;
+package com.infoshareacademy.czerwoni.question.dao;
 
-import com.infoshareacademy.czerwoni.domain.Answer;
-import com.infoshareacademy.czerwoni.domain.Question;
-import com.infoshareacademy.czerwoni.repository.AnswerRepsitory;
-import com.infoshareacademy.czerwoni.repository.QuestionRepository;
+import com.infoshareacademy.czerwoni.question.domain.Answer;
+import com.infoshareacademy.czerwoni.question.domain.Question;
+import com.infoshareacademy.czerwoni.question.repository.AnswerRepsitory;
+import com.infoshareacademy.czerwoni.question.repository.QuestionRepository;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;

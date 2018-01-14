@@ -1,7 +1,7 @@
-package com.infoshareacademy.czerwoni.servlets;
+package com.infoshareacademy.czerwoni.question.servlets;
 
-import com.infoshareacademy.czerwoni.dao.QuestionAnswerDao;
-import com.infoshareacademy.czerwoni.domain.Question;
+import com.infoshareacademy.czerwoni.question.dao.QuestionAnswerDao;
+import com.infoshareacademy.czerwoni.question.domain.Question;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;

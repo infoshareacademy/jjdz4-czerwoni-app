@@ -71,7 +71,7 @@
                     <div id="questionName">${sessionScope.question.questionName}</div><br/>
                     <c:forEach var="list" items="${sessionScope.question.answerList}">
                         <div id="annswerName">
-                            <input name="answerRadio" type="radio" value="${list.answerId}"/>${list.answerName}<br/><br/>
+                            <label><input name="answerRadio" type="radio" value="${list.answerId}"/> ${list.answerName}</label><br/>
                         </div>
                     </c:forEach>
                     <div class="errorMessage">${noChoiceError}</div>

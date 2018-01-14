@@ -1,7 +1,5 @@
-package com.infoshareacademy.czerwoni.domain;
+package com.infoshareacademy.czerwoni.question.domain;
 
-
-import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 import java.util.ArrayList;

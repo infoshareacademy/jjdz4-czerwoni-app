@@ -1,6 +1,6 @@
-package com.infoshareacademy.czerwoni.dao;
+package com.infoshareacademy.czerwoni.question.dao;
 
-import com.infoshareacademy.czerwoni.domain.Category;
+import com.infoshareacademy.czerwoni.question.domain.Category;
 import javax.ejb.Local;
 
 

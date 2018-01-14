@@ -1,6 +1,6 @@
-package com.infoshareacademy.czerwoni.repository;
+package com.infoshareacademy.czerwoni.question.repository;
 
-import com.infoshareacademy.czerwoni.domain.Answer;
+import com.infoshareacademy.czerwoni.question.domain.Answer;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

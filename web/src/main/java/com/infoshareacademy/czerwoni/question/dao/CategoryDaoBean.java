@@ -1,8 +1,7 @@
-package com.infoshareacademy.czerwoni.dao;
+package com.infoshareacademy.czerwoni.question.dao;
 
-import com.infoshareacademy.czerwoni.domain.Category;
-import com.infoshareacademy.czerwoni.domain.Question;
-import com.infoshareacademy.czerwoni.repository.CategoryRepository;
+import com.infoshareacademy.czerwoni.question.domain.Category;
+import com.infoshareacademy.czerwoni.question.repository.CategoryRepository;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
