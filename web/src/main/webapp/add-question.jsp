@@ -100,7 +100,8 @@
     <c:if test="${sessionScope.mode != 'editMode'}">
         <form method="post" action="add-question">
             <label>Treść pytania: </label><input name="questionName" type="text" value="${sessionScope.question.questionName}"/> <br/><br/>
-            <label>Poziom pytania: </label><input name="questionLevel" type="text" value="${sessionScope.guestion.questionLevel}"/> <br /><br />
+            <label>Poziom pytania: </label><input name="questionLevel" type="number" value="${sessionScope.guestion.questionLevel}"/> <br /><br />
+            <div class="errorMessage">${NFErrorMessage}</div>
             <input class="button" type="submit" name="add-question" value="Dodaj"/>
         </form>
     </c:if>

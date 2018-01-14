@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class AssignParentAnswerServlet extends HttpServlet {
     QuestionAnswerDao questionAnswerDaoBean;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        HttpSession session  =request.getSession();
         String assignAnswerButton = request.getParameter("assign-parent-answer");
         if (assignAnswerButton!=null){
         List<Answer> answersList = questionAnswerDaoBean.getAnswersWithoutRelatedQuestion();
@@ -32,9 +33,10 @@ public class AssignParentAnswerServlet extends HttpServlet {
         String addParentAnswerButton = request.getParameter("add-parent-answer");
         if(addParentAnswerButton!=null){
             Answer answer = questionAnswerDaoBean.getAnswerById(Integer.parseInt(request.getParameter("answer")));
-            Question question = (Question) request.getSession().getAttribute("question");
+            Question question = (Question) session.getAttribute("question");
             answer.setRelatedQuest(question);
             questionAnswerDaoBean.updateAnswer(answer);
+            session.setAttribute("mode", "null");
 
         }
     }

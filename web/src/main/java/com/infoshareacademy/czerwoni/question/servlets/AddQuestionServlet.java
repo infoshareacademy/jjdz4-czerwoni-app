@@ -20,7 +20,17 @@ public class AddQuestionServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String questionName = request.getParameter("questionName");
-        Integer questionLevel = Integer.parseInt(request.getParameter("questionLevel"));
+        Integer questionLevel;
+        try {
+            questionLevel = Integer.parseInt(request.getParameter("questionLevel"));
+        }
+        catch (NumberFormatException nfe){
+            nfe.printStackTrace();
+            request.setAttribute("NFErrorMessage","Musisz podać liczbę!!!");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-question.jsp");
+            requestDispatcher.forward(request,response);
+            return;
+        }
         Question question = new Question();
         question.setQuestionName(questionName);
         question.setQuestionLevel(questionLevel);
