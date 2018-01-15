@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -59,20 +60,19 @@
             <a class="nav-link" href="#"><i class="icon-search"></i> <span class="d-none d-lg-inline-block">Wyszukiwarka Allegro</span></a>
         </div>
         <div class="nav-item w-25">
-            <a class="nav-link" href="/allegro-categories"><i class="icon-tags"></i> <span class="d-none d-lg-inline-block">Kategorie Allegro</span></a>
+            <a class="nav-link" href="#"><i class="icon-tags"></i> <span class="d-none d-lg-inline-block">Kategorie Allegro</span></a>
         </div>
     </div>
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
-            <h3>Witamy w aplikacji What Do You Want</h3>
-            Aplikacja została stworzona na potrzeby projektu grupowego, w ramach kursu Junior Java Developer.<br/>
-            Co możesz zrobić za pomocą naszej aplikacji:
-            <ul>
-                <li>Rozpoznasz produkt po kodzie kreskowym</li>
-                <li>Pomożemy Ci znaleźć idealny produkt</li>
-                <li>Szybko wyszukasz interesującą Cię kategorię Allegro</li>
-                <li>Szybko przejżysz kategorie Allegro</li>
-            </ul>
+            <div class="col-12"><h3>Kategorie ALLEGRO</h3><br/><br/></div>
+            <div class="col-12">
+                <c:forEach var="category" items="${list}">
+                    <div>
+                        <a href="${category.value}"><c:out value="${category.key.catPosition+1}"/>. <c:out value="${category.key.catName}"/><br/></a>
+                    </div>
+                </c:forEach>
+            </div>
         </div>
         <div class="row m-0">
             <span class="mx-auto p-2">&#169 infoShare Academy</span>
