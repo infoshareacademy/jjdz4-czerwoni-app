@@ -1,6 +1,6 @@
 package com.infoshareacademy.czerwoni.question.servlets;
 
-import com.infoshareacademy.czerwoni.question.dao.QuestionAnswerDao;
+import com.infoshareacademy.czerwoni.question.ejb.QuestionAnswerServiceLocal;
 import com.infoshareacademy.czerwoni.question.domain.Question;
 
 import javax.inject.Inject;
@@ -16,10 +16,10 @@ import java.util.List;
 @WebServlet("show-all-question")
 public class ShowAllQuestionServlet extends HttpServlet {
     @Inject
-    QuestionAnswerDao questionAnswerDaoBean;
+    QuestionAnswerServiceLocal questionAnswerService;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        List<Question> questionList = questionAnswerDaoBean.getAllQuestions();
+        List<Question> questionList = questionAnswerService.getAllQuestions();
         request.setAttribute("questionList",questionList);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("show-all-question.jsp");
         requestDispatcher.forward(request,response);

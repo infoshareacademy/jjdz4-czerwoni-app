@@ -1,7 +1,7 @@
 package com.infoshareacademy.czerwoni.question.servlets;
 
-import com.infoshareacademy.czerwoni.question.dao.CategoryDao;
-import com.infoshareacademy.czerwoni.question.dao.QuestionAnswerDao;
+import com.infoshareacademy.czerwoni.question.ejb.CategoryServiceLocal;
+import com.infoshareacademy.czerwoni.question.ejb.QuestionAnswerServiceLocal;
 import com.infoshareacademy.czerwoni.question.domain.Answer;
 import com.infoshareacademy.czerwoni.question.domain.Category;
 
@@ -21,10 +21,10 @@ import java.io.IOException;
 public class ShowCategoryServlet extends HttpServlet {
 
     @Inject
-    QuestionAnswerDao questionAnswerDaoBean;
+    QuestionAnswerServiceLocal questionAnswerService;
 
     @Inject
-    CategoryDao categoryDaoBean;
+    CategoryServiceLocal categoryService;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Integer answerId;
@@ -40,11 +40,11 @@ public class ShowCategoryServlet extends HttpServlet {
             return;
         }
         request.setAttribute("selectedRadio", answerId);
-        Answer answer = questionAnswerDaoBean.getAnswerById(answerId);
+        Answer answer = questionAnswerService.getAnswerById(answerId);
         if (isNextRelatedQuestion(answer)) {
             request.setAttribute("isNextQuestion", true);
         }
-        Category category = categoryDaoBean.getCategoryById(answer.getRelatedCategory().getCategoryId());
+        Category category = categoryService.getCategoryById(answer.getRelatedCategory().getCategoryId());
         request.setAttribute("category", category);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("show-category.jsp");
         requestDispatcher.forward(request, response);

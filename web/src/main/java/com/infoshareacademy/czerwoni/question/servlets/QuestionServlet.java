@@ -1,7 +1,7 @@
 package com.infoshareacademy.czerwoni.question.servlets;
 
 import com.infoshareacademy.czerwoni.question.domain.Question;
-import com.infoshareacademy.czerwoni.question.dao.QuestionAnswerDao;
+import com.infoshareacademy.czerwoni.question.ejb.QuestionAnswerServiceLocal;
 import com.infoshareacademy.czerwoni.question.domain.Answer;
 
 import javax.inject.Inject;
@@ -19,12 +19,12 @@ import java.io.IOException;
 public class QuestionServlet extends HttpServlet {
 
     @Inject
-    QuestionAnswerDao questionAnswerDaoBean;
+    QuestionAnswerServiceLocal questionAnswerService;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Integer answerId = Integer.parseInt(request.getParameter("answerRadio"));
-        Answer answer = questionAnswerDaoBean.getAnswerById(answerId);
-        Question question = questionAnswerDaoBean.getQuestionById(answer.getRelatedQuest().getQuestionId());
+        Answer answer = questionAnswerService.getAnswerById(answerId);
+        Question question = questionAnswerService.getQuestionById(answer.getRelatedQuest().getQuestionId());
         HttpSession session = request.getSession();
         session.setAttribute("question",question);
         session.setAttribute("answer",answer);
@@ -35,7 +35,7 @@ public class QuestionServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        Question question = questionAnswerDaoBean.getQuestionById(1);
+        Question question = questionAnswerService.getQuestionById(1);
         HttpSession session = request.getSession();
         session.setAttribute("question",question);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("question.jsp");

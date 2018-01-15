@@ -1,11 +1,11 @@
-package com.infoshareacademy.czerwoni.question.dao;
+package com.infoshareacademy.czerwoni.question.ejb;
 
 import com.infoshareacademy.czerwoni.question.domain.Category;
 import javax.ejb.Local;
 
 
 @Local
-public interface CategoryDao {
+public interface CategoryServiceLocal {
     Category getCategoryById(int id);
     void addCategory(Category category);
 }

@@ -1,7 +1,7 @@
 package com.infoshareacademy.czerwoni.question.servlets;
 
-import com.infoshareacademy.czerwoni.question.dao.CategoryDao;
-import com.infoshareacademy.czerwoni.question.dao.QuestionAnswerDao;
+import com.infoshareacademy.czerwoni.question.ejb.CategoryServiceLocal;
+import com.infoshareacademy.czerwoni.question.ejb.QuestionAnswerServiceLocal;
 import com.infoshareacademy.czerwoni.question.domain.Answer;
 import com.infoshareacademy.czerwoni.question.domain.Category;
 import com.infoshareacademy.czerwoni.question.domain.Question;
@@ -15,17 +15,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("add-answers")
 public class AddAnswersServlet extends HttpServlet {
 
     @Inject
-    QuestionAnswerDao questionAnswerDaoBean;
+    QuestionAnswerServiceLocal questionAnswerService;
 
     @Inject
-    CategoryDao categoryDaoBean;
+    CategoryServiceLocal categoryService;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 
@@ -39,12 +38,12 @@ public class AddAnswersServlet extends HttpServlet {
            Category category = new Category();
            category.setCategoryName(request.getParameter("categoryName"));
            category.setCategoryAllegroLink(request.getParameter("categoryAllegroLink"));
-           categoryDaoBean.addCategory(category);
+           categoryService.addCategory(category);
            answer.setRelatedCategory(category);
-           questionAnswerDaoBean.addAnswer(answer);
+           questionAnswerService.addAnswer(answer);
            answerList.add(answer);
            question.setAnswerList(answerList);
-           questionAnswerDaoBean.updateQuestion(question);
+           questionAnswerService.updateQuestion(question);
            RequestDispatcher requestDispatcher = request.getRequestDispatcher("question-added.jsp");
            requestDispatcher.forward(request, response);
            session.setAttribute("question",null);
@@ -59,12 +58,12 @@ public class AddAnswersServlet extends HttpServlet {
             Category category = new Category();
             category.setCategoryName(request.getParameter("categoryName"));
             category.setCategoryAllegroLink(request.getParameter("categoryAllegroLink"));
-            categoryDaoBean.addCategory(category);
+            categoryService.addCategory(category);
             answer.setRelatedCategory(category);
-            questionAnswerDaoBean.addAnswer(answer);
+            questionAnswerService.addAnswer(answer);
             answerList.add(answer);
             question.setAnswerList(answerList);
-            questionAnswerDaoBean.updateQuestion(question);
+            questionAnswerService.updateQuestion(question);
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-answers.jsp");
             requestDispatcher.forward(request, response);
         }

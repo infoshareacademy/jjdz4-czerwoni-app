@@ -1,4 +1,4 @@
-package com.infoshareacademy.czerwoni.question.dao;
+package com.infoshareacademy.czerwoni.question.ejb;
 
 import com.infoshareacademy.czerwoni.question.domain.Category;
 import com.infoshareacademy.czerwoni.question.repository.CategoryRepository;
@@ -7,7 +7,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 @Stateless
-public class CategoryDaoBean implements CategoryDao{
+public class CategoryService implements CategoryServiceLocal {
     @Inject
     CategoryRepository categoryRepository;
 

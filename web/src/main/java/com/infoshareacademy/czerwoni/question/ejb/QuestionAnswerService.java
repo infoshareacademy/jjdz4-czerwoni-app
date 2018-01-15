@@ -1,4 +1,4 @@
-package com.infoshareacademy.czerwoni.question.dao;
+package com.infoshareacademy.czerwoni.question.ejb;
 
 import com.infoshareacademy.czerwoni.question.domain.Answer;
 import com.infoshareacademy.czerwoni.question.domain.Question;
@@ -10,7 +10,7 @@ import javax.ejb.Stateless;
 import java.util.List;
 
 @Stateless
-public class QuestionAnswerDaoBean implements QuestionAnswerDao {
+public class QuestionAnswerService implements QuestionAnswerServiceLocal {
     @EJB
     QuestionRepository questionRepository;
 

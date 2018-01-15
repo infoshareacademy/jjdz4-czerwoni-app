@@ -1,4 +1,4 @@
-package com.infoshareacademy.czerwoni.question.dao;
+package com.infoshareacademy.czerwoni.question.ejb;
 
 import com.infoshareacademy.czerwoni.question.domain.Answer;
 import com.infoshareacademy.czerwoni.question.domain.Question;
@@ -8,7 +8,7 @@ import javax.ejb.Local;
 import java.util.List;
 
 @Local
-public interface QuestionAnswerDao {
+public interface QuestionAnswerServiceLocal {
     void addQuestion(Question question);
     Question getQuestionById(int id);
     List<Answer> getAllAnswers();
