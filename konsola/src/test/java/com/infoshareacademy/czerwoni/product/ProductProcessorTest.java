@@ -2,18 +2,20 @@ package com.infoshareacademy.czerwoni.product;
 
 import org.junit.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class ProductProcessorTest {
 
     @Test
     public void getProductDataFromAPI_validArg() {
-        System.out.println(ProductProcessor.FOUND_PRODUCT_MSG
-                + ProductProcessor.getProductDataFromAPI("5900084063241"));
+        assertThat(ProductProcessor.getProductDataFromAPI("5900084063241"))
+                .startsWith("Kamis Musztarda grillowa 290 g");
     }
 
     @Test
     public void getProductDataFromAPI_invalidArg() {
-        System.out.println(ProductProcessor.FOUND_PRODUCT_MSG
-                + ProductProcessor.getProductDataFromAPI("aaa"));
+        assertThat(ProductProcessor.getProductDataFromAPI("aaa"))
+                .contains("400-Bad Request");
     }
 
     /*
