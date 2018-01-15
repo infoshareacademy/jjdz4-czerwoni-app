@@ -27,7 +27,6 @@ public class QuestionServlet extends HttpServlet {
         Question question = questionAnswerService.getQuestionById(answer.getRelatedQuest().getQuestionId());
         HttpSession session = request.getSession();
         session.setAttribute("question",question);
-        session.setAttribute("answer",answer);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("question.jsp");
         requestDispatcher.forward(request,response);
 

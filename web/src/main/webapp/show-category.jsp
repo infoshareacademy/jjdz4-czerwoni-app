@@ -103,19 +103,20 @@
                            href="${category.categoryAllegroLink}">${category.categoryName}</a><br/><br/>
                     </div>
                     <div>
+                        <c:if test="${sessionScope.question.questionLevel>1}">
+                            Poprzednie kategorie:
+                            <c:forEach var="catAnswerList" items="${sessionScope.categoryList}">
+                                <a id="categoryName" href="${catAnswerList.categoryAllegroLink}">| ${catAnswerList.categoryName} </a>
+                            </c:forEach>
+                        </c:if>
+                    </div><br/><br/>
+                    <div>
                         <c:if test="${isNextQuestion == true}">
                             Czy chcesz szukac dalej?<br/><br/>
                             <input class="button" type="submit" name="questions" value="Dalej">
                         </c:if>
                     </div>
-                    <div>
-                        <c:if test="${sessionScope.question.questionLevel>1}">
-                            Poprzednie kategorie:<br/>
-                            <c:forEach var="catAnswerList" items="${sessionScope.categoryAnswerList}">
-                                <a href="${catAnswerList.categoryAllegroLink}">${catAnswerList.categoryName}</a><br/>
-                            </c:forEach>
-                        </c:if>
-                    </div>
+
                 </form>
             </div>
         </div>

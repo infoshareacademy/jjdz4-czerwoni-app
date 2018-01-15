@@ -7,6 +7,7 @@ import com.infoshareacademy.czerwoni.question.domain.Category;
 
 
 import javax.inject.Inject;
+import javax.naming.NamingEnumeration;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet("show-category")
 public class ShowCategoryServlet extends HttpServlet {
@@ -46,6 +49,17 @@ public class ShowCategoryServlet extends HttpServlet {
         }
         Category category = categoryService.getCategoryById(answer.getRelatedCategory().getCategoryId());
         request.setAttribute("category", category);
+        List<Category> categoryList = null;
+
+        if(((List<Category>) session.getAttribute("categoryList"))==null) {
+            categoryList= new ArrayList<>();
+        }
+        else if (((List<Category>) session.getAttribute("categoryList"))!=null) {
+            categoryList = (List<Category>) session.getAttribute("categoryList");
+        }
+        categoryList.add(category);
+        List<Category> categories = categoryList.subList(0,categoryList.size()-1);
+        session.setAttribute("categoryList", categories);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("show-category.jsp");
         requestDispatcher.forward(request, response);
     }
