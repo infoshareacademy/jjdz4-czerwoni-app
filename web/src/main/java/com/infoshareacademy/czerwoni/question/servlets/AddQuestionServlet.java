@@ -1,9 +1,11 @@
 package com.infoshareacademy.czerwoni.question.servlets;
 
+import com.infoshareacademy.czerwoni.question.domain.Answer;
 import com.infoshareacademy.czerwoni.question.domain.Question;
 import com.infoshareacademy.czerwoni.question.dao.QuestionAnswerDao;
 
 import javax.ejb.EJB;
+import javax.management.MBeanServer;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet("add-question")
 public class AddQuestionServlet extends HttpServlet {
@@ -38,8 +41,19 @@ public class AddQuestionServlet extends HttpServlet {
         HttpSession session = request.getSession();
         session.setAttribute("question",question);
         session.setAttribute("mode", "editMode");
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-question.jsp");
+        Answer answer = questionAnswerDaoBean.getAnswerById(Integer.parseInt(request.getParameter("answer")));
+        answer.setRelatedQuest(question);
+        questionAnswerDaoBean.updateAnswer(answer);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-answers.jsp");
         requestDispatcher.forward(request,response);
 
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Answer> answersList = questionAnswerDaoBean.getAnswersWithoutRelatedQuestion();
+        HttpSession session = request.getSession();
+        session.setAttribute("answersList", answersList);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-question.jsp");
+        requestDispatcher.forward(request,response);
     }
 }

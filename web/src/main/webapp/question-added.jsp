@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
@@ -75,25 +76,15 @@
     </div>
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
-            <h4 id="questionTitle">Dodawanie pytań</h4><br/>
-            <c:if test="${sessionScope.mode != 'editMode'}">
-                <form class="questionForm" method="post" action="add-question">
-                        <%--<label>Treść pytania: </label><br/><input size="80" name="questionName" type="text" value="${question.questionName}"/> <br/><br/>--%>
-                    <label>Treść pytania: </label><br/><input size="80" name="questionName" type="text"/> <br/><br/>
-                        <%--<label>Poziom pytania: </label><br/><input size="20" name="questionLevel" type="text" value="${guestion.questionLevel}"/> <br /><br />--%>
-                    <label>Poziom pytania: </label><br/><input size="20" name="questionLevel" type="text"/>
-                    <div class="errorMessage">${NFErrorMessage}</div>
-                    <br/>
-                    <label>Wybierz odpowiedź nadrzędną: </label><br/>
-                    <select name="answer">
-                        <option value="wybierz odpowiedź">Wybierz odpowiedź</option>
-                        <c:forEach var="list" items="${sessionScope.answersList}">
-                            <option value="${list.answerId}">${list.answerName}</option>
-                        </c:forEach>
-                    </select><br/><br/>
-                    <input class="button" type="submit" name="add-question" value="Dalej"/>
-                </form>
-            </c:if>
+            <h3>Dodano pytanie:</h3><br/>
+            <div id="questionName">${question.questionName} (poziom: ${question.questionLevel})</div><br/>
+                <div>
+                    <ol type="a">
+                    <c:forEach var="alist" items="${question.answerList}">
+                        <li>${alist.answerName} QId_${alist.relatedQuest.questionId}</li>
+                    </c:forEach>
+                </ol>
+            </div>
         </div>
         <div class="row m-0">
             <span class="mx-auto p-2">&#169 infoShare Academy</span>
