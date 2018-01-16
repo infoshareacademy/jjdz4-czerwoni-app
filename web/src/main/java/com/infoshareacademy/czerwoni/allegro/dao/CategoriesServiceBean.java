@@ -14,14 +14,13 @@ import java.util.stream.Collectors;
 @Stateless
 public class CategoriesServiceBean implements CategoriesService {
 
-    List<AllegroCategory> allCategories;
+    List<AllegroCategory> allCategories = ParseXmlAllegroCategories.deserialization();
 
     @EJB
     CategoriesService categoriesRepositoryDao;
 
     @Override
     public Map<AllegroCategory, String> getCategories(int parentId) {
-        allCategories = ParseXmlAllegroCategories.deserialization();
         Map<AllegroCategory, String> categoriesMap;
         categoriesMap = allCategories.stream()
                 .filter(category -> category.getCatParent() == parentId)
@@ -33,7 +32,6 @@ public class CategoriesServiceBean implements CategoriesService {
 
     @Override
     public AllegroCategory getMainCategory(int catId) {
-        allCategories = ParseXmlAllegroCategories.deserialization();
         if (catId == 0) {
             return null;
         } else {
