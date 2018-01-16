@@ -29,45 +29,53 @@ public class AddAnswersServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 
        if(request.getParameter("add-answer")!=null) {
-           HttpSession session = request.getSession();
-           Question question = (Question) session.getAttribute("question");
-           List<Answer> answerList;
-           answerList = question.getAnswerList();
-           Answer answer = new Answer();
-           answer.setAnswerName(request.getParameter("answerName"));
-           Category category = new Category();
-           category.setCategoryName(request.getParameter("categoryName"));
-           category.setCategoryAllegroLink(request.getParameter("categoryAllegroLink"));
-           categoryService.addCategory(category);
-           answer.setRelatedCategory(category);
-           questionAnswerService.addAnswer(answer);
-           answerList.add(answer);
-           question.setAnswerList(answerList);
-           questionAnswerService.updateQuestion(question);
-           RequestDispatcher requestDispatcher = request.getRequestDispatcher("question-added.jsp");
-           requestDispatcher.forward(request, response);
-           session.setAttribute("question",null);
+           addAnswerAndExit(request, response);
        }
         if(request.getParameter("add-next-answer")!=null) {
-            HttpSession session = request.getSession();
-            Question question = (Question) session.getAttribute("question");
-            List<Answer> answerList;
-            answerList = question.getAnswerList();
-            Answer answer = new Answer();
-            answer.setAnswerName(request.getParameter("answerName"));
-            Category category = new Category();
-            category.setCategoryName(request.getParameter("categoryName"));
-            category.setCategoryAllegroLink(request.getParameter("categoryAllegroLink"));
-            categoryService.addCategory(category);
-            answer.setRelatedCategory(category);
-            questionAnswerService.addAnswer(answer);
-            answerList.add(answer);
-            question.setAnswerList(answerList);
-            questionAnswerService.updateQuestion(question);
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-answers.jsp");
-            requestDispatcher.forward(request, response);
+            addNextAnswer(request, response);
         }
 
 
+    }
+
+    private void addNextAnswer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        Question question = (Question) session.getAttribute("question");
+        List<Answer> answerList;
+        answerList = question.getAnswerList();
+        Answer answer = new Answer();
+        answer.setAnswerName(request.getParameter("answerName"));
+        Category category = new Category();
+        category.setCategoryName(request.getParameter("categoryName"));
+        category.setCategoryAllegroLink(request.getParameter("categoryAllegroLink"));
+        categoryService.addCategory(category);
+        answer.setRelatedCategory(category);
+        questionAnswerService.addAnswer(answer);
+        answerList.add(answer);
+        question.setAnswerList(answerList);
+        questionAnswerService.updateQuestion(question);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-answers.jsp");
+        requestDispatcher.forward(request, response);
+    }
+
+    private void addAnswerAndExit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        Question question = (Question) session.getAttribute("question");
+        List<Answer> answerList;
+        answerList = question.getAnswerList();
+        Answer answer = new Answer();
+        answer.setAnswerName(request.getParameter("answerName"));
+        Category category = new Category();
+        category.setCategoryName(request.getParameter("categoryName"));
+        category.setCategoryAllegroLink(request.getParameter("categoryAllegroLink"));
+        categoryService.addCategory(category);
+        answer.setRelatedCategory(category);
+        questionAnswerService.addAnswer(answer);
+        answerList.add(answer);
+        question.setAnswerList(answerList);
+        questionAnswerService.updateQuestion(question);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("question-added.jsp");
+        requestDispatcher.forward(request, response);
+        session.setAttribute("question",null);
     }
 }

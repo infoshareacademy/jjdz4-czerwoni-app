@@ -21,16 +21,30 @@ public class AddQuestionServlet extends HttpServlet {
     QuestionAnswerServiceLocal questionAnswerService;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        addQuestion(request, response);
+
+    }
+
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Answer> answersList = questionAnswerService.getAnswersWithoutRelatedQuestion();
+        HttpSession session = request.getSession();
+        session.setAttribute("answersList", answersList);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-question.jsp");
+        requestDispatcher.forward(request, response);
+    }
+
+
+    private void addQuestion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String questionName = request.getParameter("questionName");
         Integer questionLevel;
         try {
             questionLevel = Integer.parseInt(request.getParameter("questionLevel"));
-        }
-        catch (NumberFormatException nfe){
+        } catch (NumberFormatException nfe) {
             nfe.printStackTrace();
-            request.setAttribute("NFErrorMessage","Musisz podać liczbę!!!");
+            request.setAttribute("NFErrorMessage", "Musisz podać liczbę!!!");
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-question.jsp");
-            requestDispatcher.forward(request,response);
+            requestDispatcher.forward(request, response);
             return;
         }
         Question question = new Question();
@@ -38,21 +52,12 @@ public class AddQuestionServlet extends HttpServlet {
         question.setQuestionLevel(questionLevel);
         questionAnswerService.addQuestion(question);
         HttpSession session = request.getSession();
-        session.setAttribute("question",question);
+        session.setAttribute("question", question);
         session.setAttribute("mode", "editMode");
         Answer answer = questionAnswerService.getAnswerById(Integer.parseInt(request.getParameter("answer")));
         answer.setRelatedQuest(question);
         questionAnswerService.updateAnswer(answer);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-answers.jsp");
-        requestDispatcher.forward(request,response);
-
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Answer> answersList = questionAnswerService.getAnswersWithoutRelatedQuestion();
-        HttpSession session = request.getSession();
-        session.setAttribute("answersList", answersList);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-question.jsp");
-        requestDispatcher.forward(request,response);
+        requestDispatcher.forward(request, response);
     }
 }
