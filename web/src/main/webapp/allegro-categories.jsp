@@ -65,10 +65,18 @@
     </div>
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
-            <div class="col-12"><h3>Kategorie ALLEGRO</h3><br/><br/></div>
+            <div class="col-12 text-center"><h4>Kategorie Allegro</h4></div>
             <div class="col-12">
+                <c:choose>
+                    <c:when test="${empty mainCat}">
+                        <h5>Kategorie główne:</h5>
+                    </c:when>
+                    <c:otherwise>
+                        <h5><c:out value="${mainCat.catName}:"/></h5>
+                    </c:otherwise>
+                </c:choose>
                 <c:forEach var="category" items="${list}">
-                    <div>
+                    <div style="padding-left: 30px;">
                         <a href="${category.value}"><c:out value="${category.key.catPosition+1}"/>. <c:out value="${category.key.catName}"/><br/></a>
                     </div>
                 </c:forEach>

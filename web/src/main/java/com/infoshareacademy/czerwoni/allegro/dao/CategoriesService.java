@@ -6,4 +6,5 @@ import java.util.Map;
 
 public interface CategoriesService {
     Map<AllegroCategory, String> getCategories(int parentId);
+    AllegroCategory getMainCategory(int catId);
 }
