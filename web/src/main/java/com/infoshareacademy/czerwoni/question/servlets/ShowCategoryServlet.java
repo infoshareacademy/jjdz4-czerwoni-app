@@ -58,8 +58,8 @@ public class ShowCategoryServlet extends HttpServlet {
             categoryList = (List<Category>) session.getAttribute("categoryList");
         }
         categoryList.add(category);
-        List<Category> categories = categoryList.subList(0,categoryList.size()-1);
-        session.setAttribute("categoryList", categories);
+
+        session.setAttribute("categoryList", categoryList);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("show-category.jsp");
         requestDispatcher.forward(request, response);
     }

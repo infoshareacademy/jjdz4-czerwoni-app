@@ -65,7 +65,7 @@
             <a class="nav-link" href="#"><i class="icon-barcode"></i> <span class="d-none d-lg-inline-block">Kod kreskowy</span></a>
         </div>
         <div class="nav-item w-25">
-            <a class="nav-link" href="#"><i class="icon-cart-arrow-down"></i> <span class="d-none d-lg-inline-block">Pomocnik zakupowy</span></a>
+            <a title="Odpowiedz na kilka pytań aby wybrać najlepszą kategorię produktów" class="nav-link" href="questions"><i class="icon-cart-arrow-down"></i> <span class="d-none d-lg-inline-block">Pomocnik zakupowy</span></a>
         </div>
         <div class="nav-item w-25">
             <a class="nav-link" href="#"><i class="icon-search"></i> <span class="d-none d-lg-inline-block">Wyszukiwarka Allegro</span></a>
@@ -76,7 +76,7 @@
     </div>
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
-            <h4>Wybór kategorii na podstawie pytań</h4>
+            <div class="title"> <h4>Wybór kategorii na podstawie pytań</h4></div>
             <div class="questionForm">
                 <form method="post" action="questions">
 
@@ -104,7 +104,7 @@
                     </div>
                     <div>
                         <c:if test="${sessionScope.question.questionLevel>1}">
-                            Poprzednie kategorie:
+                            Wszystkie wyszukane kategorie kategorie:
                             <c:forEach var="catAnswerList" items="${sessionScope.categoryList}">
                                 <a id="categoryName" href="${catAnswerList.categoryAllegroLink}">| ${catAnswerList.categoryName} </a>
                             </c:forEach>
