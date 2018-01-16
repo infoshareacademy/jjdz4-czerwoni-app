@@ -60,7 +60,7 @@
             <a class="nav-link" href="#"><i class="icon-search"></i> <span class="d-none d-lg-inline-block">Wyszukiwarka Allegro</span></a>
         </div>
         <div class="nav-item w-25">
-            <a class="nav-link" href="#"><i class="icon-tags"></i> <span class="d-none d-lg-inline-block">Kategorie Allegro</span></a>
+            <a class="nav-link" href="/allegro-categories?parent=0"><i class="icon-tags"></i> <span class="d-none d-lg-inline-block">Kategorie Allegro</span></a>
         </div>
     </div>
     <div>
@@ -76,8 +76,8 @@
                     </c:otherwise>
                 </c:choose>
                 <c:forEach var="category" items="${list}">
-                    <div style="padding-left: 30px;">
-                        <a href="${category.value}"><c:out value="${category.key.catPosition+1}"/>. <c:out value="${category.key.catName}"/><br/></a>
+                    <div style="padding: 0px 30px 0px 50px; border-top-style: dotted; border-width: 2px; border-color: white">
+                        <a href="/allegro-categories?parent=${category.key.catId}"><c:out value="${category.key.catPosition+1}"/>. <c:out value="${category.key.catName}"/><br/></a>
                     </div>
                 </c:forEach>
             </div>

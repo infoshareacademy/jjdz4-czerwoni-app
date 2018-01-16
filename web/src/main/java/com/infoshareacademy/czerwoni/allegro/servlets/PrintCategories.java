@@ -20,8 +20,9 @@ public class PrintCategories extends HttpServlet {
     CategoriesService categoriesService;
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        Map<AllegroCategory, String> categories = categoriesService.getCategories(0);
-        AllegroCategory mainCategory = categoriesService.getMainCategory(0);
+        int parentID = Integer.parseInt(req.getParameter("parent"));
+        Map<AllegroCategory, String> categories = categoriesService.getCategories(parentID);
+        AllegroCategory mainCategory = categoriesService.getMainCategory(parentID);
         req.setAttribute("mainCat", mainCategory);
         req.setAttribute("list", categories);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/allegro-categories.jsp");

@@ -5,6 +5,7 @@ import com.infoshareacademy.czerwoni.parse.ParseXmlAllegroCategories;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +27,7 @@ public class CategoriesServiceBean implements CategoriesService {
                 .filter(category -> category.getCatParent() == parentId)
                 .collect(Collectors.toMap(category -> category, AllegroCategory::generateLink));
         return categoriesMap.entrySet().stream()
-                .sorted(Map.Entry.comparingByValue())
+                .sorted(Comparator.comparing(category -> category.getKey().getCatPosition()))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue, LinkedHashMap::new));
     }
 

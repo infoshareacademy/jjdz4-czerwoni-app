@@ -57,6 +57,10 @@ button:hover {
     color: #888888;
 }
 
-.listElement {
+#listElement {
     padding-left: 50px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    border-top-style: dotted;
+    border-color: white;
 }
