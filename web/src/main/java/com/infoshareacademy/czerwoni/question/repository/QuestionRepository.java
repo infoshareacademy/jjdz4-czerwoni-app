@@ -27,4 +27,8 @@ public class QuestionRepository {
     public void updateQuestion(Question question) {
         entityManager.merge(question);
     }
+
+    public void removeQuestion(Question question){
+        entityManager.remove(entityManager.contains(question) ? question : entityManager.merge(question));
+    }
 }

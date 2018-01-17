@@ -19,4 +19,14 @@ public class CategoryService implements CategoryServiceLocal {
     public void addCategory(Category category){
         categoryRepository.addCategory(category);
     }
+    @Override
+    public void removeCategory(Category category){
+        categoryRepository.removeCategory(category);
+    }
+
+    @Override
+    public void updateCategory(Category category) {
+        categoryRepository.updateCategory(category);
+    }
+
 }

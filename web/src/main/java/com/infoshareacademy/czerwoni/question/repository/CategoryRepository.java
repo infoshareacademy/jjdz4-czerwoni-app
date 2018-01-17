@@ -17,4 +17,10 @@ public class CategoryRepository {
     public void addCategory(Category category){
         entityManager.persist(category);
     }
+    public void updateCategory(Category category){
+        entityManager.merge(category);
+    }
+    public void removeCategory(Category category){
+        entityManager.remove(entityManager.contains(category) ? category : entityManager.merge(category));
+    }
 }

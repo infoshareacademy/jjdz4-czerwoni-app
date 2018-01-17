@@ -31,4 +31,7 @@ public class AnswerRepsitory {
     public List<Answer> getAnswersWithoutRelatedQuestions(){
         return entityManager.createNamedQuery("selectWithoutRelatedQuest").getResultList();
     }
+    public void removeAnswer(Answer answer){
+        entityManager.remove(entityManager.contains(answer) ? answer : entityManager.merge(answer));
+    }
 }

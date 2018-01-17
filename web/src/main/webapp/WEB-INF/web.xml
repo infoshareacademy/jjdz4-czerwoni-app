@@ -18,6 +18,7 @@
       <web-resource-name>HtmlAuth</web-resource-name>
       <description>application security constraints</description>
       <url-pattern>/add-question.jsp</url-pattern>
+      <url-pattern>/admin-panel.jsp</url-pattern>
       <url-pattern>/add-answer.jsp</url-pattern>
       <http-method>GET</http-method>
       <http-method>POST</http-method>

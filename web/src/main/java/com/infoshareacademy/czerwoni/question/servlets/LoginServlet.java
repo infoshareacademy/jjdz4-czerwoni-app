@@ -11,7 +11,7 @@ import java.io.IOException;
 
 @WebServlet("login")
 public class LoginServlet extends HttpServlet {
-    @Override
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             request.login(request.getParameter("login"), request.getParameter("password"));
@@ -21,11 +21,11 @@ public class LoginServlet extends HttpServlet {
             requestDispatcher.forward(request, response);
             return;
         }
-//        if (request.getHeader("Referer").contains("login.jsp")) {
-//            response.sendRedirect("/index.jsp");
-//            return;
-//        }
-//        response.sendRedirect(request.getHeader("Referer"));
+        if (request.getHeader("Referer").contains("login.jsp")) {
+            response.sendRedirect("/index.html");
+            return;
+        }
+        response.sendRedirect(request.getHeader("Referer"));
         HttpSession session = request.getSession();
         session.setAttribute("login",request.getParameter("login"));
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("admin-panel.jsp");

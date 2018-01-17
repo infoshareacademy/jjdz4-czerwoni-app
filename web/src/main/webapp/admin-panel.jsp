@@ -85,9 +85,8 @@
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
             <h3>Panel administracyjny</h3>
-            <div class="link-button d-none d-lg-inline-block"><a href="add-question">Dodaj pytanie</a></div>
+            <div class="link-button"><a href="add-question">Dodaj pytanie</a></div>
             <div class="link-button d-none d-lg-inline-block"><a href="">Edytuj pytanie</a></div>
-            <br/>
             <div class="link-button d-none d-lg-inline-block"><a href="">Usuń pytanie pytanie</a></div>
             <div class="link-button d-none d-lg-inline-block"><a href="show-all-question">Lista pytań i odpowiedzi</a></div>
             <br/>

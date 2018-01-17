@@ -55,5 +55,15 @@ public class QuestionAnswerService implements QuestionAnswerServiceLocal {
         questionRepository.updateQuestion(question);
     }
 
+    @Override
+    public void removeQuestion(Question question) {
+        questionRepository.removeQuestion(question);
+    }
+
+    @Override
+    public void removeAnswer(Answer answer) {
+        answerRepsitory.removeAnswer(answer);
+    }
+
 
 }

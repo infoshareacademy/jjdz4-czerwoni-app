@@ -103,18 +103,26 @@ button:hover {
     float: left;
 }
 
-.homeButton {
+.editButton {
     background-color: #005580;
     color: aliceblue;
     width: 90px;
-    height: 30px;
+    height: 50px;
     font-size: 14px;
     text-align: center;
     border: 1px solid aliceblue;
     border-radius: 10px;
     cursor: pointer;
-    float: right;
     padding-top: 12px;
+    margin: 10px;
+    float: left;
+}
+
+.editButton>a {
+    padding: 5px 10px 20px 10px;
+}
+.editButton>a:hover{
+    background-color: transparent;
 }
 
 a:link {

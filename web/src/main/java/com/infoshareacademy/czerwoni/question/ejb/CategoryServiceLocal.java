@@ -8,4 +8,6 @@ import javax.ejb.Local;
 public interface CategoryServiceLocal {
     Category getCategoryById(int id);
     void addCategory(Category category);
+    void removeCategory(Category category);
+    void updateCategory(Category category);
 }

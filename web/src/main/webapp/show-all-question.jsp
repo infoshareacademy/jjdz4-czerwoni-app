@@ -65,7 +65,8 @@
             <a class="nav-link" href="#"><i class="icon-barcode"></i> <span class="d-none d-lg-inline-block">Kod kreskowy</span></a>
         </div>
         <div class="nav-item w-25">
-            <a title="Odpowiedz na kilka pytań aby wybrać najlepszą kategorię produktów" class="nav-link" href="questions"><i class="icon-cart-arrow-down"></i> <span class="d-none d-lg-inline-block">Pomocnik zakupowy</span></a>
+            <a title="Odpowiedz na kilka pytań aby wybrać najlepszą kategorię produktów" class="nav-link"
+               href="questions"><i class="icon-cart-arrow-down"></i> <span class="d-none d-lg-inline-block">Pomocnik zakupowy</span></a>
         </div>
         <div class="nav-item w-25">
             <a class="nav-link" href="#"><i class="icon-search"></i> <span class="d-none d-lg-inline-block">Wyszukiwarka Allegro</span></a>
@@ -76,18 +77,31 @@
     </div>
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
+            <div class="title"><h3>Edycja pytań</h3></div>
             <div>
+                <form method="post">
+
                 <ol>
                     <c:forEach var="list" items="${questionList}">
-                        <li>${list.questionName} (poziom: ${list.questionLevel}, QId_${list.questionId})
-                            <ol type="a">
-                                <c:forEach var="alist" items="${list.answerList}">
-                                    <li>${alist.answerName} QId_${alist.relatedQuest.questionId}</li>
-                                </c:forEach>
-                            </ol>
-                        </li>
+                        <<label>
+                        <li>${list.questionName} (poziom: ${list.questionLevel},
+                            QId_${list.questionId})
+                            <td><input
+                                    type="radio" name="questRadio" value="${list.questionId}">
+                        </label>
+                        <ol type="a">
+                            <c:forEach var="alist" items="${list.answerList}">
+                                <li>${alist.answerName} QId_${alist.relatedQuest.questionId}</li>
+                            </c:forEach>
+                        </ol>
+                        </li><br/>
                     </c:forEach>
                 </ol>
+                    <button class="button" type="submit" formaction="remove-question" name="remove-question" value="Usuń">
+                    <button class="button" type="submit" formaction="update-question" name="update-question" value="Edytuj">
+                <%--<div class="editButton"><a href="">Edytuj</a></div>--%>
+                <%--<div class="editButton"><a href="remove-question">Usuń</a></div>--%>
+                </form>
             </div>
         </div>
         <div class="row m-0">

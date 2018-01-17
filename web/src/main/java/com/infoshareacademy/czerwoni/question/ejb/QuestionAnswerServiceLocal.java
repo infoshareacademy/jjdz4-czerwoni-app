@@ -18,4 +18,6 @@ public interface QuestionAnswerServiceLocal {
     void updateAnswer(Answer answer);
     List<Answer> getAnswersWithoutRelatedQuestion();
     void updateQuestion(Question question);
+    void removeQuestion(Question question);
+    void removeAnswer(Answer answer);
 }
