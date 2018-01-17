@@ -7,7 +7,7 @@
 <h1>Login</h1>
 <form method="post" action="/login">
     <label for="userName">Login:</label>
-    <input type="text" id="userName" name="userName">
+    <input type="text" id="userName" name="login">
     <label for="password">Password:</label>
     <input type="password" id="password" name="password">
     <input type="submit" value="login" name="login"/>

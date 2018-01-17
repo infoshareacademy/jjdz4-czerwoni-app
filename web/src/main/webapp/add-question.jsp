@@ -75,12 +75,9 @@
     </div>
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
-            <h4 id="questionTitle">Dodawanie pytań</h4><br/>
             <c:if test="${sessionScope.mode != 'editMode'}">
                 <form class="questionForm" method="post" action="add-question">
-                        <%--<label>Treść pytania: </label><br/><input size="80" name="questionName" type="text" value="${question.questionName}"/> <br/><br/>--%>
                     <label>Treść pytania: </label><br/><input size="80" name="questionName" type="text"/> <br/><br/>
-                        <%--<label>Poziom pytania: </label><br/><input size="20" name="questionLevel" type="text" value="${guestion.questionLevel}"/> <br /><br />--%>
                     <label>Poziom pytania: </label><br/><input size="20" name="questionLevel" type="text"/>
                     <div class="errorMessage">${NFErrorMessage}</div>
                     <br/>

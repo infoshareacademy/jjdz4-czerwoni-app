@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+<!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
@@ -31,19 +32,20 @@
             <div class="dropdown">
                 <button class="btn btn-dark dropdown-toggle bg-dark m-3" type="button" id="dropdownMenuButton"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="icon-user"></i> <span class="d-none d-lg-inline-block">Zaloguj się</span>
+                    <i class="icon-user"></i> <span
+                        class="d-none d-lg-inline-block">Panel administatora</span>
                 </button>
                 <div class="dropdown-menu bg-dark dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                    <form class="px-4 py-3">
+                    <form class="px-4 py-3" method="post" action="login">
                         <div class="form-group">
-                            <label for="exampleDropdownFormEmail1">Adres e-mail</label>
-                            <input type="email" class="form-control" id="exampleDropdownFormEmail1"
-                                   placeholder="your@email.com">
+                            <label for="exampleDropdownFormEmail1">Login</label>
+                            <input type="text" class="form-control" id="exampleDropdownFormEmail1" name="login"
+                                   placeholder="login">
                         </div>
                         <div class="form-group">
                             <label for="exampleDropdownFormPassword1">Hasło</label>
                             <input type="password" class="form-control" id="exampleDropdownFormPassword1"
-                                   placeholder="Password">
+                                   name="password" placeholder="Password">
                         </div>
                         <div class="form-check">
                             <label class="form-check-label">
@@ -57,6 +59,12 @@
                     <a class="dropdown-item" href="#" style="color: aliceblue">Nie masz konta? Zapisz się!</a>
                 </div>
             </div>
+            <c:if test="${sessionScope.login!=null}">
+            <div class="col logtext">
+               Zalogowano: ${sessionScope.login}
+                <a href="logout"><span>Wyloguj</span></a>
+            </div>
+            </c:if>
         </div>
     </div>
     <div class="row nav nav-pills nav-fill">
@@ -76,21 +84,14 @@
     </div>
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
-            <div class="title"><h4>Wybór kategorii na podstawie pytań</h4></div>
-            <div class="questionForm">
-                <form method="post" action="show-category">
-                    <div id="questionName">${sessionScope.question.questionName}</div>
-                    <br/>
-                    <c:forEach var="list" items="${sessionScope.question.answerList}">
-                        <div id="annswerName">
-                            <label><input name="answerRadio" type="radio"
-                                          value="${list.answerId}"/>  ${list.answerName}</label><br/>
-                        </div>
-                    </c:forEach>
-                    <div class="errorMessage">${noChoiceError}</div>
-                    <div><input class="button" type="submit" name="questions" value="Dalej"></div>
-                </form>
-            </div>
+            <h3>Panel administracyjny</h3>
+            <div class="link-button d-none d-lg-inline-block"><a href="add-question">Dodaj pytanie</a></div>
+            <div class="link-button d-none d-lg-inline-block"><a href="">Edytuj pytanie</a></div>
+            <br/>
+            <div class="link-button d-none d-lg-inline-block"><a href="">Usuń pytanie pytanie</a></div>
+            <div class="link-button d-none d-lg-inline-block"><a href="show-all-question">Lista pytań i odpowiedzi</a></div>
+            <br/>
+
         </div>
         <div class="row m-0">
             <span class="mx-auto p-2">&#169 infoShare Academy</span>

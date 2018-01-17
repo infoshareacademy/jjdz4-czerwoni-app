@@ -138,3 +138,40 @@ a:link {
     color: red;
     padding: 10px;
 }
+
+.vertSeparator {
+    color: #005580;
+
+}
+
+.link-button {
+    background-color: #005580;
+    color: aliceblue;
+    width: 140px;
+    height: 80px;
+    font-size: 14px;
+    text-align: center;
+    border: 1px solid aliceblue;
+    border-radius: 10px;
+    cursor: pointer;
+    padding-top: 12px;
+    float: left;
+    margin: 10px;
+}
+.link-button>a {
+    padding: 15px 20px 40px 20px;
+}
+.link-button>a:hover{
+    background-color: transparent;
+}
+
+.link-button:hover{
+    background-color: #003350;
+    color: white;
+    border: 3px solid white;
+}
+
+.logtext{
+    color: lightgreen;
+    size: 8px;
+}

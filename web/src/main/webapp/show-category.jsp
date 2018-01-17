@@ -93,7 +93,7 @@
                         <c:if test="${list.answerId != selectedRadio}">
                             <div id="annswerName">
                                 <label><input name="answerRadio" type="radio"
-                                              value="${list.answerId}"/> ${list.answerName}<br/></label>
+                                              value="${list.answerId}"/>  ${list.answerName}<br/></label>
                             </div>
                         </c:if>
                     </c:forEach>
@@ -106,7 +106,7 @@
                         <c:if test="${sessionScope.question.questionLevel>1}">
                             Wszystkie wyszukane kategorie kategorie:
                             <c:forEach var="catAnswerList" items="${sessionScope.categoryList}">
-                                <a id="categoryName" href="${catAnswerList.categoryAllegroLink}">| ${catAnswerList.categoryName} </a>
+                                <a id="categoryName" href="${catAnswerList.categoryAllegroLink}"><span class="vertSeparator"> |</span> ${catAnswerList.categoryName} </a>
                             </c:forEach>
                         </c:if>
                     </div><br/><br/>

@@ -1,5 +1,6 @@
 package com.infoshareacademy.czerwoni.question.servlets;
 
+import com.infoshareacademy.czerwoni.question.domain.Category;
 import com.infoshareacademy.czerwoni.question.domain.Question;
 import com.infoshareacademy.czerwoni.question.ejb.QuestionAnswerServiceLocal;
 import com.infoshareacademy.czerwoni.question.domain.Answer;
@@ -14,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet("questions")
 public class QuestionServlet extends HttpServlet {
@@ -37,6 +40,8 @@ public class QuestionServlet extends HttpServlet {
         Question question = questionAnswerService.getQuestionById(1);
         HttpSession session = request.getSession();
         session.setAttribute("question",question);
+        List<Category> categoryList = new ArrayList<>();
+        session.setAttribute("categoryList", categoryList);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("question.jsp");
         requestDispatcher.forward(request,response);
     }
