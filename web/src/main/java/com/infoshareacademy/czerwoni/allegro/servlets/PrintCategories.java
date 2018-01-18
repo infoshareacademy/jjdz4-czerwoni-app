@@ -23,11 +23,14 @@ public class PrintCategories extends HttpServlet {
         int parentID = Integer.parseInt(req.getParameter("parent"));
         Map<AllegroCategory, String> categories = categoriesService.getCategories(parentID);
         AllegroCategory mainCategory = categoriesService.getMainCategory(parentID);
+        String lastCategoryLink = null;
+        if (parentID != 0) {
+            lastCategoryLink = mainCategory.generateLink();
+        }
         req.setAttribute("mainCat", mainCategory);
         req.setAttribute("list", categories);
+        req.setAttribute("lastCatLink", lastCategoryLink);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/allegro-categories.jsp");
         requestDispatcher.forward(req, resp);
     }
-
-
 }

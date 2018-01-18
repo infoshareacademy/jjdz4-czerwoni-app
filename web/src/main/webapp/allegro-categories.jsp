@@ -75,11 +75,25 @@
                         <h5><c:out value="${mainCat.catName}:"/></h5>
                     </c:otherwise>
                 </c:choose>
-                <c:forEach var="category" items="${list}">
-                    <div style="padding: 0px 30px 0px 50px; border-top-style: dotted; border-width: 2px; border-color: white">
-                        <a href="/allegro-categories?parent=${category.key.catId}"><c:out value="${category.key.catPosition+1}"/>. <c:out value="${category.key.catName}"/><br/></a>
-                    </div>
-                </c:forEach>
+                <c:choose>
+                    <c:when test="${not empty list}">
+                        <c:forEach var="category" items="${list}">
+                            <a href="/allegro-categories?parent=${category.key.catId}">
+                                <div>
+                                    <c:out value="${category.key.catPosition+1}"/>. <c:out value="${category.key.catName}"/><br/>
+                                </div>
+                            </a>
+                        </c:forEach>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="${lastCatLink}">
+                            <div>
+                                Przejdź do serwisu Allegro
+                            </div>
+                        </a>
+                    </c:otherwise>
+                </c:choose>
+
             </div>
         </div>
         <div class="row m-0">
