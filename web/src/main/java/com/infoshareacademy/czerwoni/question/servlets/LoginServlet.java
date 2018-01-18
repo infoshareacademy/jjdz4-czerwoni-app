@@ -13,23 +13,22 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
         try {
             request.login(request.getParameter("login"), request.getParameter("password"));
         } catch (ServletException se) {
             request.setAttribute("errorMessage", se.getMessage());
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.jsp");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("login.jsp");
             requestDispatcher.forward(request, response);
             return;
         }
-        if (request.getHeader("Referer").contains("login.jsp")) {
-            response.sendRedirect("/index.html");
+        if (request.getHeader("Referer").contains("index.jsp") || request.getHeader("Referer").contains("/")) {
+            session.setAttribute("login",request.getParameter("login"));
+            response.sendRedirect("admin-panel.jsp");
             return;
         }
-        response.sendRedirect(request.getHeader("Referer"));
-        HttpSession session = request.getSession();
         session.setAttribute("login",request.getParameter("login"));
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("admin-panel.jsp");
-        requestDispatcher.forward(request, response);
+        response.sendRedirect(request.getHeader("Referer"));
     }
 }
 

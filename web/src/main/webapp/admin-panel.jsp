@@ -24,7 +24,7 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <a href="index.html"><h1>
+            <a href="index.jsp"><h1>
                 <i class="icon-shopping-basket"></i> <span class="d-none d-lg-inline-block">What Do You Want</span>
             </h1></a>
         </div>
@@ -60,10 +60,10 @@
                 </div>
             </div>
             <c:if test="${sessionScope.login!=null}">
-            <div class="col logtext">
-               Zalogowano: ${sessionScope.login}
-                <a href="logout"><span>Wyloguj</span></a>
-            </div>
+                <div class="col logtext">
+                    Zalogowano: ${sessionScope.login}
+                    <a href="logout"><span>Wyloguj</span></a>
+                </div>
             </c:if>
         </div>
     </div>
@@ -84,13 +84,15 @@
     </div>
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
-            <h3>Panel administracyjny</h3>
-            <div class="link-button"><a href="add-question">Dodaj pytanie</a></div>
-            <div class="link-button d-none d-lg-inline-block"><a href="">Edytuj pytanie</a></div>
-            <div class="link-button d-none d-lg-inline-block"><a href="">Usuń pytanie pytanie</a></div>
-            <div class="link-button d-none d-lg-inline-block"><a href="show-all-question">Lista pytań i odpowiedzi</a></div>
-            <br/>
-
+            <div>
+                <div class="row">
+                    <div class="col-12"><h3>Panel administratora</h3></div>
+                </div>
+                <div class="row">
+                    <div class="link-button"><a href="add-question">Dodaj pytanie</a></div>
+                    <div class="link-button"><a href="show-all-question">Usuń lub edytuj pytania</a></div>
+                </div>
+            </div>
         </div>
         <div class="row m-0">
             <span class="mx-auto p-2">&#169 infoShare Academy</span>

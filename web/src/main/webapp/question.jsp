@@ -23,7 +23,7 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <a href="index.html"><h1>
+            <a href="index.jsp"><h1>
                 <i class="icon-shopping-basket"></i> <span class="d-none d-lg-inline-block">What Do You Want</span>
             </h1></a>
         </div>
@@ -57,6 +57,12 @@
                     <a class="dropdown-item" href="#" style="color: aliceblue">Nie masz konta? Zapisz się!</a>
                 </div>
             </div>
+            <c:if test="${sessionScope.login!=null}">
+                <div class="col logtext">
+                    Zalogowano: ${sessionScope.login}
+                    <a href="logout"><span>Wyloguj</span></a>
+                </div>
+            </c:if>
         </div>
     </div>
     <div class="row nav nav-pills nav-fill">

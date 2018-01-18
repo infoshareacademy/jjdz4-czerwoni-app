@@ -1,6 +1,7 @@
 package com.infoshareacademy.czerwoni.question.repository;
 
 import com.infoshareacademy.czerwoni.question.domain.Answer;
+import com.infoshareacademy.czerwoni.question.domain.Question;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -33,5 +34,10 @@ public class AnswerRepsitory {
     }
     public void removeAnswer(Answer answer){
         entityManager.remove(entityManager.contains(answer) ? answer : entityManager.merge(answer));
+    }
+
+    public Answer getRelatedAnswerByQuest(Question question) {
+        return (Answer) entityManager.createNamedQuery("selectRelatedAnswerByQuest").setParameter("relatedQuestion",question)
+                .getSingleResult();
     }
 }

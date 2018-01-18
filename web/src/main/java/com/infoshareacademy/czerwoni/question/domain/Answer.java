@@ -7,7 +7,8 @@ import java.io.Serializable;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "selectAllAnswers", query = "from Answer"),
-        @NamedQuery(name = "selectWithoutRelatedQuest", query = "from Answer where relatedQuest=null")
+        @NamedQuery(name = "selectWithoutRelatedQuest", query = "from Answer where relatedQuest=null"),
+        @NamedQuery(name = "selectRelatedAnswerByQuest", query = "from Answer where relatedQuest=:relatedQuestion")
 })
 public class Answer implements Serializable{
 

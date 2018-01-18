@@ -1,7 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
@@ -71,7 +70,8 @@
             <a class="nav-link" href="#"><i class="icon-barcode"></i> <span class="d-none d-lg-inline-block">Kod kreskowy</span></a>
         </div>
         <div class="nav-item w-25">
-            <a title="Odpowiedz na kilka pytań aby wybrać najlepszą kategorię produktów" class="nav-link" href="questions"><i class="icon-cart-arrow-down"></i> <span class="d-none d-lg-inline-block">Pomocnik zakupowy</span></a>
+            <a title="Odpowiedz na kilka pytań aby wybrać najlepszą kategorię produktów" class="nav-link"
+               href="questions"><i class="icon-cart-arrow-down"></i> <span class="d-none d-lg-inline-block">Pomocnik zakupowy</span></a>
         </div>
         <div class="nav-item w-25">
             <a class="nav-link" href="#"><i class="icon-search"></i> <span class="d-none d-lg-inline-block">Wyszukiwarka Allegro</span></a>
@@ -82,29 +82,39 @@
     </div>
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
-            <div>
-                <h4>Dodaj odpowiedzi do pytania</h4><br/>
-                <div>${sessionScope.question.questionName}</div>
-                <div>
-                    <ol type="a">
-                        <c:forEach var="alist" items="${sessionScope.question.answerList}">
-                            <li>${alist.answerName} Kategoria: <a href="${alist.relatedCategory.categoryAllegroLink}">${alist.relatedCategory.categoryName}</a></li>
+            <%--<c:if test="${sessionScope.mode != 'editMode'}">--%>
+            <form class="questionForm" method="post" action="update-question">
+                <label>Treść pytania: </label><br/><input size="80" name="questionName" type="text"
+                                                          value="${sessionScope.question.questionName}"/> <br/><br/>
+                <label>Poziom pytania: </label><br/><input size="20" name="questionLevel" type="text"
+                                                           value="${sessionScope.question.questionLevel}"/>
+                <div class="errorMessage">${NFErrorMessage}</div>
+                <br/>
+                <%--<label>Wybierz odpowiedź nadrzędną: </label><br/>--%>
+                <%--<select name="answer">--%>
+                <%--<option value="wybierz odpowiedź">Wybierz odpowiedź</option>--%>
+                <%--<c:forEach var="list" items="${sessionScope.answersList}">--%>
+                <%--<c:if test="${list.relatedQuest==sessionScope.relatedAnswer.relatedQuest}">--%>
+                <%--<option selected value="${list.answerId}">${list.answerName}</option>--%>
+                <%--</c:if>--%>
+                <%--</c:forEach>--%>
+                <%--</select><br/><br/>--%>
+                <c:forEach var="answerList" items="${sessionScope.question.answerList}">
+                    <label>Odpowiedź: </label><br/><input size="80" name="answerName" type="text"
+                                                          value="${answerList.answerName}"/><br/><br/>
+                    <label>Kategoria: </label><br/><input size="40" name="categoryName" type="text"
+                                                          value="${answerList.relatedCategory.categoryName}"/><br/><br/>
+                    <label>Link Allegro: </label><br/><input size="60" name="categoryAllegroLink" type="text"
+                                                             value="${answerList.relatedCategory.categoryName}"/><br/><br/>
+                </c:forEach>
 
-                        </c:forEach>
-                    </ol>
+                <div><input class="button" type="submit" name="add-answer" value="Zapisz"></div>
+                <div><input class="button" type="submit" name="add-next-answer" value="Dodaj kolejną odpowiedź">
                 </div>
-            </div>
-            <div class="questionForm">
-                <form method="post" action="add-answers">
-                    <label>Odpowiedź: </label><br/><input size="80" name="answerName" type="text"/><br/><br/>
-                    <label>Kategoria: </label><br/><input size="40" name="categoryName" type="text"/><br/><br/>
-                    <label>Link Allegro: </label><br/><input size="60" name="categoryAllegroLink" type="text"/><br/><br/>
+                <input class="button" type="submit" name="add-question" value="Dalej"/>
+            </form>
 
-                    <div><input class="button" type="submit" name="add-answer" value="Zapisz"></div>
-                    <div><input class="button" type="submit" name="add-next-answer" value="Dodaj kolejną odpowiedź">
-                    </div>
-                </form>
-            </div>
+            <%--</c:if>--%>
         </div>
         <div class="row m-0">
             <span class="mx-auto p-2">&#169 infoShare Academy</span>

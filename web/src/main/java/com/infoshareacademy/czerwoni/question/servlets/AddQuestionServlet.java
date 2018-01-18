@@ -27,9 +27,12 @@ public class AddQuestionServlet extends HttpServlet {
 
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Answer> answersList = questionAnswerService.getAnswersWithoutRelatedQuestion();
         HttpSession session = request.getSession();
-        session.setAttribute("answersList", answersList);
+
+//        session.removeAttribute("answersList");
+//        session.removeAttribute("question");
+        List<Answer> answersList = questionAnswerService.getAnswersWithoutRelatedQuestion();
+        request.setAttribute("answersListWithoutRelatedQuestion", answersList);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-question.jsp");
         requestDispatcher.forward(request, response);
     }
@@ -43,6 +46,8 @@ public class AddQuestionServlet extends HttpServlet {
         } catch (NumberFormatException nfe) {
             nfe.printStackTrace();
             request.setAttribute("NFErrorMessage", "Musisz podać liczbę!!!");
+            List<Answer> answersList = questionAnswerService.getAnswersWithoutRelatedQuestion();
+            request.setAttribute("answersListWithoutRelatedQuestion", answersList);
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-question.jsp");
             requestDispatcher.forward(request, response);
             return;

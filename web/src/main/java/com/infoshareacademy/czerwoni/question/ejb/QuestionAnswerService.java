@@ -65,5 +65,10 @@ public class QuestionAnswerService implements QuestionAnswerServiceLocal {
         answerRepsitory.removeAnswer(answer);
     }
 
+    @Override
+    public Answer getRelatedAnswerByQuest(Question question) {
+        return answerRepsitory.getRelatedAnswerByQuest(question);
+    }
+
 
 }

@@ -63,6 +63,7 @@ button:hover {
 
 #annswerName {
     font-size: 16px;
+    color: aliceblue;
 }
 
 .questionForm {
@@ -155,8 +156,8 @@ a:link {
 .link-button {
     background-color: #005580;
     color: aliceblue;
-    width: 140px;
-    height: 80px;
+    width: 200px;
+    height: 1200px;
     font-size: 14px;
     text-align: center;
     border: 1px solid aliceblue;
@@ -182,4 +183,7 @@ a:link {
 .logtext{
     color: lightgreen;
     size: 8px;
+}
+.questRadio > input {
+    text-align: center;
 }

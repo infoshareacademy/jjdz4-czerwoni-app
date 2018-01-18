@@ -20,4 +20,5 @@ public interface QuestionAnswerServiceLocal {
     void updateQuestion(Question question);
     void removeQuestion(Question question);
     void removeAnswer(Answer answer);
+    Answer getRelatedAnswerByQuest(Question question);
 }
