@@ -95,10 +95,11 @@ button:hover {
 .button {
     background-color: #005580;
     color: aliceblue;
-    width: auto;
-    height: 42px;
+    width: 120px;
+    height: 60px;
     font-size: 14px;
     text-align: center;
+    margin-top: 30px;
     border-radius: 10px;
     cursor: pointer;
     float: left;
@@ -156,19 +157,21 @@ a:link {
 .link-button {
     background-color: #005580;
     color: aliceblue;
-    width: 200px;
-    height: 1200px;
-    font-size: 14px;
+    width: auto;
+    height: 240px;
+    font-size: 18px;
     text-align: center;
     border: 1px solid aliceblue;
     border-radius: 10px;
     cursor: pointer;
-    padding-top: 12px;
     float: left;
     margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .link-button>a {
-    padding: 15px 20px 40px 20px;
+    padding: 50px 50px 50px 50px;
 }
 .link-button>a:hover{
     background-color: transparent;
@@ -181,9 +184,16 @@ a:link {
 }
 
 .logtext{
-    color: lightgreen;
+    color: #0088cc;
     size: 8px;
 }
-.questRadio > input {
+
+.logtext > a {
+    color: forestgreen;
+}
+.questRadio {
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

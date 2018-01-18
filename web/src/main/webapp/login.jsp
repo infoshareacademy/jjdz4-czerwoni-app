@@ -30,8 +30,8 @@
                 <div class="dropdown-menu bg-dark dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                     <form class="px-4 py-3" method="post" action="login">
                         <div class="form-group">
-                            <label for="exampleDropdownFormEmail1">Login</label>
-                            <input type="text" class="form-control" id="exampleDropdownFormEmail1" name="login" placeholder="login">
+                            <label for="login">Login</label>
+                            <input type="text" class="form-control" id="login" name="login" placeholder="login">
                         </div>
                         <div class="form-group">
                             <label for="exampleDropdownFormPassword1">Hasło</label>
@@ -51,7 +51,7 @@
             </div>
             <c:if test="${sessionScope.login!=null}">
                 <div class="col logtext">
-                    Zalogowano: ${sessionScope.login}
+                    Zalogowano: <a href="admin-panel.jsp"> ${sessionScope.login}</a>
                     <a href="logout"><span>Wyloguj</span></a>
                 </div>
             </c:if>

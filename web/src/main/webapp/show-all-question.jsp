@@ -32,19 +32,18 @@
             <div class="dropdown">
                 <button class="btn btn-dark dropdown-toggle bg-dark m-3" type="button" id="dropdownMenuButton"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="icon-user"></i> <span class="d-none d-lg-inline-block">Zaloguj się</span>
+                    <i class="icon-user"></i> <span class="d-none d-lg-inline-block">Panel administatora</span>
                 </button>
                 <div class="dropdown-menu bg-dark dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                    <form class="px-4 py-3">
+                    <form class="px-4 py-3" method="post" action="login">
                         <div class="form-group">
-                            <label for="exampleDropdownFormEmail1">Adres e-mail</label>
-                            <input type="email" class="form-control" id="exampleDropdownFormEmail1"
-                                   placeholder="your@email.com">
+                            <label for="login">Login</label>
+                            <input type="text" class="form-control" id="login" name="login" placeholder="login">
                         </div>
                         <div class="form-group">
                             <label for="exampleDropdownFormPassword1">Hasło</label>
                             <input type="password" class="form-control" id="exampleDropdownFormPassword1"
-                                   placeholder="Password">
+                                   name="password" placeholder="Password">
                         </div>
                         <div class="form-check">
                             <label class="form-check-label">
@@ -60,7 +59,7 @@
             </div>
             <c:if test="${sessionScope.login!=null}">
                 <div class="col logtext">
-                    Zalogowano: ${sessionScope.login}
+                    Zalogowano: <a href="admin-panel.jsp"> ${sessionScope.login}</a>
                     <a href="logout"><span>Wyloguj</span></a>
                 </div>
             </c:if>
@@ -85,48 +84,41 @@
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
             <div class="title"><h3>Edycja pytań</h3></div>
             <div>
-                <table>
-                    <form method="post">
-                        <c:forEach var="list" items="${questionList}">
-                            <tr>
-                                <td>
-                                    <div class="questRadio"><input type="radio" name="questRadio" value="${list.questionId}"/></div>
-                                </td>
-                                <td>
-
-                                    <label id="questionName">
-                                            ${list.questionName} (poziom: ${list.questionLevel},
-                                        QId_${list.questionId})
-
-                                    </label>
-                                    <ol type="a">
-                                        <c:forEach var="alist" items="${list.answerList}">
-                                            <li id="annswerName">${alist.answerName} QId_${alist.relatedQuest.questionId}</li>
-                                        </c:forEach>
-                                    </ol>
-                                    <br/>
-
-                                </td>
-
-                            </tr>
-                        </c:forEach>
-
-                        <tr>
-                            <td>
-                                <button class="button" type="submit" formaction="remove-question"
-                                        name="remove-question">
-                                    Usuń
-                                </button>
-                                <button class="button" type="submit" formaction="update-question"
-                                        name="update-question">
-                                    Edutuj
-                                </button>
-                            </td>
-                        </tr>
-                        <%--<div class="editButton"><a href="">Edytuj</a></div>--%>
-                        <%--<div class="editButton"><a href="remove-question">Usuń</a></div>--%>
-                    </form>
-                </table>
+                <form method="post">
+                    <c:forEach var="list" items="${questionList}">
+                        <div class="row">
+                            <div class="col-lg-1 questRadio">
+                                <input type="radio" name="questRadio" value="${list.questionId}"/>
+                            </div>
+                            <div class="col-lg-11">
+                                <label id="questionName">
+                                        ${list.questionName} (poziom: ${list.questionLevel},
+                                    QId_${list.questionId})
+                                </label>
+                                <ol type="a">
+                                    <c:forEach var="alist" items="${list.answerList}">
+                                        <li id="annswerName">${alist.answerName}
+                                            QId_${alist.relatedQuest.questionId}</li>
+                                    </c:forEach>
+                                </ol>
+                            </div>
+                        </div>
+                    </c:forEach>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <button class="button" type="submit" formaction="remove-question"
+                                    name="remove-question">
+                                Usuń
+                            </button>
+                        </div>
+                        <div class="col-lg-6">
+                            <button class="button" type="submit" formaction="update-question"
+                                    name="update-question">
+                                Edutuj
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
         <div class="row m-0">
