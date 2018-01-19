@@ -20,16 +20,37 @@ public class EditQuestionServlet extends HttpServlet{
     @Inject
     QuestionAnswerServiceLocal questionAnswerService;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         HttpSession session =request.getSession();
-        Integer questionId = Integer.parseInt(request.getParameter("questRadio"));
+        Integer questionId=null;
+        try {
+            questionId = Integer.parseInt(request.getParameter("questRadio"));
+        }
+        catch (NumberFormatException nfe){
+            nfe.printStackTrace();
+            request.setAttribute("NFErrorMessage", "Musisz wybrać pytanie!!!");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("show-all-question");
+            requestDispatcher.forward(request,response);
+        }
         Question question = questionAnswerService.getQuestionById(questionId);
         session.setAttribute("question",question);
         Answer relatedAnswer = questionAnswerService.getRelatedAnswerByQuest(question);
         session.setAttribute("relatedAnswer",relatedAnswer);
         List<Answer> answersList = questionAnswerService.getAnswersWithoutRelatedQuestion();
-        session.setAttribute("answersList", answersList);
+        session.setAttribute("answersWithoutRelQuestList", answersList);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("update-question.jsp");
         requestDispatcher.forward(request,response);
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Integer questionLevel;
+        try {
+            questionLevel = Integer.parseInt(request.getParameter("questionLevel"));
+        } catch (NumberFormatException nfe) {
+            nfe.printStackTrace();
+            request.setAttribute("NFErrorMessage", "Musisz podać liczbę!!!");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("update-question");
+            requestDispatcher.forward(request,response);
+        }
     }
 }

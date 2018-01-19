@@ -84,7 +84,7 @@
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
             <div class="title"><h3>Edycja pytań</h3></div>
             <div>
-                <form method="post">
+                <form method="get">
                     <c:forEach var="list" items="${questionList}">
                         <div class="row">
                             <div class="col-lg-1 questRadio">
@@ -117,6 +117,7 @@
                                 Edutuj
                             </button>
                         </div>
+                        <div class="errorMessage">${NFErrorMessage}</div>
                     </div>
                 </form>
             </div>
