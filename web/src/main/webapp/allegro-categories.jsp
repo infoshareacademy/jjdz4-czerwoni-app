@@ -69,25 +69,36 @@
             <div class="col-12">
                 <c:choose>
                     <c:when test="${empty mainCat}">
-                        <h5>Kategorie główne:</h5>
+                        Kategorie główne:
                     </c:when>
                     <c:otherwise>
-                        <h5><c:out value="${mainCat.catName}:"/></h5>
+                        <a href="/allegro-categories?parent=0">Kategorie główne</a>
+                        <c:forEach var="breadCrumb" items="${breadCrumbs}">
+                            <a href="/allegro-categories?parent=${breadCrumb.catId}">> ${breadCrumb.catName}</a>
+                        </c:forEach>
                     </c:otherwise>
                 </c:choose>
                 <c:choose>
                     <c:when test="${not empty list}">
                         <c:forEach var="category" items="${list}">
-                            <a href="/allegro-categories?parent=${category.key.catId}">
-                                <div>
-                                    <c:out value="${category.key.catPosition+1}"/>. <c:out value="${category.key.catName}"/><br/>
-                                </div>
-                            </a>
+                            <div class="row justify-content-start">
+                                <a href="/allegro-categories?parent=${category.key.catId}" class="col-4 px-0">
+                                    <div class="py-2 text-center" style="border: 1px white;border-top-style: dotted;">
+                                        <c:out value="${category.key.catPosition+1}"/>. <c:out value="${category.key.catName}"/><br/>
+                                    </div>
+                                </a>
+                                <a href="${category.value}">
+                                    <div class="px-3 py-2 text-center" style="border: 1px white;border-top-style: dotted;">
+                                        Przejdź do kategorii w serwisie Allegro
+                                    </div>
+                                </a>
+                            </div>
+
                         </c:forEach>
                     </c:when>
                     <c:otherwise>
-                        <a href="${lastCatLink}">
-                            <div>
+                        <a href="${lastCatLink}" class="col-4 px-0">
+                            <div class="py-3" style="border: 1px white;border-top-style: dotted;">
                                 Przejdź do serwisu Allegro
                             </div>
                         </a>
