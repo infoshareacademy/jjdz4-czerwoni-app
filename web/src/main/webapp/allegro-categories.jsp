@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -64,15 +65,47 @@
     </div>
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
-            <h3>Witamy w aplikacji What Do You Want</h3>
-            Aplikacja została stworzona na potrzeby projektu grupowego, w ramach kursu Junior Java Developer.<br/>
-            Co możesz zrobić za pomocą naszej aplikacji:
-            <ul>
-                <li>Rozpoznasz produkt po kodzie kreskowym</li>
-                <li>Pomożemy Ci znaleźć idealny produkt</li>
-                <li>Szybko wyszukasz interesującą Cię kategorię Allegro</li>
-                <li>Szybko przejżysz kategorie Allegro</li>
-            </ul>
+            <div class="col-12 text-center"><h4>Kategorie Allegro</h4></div>
+            <div class="col-12">
+                <c:choose>
+                    <c:when test="${empty mainCat}">
+                        Kategorie główne:
+                    </c:when>
+                    <c:otherwise>
+                        <a href="/allegro-categories?parent=0">Kategorie główne</a>
+                        <c:forEach var="breadCrumb" items="${breadCrumbs}">
+                            <a href="/allegro-categories?parent=${breadCrumb.catId}">> ${breadCrumb.catName}</a>
+                        </c:forEach>
+                    </c:otherwise>
+                </c:choose>
+                <c:choose>
+                    <c:when test="${not empty list}">
+                        <c:forEach var="category" items="${list}">
+                            <div class="row justify-content-start">
+                                <a href="/allegro-categories?parent=${category.key.catId}" class="col-4 px-0">
+                                    <div class="py-2 text-center" style="border: 1px white;border-top-style: dotted;">
+                                        <c:out value="${category.key.catPosition+1}"/>. <c:out value="${category.key.catName}"/><br/>
+                                    </div>
+                                </a>
+                                <a href="${category.value}">
+                                    <div class="px-3 py-2 text-center" style="border: 1px white;border-top-style: dotted;">
+                                        Przejdź do kategorii w serwisie Allegro
+                                    </div>
+                                </a>
+                            </div>
+
+                        </c:forEach>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="${lastCatLink}" class="col-4 px-0">
+                            <div class="py-3" style="border: 1px white;border-top-style: dotted;">
+                                Przejdź do serwisu Allegro
+                            </div>
+                        </a>
+                    </c:otherwise>
+                </c:choose>
+
+            </div>
         </div>
         <div class="row m-0">
             <span class="mx-auto p-2">&#169 infoShare Academy</span>
