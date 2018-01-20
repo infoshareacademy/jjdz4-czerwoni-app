@@ -33,6 +33,7 @@ public class RemoveQuestionServlet extends HttpServlet {
             requestDispatcher.forward(request,response);
         }
         Question question = questionAnswerService.getQuestionById(questionId);
+        request.setAttribute("question",question);
         for (Answer answer :question.getAnswerList()){
             questionAnswerService.removeAnswer(answer);
             categoryService.removeCategory(answer.getRelatedCategory());

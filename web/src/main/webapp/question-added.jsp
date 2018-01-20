@@ -79,8 +79,8 @@
     </div>
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
-            <h3>Dodano pytanie:</h3><br/>
-            <div id="questionName">${question.questionName} (poziom: ${question.questionLevel})</div><br/>
+            <h3>Dodano pytanie: </h3><br/>
+            <div id="questionName"> ${question.questionName} (poziom: ${question.questionLevel})</div><br/>
                 <div>
                     <ol type="a">
                     <c:forEach var="alist" items="${question.answerList}">

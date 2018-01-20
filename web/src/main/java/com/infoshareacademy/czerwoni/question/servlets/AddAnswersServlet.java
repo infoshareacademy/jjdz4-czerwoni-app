@@ -34,8 +34,6 @@ public class AddAnswersServlet extends HttpServlet {
         if(request.getParameter("add-next-answer")!=null) {
             addNextAnswer(request, response);
         }
-
-
     }
 
     private void addNextAnswer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

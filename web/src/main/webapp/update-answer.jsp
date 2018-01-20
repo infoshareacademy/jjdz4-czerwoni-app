@@ -1,7 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
@@ -30,7 +29,8 @@
         </div>
         <div class="col text-lg-right text-sm-center text-md-right text-center">
             <div class="dropdown">
-                <button class="btn btn-dark dropdown-toggle bg-dark m-3" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btn btn-dark dropdown-toggle bg-dark m-3" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="icon-user"></i> <span class="d-none d-lg-inline-block">Panel administatora</span>
                 </button>
                 <div class="dropdown-menu bg-dark dropdown-menu-right" aria-labelledby="dropdownMenuButton">
@@ -41,7 +41,8 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleDropdownFormPassword1">Hasło</label>
-                            <input type="password" class="form-control" id="exampleDropdownFormPassword1" name="password" placeholder="Password">
+                            <input type="password" class="form-control" id="exampleDropdownFormPassword1"
+                                   name="password" placeholder="Password">
                         </div>
                         <div class="form-check">
                             <label class="form-check-label">
@@ -68,7 +69,8 @@
             <a class="nav-link" href="#"><i class="icon-barcode"></i> <span class="d-none d-lg-inline-block">Kod kreskowy</span></a>
         </div>
         <div class="nav-item w-25">
-            <a title="Odpowiedz na kilka pytań aby wybrać najlepszą kategorię produktów" class="nav-link" href="questions"><i class="icon-cart-arrow-down"></i> <span class="d-none d-lg-inline-block">Pomocnik zakupowy</span></a>
+            <a title="Odpowiedz na kilka pytań aby wybrać najlepszą kategorię produktów" class="nav-link"
+               href="questions"><i class="icon-cart-arrow-down"></i> <span class="d-none d-lg-inline-block">Pomocnik zakupowy</span></a>
         </div>
         <div class="nav-item w-25">
             <a class="nav-link" href="#"><i class="icon-search"></i> <span class="d-none d-lg-inline-block">Wyszukiwarka Allegro</span></a>
@@ -79,7 +81,47 @@
     </div>
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
-            Pytanie: ${question.questionName} zostało zmienione.
+            <%--<c:if test="${sessionScope.mode != 'editMode'}">--%>
+            <form method="post">
+                <div class="questionForm">
+                    Treść pytania: ${sessionScope.question.questionName}"/> <br/><br/>
+
+                        <div class="questionForm">
+                            <label>Odpowiedź: </label><br/>
+                            <input size="80" name="answerName" type="text"
+                                                value="${answerList.answerName}"/><br/><br/>
+                            <label>Kategoria: </label><br/><input size="40" name="categoryName" type="text"
+                                                                  value="${answerList.relatedCategory.categoryName}"/><br/><br/>
+                            <label>Link Allegro: </label><br/><input size="60" name="categoryAllegroLink" type="text"
+                                                                     value="${answerList.relatedCategory.categoryName}"/><br/><br/>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <button class="button" type="submit" formaction="" name="edit-button"
+                                        value="save-changes">Zapisz zmiany
+                                </button>
+                            </div>
+                            <div class="col-lg-3">
+                                <button class="button" type="submit" formaction="" name="edit-button"
+                                        value="remove-answer">Usuń zaznaczoną odpowiedź
+                                </button>
+                            </div>
+                            <div class="col-lg-3">
+                                <button class="button" type="submit" formaction="" name="edit-button"
+                                        value="add-next-answer">Dodaj kolejną odpowiedź
+                                </button>
+                            </div>
+                            <div class="col-lg-3">
+                                <button class="button" type="submit" formaction="admin-panel.jsp" name="edit-button"
+                                        value="back">Anuluj
+                                </button>
+                            </div>
+                        </div>
+            </form>
+
+            <%--</c:if>--%>
         </div>
         <div class="row m-0">
             <span class="mx-auto p-2">&#169 infoShare Academy</span>

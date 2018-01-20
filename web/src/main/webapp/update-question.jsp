@@ -97,26 +97,15 @@
 
                     <label>Wybierz nową odpowiedź nadrzędną: </label>
                     <select name="answer">
-                        <option value="wybierz odpowiedź">Wybierz odpowiedź</option>
+                        <option value="0">Wybierz odpowiedź</option>
                         <c:forEach var="list" items="${sessionScope.answersWithoutRelQuestList}">
                             <option value="${list.answerId}">${list.answerName}</option>
                         </c:forEach>
                     </select><br/><br/>
                 </div>
-                <c:forEach var="answerList" items="${sessionScope.question.answerList}">
-                    <div class="questionForm">
-                        <label>Odpowiedź: <input type="radio" name="questRadio" value="${answerList.answerId}"/> </label><br/><input size="80" name="answerName" type="text"
-                                                              value="${answerList.answerName}"/><br/><br/>
-                        <label>Kategoria: </label><br/><input size="40" name="categoryName" type="text"
-                                                              value="${answerList.relatedCategory.categoryName}"/><br/><br/>
-                        <label>Link Allegro: </label><br/><input size="60" name="categoryAllegroLink" type="text"
-                                                                 value="${answerList.relatedCategory.categoryName}"/><br/><br/>
-                    </div>
-                </c:forEach>
                 <div class="row">
-                    <div class="col-lg-3"><button class="button" type="submit" formaction="" name="edit-button" value="save-changes">Zapisz zmiany</button></div>
-                    <div class="col-lg-3"><button class="button" type="submit" formaction="" name="edit-button" value="remove-answer">Usuń zaznaczoną odpowiedź</button></div>
-                    <div class="col-lg-3"><button class="button" type="submit" formaction="" name="edit-button" value="add-next-answer">Dodaj kolejną odpowiedź</button></div>
+                    <div class="col-lg-3"><button class="button" type="submit" formaction="update-question" name="edit-button" value="save-changes">Zapisz zmiany</button></div>
+                    <div class="col-lg-3"><button class="button" type="submit" formaction="update-question" name="edit-button" value="goto-answer">Zapisz i przejdź do odpowiedzi</button></div>
                     <div class="col-lg-3"><button class="button" type="submit" formaction="admin-panel.jsp" name="edit-button" value="back">Anuluj</button></div>
                 </div>
             </form>
