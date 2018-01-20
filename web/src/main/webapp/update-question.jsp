@@ -82,15 +82,18 @@
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
             <%--<c:if test="${sessionScope.mode != 'editMode'}">--%>
-            <form method="post" action="update-question">
-                <label>Treść pytania: </label><br/><input size="80" name="questionName" type="text"
-                                                          value="${sessionScope.question.questionName}"/> <br/><br/>
-                <label>Poziom pytania: </label><br/><input size="20" name="questionLevel" type="text"
-                                                           value="${sessionScope.question.questionLevel}"/>
-                <div class="errorMessage">${NFErrorMessage}</div>
-                <br/>
+            <form method="post">
                 <div class="questionForm">
-                    <label>Odpowiedź nadrzędna:<span id="annswerName"> ${sessionScope.relatedAnswer.answerName}</span></label><br/><br/>
+                    <label>Treść pytania: </label><br/><input size="80" name="questionName" type="text"
+                                                              value="${sessionScope.question.questionName}"/> <br/><br/>
+                    <label>Poziom pytania: </label><br/><input size="20" name="questionLevel" type="text"
+                                                               value="${sessionScope.question.questionLevel}"/>
+                    <div class="errorMessage">${NFErrorMessage}</div>
+                    <br/>
+                </div>
+                <div class="questionForm">
+                    <label>Odpowiedź nadrzędna:<span
+                            id="annswerName"> ${sessionScope.relatedAnswer.answerName}</span></label><br/><br/>
 
                     <label>Wybierz nową odpowiedź nadrzędną: </label>
                     <select name="answer">
@@ -102,7 +105,7 @@
                 </div>
                 <c:forEach var="answerList" items="${sessionScope.question.answerList}">
                     <div class="questionForm">
-                        <label>Odpowiedź: </label><br/><input size="80" name="answerName" type="text"
+                        <label>Odpowiedź: <input type="radio" name="questRadio" value="${answerList.answerId}"/> </label><br/><input size="80" name="answerName" type="text"
                                                               value="${answerList.answerName}"/><br/><br/>
                         <label>Kategoria: </label><br/><input size="40" name="categoryName" type="text"
                                                               value="${answerList.relatedCategory.categoryName}"/><br/><br/>
@@ -110,11 +113,12 @@
                                                                  value="${answerList.relatedCategory.categoryName}"/><br/><br/>
                     </div>
                 </c:forEach>
-
-                <div><input class="button" type="submit" name="add-answer" value="Zapisz"></div>
-                <div><input class="button" type="submit" name="add-next-answer" value="Dodaj kolejną odpowiedź">
+                <div class="row">
+                    <div class="col-lg-3"><button class="button" type="submit" formaction="" name="edit-button" value="save-changes">Zapisz zmiany</button></div>
+                    <div class="col-lg-3"><button class="button" type="submit" formaction="" name="edit-button" value="remove-answer">Usuń zaznaczoną odpowiedź</button></div>
+                    <div class="col-lg-3"><button class="button" type="submit" formaction="" name="edit-button" value="add-next-answer">Dodaj kolejną odpowiedź</button></div>
+                    <div class="col-lg-3"><button class="button" type="submit" formaction="admin-panel.jsp" name="edit-button" value="back">Anuluj</button></div>
                 </div>
-                <input class="button" type="submit" name="add-question" value="Dalej"/>
             </form>
 
             <%--</c:if>--%>
