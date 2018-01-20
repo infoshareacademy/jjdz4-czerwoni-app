@@ -9,7 +9,7 @@ public class BarCodeReaderTest {
 
     @Test
     public void decodeBarcodeFromFile_FileExists() {
-        assertThat(BarCodeReader.decodeBarcodeFromFile("/home/mm/kod.png"))
+        assertThat(BarCodeReader.decodeBarcodeFromFile("kod.png"))
                 .isEqualTo("5900084063241");
 
     }
