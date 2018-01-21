@@ -69,12 +69,12 @@
             <div class="col-12">
                 <c:choose>
                     <c:when test="${empty mainCat}">
-                        Kategorie główne:
+                        <span style="font-size: 1.3em;">Kategorie główne</span>
                     </c:when>
                     <c:otherwise>
-                        <a href="/allegro-categories?parent=0">Kategorie główne</a>
+                        <a href="/allegro-categories?parent=0" style="font-size: 1.3em;">Kategorie główne</a>
                         <c:forEach var="breadCrumb" items="${breadCrumbs}">
-                            <a href="/allegro-categories?parent=${breadCrumb.catId}">> ${breadCrumb.catName}</a>
+                            <a href="/allegro-categories?parent=${breadCrumb.catId}" style="font-size: 1.3em;">> ${breadCrumb.catName}</a>
                         </c:forEach>
                     </c:otherwise>
                 </c:choose>
@@ -93,7 +93,6 @@
                                     </div>
                                 </a>
                             </div>
-
                         </c:forEach>
                     </c:when>
                     <c:otherwise>
