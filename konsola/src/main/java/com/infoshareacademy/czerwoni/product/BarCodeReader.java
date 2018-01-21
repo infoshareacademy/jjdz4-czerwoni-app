@@ -17,7 +17,7 @@ import java.util.Map;
 /**
  * rozpoznanie kodu kreskowego ze wskazanego pliku graficznego
  */
-class BarCodeReader {
+public class BarCodeReader {
 
     private static BarcodeFormat DEFAULT_BARCODE_FORMAT = BarcodeFormat.CODE_128;
     private static Logger logger = LoggerFactory.getLogger(BarCodeReader.class);
@@ -72,7 +72,7 @@ class BarCodeReader {
      * @param fileName nazwa pliku (wraz ze scieżką) obrazka zawierajacego kod kreskowy
      * @return rozpoznany kod kreskowy
      */
-    static String decodeBarcodeFromFile(String fileName) {
+    public static String decodeBarcodeFromFile(String fileName) {
 
         String barcodeString = "";
 

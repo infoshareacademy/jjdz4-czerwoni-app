@@ -12,7 +12,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-<form method="POST" action="upload" enctype="multipart/form-data">
+<form method="POST" action="/FileUpload" enctype="multipart/form-data">
     Plik:
     <input type="file" name="file" id="file"/> <br/>
     Lokalizacja docelowa:
