@@ -15,7 +15,7 @@ public class CategoriesServiceBean implements CategoriesService {
     List<AllegroCategory> allCategories = ParseXmlAllegroCategories.deserialization();
 
     @EJB
-    CategoriesService categoriesRepositoryDao;
+    CategoriesService categoriesService;
 
     @Override
     public Map<AllegroCategory, String> getCategories(int parentId) {
