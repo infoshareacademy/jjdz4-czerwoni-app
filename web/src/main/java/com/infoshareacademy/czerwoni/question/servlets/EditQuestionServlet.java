@@ -93,6 +93,20 @@ public class EditQuestionServlet extends HttpServlet {
                 requestDispatcher.forward(request,response);
                 break;
             }
+            case "goto-update-answer": {
+                request.setAttribute("isUpdateAnswer", true);
+                if (answer != null && newAnswerId>0) {
+                    answer.setRelatedQuest(null);
+                    questionAnswerService.updateAnswer(answer);
+                    newRelatedAnswer = questionAnswerService.getAnswerById(newAnswerId);
+                    newRelatedAnswer.setRelatedQuest(question);
+                    questionAnswerService.updateAnswer(newRelatedAnswer);
+                }
+                questionAnswerService.updateQuestion(question);
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-answers.jsp");
+                requestDispatcher.forward(request,response);
+                break;
+            }
 
         }
 

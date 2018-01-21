@@ -96,7 +96,7 @@ button:hover {
     background-color: #005580;
     color: aliceblue;
     width: auto;
-    height: 100px;
+    height: 50px;
     font-size: 14px;
     text-align: center;
     margin-top: 30px;
@@ -157,8 +157,8 @@ a:link {
 .link-button {
     background-color: #005580;
     color: aliceblue;
-    width: auto;
-    height: 240px;
+    width: 350px;
+    height: 100px;
     font-size: 18px;
     text-align: center;
     border: 1px solid aliceblue;
@@ -171,7 +171,7 @@ a:link {
     align-items: center;
 }
 .link-button>a {
-    padding: 50px 50px 50px 50px;
+    padding: 15px 40px 15px 40px;
 }
 .link-button>a:hover{
     background-color: transparent;

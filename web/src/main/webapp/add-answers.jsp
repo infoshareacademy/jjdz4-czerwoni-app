@@ -30,7 +30,8 @@
         </div>
         <div class="col text-lg-right text-sm-center text-md-right text-center">
             <div class="dropdown">
-                <button class="btn btn-dark dropdown-toggle bg-dark m-3" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btn btn-dark dropdown-toggle bg-dark m-3" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="icon-user"></i> <span class="d-none d-lg-inline-block">Panel administatora</span>
                 </button>
                 <div class="dropdown-menu bg-dark dropdown-menu-right" aria-labelledby="dropdownMenuButton">
@@ -41,7 +42,8 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleDropdownFormPassword1">Hasło</label>
-                            <input type="password" class="form-control" id="exampleDropdownFormPassword1" name="password" placeholder="Password">
+                            <input type="password" class="form-control" id="exampleDropdownFormPassword1"
+                                   name="password" placeholder="Password">
                         </div>
                         <div class="form-check">
                             <label class="form-check-label">
@@ -68,7 +70,8 @@
             <a class="nav-link" href="#"><i class="icon-barcode"></i> <span class="d-none d-lg-inline-block">Kod kreskowy</span></a>
         </div>
         <div class="nav-item w-25">
-            <a title="Odpowiedz na kilka pytań aby wybrać najlepszą kategorię produktów" class="nav-link" href="questions"><i class="icon-cart-arrow-down"></i> <span class="d-none d-lg-inline-block">Pomocnik zakupowy</span></a>
+            <a title="Odpowiedz na kilka pytań aby wybrać najlepszą kategorię produktów" class="nav-link"
+               href="questions"><i class="icon-cart-arrow-down"></i> <span class="d-none d-lg-inline-block">Pomocnik zakupowy</span></a>
         </div>
         <div class="nav-item w-25">
             <a class="nav-link" href="#"><i class="icon-search"></i> <span class="d-none d-lg-inline-block">Wyszukiwarka Allegro</span></a>
@@ -79,27 +82,43 @@
     </div>
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
-            <div>
-                <h4>Dodaj odpowiedzi do pytania</h4><br/>
-                <div>${sessionScope.question.questionName}</div>
-                <div>
-                    <ol type="a">
-                        <c:forEach var="alist" items="${sessionScope.question.answerList}">
-                            <li>${alist.answerName} Kategoria: <a href="${alist.relatedCategory.categoryAllegroLink}">${alist.relatedCategory.categoryName}</a></li>
+            <div class="row questionForm">
+                <div col-lg-12>
+                    <h5>Dodaj odpowiedzi do pytania</h5><br/>
+                    <div>${sessionScope.question.questionName}</div>
+                    <div>
+                        <ol type="a">
+                                <c:forEach var="alist" items="${sessionScope.question.answerList}">
+                                    <c:if test="${isUpdateAnswer==true}">
+                                        <input type="radio" name="answerRadio" value="${alist.answerId}"
+                                               formmethod="post"
+                                               formaction="add-answers">
 
-                        </c:forEach>
-                    </ol>
+                                    </c:if>
+                                    <li> ${alist.answerName} Kategoria: <a
+                                            href="${alist.relatedCategory.categoryAllegroLink}">${alist.relatedCategory.categoryName}</a>
+                                    </li>
+                                </c:forEach>
+                        </ol>
+                    </div>
                 </div>
             </div>
-            <div class="questionForm">
+            <div class="row questionForm">
                 <form method="post" action="add-answers">
-                    <label>Odpowiedź: </label><br/><input size="80" name="answerName" type="text"/><br/><br/>
-                    <label>Kategoria: </label><br/><input size="40" name="categoryName" type="text"/><br/><br/>
-                    <label>Link Allegro: </label><br/><input size="60" name="categoryAllegroLink" type="text"/><br/><br/>
+                    <label>Odpowiedź: </label><br/><input size="80" name="answerName" type="text"
+                                                          value="${answer.answerName}"/><br/><br/>
+                    <label>Kategoria: </label><br/><input size="40" name="categoryName" type="text"
+                                                          value="${answer.relatedCategory.categoryName}"/><br/><br/>
+                    <label>Link Allegro: </label><br/><input size="60" name="categoryAllegroLink"
+                                                             type="text"
+                                                             value="${answer.relatedCategory.categoryAllegroLink}"/><br/><br/>
 
                     <div><input class="button" type="submit" name="add-answer" value="Zapisz"></div>
                     <div><input class="button" type="submit" name="add-next-answer" value="Dodaj kolejną odpowiedź">
                     </div>
+                    <c:if test="${isUpdateAnswer==true}">
+                        <div><input class="button" type="submit" name="remove-answer" value="Usuń"></div>
+                    </c:if>
                 </form>
             </div>
         </div>

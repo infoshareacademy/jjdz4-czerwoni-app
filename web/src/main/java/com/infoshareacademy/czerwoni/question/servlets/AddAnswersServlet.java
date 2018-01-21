@@ -34,6 +34,9 @@ public class AddAnswersServlet extends HttpServlet {
         if(request.getParameter("add-next-answer")!=null) {
             addNextAnswer(request, response);
         }
+        if(request.getParameter("remove-answer")!=null) {
+            removeAnswer(request, response);
+        }
     }
 
     private void addNextAnswer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -75,5 +78,10 @@ public class AddAnswersServlet extends HttpServlet {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("question-added.jsp");
         requestDispatcher.forward(request, response);
         session.setAttribute("question",null);
+    }
+
+    private void removeAnswer(HttpServletRequest request, HttpServletResponse response) {
+        Answer answer = questionAnswerService.getAnswerById(Integer.parseInt(request.getParameter("answerRadio")));
+        questionAnswerService.removeAnswer(answer);
     }
 }

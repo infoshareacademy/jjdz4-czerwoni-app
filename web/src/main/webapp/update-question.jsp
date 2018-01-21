@@ -106,6 +106,7 @@
                 <div class="row">
                     <div class="col-lg-3"><button class="button" type="submit" formaction="update-question" name="edit-button" value="save-changes">Zapisz zmiany</button></div>
                     <div class="col-lg-3"><button class="button" type="submit" formaction="update-question" name="edit-button" value="goto-answer">Zapisz i przejdź do odpowiedzi</button></div>
+                    <div class="col-lg-3"><button class="button" type="submit" formaction="update-question" name="edit-button" value="goto-update-answer">Zapisz i edytuj odpowiedzi</button></div>
                     <div class="col-lg-3"><button class="button" type="submit" formaction="admin-panel.jsp" name="edit-button" value="back">Anuluj</button></div>
                 </div>
             </form>

@@ -82,11 +82,12 @@
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
             <div>
                 <div class="row">
-                    <div class="col-12"><h3>Panel administratora</h3></div>
+                    <div class="col-12 justify-content-center"><h3>Panel administratora</h3></div>
                 </div>
                 <div class="row">
-                    <div class="link-button"><a href="add-question">Dodaj pytanie</a></div>
-                    <div class="link-button"><a href="show-all-question">Usuń lub edytuj pytania</a></div>
+
+                    <div class="col-lg-4 justify-content-center link-button"><a href="add-question">Dodaj pytanie</a></div>
+                    <div class="col-lg-4 justify-content-center link-button"><a href="show-all-question">Usuń lub edytuj pytania</a></div>
                 </div>
             </div>
         </div>
