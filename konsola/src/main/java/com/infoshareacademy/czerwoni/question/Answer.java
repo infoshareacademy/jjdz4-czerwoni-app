@@ -3,10 +3,13 @@ package com.infoshareacademy.czerwoni.question;
 /**
  * Klasa opisująca odpowiedzi do pytań
  */
+
 public class Answer {
 
     private int answerId;
+
     private String answerName;
+
     private int relatedQuest;
 
     public int getAnswerId() {

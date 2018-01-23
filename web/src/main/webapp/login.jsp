@@ -68,20 +68,21 @@
             <a class="nav-link" href="#"><i class="icon-search"></i> <span class="d-none d-lg-inline-block">Wyszukiwarka Allegro</span></a>
         </div>
         <div class="nav-item w-25">
-            <a class="nav-link" href="/allegro-categories?parent=0"><i class="icon-tags"></i> <span class="d-none d-lg-inline-block">Kategorie Allegro</span></a>
+            <a class="nav-link" href="#"><i class="icon-tags"></i> <span class="d-none d-lg-inline-block">Kategorie Allegro</span></a>
         </div>
     </div>
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
-            <h3>Witamy w aplikacji What Do You Want</h3>
-            Aplikacja została stworzona na potrzeby projektu grupowego, w ramach kursu Junior Java Developer.<br/>
-            Co możesz zrobić za pomocą naszej aplikacji:
-            <ul>
-                <li>Rozpoznasz produkt po kodzie kreskowym</li>
-                <li>Pomożemy Ci znaleźć idealny produkt</li>
-                <li>Szybko wyszukasz interesującą Cię kategorię Allegro</li>
-                <li>Szybko przejżysz kategorie Allegro</li>
-            </ul>
+            <h1>Zaloguj</h1>
+            ${errorMessage}
+            <form class="questionForm" method="post" action="/login">
+                <label for="userName">Login:</label>
+                <input type="text" id="userName" name="login">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password">
+                <input type="submit" value="login" name="login"/>
+            </form>
+
         </div>
         <div class="row m-0">
             <span class="mx-auto p-2">&#169 infoShare Academy</span>

@@ -6,9 +6,13 @@ import java.util.ArrayList;
 /**
  * Klasa opisuje pytania z pliku XML
  */
+
 public class Question {
+
     private int questionId;
+
     private String questionName;
+
     ArrayList<Answer> answerList = new ArrayList<>();
 
     public int getQuestionId() {
