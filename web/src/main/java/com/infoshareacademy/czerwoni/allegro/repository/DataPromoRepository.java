@@ -17,7 +17,7 @@ public class DataPromoRepository {
     @PersistenceContext(unitName = "pUnit")
     EntityManager entityManager;
 
-    public void addCategory(AllegroCategory allegroCategory) {entityManager.persist(allegroCategory);}
+    public void addCategory(AllegroCategory allegroCategory) {entityManager.persist(allegroCategory.getCatId());}
 
     public void removeCategory(AllegroCategory allegroCategory) {entityManager.remove(entityManager.contains(allegroCategory));}
 
