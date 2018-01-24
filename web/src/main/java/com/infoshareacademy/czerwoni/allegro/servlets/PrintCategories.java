@@ -2,6 +2,7 @@ package com.infoshareacademy.czerwoni.allegro.servlets;
 
 import com.infoshareacademy.czerwoni.allegro.dao.CategoriesService;
 import com.infoshareacademy.czerwoni.allegro.AllegroCategory;
+import com.infoshareacademy.czerwoni.allegro.repository.DataPromoRepository;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -26,6 +27,7 @@ public class PrintCategories extends HttpServlet {
         AllegroCategory mainCategory = categoriesService.getMainCategory(parentID);
         String lastCategoryLink = null;
         List<AllegroCategory> breadCrumbs = categoriesService.getBreadCrumbs(parentID);
+        List<AllegroCategory> promotedCategories;
         if (parentID != 0) lastCategoryLink = mainCategory.generateLink();
         req.setAttribute("mainCat", mainCategory);
         req.setAttribute("list", categories);
