@@ -83,29 +83,34 @@
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
             <form method="post" action="add-answers">
-                <div class="row questionForm">
-                    <div col-lg-12>
-                        <h5>Dodaj odpowiedzi do pytania</h5><br/>
-                        <div>${sessionScope.question.questionName}</div>
+                <div class="questionForm row">
+                    <div col-lg-12 style="width: 800px">
+                        <h7>Dodaj/zmień odpowiedzi do pytania:</h7>
+                        <div id="categoryName">${sessionScope.question.questionName}</div><br/>
                         <div>
                             <ol type="a">
                                 <c:forEach var="alist" items="${sessionScope.question.answerList}">
-                                    <c:if test="${isUpdateAnswer==true}">
-                                        <input type="radio" name="answerRadio" value="${alist.answerId}"
-                                               formmethod="post"
-                                               formaction="add-answers">
+                                    <div class="row">
+                                            <div class="col-lg-1 questRadio">
+                                                <c:if test="${isUpdateAnswer==true}">
+                                                    <input type="radio" name="answerRadio" value="${alist.answerId}"
+                                                           formmethod="post"
+                                                           formaction="add-answers">
 
-                                    </c:if>
-                                    <li> ${alist.answerName} Kategoria: <a
-                                            href="${alist.relatedCategory.categoryAllegroLink}">${alist.relatedCategory.categoryName}</a>
-                                    </li>
+                                                </c:if>
+                                            </div>
+                                            <div class="col-lg-11">
+                                                <li> ${alist.answerName} Kategoria: <a
+                                                        href="${alist.relatedCategory.categoryAllegroLink}">${alist.relatedCategory.categoryName}</a>
+                                                </li>
+                                            </div>
+                                    </div>
                                 </c:forEach>
                             </ol>
                         </div>
                     </div>
                 </div>
-                <div class="row questionForm">
-
+                <div class="questionForm row">
                     <div class="row">
                         <div class="col-lg-11">
                             <label>Odpowiedź: </label><br/><input size="80" name="answerName" type="text"
@@ -116,16 +121,17 @@
                                                                      type="text"
                                                                      value="${answer.relatedCategory.categoryAllegroLink}"/><br/><br/>
                         </div>
-                        <c:if test="${isUpdateAnswer==true}">
-                            <div class="col-lg-1">
-                                <div><input class="button" type="submit" name="edit-answer" value="Edytuj"></div>
-                            </div>
-                        </c:if>
+                        <div class="col-lg-1">
+                            <c:if test="${isUpdateAnswer==true}">
+                                <input class="button" type="submit" name="edit-answer" value="Edytuj">
+                            </c:if>
+                        </div>
+
                     </div>
                     <div><input class="button" type="submit" name="add-answer" value="Zapisz"></div>
                     <c:if test="${isUpdateAnswer!=true}">
                         <div><input class="button" type="submit" name="add-next-answer" value="Dodaj kolejną odpowiedź">
-                    </div>
+                        </div>
                     </c:if>
                     <c:if test="${isUpdateAnswer==true}">
                         <div><input class="button" type="submit" name="remove-answer" value="Usuń"></div>
