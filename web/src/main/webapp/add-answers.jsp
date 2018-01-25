@@ -82,12 +82,13 @@
     </div>
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
-            <div class="row questionForm">
-                <div col-lg-12>
-                    <h5>Dodaj odpowiedzi do pytania</h5><br/>
-                    <div>${sessionScope.question.questionName}</div>
-                    <div>
-                        <ol type="a">
+            <form method="post" action="add-answers">
+                <div class="row questionForm">
+                    <div col-lg-12>
+                        <h5>Dodaj odpowiedzi do pytania</h5><br/>
+                        <div>${sessionScope.question.questionName}</div>
+                        <div>
+                            <ol type="a">
                                 <c:forEach var="alist" items="${sessionScope.question.answerList}">
                                     <c:if test="${isUpdateAnswer==true}">
                                         <input type="radio" name="answerRadio" value="${alist.answerId}"
@@ -99,28 +100,38 @@
                                             href="${alist.relatedCategory.categoryAllegroLink}">${alist.relatedCategory.categoryName}</a>
                                     </li>
                                 </c:forEach>
-                        </ol>
+                            </ol>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row questionForm">
-                <form method="post" action="add-answers">
-                    <label>Odpowiedź: </label><br/><input size="80" name="answerName" type="text"
-                                                          value="${answer.answerName}"/><br/><br/>
-                    <label>Kategoria: </label><br/><input size="40" name="categoryName" type="text"
-                                                          value="${answer.relatedCategory.categoryName}"/><br/><br/>
-                    <label>Link Allegro: </label><br/><input size="60" name="categoryAllegroLink"
-                                                             type="text"
-                                                             value="${answer.relatedCategory.categoryAllegroLink}"/><br/><br/>
+                <div class="row questionForm">
 
-                    <div><input class="button" type="submit" name="add-answer" value="Zapisz"></div>
-                    <div><input class="button" type="submit" name="add-next-answer" value="Dodaj kolejną odpowiedź">
+                    <div class="row">
+                        <div class="col-lg-11">
+                            <label>Odpowiedź: </label><br/><input size="80" name="answerName" type="text"
+                                                                  value="${answer.answerName}"/><br/><br/>
+                            <label>Kategoria: </label><br/><input size="40" name="categoryName" type="text"
+                                                                  value="${answer.relatedCategory.categoryName}"/><br/><br/>
+                            <label>Link Allegro: </label><br/><input size="60" name="categoryAllegroLink"
+                                                                     type="text"
+                                                                     value="${answer.relatedCategory.categoryAllegroLink}"/><br/><br/>
+                        </div>
+                        <c:if test="${isUpdateAnswer==true}">
+                            <div class="col-lg-1">
+                                <div><input class="button" type="submit" name="edit-answer" value="Edytuj"></div>
+                            </div>
+                        </c:if>
                     </div>
+                    <div><input class="button" type="submit" name="add-answer" value="Zapisz"></div>
+                    <c:if test="${isUpdateAnswer!=true}">
+                        <div><input class="button" type="submit" name="add-next-answer" value="Dodaj kolejną odpowiedź">
+                    </div>
+                    </c:if>
                     <c:if test="${isUpdateAnswer==true}">
                         <div><input class="button" type="submit" name="remove-answer" value="Usuń"></div>
                     </c:if>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
         <div class="row m-0">
             <span class="mx-auto p-2">&#169 infoShare Academy</span>

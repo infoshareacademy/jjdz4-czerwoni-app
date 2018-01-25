@@ -37,10 +37,15 @@ public class AddAnswersServlet extends HttpServlet {
         if(request.getParameter("remove-answer")!=null) {
             removeAnswer(request, response);
         }
+        if(request.getParameter("edit-answer")!=null){
+           editAnswer(request,response);
+        }
     }
 
     private void addNextAnswer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
+        session.removeAttribute("isUpdateAnswer");
+        session.removeAttribute("answer");
         Question question = (Question) session.getAttribute("question");
         List<Answer> answerList;
         answerList = question.getAnswerList();
@@ -61,27 +66,62 @@ public class AddAnswersServlet extends HttpServlet {
 
     private void addAnswerAndExit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Question question = (Question) session.getAttribute("question");
-        List<Answer> answerList;
-        answerList = question.getAnswerList();
-        Answer answer = new Answer();
-        answer.setAnswerName(request.getParameter("answerName"));
-        Category category = new Category();
-        category.setCategoryName(request.getParameter("categoryName"));
-        category.setCategoryAllegroLink(request.getParameter("categoryAllegroLink"));
-        categoryService.addCategory(category);
-        answer.setRelatedCategory(category);
-        questionAnswerService.addAnswer(answer);
-        answerList.add(answer);
-        question.setAnswerList(answerList);
-        questionAnswerService.updateQuestion(question);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("question-added.jsp");
-        requestDispatcher.forward(request, response);
-        session.setAttribute("question",null);
+        if(session.getAttribute("isUpdateAnswer")!=null){
+            Answer answer = (Answer) session.getAttribute("answer");
+            answer.setAnswerName(request.getParameter("answerName"));
+            answer.getRelatedCategory().setCategoryName(request.getParameter("categoryName"));
+            answer.getRelatedCategory().setCategoryAllegroLink(request.getParameter("categoryAllegroLink"));
+            categoryService.updateCategory(answer.getRelatedCategory());
+            questionAnswerService.updateAnswer(answer);
+            Question question = (Question) session.getAttribute("question");
+            session.setAttribute("question",questionAnswerService.getQuestionById(question.getQuestionId()));
+        }
+        else {
+            Question question = (Question) session.getAttribute("question");
+            List<Answer> answerList;
+            answerList = question.getAnswerList();
+            Answer answer = new Answer();
+            answer.setAnswerName(request.getParameter("answerName"));
+            Category category = new Category();
+            category.setCategoryName(request.getParameter("categoryName"));
+            category.setCategoryAllegroLink(request.getParameter("categoryAllegroLink"));
+            categoryService.addCategory(category);
+            answer.setRelatedCategory(category);
+            questionAnswerService.addAnswer(answer);
+            answerList.add(answer);
+            question.setAnswerList(answerList);
+            questionAnswerService.updateQuestion(question);
+        }
+            session.removeAttribute("answer");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("question-added.jsp");
+            requestDispatcher.forward(request, response);
+            session.setAttribute("question", null);
     }
 
-    private void removeAnswer(HttpServletRequest request, HttpServletResponse response) {
+    private void removeAnswer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Answer answer = questionAnswerService.getAnswerById(Integer.parseInt(request.getParameter("answerRadio")));
         questionAnswerService.removeAnswer(answer);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("edit-message.jsp");
+        requestDispatcher.forward(request, response);
+    }
+
+    private void editAnswer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        HttpSession session = request.getSession();
+        Integer answerId = null;
+        try {
+            answerId = Integer.parseInt(request.getParameter("answerRadio"));
+        } catch (NumberFormatException nfe) {
+            nfe.printStackTrace();
+            request.setAttribute("NFErrorMessage", "Musisz wybrać pytanie!!!");
+            session.setAttribute("isUpdateAnswer", true);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-answers.jsp");
+            requestDispatcher.forward(request, response);
+        }
+        session.setAttribute("isUpdateAnswer", true);
+        Answer answer = questionAnswerService.getAnswerById(answerId);
+        session.setAttribute("answer",answer);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-answers.jsp");
+        requestDispatcher.forward(request,response);
+
     }
 }
