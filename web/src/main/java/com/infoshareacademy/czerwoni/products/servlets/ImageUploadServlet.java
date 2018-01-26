@@ -45,13 +45,15 @@ public class ImageUploadServlet extends HttpServlet {
 
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        fetchDataFromRequest(request);
+        final String GENERIC_ERR_MSG = "Albo nie wskazałeś pliku do przesłania, albo "
+                + "próbujesz go zapisać w nieistniejącej lub niedostępnej "
+                + "lokalizacji.";
 
         response.setContentType("text/html;charset=UTF-8");
         final PrintWriter writer = response.getWriter();
 
         try {
+            fetchDataFromRequest(request);
             saveFileIntoStorage(filePath, fileName, filePart);
             // writer.println("Nowy plik " + fileName + " utworzony w " + filePath);
 
@@ -67,11 +69,8 @@ public class ImageUploadServlet extends HttpServlet {
                 LOGGER.trace("odczytany kod: " + productBarcode + "; produkt: " + productData);
             }
         } catch (FileNotFoundException fne) {
-            writer.println(
-                    "Albo nie wskazałeś pliku do przesłania, albo "
-                            + "próbujesz go zapisać w nieistniejącej lub niedostępnej "
-                            + "lokalizacji.");
-            writer.println("<br/> BŁĄD: " + fne.getMessage());
+            String msg = fne.getMessage().equals("") ? GENERIC_ERR_MSG : fne.getMessage();
+            writer.println("<br/> Błąd: " + msg);
 
             LOGGER.error("Problemy w trakcie przesyłu pliku. Błąd: {0}",
                     new Object[]{fne.getMessage()});
@@ -86,8 +85,10 @@ public class ImageUploadServlet extends HttpServlet {
     }
 
     private void fetchDataFromRequest(HttpServletRequest request) throws ServletException, IOException {
-        filePath = getStoragePath();
         filePart = request.getPart("file");
+        if (filePart.getSubmittedFileName().equals(""))
+            throw new FileNotFoundException("Podano pustą nazwę pliku");
+        filePath = getStoragePath();
         fileName = UUID.randomUUID().toString();
 
         String extension = FilenameUtils.getExtension(getFileName(filePart));
