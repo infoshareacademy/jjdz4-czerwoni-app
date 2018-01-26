@@ -84,11 +84,13 @@
                             <div class="row justify-content-start">
                                 <a href="/allegro-categories?parent=${category.key.catId}" class="col-4 px-0">
                                     <div class="py-2 text-center" style="border: 1px white;border-top-style: dotted;">
-                                        <c:out value="${category.key.catPosition+1}"/>. <c:out value="${category.key.catName}"/><br/>
+                                        <span <c:if test="${category.key.promoted==true}">style="font-weight: bold; color: aqua;"</c:if>>
+                                            <c:out value="${category.key.catPosition+1}"/>. <c:out value="${category.key.catName}"/><br/>
+                                        </span>
                                     </div>
                                 </a>
                                 <a href="${category.value}">
-                                    <div class="px-3 py-2 text-center" style="border: 1px white;border-top-style: dotted;">
+                                    <div class="px-3 py-2 text-center" style="border: 1px white;border-top-style: dotted; color: yellow;">
                                         Przejdź do kategorii w serwisie Allegro
                                     </div>
                                 </a>

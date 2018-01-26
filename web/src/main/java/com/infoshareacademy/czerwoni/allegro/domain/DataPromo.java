@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name= "getAllPromotedCategories", query = "from DataPromo"),
+        @NamedQuery(name= "getAllPromotedCategories", query = "select promotedCategory from DataPromo"),
 })
 public class DataPromo {
 

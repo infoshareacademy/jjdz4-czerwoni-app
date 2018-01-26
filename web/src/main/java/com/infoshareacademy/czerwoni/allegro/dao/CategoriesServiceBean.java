@@ -2,6 +2,7 @@ package com.infoshareacademy.czerwoni.allegro.dao;
 
 import com.beust.jcommander.internal.Lists;
 import com.infoshareacademy.czerwoni.allegro.AllegroCategory;
+import com.infoshareacademy.czerwoni.allegro.repository.DataPromoRepository;
 import com.infoshareacademy.czerwoni.parse.ParseXmlAllegroCategories;
 
 import javax.ejb.EJB;
@@ -16,9 +17,12 @@ public class CategoriesServiceBean implements CategoriesService {
 
     @EJB
     CategoriesService categoriesService;
+    @EJB
+    DataPromoService dataPromoService;
 
     @Override
     public Map<AllegroCategory, String> getCategories(int parentId) {
+        dataPromoService.setPromotedCategories(allCategories);
         Map<AllegroCategory, String> categoriesMap;
         categoriesMap = allCategories.stream()
                 .filter(category -> category.getCatParent() == parentId)
@@ -53,8 +57,13 @@ public class CategoriesServiceBean implements CategoriesService {
         Collections.reverse(breadCrumbs);
         return breadCrumbs;
     }
-
-    private AllegroCategory getParentCat(int parentId) {
+    @Override
+    public AllegroCategory getParentCat(int parentId) {
         return allCategories.stream().filter(category -> category.getCatId() == parentId).findFirst().get();
+    }
+
+    @Override
+    public AllegroCategory getCategoryById(int id) {
+        return allCategories.stream().filter(category -> category.getCatId() == id).findFirst().get();
     }
 }

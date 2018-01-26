@@ -9,4 +9,6 @@ public interface CategoriesService {
     Map<AllegroCategory, String> getCategories(int parentId);
     AllegroCategory getMainCategory(int catId);
     List<AllegroCategory> getBreadCrumbs(int catId);
+    AllegroCategory getParentCat(int id);
+    AllegroCategory getCategoryById(int id);
 }
