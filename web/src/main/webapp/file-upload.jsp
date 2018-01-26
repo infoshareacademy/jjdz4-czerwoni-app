@@ -8,17 +8,22 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+          integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <title>Przesyłanie plików</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
-<body>
+<body class="bg-dark">
+<div class="container">
 <form method="POST" action="/FileUpload" enctype="multipart/form-data">
     Plik:
     <input type="file" name="file" id="file"/> <br/>
-    Lokalizacja docelowa:
-    <input type="text" value="/tmp" name="destination"/>
-    </br>
+    <!--    Lokalizacja docelowa:
+        <input type="text" value="/tmp" name="destination"/>
+        </br>  -->
     <input type="submit" value="Prześlij plik" name="upload" id="upload"/>
 </form>
+</div>
 </body>
 </html>

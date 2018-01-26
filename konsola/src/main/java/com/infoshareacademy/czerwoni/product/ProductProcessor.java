@@ -29,7 +29,7 @@ public class ProductProcessor {
      * @param barcode kod kreskowy produktu
      * @return szczegółowe informacje na temat odczytanego produktu
      */
-    static private String getProductDataFromAPI(String barcode) {
+    static public String getProductDataFromAPI(String barcode) {
         String LOG_ERR_MSG = "wyjątek w ProductProcessor.getProductDataFromAPI()";
         String response = null;
 

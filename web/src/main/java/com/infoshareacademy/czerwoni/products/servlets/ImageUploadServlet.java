@@ -3,8 +3,6 @@ package com.infoshareacademy.czerwoni.products.servlets;
 
 import java.io.*;
 import java.util.UUID;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -15,6 +13,8 @@ import javax.servlet.http.Part;
 
 import org.apache.commons.io.FilenameUtils;
 import com.infoshareacademy.czerwoni.product.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 @WebServlet("/FileUpload")
@@ -23,9 +23,10 @@ import com.infoshareacademy.czerwoni.product.*;
 
 public class ImageUploadServlet extends HttpServlet {
 
-    private static final Logger LOGGER = Logger.getLogger(
-
-            ImageUploadServlet.class.getCanonicalName());
+    private static Logger LOGGER = LoggerFactory.getLogger(ProductProcessor.class);
+    private String fileName;
+    private String filePath;
+    private Part filePart;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -45,19 +46,69 @@ public class ImageUploadServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        fetchDataFromRequest(request);
+
         response.setContentType("text/html;charset=UTF-8");
+        final PrintWriter writer = response.getWriter();
 
-        final String path = request.getParameter("destination");  // /src/user-storage/barcodes  createifnotexists
-        final Part filePart = request.getPart("file");
+        try {
+            saveFileIntoStorage(filePath, fileName, filePart);
+            // writer.println("Nowy plik " + fileName + " utworzony w " + filePath);
+
+            String productBarcode = BarCodeReader.decodeBarcodeFromFile(filePath + "/" + fileName);
+            if (productBarcode.isEmpty()) {
+                String msg = "Nie znaleziono kodu kreskowego\n";
+                writer.println("<br>" + msg);  // // "No barcode found/decoded\n"
+                LOGGER.warn(msg);
+            } else {
+                writer.println("<br>" + "Odczytany kod kreskowy: " + productBarcode);  // "Decoded barcode: "
+                String productData = ProductProcessor.getProductDataFromAPI(productBarcode);
+                writer.println("<br>" + "Zidentyfikowany produkt: " + productData);  // "Product found: "
+                LOGGER.trace("odczytany kod: " + productBarcode + "; produkt: " + productData);
+            }
+        } catch (FileNotFoundException fne) {
+            writer.println(
+                    "Albo nie wskazałeś pliku do przesłania, albo "
+                            + "próbujesz go zapisać w nieistniejącej lub niedostępnej "
+                            + "lokalizacji.");
+            writer.println("<br/> BŁĄD: " + fne.getMessage());
+
+            LOGGER.error("Problemy w trakcie przesyłu pliku. Błąd: {0}",
+                    new Object[]{fne.getMessage()});
+
+        } finally {
+            if (writer != null) {
+                writer.close();
+            }
+
+        }
+
+    }
+
+    private void fetchDataFromRequest(HttpServletRequest request) throws ServletException, IOException {
+        filePath = getStoragePath();
+        filePart = request.getPart("file");
+        fileName = UUID.randomUUID().toString();
+
         String extension = FilenameUtils.getExtension(getFileName(filePart));
-
-        String fileName = UUID.randomUUID().toString();  // final String fileName = getFileName(filePart);
         if (!extension.isEmpty()) {
             fileName = fileName + "." + extension;
         }
+    }
+
+    private static String getStoragePath() {
+        final String BARCODE_DIR = "../user-storage/barcodes";
+        final String TMP_DIR = "/tmp";
+
+        File directory = new File(BARCODE_DIR);
+
+        return directory.exists() ? BARCODE_DIR :
+                (directory.mkdirs() ? BARCODE_DIR : TMP_DIR);
+    }
+
+    private static void saveFileIntoStorage(String path, String fileName, Part filePart) throws IOException {
         OutputStream out = null;
         InputStream filecontent = null;
-        final PrintWriter writer = response.getWriter();
 
         try {
             out = new FileOutputStream(
@@ -72,29 +123,9 @@ public class ImageUploadServlet extends HttpServlet {
                 out.write(bytes, 0, read);
             }
 
-            writer.println("Nowy plik " + fileName + " utworzony w " + path);
-
-            LOGGER.log(
-                    Level.INFO,
+            LOGGER.trace(
                     "Plik {0} został przesłany do {1}",
                     new Object[]{fileName, path});
-
-            String imageFilename = path + "/" + fileName;  // 'JZ4CS-32_Barcode'
-            String productBarcode = BarCodeReader.decodeBarcodeFromFile(imageFilename);
-            writer.println("\nbarkod: " + productBarcode);
-
-        } catch (FileNotFoundException fne) {
-
-            writer.println(
-                    "Albo nie wskazałeś pliku do przesłania, albo "
-                            + "próbujesz go zapisać w nieistniejącej lub niedostępnej "
-                            + "lokalizacji.");
-            writer.println("<br/> BŁĄD: " + fne.getMessage());
-
-            LOGGER.log(Level.SEVERE,
-                    "Problemy w trakcie przesyłu pliku. Błąd: {0}",
-                    new Object[]{fne.getMessage()});
-
         } finally {
             if (out != null) {
                 out.close();
@@ -103,20 +134,14 @@ public class ImageUploadServlet extends HttpServlet {
             if (filecontent != null) {
                 filecontent.close();
             }
-
-            if (writer != null) {
-                writer.close();
-            }
-
         }
-
     }
 
 
     private String getFileName(final Part part) {
         final String partHeader = part.getHeader("content-disposition");
 
-        LOGGER.log(Level.INFO, "Nagłówek części = {0}", partHeader);
+        LOGGER.trace("Nagłówek części = {0}", partHeader);
 
         for (String content : part.getHeader("content-disposition")
                 .split(";")) {
