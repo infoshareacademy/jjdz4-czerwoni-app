@@ -3,6 +3,7 @@ package com.infoshareacademy.czerwoni.products.servlets;
 
 import java.io.*;
 import java.util.UUID;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -36,11 +37,14 @@ public class ImageUploadServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
+
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/product-info.jsp");
+        requestDispatcher.forward(request, response);
     }
 
     @Override
     public String getServletInfo() {
-        return "Servlet that uploads files to a user-defined destination";
+        return "Servlet that uploads files with barcodes";
     }
 
 
@@ -48,46 +52,34 @@ public class ImageUploadServlet extends HttpServlet {
         final String GENERIC_ERR_MSG = "Albo nie wskazałeś pliku do przesłania, albo "
                 + "próbujesz go zapisać w nieistniejącej lub niedostępnej "
                 + "lokalizacji.";
-
-        response.setContentType("text/html;charset=UTF-8");
-        final PrintWriter writer = response.getWriter();
+        String msg;
 
         try {
             fetchDataFromRequest(request);
             saveFileIntoStorage(filePath, fileName, filePart);
-            // writer.println("Nowy plik " + fileName + " utworzony w " + filePath);
 
             String productBarcode = BarCodeReader.decodeBarcodeFromFile(filePath + "/" + fileName);
             if (productBarcode.isEmpty()) {
-                String msg = "Nie znaleziono kodu kreskowego\n";
-                writer.println("<br>" + msg);  // // "No barcode found/decoded\n"
+                msg = "Nie znaleziono kodu kreskowego";
                 LOGGER.warn(msg);
             } else {
-                writer.println("<br>" + "Odczytany kod kreskowy: " + productBarcode);  // "Decoded barcode: "
-                String productData = ProductProcessor.getProductDataFromAPI(productBarcode);
-                writer.println("<br>" + "Zidentyfikowany produkt: " + productData);  // "Product found: "
-                LOGGER.trace("odczytany kod: " + productBarcode + "; produkt: " + productData);
+                msg = ProductProcessor.getProductDataFromAPI(productBarcode);
+                LOGGER.trace("odczytany kod: " + productBarcode + "; produkt: " + msg);
             }
+            request.setAttribute("productData", msg);
         } catch (FileNotFoundException fne) {
-            String msg = fne.getMessage().equals("") ? GENERIC_ERR_MSG : fne.getMessage();
-            writer.println("<br/> Błąd: " + msg);
+            msg = fne.getMessage().equals("") ? GENERIC_ERR_MSG : fne.getMessage();
+            request.setAttribute("productData", msg);
 
             LOGGER.error("Problemy w trakcie przesyłu pliku. Błąd: {0}",
                     new Object[]{fne.getMessage()});
-
-        } finally {
-            if (writer != null) {
-                writer.close();
-            }
-
         }
-
     }
 
     private void fetchDataFromRequest(HttpServletRequest request) throws ServletException, IOException {
         filePart = request.getPart("file");
         if (filePart.getSubmittedFileName().equals(""))
-            throw new FileNotFoundException("Podano pustą nazwę pliku");
+            throw new FileNotFoundException("Podano pustą nazwę pliku z kodem kreskowym");
         filePath = getStoragePath();
         fileName = UUID.randomUUID().toString();
 

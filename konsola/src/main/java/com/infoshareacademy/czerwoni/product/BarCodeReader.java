@@ -42,7 +42,7 @@ public class BarCodeReader {
             throw new Exception(e.getMessage());
         }
         if (bufferedImage == null)
-            throw new IllegalArgumentException("Nieudany odczyt zawartości pliku...");  // "Reading file failed..."
+            throw new IllegalArgumentException("Nieudany odczyt zawartości pliku: " + imageFile.getName());  // "Reading file failed..."
         LuminanceSource luminanceSource = new BufferedImageLuminanceSource(bufferedImage);
 
         BinaryBitmap binaryBitmap = new BinaryBitmap(new HybridBinarizer(luminanceSource));
@@ -84,7 +84,7 @@ public class BarCodeReader {
             File imgFile = new File(fileName);
             barcodeString = decodeBarcode(imgFile, decodeHintsMap);
         } catch (Exception e) {
-            String msg = "Problem z odczytem pliku: " + fileName;
+            String msg = e.getMessage().equals("") ? "Problem z odczytem pliku: " + fileName : e.getMessage();
             System.out.println(msg);
             logger.error(msg, e);
         }
