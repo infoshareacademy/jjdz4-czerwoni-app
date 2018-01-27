@@ -66,17 +66,20 @@
     </div>
     <div class="row nav nav-pills nav-fill">
         <div class="nav-item w-25 border-left-0">
-            <a class="nav-link" href="#"><i class="icon-barcode"></i> <span class="d-none d-lg-inline-block">Kod kreskowy</span></a>
+            <a title="Pobierz dane o produkcie na podstawie kodu kreskowego" class="nav-link" href="/file-upload.jsp"><i
+                    class="icon-barcode"></i> <span class="d-none d-lg-inline-block">Kod kreskowy</span></a>
         </div>
         <div class="nav-item w-25">
             <a title="Odpowiedz na kilka pytań aby wybrać najlepszą kategorię produktów" class="nav-link"
                href="questions"><i class="icon-cart-arrow-down"></i> <span class="d-none d-lg-inline-block">Pomocnik zakupowy</span></a>
         </div>
         <div class="nav-item w-25">
-            <a class="nav-link" href="#"><i class="icon-search"></i> <span class="d-none d-lg-inline-block">Wyszukiwarka Allegro</span></a>
+            <a title="Wyszukaj interesującą cię kategorię produktow" class="nav-link" href="phrase-finder.jsp"><i
+                    class="icon-search"></i> <span class="d-none d-lg-inline-block">Wyszukiwarka Allegro</span></a>
         </div>
         <div class="nav-item w-25">
-            <a title="Znajdź interesującą cię kategorię Allegro" class="nav-link" href="/allegro-categories?parent=0"><i class="icon-tags"></i> <span class="d-none d-lg-inline-block">Kategorie Allegro</span></a>
+            <a title="Znajdź interesującą cię kategorię Allegro" class="nav-link" href="/allegro-categories?parent=0"><i
+                    class="icon-tags"></i> <span class="d-none d-lg-inline-block">Kategorie Allegro</span></a>
         </div>
     </div>
     <div>
@@ -86,39 +89,39 @@
                 <div class="questionForm">
                     Treść pytania: ${sessionScope.question.questionName}"/> <br/><br/>
 
-                        <div class="questionForm">
-                            <label>Odpowiedź: </label><br/>
-                            <input size="80" name="answerName" type="text"
-                                                value="${answerList.answerName}"/><br/><br/>
-                            <label>Kategoria: </label><br/><input size="40" name="categoryName" type="text"
-                                                                  value="${answerList.relatedCategory.categoryName}"/><br/><br/>
-                            <label>Link Allegro: </label><br/><input size="60" name="categoryAllegroLink" type="text"
-                                                                     value="${answerList.relatedCategory.categoryName}"/><br/><br/>
-                        </div>
+                    <div class="questionForm">
+                        <label>Odpowiedź: </label><br/>
+                        <input size="80" name="answerName" type="text"
+                               value="${answerList.answerName}"/><br/><br/>
+                        <label>Kategoria: </label><br/><input size="40" name="categoryName" type="text"
+                                                              value="${answerList.relatedCategory.categoryName}"/><br/><br/>
+                        <label>Link Allegro: </label><br/><input size="60" name="categoryAllegroLink" type="text"
+                                                                 value="${answerList.relatedCategory.categoryName}"/><br/><br/>
+                    </div>
 
 
-                        <div class="row">
-                            <div class="col-lg-3">
-                                <button class="button" type="submit" formaction="" name="edit-button"
-                                        value="save-changes">Zapisz zmiany
-                                </button>
-                            </div>
-                            <div class="col-lg-3">
-                                <button class="button" type="submit" formaction="" name="edit-button"
-                                        value="remove-answer">Usuń zaznaczoną odpowiedź
-                                </button>
-                            </div>
-                            <div class="col-lg-3">
-                                <button class="button" type="submit" formaction="" name="edit-button"
-                                        value="add-next-answer">Dodaj kolejną odpowiedź
-                                </button>
-                            </div>
-                            <div class="col-lg-3">
-                                <button class="button" type="submit" formaction="admin-panel.jsp" name="edit-button"
-                                        value="back">Anuluj
-                                </button>
-                            </div>
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <button class="button" type="submit" formaction="" name="edit-button"
+                                    value="save-changes">Zapisz zmiany
+                            </button>
                         </div>
+                        <div class="col-lg-3">
+                            <button class="button" type="submit" formaction="" name="edit-button"
+                                    value="remove-answer">Usuń zaznaczoną odpowiedź
+                            </button>
+                        </div>
+                        <div class="col-lg-3">
+                            <button class="button" type="submit" formaction="" name="edit-button"
+                                    value="add-next-answer">Dodaj kolejną odpowiedź
+                            </button>
+                        </div>
+                        <div class="col-lg-3">
+                            <button class="button" type="submit" formaction="admin-panel.jsp" name="edit-button"
+                                    value="back">Anuluj
+                            </button>
+                        </div>
+                    </div>
             </form>
 
             <%--</c:if>--%>
