@@ -67,60 +67,84 @@
     </div>
     <div class="row nav nav-pills nav-fill">
         <div class="nav-item w-25 border-left-0">
-            <a class="nav-link" href="#"><i class="icon-barcode"></i> <span class="d-none d-lg-inline-block">Kod kreskowy</span></a>
+            <a title="Pobierz dane o produkcie na podstawie kodu kreskowego" class="nav-link" href="/file-upload.jsp"><i class="icon-barcode"></i> <span class="d-none d-lg-inline-block">Kod kreskowy</span></a>
         </div>
         <div class="nav-item w-25">
             <a title="Odpowiedz na kilka pytań aby wybrać najlepszą kategorię produktów" class="nav-link"
                href="questions"><i class="icon-cart-arrow-down"></i> <span class="d-none d-lg-inline-block">Pomocnik zakupowy</span></a>
         </div>
         <div class="nav-item w-25">
-            <a class="nav-link" href="#"><i class="icon-search"></i> <span class="d-none d-lg-inline-block">Wyszukiwarka Allegro</span></a>
+            <a title="Wyszukaj interesującą cię kategorię produktow" class="nav-link" href="phrase-finder.jsp"><i class="icon-search"></i> <span class="d-none d-lg-inline-block">Wyszukiwarka Allegro</span></a>
         </div>
         <div class="nav-item w-25">
-            <a class="nav-link" href="#"><i class="icon-tags"></i> <span class="d-none d-lg-inline-block">Kategorie Allegro</span></a>
+            <a title="Znajdź interesującą cię kategorię Allegro" class="nav-link" href="/allegro-categories?parent=0"><i class="icon-tags"></i> <span class="d-none d-lg-inline-block">Kategorie Allegro</span></a>
         </div>
     </div>
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
-            <div class="row questionForm">
-                <div col-lg-12>
-                    <h5>Dodaj odpowiedzi do pytania</h5><br/>
-                    <div>${sessionScope.question.questionName}</div>
-                    <div>
-                        <ol type="a">
+            <form method="post" action="add-answers">
+                <div class="questionForm row">
+                    <div col-lg-12 style="width: 800px">
+                        <h7>Dodaj/zmień odpowiedzi do pytania:</h7>
+                        <div id="categoryName">${sessionScope.question.questionName}</div><br/>
+                        <div>
+                            <ol type="a">
                                 <c:forEach var="alist" items="${sessionScope.question.answerList}">
-                                    <c:if test="${isUpdateAnswer==true}">
-                                        <input type="radio" name="answerRadio" value="${alist.answerId}"
-                                               formmethod="post"
-                                               formaction="add-answers">
+                                    <div class="row">
+                                            <div class="col-lg-1 questRadio">
+                                                <c:if test="${isUpdateAnswer==true}">
+                                                    <c:if test="${alist.answerId == radioAnswerId}">
+                                                            <input type="radio" name="answerRadio" value="${alist.answerId}"
+                                                                   formmethod="post"
+                                                                   formaction="add-answers" checked/>
+                                                    </c:if>
+                                                <c:if test="${alist.answerId != radioAnswerId}">
+                                                    <input type="radio" name="answerRadio" value="${alist.answerId}"
+                                                           formmethod="post"
+                                                           formaction="add-answers">
+                                                </c:if>
 
-                                    </c:if>
-                                    <li> ${alist.answerName} Kategoria: <a
-                                            href="${alist.relatedCategory.categoryAllegroLink}">${alist.relatedCategory.categoryName}</a>
-                                    </li>
+                                                </c:if>
+                                            </div>
+                                            <div class="col-lg-11">
+                                                <li> ${alist.answerName} Kategoria: <a
+                                                        href="${alist.relatedCategory.categoryAllegroLink}">${alist.relatedCategory.categoryName}</a>
+                                                </li>
+                                            </div>
+                                    </div>
                                 </c:forEach>
-                        </ol>
+                            </ol>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row questionForm">
-                <form method="post" action="add-answers">
-                    <label>Odpowiedź: </label><br/><input size="80" name="answerName" type="text"
-                                                          value="${answer.answerName}"/><br/><br/>
-                    <label>Kategoria: </label><br/><input size="40" name="categoryName" type="text"
-                                                          value="${answer.relatedCategory.categoryName}"/><br/><br/>
-                    <label>Link Allegro: </label><br/><input size="60" name="categoryAllegroLink"
-                                                             type="text"
-                                                             value="${answer.relatedCategory.categoryAllegroLink}"/><br/><br/>
+                <div class="questionForm row">
+                    <div class="row">
+                        <div class="col-lg-11">
+                            <label>Odpowiedź: </label><br/><input size="80" name="answerName" type="text"
+                                                                  value="${answer.answerName}"/><br/><br/>
+                            <label>Kategoria: </label><br/><input size="40" name="categoryName" type="text"
+                                                                  value="${answer.relatedCategory.categoryName}"/><br/><br/>
+                            <label>Link Allegro: </label><br/><input size="60" name="categoryAllegroLink"
+                                                                     type="text"
+                                                                     value="${answer.relatedCategory.categoryAllegroLink}"/><br/><br/>
+                        </div>
+                        <div class="col-lg-1">
+                            <c:if test="${isUpdateAnswer==true}">
+                                <input class="button" type="submit" name="edit-answer" value="Edytuj">
+                            </c:if>
+                        </div>
 
-                    <div><input class="button" type="submit" name="add-answer" value="Zapisz"></div>
-                    <div><input class="button" type="submit" name="add-next-answer" value="Dodaj kolejną odpowiedź">
                     </div>
+                    <div><input class="button" type="submit" name="add-answer" value="Zapisz"></div>
+                    <c:if test="${isUpdateAnswer!=true}">
+                        <div><input class="button" type="submit" name="add-next-answer" value="Dodaj kolejną odpowiedź">
+                        </div>
+                    </c:if>
                     <c:if test="${isUpdateAnswer==true}">
                         <div><input class="button" type="submit" name="remove-answer" value="Usuń"></div>
                     </c:if>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
         <div class="row m-0">
             <span class="mx-auto p-2">&#169 infoShare Academy</span>

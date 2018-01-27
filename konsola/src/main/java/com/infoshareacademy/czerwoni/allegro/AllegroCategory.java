@@ -12,6 +12,7 @@ public class AllegroCategory {
     private Integer catParent;
     private String catIsProductCatalogueEnabled;
     private ArrayList<AllegroCategory> categoryChild;
+    private boolean promoted = false;
 
     public AllegroCategory(int catId,
                            String catName,
@@ -71,6 +72,18 @@ public class AllegroCategory {
         this.categoryChild = categoryChild;
     }
 
+    public String getCatIsProductCatalogueEnabled() {
+        return catIsProductCatalogueEnabled;
+    }
+
+    public boolean isPromoted() {
+        return promoted;
+    }
+
+    public void setPromoted(boolean promoted) {
+        this.promoted = promoted;
+    }
+
     /**
      * Funkcja generująca String do kategorii Allegor i przekazuje go do funkcji drukującej.
      *
@@ -104,8 +117,9 @@ public class AllegroCategory {
                 ", catName='" + catName + '\'' +
                 ", catPosition=" + catPosition +
                 ", catParent=" + catParent +
-                ", catIsProductCatalogueEnabled=" + catIsProductCatalogueEnabled +
+                ", catIsProductCatalogueEnabled='" + catIsProductCatalogueEnabled + '\'' +
                 ", categoryChild=" + categoryChild +
+                ", promoted=" + promoted +
                 '}';
     }
 }
