@@ -6,22 +6,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static java.lang.reflect.Modifier.FINAL;
+
 public class PhraseFinder {
 
     public static String PhraseScanner() {
+
         Scanner scanner = new Scanner(System.in);
 
-        String phrase = scanner.nextLine();
-
-        return phrase;
+        return scanner.nextLine();
     }
 
     public static void phraseResearch() {
-
+        final int MAX_PRINT = 5;
+        int encounter = 0;
         List<AllegroCategory> allegroCategories = ParseXmlAllegroCategories.deserialization();
-        boolean counter = true;
+        boolean isSearching = true;
         boolean hasCategory = false;
-        while (counter) {
+        while (isSearching) {
             System.out.print("Podaj frazę, po której chciałbyś szukać: ");
             String search = PhraseScanner();
             if(search.toLowerCase().equals("exit")){
@@ -31,19 +33,23 @@ public class PhraseFinder {
 
 
             for (AllegroCategory allegroCategory : allegroCategories) {
+
                 if (allegroCategory.getCatName().toLowerCase().contains(search)) {
-                  //  System.out.println("Linki do kategorii: " + allegroCategory.getCatName());
-                    BreadcrumbsCategories.breadcrumbsPrinter(allegroCategory.getCatId());
-                    System.out.println(allegroCategory.generateLink());
-                    counter = false;
-                    hasCategory = true;
-                   // System.out.println("Naciśnij enter aby przejść do Menu\n");
-                    //PhraseScanner();
-                    //break;
+
+                    if(encounter<MAX_PRINT) {
+                        BreadcrumbsCategories.breadcrumbsPrinter(allegroCategory.getCatId());
+                        System.out.println(allegroCategory.generateLink());
+                        isSearching = false;
+                        hasCategory = true;
+                    }
+                    ++encounter;
                 }
             }
-            if(hasCategory){
-            System.out.println("Brak kategorii do podanej frazy! Spróbuj jeszcze raz");
+            if(!hasCategory){
+                System.out.println("\nBrak kategorii do podanej frazy! Spróbuj jeszcze raz");
+                break;
             }
+
+
         }
     }}
