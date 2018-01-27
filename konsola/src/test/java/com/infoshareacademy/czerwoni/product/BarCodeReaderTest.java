@@ -2,6 +2,8 @@ package com.infoshareacademy.czerwoni.product;
 
 import org.junit.Test;
 
+import java.io.File;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class BarCodeReaderTest {
@@ -9,7 +11,8 @@ public class BarCodeReaderTest {
 
     @Test
     public void decodeBarcodeFromFile_FileExists() {
-        assertThat(BarCodeReader.decodeBarcodeFromFile("kod.png"))
+        File imgFile = new File(this.getClass().getResource("/kod.png").getFile());
+        assertThat(BarCodeReader.decodeBarcodeFromFile(imgFile.getAbsolutePath()))
                 .isEqualTo("5900084063241");
 
     }
@@ -26,9 +29,4 @@ public class BarCodeReaderTest {
                 .isEmpty();
     }
 
-    @Test
-    public void decodeBarcodeFromFile_NullArg() {
-        assertThat(BarCodeReader.decodeBarcodeFromFile(null))
-                .isEmpty();
-    }
 }

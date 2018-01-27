@@ -31,6 +31,7 @@ public class AddQuestionServlet extends HttpServlet {
 
 //        session.removeAttribute("answersList");
 //        session.removeAttribute("question");
+        session.removeAttribute("isUpdateAnswer");
         List<Answer> answersList = questionAnswerService.getAnswersWithoutRelatedQuestion();
         request.setAttribute("answersListWithoutRelatedQuestion", answersList);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-question.jsp");
@@ -57,6 +58,7 @@ public class AddQuestionServlet extends HttpServlet {
         question.setQuestionLevel(questionLevel);
         questionAnswerService.addQuestion(question);
         HttpSession session = request.getSession();
+        session.removeAttribute("isUpdateAnswer");
         session.setAttribute("question", question);
         session.setAttribute("mode", "editMode");
         Answer answer = questionAnswerService.getAnswerById(Integer.parseInt(request.getParameter("answer")));

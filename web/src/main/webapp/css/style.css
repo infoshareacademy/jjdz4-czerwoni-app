@@ -26,7 +26,6 @@ div > a:hover {
 
 .container {
     color: aliceblue;
-    min-height: 5000px;
 }
 
 div.dropdown {
@@ -145,6 +144,7 @@ a:link {
 #categoryName {
     color: blanchedalmond;
 }
+
 .button:hover{
     background-color: #004470;
     color: #e9e7ee;

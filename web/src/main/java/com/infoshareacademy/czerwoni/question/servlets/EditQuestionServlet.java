@@ -67,6 +67,7 @@ public class EditQuestionServlet extends HttpServlet {
 
         switch (editButton) {
             case "save-changes": {
+                session.removeAttribute("isUpdateAnswer");
                 if (answer != null && newAnswerId>0) {
                     answer.setRelatedQuest(null);
                     questionAnswerService.updateAnswer(answer);
@@ -81,28 +82,22 @@ public class EditQuestionServlet extends HttpServlet {
                 break;
             }
             case "goto-answer": {
-                if (answer != null && newAnswerId>0) {
-                    answer.setRelatedQuest(null);
-                    questionAnswerService.updateAnswer(answer);
-                    newRelatedAnswer = questionAnswerService.getAnswerById(newAnswerId);
-                    newRelatedAnswer.setRelatedQuest(question);
-                    questionAnswerService.updateAnswer(newRelatedAnswer);
-                }
+                session.removeAttribute("isUpdateAnswer");
+                session.removeAttribute("answer");
+                checkQuestionHasRelatedAnswer(question, answer, newAnswerId);
                 questionAnswerService.updateQuestion(question);
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-answers.jsp");
                 requestDispatcher.forward(request,response);
                 break;
             }
             case "goto-update-answer": {
-                request.setAttribute("isUpdateAnswer", true);
-                if (answer != null && newAnswerId>0) {
-                    answer.setRelatedQuest(null);
-                    questionAnswerService.updateAnswer(answer);
-                    newRelatedAnswer = questionAnswerService.getAnswerById(newAnswerId);
-                    newRelatedAnswer.setRelatedQuest(question);
-                    questionAnswerService.updateAnswer(newRelatedAnswer);
-                }
+                session.setAttribute("isUpdateAnswer", true);
+//                session.removeAttribute("answer");
+                checkQuestionHasRelatedAnswer(question, answer, newAnswerId);
                 questionAnswerService.updateQuestion(question);
+                Answer firstAnswer = question.getAnswerList().get(0);
+                request.setAttribute("radioAnswerId",firstAnswer.getAnswerId());
+                session.setAttribute("answer",firstAnswer);
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-answers.jsp");
                 requestDispatcher.forward(request,response);
                 break;
@@ -110,6 +105,17 @@ public class EditQuestionServlet extends HttpServlet {
 
         }
 
+    }
+
+    private void checkQuestionHasRelatedAnswer(Question question, Answer answer, Integer newAnswerId) {
+        Answer newRelatedAnswer;
+        if (answer != null && newAnswerId>0) {
+            answer.setRelatedQuest(null);
+            questionAnswerService.updateAnswer(answer);
+            newRelatedAnswer = questionAnswerService.getAnswerById(newAnswerId);
+            newRelatedAnswer.setRelatedQuest(question);
+            questionAnswerService.updateAnswer(newRelatedAnswer);
+        }
     }
 }
 
