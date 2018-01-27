@@ -17,7 +17,7 @@ import java.util.Map;
 /**
  * rozpoznanie kodu kreskowego ze wskazanego pliku graficznego
  */
-class BarCodeReader {
+public class BarCodeReader {
 
     private static BarcodeFormat DEFAULT_BARCODE_FORMAT = BarcodeFormat.CODE_128;
     private static Logger logger = LoggerFactory.getLogger(BarCodeReader.class);
@@ -42,7 +42,7 @@ class BarCodeReader {
             throw new Exception(e.getMessage());
         }
         if (bufferedImage == null)
-            throw new IllegalArgumentException("Nieudany odczyt zawartości pliku...");  // "Reading file failed..."
+            throw new IllegalArgumentException("Nieudany odczyt zawartości pliku: " + imageFile.getName());  // "Reading file failed..."
         LuminanceSource luminanceSource = new BufferedImageLuminanceSource(bufferedImage);
 
         BinaryBitmap binaryBitmap = new BinaryBitmap(new HybridBinarizer(luminanceSource));
@@ -72,7 +72,7 @@ class BarCodeReader {
      * @param fileName nazwa pliku (wraz ze scieżką) obrazka zawierajacego kod kreskowy
      * @return rozpoznany kod kreskowy
      */
-    static String decodeBarcodeFromFile(String fileName) {
+    public static String decodeBarcodeFromFile(String fileName) {
 
         String barcodeString = "";
 
@@ -84,7 +84,7 @@ class BarCodeReader {
             File imgFile = new File(fileName);
             barcodeString = decodeBarcode(imgFile, decodeHintsMap);
         } catch (Exception e) {
-            String msg = "Problem z odczytem pliku: " + fileName;
+            String msg = e.getMessage().equals("") ? "Problem z odczytem pliku: " + fileName : e.getMessage();
             System.out.println(msg);
             logger.error(msg, e);
         }
