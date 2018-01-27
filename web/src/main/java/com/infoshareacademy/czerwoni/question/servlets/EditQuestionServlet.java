@@ -92,9 +92,12 @@ public class EditQuestionServlet extends HttpServlet {
             }
             case "goto-update-answer": {
                 session.setAttribute("isUpdateAnswer", true);
-                session.removeAttribute("answer");
+//                session.removeAttribute("answer");
                 checkQuestionHasRelatedAnswer(question, answer, newAnswerId);
                 questionAnswerService.updateQuestion(question);
+                Answer firstAnswer = question.getAnswerList().get(0);
+                request.setAttribute("radioAnswerId",firstAnswer.getAnswerId());
+                session.setAttribute("answer",firstAnswer);
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-answers.jsp");
                 requestDispatcher.forward(request,response);
                 break;
