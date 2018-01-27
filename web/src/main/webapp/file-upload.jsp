@@ -23,68 +23,8 @@
 </head>
 <body class="bg-dark">
 <div class="container">
-    <div class="row">
-        <div class="col">
-            <a href="index.jsp"><h1>
-                <i class="icon-shopping-basket"></i> <span class="d-none d-lg-inline-block">What Do You Want</span>
-            </h1></a>
-        </div>
-        <div class="col text-lg-right text-sm-center text-md-right text-center">
-            <div class="dropdown">
-                <button class="btn btn-dark dropdown-toggle bg-dark m-3" type="button" id="dropdownMenuButton"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="icon-user"></i> <span class="d-none d-lg-inline-block">Panel administatora</span>
-                </button>
-                <div class="dropdown-menu bg-dark dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                    <form class="px-4 py-3" method="post" action="login">
-                        <div class="form-group">
-                            <label for="login">Login</label>
-                            <input type="text" class="form-control" id="login" name="login" placeholder="login">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleDropdownFormPassword1">Hasło</label>
-                            <input type="password" class="form-control" id="exampleDropdownFormPassword1"
-                                   name="password" placeholder="Password">
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                                Zapamiętaj mnie
-                            </label>
-                        </div>
-                        <button type="submit" class="btn btn-secondary">Zaloguj się</button>
-                    </form>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#" style="color: aliceblue">Nie masz konta? Zapisz się!</a>
-                </div>
-            </div>
-            <c:if test="${sessionScope.login!=null}">
-                <div class="col logtext">
-                    Zalogowano: <a href="admin-panel.jsp"> ${sessionScope.login}</a>
-                    <a href="logout"><span>Wyloguj</span></a>
-                </div>
-            </c:if>
-        </div>
-    </div>
-    <div class="row nav nav-pills nav-fill">
-        <div class="nav-item w-25 border-left-0">
-            <a title="Pobierz dane o produkcie na podstawie kodu kreskowego" class="nav-link" href="/file-upload.jsp"><i
-                    class="icon-barcode"></i> <span
-                    class="d-none d-lg-inline-block">Kod kreskowy</span></a>
-        </div>
-        <div class="nav-item w-25">
-            <a title="Odpowiedz na kilka pytań aby wybrać najlepszą kategorię produktów" class="nav-link"
-               href="questions"><i class="icon-cart-arrow-down"></i> <span class="d-none d-lg-inline-block">Pomocnik zakupowy</span></a>
-        </div>
-        <div class="nav-item w-25">
-            <a title="Wyszukaj interesującą cię kategorię produktow" class=“nav-link” href=“phrase-finder.jsp”><i
-                    class="icon-search"></i> <span class="d-none d-lg-inline-block">Wyszukiwarka Allegro</span></a>
-        </div>
-        <div class="nav-item w-25">
-            <a title="Znajdź interesującą cię kategorię Allegro" class="nav-link" href="/allegro-categories?parent=0"><i
-                    class="icon-tags"></i> <span class="d-none d-lg-inline-block">Kategorie Allegro</span></a>
-        </div>
-    </div>
+    <%@include file="header.jsp"%>
+    <%@include file="links.jsp"%>
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
             <div class="col">
