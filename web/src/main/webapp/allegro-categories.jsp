@@ -1,10 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-
 <!DOCTYPE html>
 <html lang="pl">
 <head>
+    <%@ page contentType="text/html; charset=UTF-8" %>
     <meta charset="UTF-8">
     <title>What do you want?</title>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -25,17 +23,17 @@
         <div class="col text-lg-right text-sm-center text-md-right text-center">
             <div class="dropdown">
                 <button class="btn btn-dark dropdown-toggle bg-dark m-3" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="icon-user"></i> <span class="d-none d-lg-inline-block">Panel administatora</span>
+                    <i class="icon-user"></i> <span class="d-none d-lg-inline-block">Zaloguj się</span>
                 </button>
                 <div class="dropdown-menu bg-dark dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                    <form class="px-4 py-3" method="post" action="login">
+                    <form class="px-4 py-3">
                         <div class="form-group">
-                            <label for="login">Login</label>
-                            <input type="text" class="form-control" id="login" name="login" placeholder="login">
+                            <label for="exampleDropdownFormEmail1">Adres e-mail</label>
+                            <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="your@email.com">
                         </div>
                         <div class="form-group">
                             <label for="exampleDropdownFormPassword1">Hasło</label>
-                            <input type="password" class="form-control" id="exampleDropdownFormPassword1" name="password" placeholder="Password">
+                            <input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Password">
                         </div>
                         <div class="form-check">
                             <label class="form-check-label">
@@ -49,12 +47,6 @@
                     <a class="dropdown-item" href="#" style="color: aliceblue">Nie masz konta? Zapisz się!</a>
                 </div>
             </div>
-            <c:if test="${sessionScope.login!=null}">
-                <div class="col logtext">
-                    Zalogowano: <a href="admin-panel.jsp"> ${sessionScope.login}</a>
-                    <a href="logout"><span>Wyloguj</span></a>
-                </div>
-            </c:if>
         </div>
     </div>
     <div class="row nav nav-pills nav-fill">
@@ -62,7 +54,7 @@
             <a class="nav-link" href="#"><i class="icon-barcode"></i> <span class="d-none d-lg-inline-block">Kod kreskowy</span></a>
         </div>
         <div class="nav-item w-25">
-            <a title="Odpowiedz na kilka pytań aby wybrać najlepszą kategorię produktów" class="nav-link" href="questions"><i class="icon-cart-arrow-down"></i> <span class="d-none d-lg-inline-block">Pomocnik zakupowy</span></a>
+            <a class="nav-link" href="#"><i class="icon-cart-arrow-down"></i> <span class="d-none d-lg-inline-block">Pomocnik zakupowy</span></a>
         </div>
         <div class="nav-item w-25">
             <a class="nav-link" href="#"><i class="icon-search"></i> <span class="d-none d-lg-inline-block">Wyszukiwarka Allegro</span></a>
@@ -73,15 +65,46 @@
     </div>
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
-            <h3>Witamy w aplikacji What Do You Want</h3>
-            Aplikacja została stworzona na potrzeby projektu grupowego, w ramach kursu Junior Java Developer.<br/>
-            Co możesz zrobić za pomocą naszej aplikacji:
-            <ul>
-                <li>Rozpoznasz produkt po kodzie kreskowym</li>
-                <li>Pomożemy Ci znaleźć idealny produkt</li>
-                <li>Szybko wyszukasz interesującą Cię kategorię Allegro</li>
-                <li>Szybko przejżysz kategorie Allegro</li>
-            </ul>
+            <div class="col-12 text-center"><h4>Kategorie Allegro</h4></div>
+            <div class="col-12">
+                <c:choose>
+                    <c:when test="${empty mainCat}">
+                        <span style="font-size: 1.3em;">Kategorie główne</span>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="/allegro-categories?parent=0" style="font-size: 1.3em;">Kategorie główne</a>
+                        <c:forEach var="breadCrumb" items="${breadCrumbs}">
+                            <a href="/allegro-categories?parent=${breadCrumb.catId}" style="font-size: 1.3em;">> ${breadCrumb.catName}</a>
+                        </c:forEach>
+                    </c:otherwise>
+                </c:choose>
+                <c:choose>
+                    <c:when test="${not empty list}">
+                        <c:forEach var="category" items="${list}">
+                            <div class="row justify-content-start">
+                                <a href="/allegro-categories?parent=${category.key.catId}" class="col-4 px-0">
+                                    <div class="py-2 text-center" style="border: 1px white;border-top-style: dotted;">
+                                        <c:out value="${category.key.catPosition+1}"/>. <c:out value="${category.key.catName}"/><br/>
+                                    </div>
+                                </a>
+                                <a href="${category.value}">
+                                    <div class="px-3 py-2 text-center" style="border: 1px white;border-top-style: dotted;">
+                                        Przejdź do kategorii w serwisie Allegro
+                                    </div>
+                                </a>
+                            </div>
+                        </c:forEach>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="${lastCatLink}" class="col-4 px-0">
+                            <div class="py-3" style="border: 1px white;border-top-style: dotted;">
+                                Przejdź do serwisu Allegro
+                            </div>
+                        </a>
+                    </c:otherwise>
+                </c:choose>
+
+            </div>
         </div>
         <div class="row m-0">
             <span class="mx-auto p-2">&#169 infoShare Academy</span>

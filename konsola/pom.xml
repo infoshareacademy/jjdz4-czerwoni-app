@@ -9,7 +9,6 @@
         <artifactId>organizer-zakupowy</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-
     <artifactId>konsola</artifactId>
     <packaging>jar</packaging>
     <name>organizer-zakupowy (wersja konsolowa)</name>
@@ -40,10 +39,32 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.2.0</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.0.2</version>
+            </plugin>
         </plugins>
     </build>
 
     <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.7.0</version>
+            <scope>test</scope>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/com.google.zxing/core -->
         <dependency>
             <groupId>com.google.zxing</groupId>
@@ -61,12 +82,6 @@
             <artifactId>gson</artifactId>
             <version>2.8.2</version>
         </dependency>
-
-        <!--<dependency>-->
-            <!--<groupId>org.apache.logging.log4j</groupId>-->
-            <!--<artifactId>log4j-slf4j-impl</artifactId>-->
-            <!--<version>2.9.1</version>-->
-        <!--</dependency>-->
     </dependencies>
 
 </project>

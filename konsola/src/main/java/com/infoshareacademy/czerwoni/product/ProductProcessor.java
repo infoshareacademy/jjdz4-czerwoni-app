@@ -21,7 +21,7 @@ import java.util.Scanner;
 public class ProductProcessor {
 
     private static Logger logger = LoggerFactory.getLogger(ProductProcessor.class);
-
+    static String FOUND_PRODUCT_MSG = "Zidentyfikowany produkt: ";
     /**
      * metoda pobierająca dane produktu z webowego interfejsu API
      * na podstawie jego kodu kreskowego
@@ -47,11 +47,6 @@ public class ProductProcessor {
             httpURLConnection.setRequestMethod("GET");
             httpURLConnection.setRequestProperty("Accept", "text/json"); // "text/json"  "application/json"
             httpURLConnection.setRequestProperty("Authorization", "Basic " + authEncoding);
-
-            /* if (httpURLConnection.getResponseCode() != statusCodeOK) {
-                throw new RuntimeException("Failed : HTTP error code : "
-                        + httpURLConnection.getResponseCode() + "-" +httpURLConnection.getResponseMessage());
-            }*/
 
             response = ((httpURLConnection.getResponseCode() == statusCodeOK) ?
                     "success (" : "failed (HTTP error code : ")
@@ -106,7 +101,7 @@ public class ProductProcessor {
         } else {
             System.out.println("Odczytany kod kreskowy: " + productBarcode);  // "Decoded barcode: "
             String productData = getProductDataFromAPI(productBarcode);
-            System.out.println("Zidentyfikowany produkt: " + productData);  // "Product found: "
+            System.out.println(FOUND_PRODUCT_MSG + productData);  // "Product found: "
             logger.trace("odczytany kod: " + productBarcode + "; produkt: " + productData);
         }
         System.out.println("Naciśnij Enter aby wrócić do menu");
