@@ -93,9 +93,16 @@
                                     <div class="row">
                                             <div class="col-lg-1 questRadio">
                                                 <c:if test="${isUpdateAnswer==true}">
+                                                    <c:if test="${alist.answerId == radioAnswerId}">
+                                                            <input type="radio" name="answerRadio" value="${alist.answerId}"
+                                                                   formmethod="post"
+                                                                   formaction="add-answers" checked/>
+                                                    </c:if>
+                                                <c:if test="${alist.answerId != radioAnswerId}">
                                                     <input type="radio" name="answerRadio" value="${alist.answerId}"
                                                            formmethod="post"
                                                            formaction="add-answers">
+                                                </c:if>
 
                                                 </c:if>
                                             </div>

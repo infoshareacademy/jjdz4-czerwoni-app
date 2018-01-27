@@ -101,6 +101,7 @@ public class AddAnswersServlet extends HttpServlet {
     private void removeAnswer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Answer answer = questionAnswerService.getAnswerById(Integer.parseInt(request.getParameter("answerRadio")));
         questionAnswerService.removeAnswer(answer);
+        categoryService.removeCategory(answer.getRelatedCategory());
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("edit-message.jsp");
         requestDispatcher.forward(request, response);
     }
@@ -119,6 +120,7 @@ public class AddAnswersServlet extends HttpServlet {
         }
         session.setAttribute("isUpdateAnswer", true);
         Answer answer = questionAnswerService.getAnswerById(answerId);
+        request.setAttribute("radioAnswerId",answerId);
         session.setAttribute("answer",answer);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-answers.jsp");
         requestDispatcher.forward(request,response);

@@ -83,6 +83,7 @@ public class EditQuestionServlet extends HttpServlet {
             }
             case "goto-answer": {
                 session.removeAttribute("isUpdateAnswer");
+                session.removeAttribute("answer");
                 checkQuestionHasRelatedAnswer(question, answer, newAnswerId);
                 questionAnswerService.updateQuestion(question);
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-answers.jsp");
@@ -91,6 +92,7 @@ public class EditQuestionServlet extends HttpServlet {
             }
             case "goto-update-answer": {
                 session.setAttribute("isUpdateAnswer", true);
+                session.removeAttribute("answer");
                 checkQuestionHasRelatedAnswer(question, answer, newAnswerId);
                 questionAnswerService.updateQuestion(question);
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-answers.jsp");
