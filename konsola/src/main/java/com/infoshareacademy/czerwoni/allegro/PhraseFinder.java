@@ -18,8 +18,8 @@ public class PhraseFinder {
     }
 
     public static void phraseResearch() {
-        final int MAX_PRINT = 5;
         int encounter = 0;
+        final int MAX_PRINT = 5;
         List<AllegroCategory> allegroCategories = ParseXmlAllegroCategories.deserialization();
         boolean isSearching = true;
         boolean hasCategory = false;
