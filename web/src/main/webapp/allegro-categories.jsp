@@ -23,17 +23,17 @@
         <div class="col text-lg-right text-sm-center text-md-right text-center">
             <div class="dropdown">
                 <button class="btn btn-dark dropdown-toggle bg-dark m-3" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="icon-user"></i> <span class="d-none d-lg-inline-block">Zaloguj się</span>
+                    <i class="icon-user"></i> <span class="d-none d-lg-inline-block">Panel administatora</span>
                 </button>
                 <div class="dropdown-menu bg-dark dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                    <form class="px-4 py-3">
+                    <form class="px-4 py-3" method="post" action="login">
                         <div class="form-group">
-                            <label for="exampleDropdownFormEmail1">Adres e-mail</label>
-                            <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="your@email.com">
+                            <label for="login">Login</label>
+                            <input type="text" class="form-control" id="login" name="login" placeholder="login">
                         </div>
                         <div class="form-group">
                             <label for="exampleDropdownFormPassword1">Hasło</label>
-                            <input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Password">
+                            <input type="password" class="form-control" id="exampleDropdownFormPassword1" name="password" placeholder="Password">
                         </div>
                         <div class="form-check">
                             <label class="form-check-label">
@@ -47,20 +47,26 @@
                     <a class="dropdown-item" href="#" style="color: aliceblue">Nie masz konta? Zapisz się!</a>
                 </div>
             </div>
+            <c:if test="${sessionScope.login!=null}">
+                <div class="col logtext">
+                    Zalogowano: <a href="admin-panel.jsp"> ${sessionScope.login}</a>
+                    <a href="logout"><span>Wyloguj</span></a>
+                </div>
+            </c:if>
         </div>
     </div>
     <div class="row nav nav-pills nav-fill">
         <div class="nav-item w-25 border-left-0">
-            <a class="nav-link" href="#"><i class="icon-barcode"></i> <span class="d-none d-lg-inline-block">Kod kreskowy</span></a>
+            <a class="nav-link" href="/file-upload.jsp"><i class="icon-barcode"></i> <span class="d-none d-lg-inline-block">Kod kreskowy</span></a>
         </div>
         <div class="nav-item w-25">
-            <a class="nav-link" href="#"><i class="icon-cart-arrow-down"></i> <span class="d-none d-lg-inline-block">Pomocnik zakupowy</span></a>
+            <a class="nav-link" href="/questions"><i class="icon-cart-arrow-down"></i> <span class="d-none d-lg-inline-block">Pomocnik zakupowy</span></a>
         </div>
         <div class="nav-item w-25">
             <a class="nav-link" href="#"><i class="icon-search"></i> <span class="d-none d-lg-inline-block">Wyszukiwarka Allegro</span></a>
         </div>
         <div class="nav-item w-25">
-            <a class="nav-link" href="/allegro-categories?parent=0"><i class="icon-tags"></i> <span class="d-none d-lg-inline-block">Kategorie Allegro</span></a>
+            <a title="Znajdź interesującą cię kategorię Allegro" class="nav-link" href="/allegro-categories?parent=0"><i class="icon-tags"></i> <span class="d-none d-lg-inline-block">Kategorie Allegro</span></a>
         </div>
     </div>
     <div>
@@ -84,11 +90,13 @@
                             <div class="row justify-content-start">
                                 <a href="/allegro-categories?parent=${category.key.catId}" class="col-4 px-0">
                                     <div class="py-2 text-center" style="border: 1px white;border-top-style: dotted;">
-                                        <c:out value="${category.key.catPosition+1}"/>. <c:out value="${category.key.catName}"/><br/>
+                                        <span <c:if test="${category.key.promoted==true}">style="font-weight: bold; color: aqua;"</c:if>>
+                                            <c:out value="${category.key.catPosition+1}"/>. <c:out value="${category.key.catName}"/><br/>
+                                        </span>
                                     </div>
                                 </a>
                                 <a href="${category.value}">
-                                    <div class="px-3 py-2 text-center" style="border: 1px white;border-top-style: dotted;">
+                                    <div class="px-3 py-2 text-center" style="border: 1px white;border-top-style: dotted; color: yellow;">
                                         Przejdź do kategorii w serwisie Allegro
                                     </div>
                                 </a>
