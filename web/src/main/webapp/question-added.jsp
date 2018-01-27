@@ -83,15 +83,19 @@
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
             <div class="row">
-                <p class="col-lg-12"> Dodano pytanie:
-            <span id="questionName"> ${question.questionName} (poziom: ${question.questionLevel})</span></p>
-            </div><br/><br/>
+                <div class="col-lg-12"> Dodano pytanie:
+                    <span id="questionName"> ${question.questionName} (poziom: ${question.questionLevel})</span></div>
+                <br/><br/>
+            </div>
+
             <div class="row">
-                <ol class="col-lg-12" type="a">
-                    <c:forEach var="alist" items="${question.answerList}">
-                        <li>${alist.answerName} QId_${alist.relatedQuest.questionId}</li>
-                    </c:forEach>
-                </ol>
+                <div class="col-lg-12">
+                    <ol type="a">
+                        <c:forEach var="alist" items="${question.answerList}">
+                            <li>${alist.answerName} QId_${alist.relatedQuest.questionId}</li>
+                        </c:forEach>
+                    </ol>
+                </div>
             </div>
         </div>
         <div class="row m-0">

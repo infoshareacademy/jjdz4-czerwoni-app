@@ -59,7 +59,8 @@
     </div>
     <div class="row nav nav-pills nav-fill">
         <div class="nav-item w-25 border-left-0">
-            <a class="nav-link" href="#"><i class="icon-barcode"></i> <span class="d-none d-lg-inline-block">Kod kreskowy</span></a>
+            <a class="nav-link" href="/file-upload.jsp"><i class="icon-barcode"></i> <span
+                    class="d-none d-lg-inline-block">Kod kreskowy</span></a>
         </div>
         <div class="nav-item w-25">
             <a title="Odpowiedz na kilka pytań aby wybrać najlepszą kategorię produktów" class="nav-link" href="questions"><i class="icon-cart-arrow-down"></i> <span class="d-none d-lg-inline-block">Pomocnik zakupowy</span></a>
@@ -80,7 +81,7 @@
                 <li>Rozpoznasz produkt po kodzie kreskowym</li>
                 <li>Pomożemy Ci znaleźć idealny produkt</li>
                 <li>Szybko wyszukasz interesującą Cię kategorię Allegro</li>
-                <li>Szybko przejżysz kategorie Allegro</li>
+                <li>Szybko przejrzysz kategorie Allegro</li>
             </ul>
         </div>
         <div class="row m-0">

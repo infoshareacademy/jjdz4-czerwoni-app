@@ -29,7 +29,7 @@ public class ProductProcessor {
      * @param barcode kod kreskowy produktu
      * @return szczegółowe informacje na temat odczytanego produktu
      */
-    static String getProductDataFromAPI(String barcode) {
+    static public String getProductDataFromAPI(String barcode) {
         String LOG_ERR_MSG = "wyjątek w ProductProcessor.getProductDataFromAPI()";
         String response = null;
 
@@ -94,7 +94,7 @@ public class ProductProcessor {
         String imageFilename = pathScanner.nextLine();
 
         String productBarcode = BarCodeReader.decodeBarcodeFromFile(imageFilename);
-        if (productBarcode.isEmpty() || (productBarcode == null)) {
+        if (productBarcode.isEmpty()) {
             String msg = "Nie znaleziono kodu kreskowego\n";
             System.out.println(msg);  // // "No barcode found/decoded\n"
             logger.error(msg);
