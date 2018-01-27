@@ -38,6 +38,9 @@ public class DataPromoRepository {
     public List<AllegroCategory> setPromotedCategories(List<AllegroCategory> categories) {
         List promoCatOb = entityManager.createNamedQuery("getAllPromotedCategories").getResultList();
         for (AllegroCategory category: categories) {
+            category.setPromoted(false);
+        }
+        for (AllegroCategory category: categories) {
             for (Object id: promoCatOb) {
                 if (category.getCatId().equals(id)) {
                     category.setPromoted(true);
