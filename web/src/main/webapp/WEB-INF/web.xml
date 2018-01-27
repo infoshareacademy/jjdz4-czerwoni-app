@@ -20,8 +20,10 @@
       <url-pattern>/add-question</url-pattern>
       <url-pattern>/admin-panel.jsp</url-pattern>
       <url-pattern>/add-answer.jsp</url-pattern>
-      <url-pattern>/add-answer.jsp</url-pattern>
+      <url-pattern>/update-answer.jsp</url-pattern>
+      <url-pattern>/update-question.jsp</url-pattern>
       <url-pattern>/show-all-question</url-pattern>
+      <url-pattern>/show-category</url-pattern>
 
       <http-method>GET</http-method>
       <http-method>POST</http-method>
