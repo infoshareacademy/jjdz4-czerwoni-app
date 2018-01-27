@@ -2,7 +2,6 @@ package com.infoshareacademy.czerwoni.allegro.dao;
 
 import com.infoshareacademy.czerwoni.allegro.AllegroCategory;
 import com.infoshareacademy.czerwoni.allegro.repository.DataPromoRepository;
-import com.infoshareacademy.czerwoni.parse.ParseXmlAllegroCategories;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -35,7 +34,8 @@ public class DataPromoServiceBean implements DataPromoService {
     }
 
     @Override
-    public void setPromotedCategories(List<AllegroCategory> categories) {
+    public List<AllegroCategory> setPromotedCategories(List<AllegroCategory> categories) {
         dataPromoRepository.setPromotedCategories(categories);
+        return categories;
     }
 }

@@ -22,9 +22,9 @@ public class CategoriesServiceBean implements CategoriesService {
 
     @Override
     public Map<AllegroCategory, String> getCategories(int parentId) {
-        dataPromoService.setPromotedCategories(allCategories);
+        List<AllegroCategory> categories = dataPromoService.setPromotedCategories(allCategories);
         Map<AllegroCategory, String> categoriesMap;
-        categoriesMap = allCategories.stream()
+        categoriesMap = categories.stream()
                 .filter(category -> category.getCatParent() == parentId)
                 .collect(Collectors.toMap(category -> category, AllegroCategory::generateLink));
         return categoriesMap.entrySet().stream()

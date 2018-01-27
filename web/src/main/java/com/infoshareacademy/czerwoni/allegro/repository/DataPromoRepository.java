@@ -35,11 +35,16 @@ public class DataPromoRepository {
                 .get();
     }
 
-    public void setPromotedCategories(List<AllegroCategory> categories) {
+    public List<AllegroCategory> setPromotedCategories(List<AllegroCategory> categories) {
         List promoCatOb = entityManager.createNamedQuery("getAllPromotedCategories").getResultList();
-        for (Object id: promoCatOb) {
-            categories.stream().filter(category -> category.getCatId() == id).findFirst().get().setPromoted(true);
+        for (AllegroCategory category: categories) {
+            for (Object id: promoCatOb) {
+                if (category.getCatId().equals(id)) {
+                    category.setPromoted(true);
+                }
+            }
         }
+        return categories;
     }
 
     public List<Integer> getAllCategories() {
