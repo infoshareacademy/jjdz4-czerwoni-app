@@ -119,6 +119,7 @@ public class AddAnswersServlet extends HttpServlet {
             requestDispatcher.forward(request, response);
         }
         session.setAttribute("isUpdateAnswer", true);
+        session.removeAttribute("answer");
         Answer answer = questionAnswerService.getAnswerById(answerId);
         request.setAttribute("radioAnswerId",answerId);
         session.setAttribute("answer",answer);
