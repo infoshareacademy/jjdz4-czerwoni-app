@@ -16,6 +16,7 @@
   <modules>
       <module>konsola</module>
     <module>web</module>
+    <module>api</module>
   </modules>
 
   <build>
@@ -45,13 +46,6 @@
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-log4j12</artifactId>
       <version>1.8.0-beta0</version>
-    </dependency>
-
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
     </dependency>
 
     <dependency>
