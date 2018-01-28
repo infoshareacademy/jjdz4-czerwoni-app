@@ -3,7 +3,6 @@ package com.infoshareacademy.czerwoni.question.ejb;
 import com.infoshareacademy.czerwoni.question.domain.Answer;
 import com.infoshareacademy.czerwoni.question.domain.Question;
 
-
 import javax.ejb.Local;
 import java.util.List;
 

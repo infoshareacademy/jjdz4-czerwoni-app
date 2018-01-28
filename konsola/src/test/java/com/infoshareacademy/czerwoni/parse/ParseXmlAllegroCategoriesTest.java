@@ -2,9 +2,10 @@ package com.infoshareacademy.czerwoni.parse;
 
 import com.infoshareacademy.czerwoni.allegro.AllegroCategory;
 import org.junit.Test;
-import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class ParseXmlAllegroCategoriesTest {
 

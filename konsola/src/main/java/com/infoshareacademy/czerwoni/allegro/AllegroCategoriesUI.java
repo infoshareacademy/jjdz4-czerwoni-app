@@ -4,7 +4,6 @@ import com.infoshareacademy.czerwoni.parse.ParseXmlAllegroCategories;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 import java.util.List;
 import java.util.Scanner;
 

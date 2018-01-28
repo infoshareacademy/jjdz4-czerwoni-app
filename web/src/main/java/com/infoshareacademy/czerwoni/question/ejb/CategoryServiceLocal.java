@@ -1,6 +1,7 @@
 package com.infoshareacademy.czerwoni.question.ejb;
 
 import com.infoshareacademy.czerwoni.question.domain.Category;
+
 import javax.ejb.Local;
 
 

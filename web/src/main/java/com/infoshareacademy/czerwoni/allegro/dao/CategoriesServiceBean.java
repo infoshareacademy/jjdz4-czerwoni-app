@@ -1,8 +1,6 @@
 package com.infoshareacademy.czerwoni.allegro.dao;
 
-import com.beust.jcommander.internal.Lists;
 import com.infoshareacademy.czerwoni.allegro.AllegroCategory;
-import com.infoshareacademy.czerwoni.allegro.repository.DataPromoRepository;
 import com.infoshareacademy.czerwoni.parse.ParseXmlAllegroCategories;
 
 import javax.ejb.EJB;
@@ -66,4 +64,5 @@ public class CategoriesServiceBean implements CategoriesService {
     public AllegroCategory getCategoryById(int id) {
         return allCategories.stream().filter(category -> category.getCatId() == id).findFirst().get();
     }
+
 }
