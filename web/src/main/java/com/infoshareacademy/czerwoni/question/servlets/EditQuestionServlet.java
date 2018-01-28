@@ -4,7 +4,6 @@ import com.infoshareacademy.czerwoni.question.domain.Answer;
 import com.infoshareacademy.czerwoni.question.domain.Question;
 import com.infoshareacademy.czerwoni.question.ejb.QuestionAnswerServiceLocal;
 
-import javax.ejb.EJBTransactionRolledbackException;
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

@@ -2,11 +2,8 @@ package com.infoshareacademy.czerwoni.allegro;
 
 import com.infoshareacademy.czerwoni.parse.ParseXmlAllegroCategories;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
-import static java.lang.reflect.Modifier.FINAL;
 
 public class PhraseFinder {
 

@@ -1,7 +1,7 @@
 package com.infoshareacademy.czerwoni.question.servlets;
 
-import com.infoshareacademy.czerwoni.question.ejb.QuestionAnswerServiceLocal;
 import com.infoshareacademy.czerwoni.question.domain.Question;
+import com.infoshareacademy.czerwoni.question.ejb.QuestionAnswerServiceLocal;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;

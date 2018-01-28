@@ -1,12 +1,11 @@
 package com.infoshareacademy.czerwoni.question.servlets;
 
+import com.infoshareacademy.czerwoni.question.domain.Answer;
 import com.infoshareacademy.czerwoni.question.domain.Category;
 import com.infoshareacademy.czerwoni.question.domain.Question;
 import com.infoshareacademy.czerwoni.question.ejb.QuestionAnswerServiceLocal;
-import com.infoshareacademy.czerwoni.question.domain.Answer;
 
 import javax.inject.Inject;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

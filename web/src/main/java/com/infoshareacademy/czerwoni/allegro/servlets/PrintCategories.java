@@ -1,10 +1,8 @@
 package com.infoshareacademy.czerwoni.allegro.servlets;
 
-import com.infoshareacademy.czerwoni.allegro.dao.CategoriesService;
 import com.infoshareacademy.czerwoni.allegro.AllegroCategory;
+import com.infoshareacademy.czerwoni.allegro.dao.CategoriesService;
 import com.infoshareacademy.czerwoni.allegro.dao.DataPromoService;
-import com.infoshareacademy.czerwoni.allegro.domain.DataPromo;
-import com.infoshareacademy.czerwoni.allegro.repository.DataPromoRepository;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
