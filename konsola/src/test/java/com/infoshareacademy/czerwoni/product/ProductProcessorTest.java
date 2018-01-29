@@ -15,7 +15,7 @@ public class ProductProcessorTest {
     @Test
     public void getProductDataFromAPI_invalidArg() {
         assertThat(ProductProcessor.getProductDataFromAPI("aaa"))
-                .contains("400-Bad Request");
+                .isNullOrEmpty();
     }
 
     /*
