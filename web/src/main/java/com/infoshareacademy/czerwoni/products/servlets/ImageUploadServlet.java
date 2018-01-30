@@ -29,6 +29,7 @@ public class ImageUploadServlet extends HttpServlet {
     private String fileName;
     private String filePath;
     private Part filePart;
+    private String errMsg;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -49,31 +50,42 @@ public class ImageUploadServlet extends HttpServlet {
     }
 
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         final String GENERIC_ERR_MSG = "Albo nie wskazałeś pliku do przesłania, albo "
                 + "próbujesz go zapisać w nieistniejącej lub niedostępnej "
                 + "lokalizacji.";
-        String msg;
 
         try {
             fetchDataFromRequest(request);
             saveFileIntoStorage(filePath, fileName, filePart);
+            prepareOutData(request);
 
-            String productBarcode = BarCodeReader.decodeBarcodeFromFile(filePath + "/" + fileName);
-            if (productBarcode.isEmpty()) {
-                msg = "Nie znaleziono kodu kreskowego";
-                LOGGER.warn(msg);
-            } else {
-                msg = ProductProcessor.getProductDataFromAPI(productBarcode);
-                LOGGER.trace("odczytany kod: " + productBarcode + "; produkt: " + msg);
-            }
-            request.setAttribute("productData", msg);
         } catch (FileNotFoundException fne) {
-            msg = fne.getMessage().equals("") ? GENERIC_ERR_MSG : fne.getMessage();
-            request.setAttribute("productData", msg);
+            errMsg = fne.getMessage().equals("") ? GENERIC_ERR_MSG : fne.getMessage();
+            request.setAttribute("errMsg", errMsg);
 
             LOGGER.error("Problemy w trakcie przesyłu pliku. Błąd: {0}",
                     new Object[]{fne.getMessage()});
+        }
+    }
+
+    private void prepareOutData(HttpServletRequest request) {
+
+        String productBarcode = BarCodeReader.decodeBarcodeFromFile(filePath + "/" + fileName);
+        if (productBarcode.isEmpty()) {
+            errMsg = "Nie znaleziono kodu kreskowego";
+            request.setAttribute("errMsg", errMsg);
+            LOGGER.warn(errMsg);
+        } else {
+            Object foundProduct = ProductProcessor.getProductFromAPI(productBarcode);
+            if (foundProduct == null) {
+                errMsg = "Nie znaleziono produktu dla kodu: " + productBarcode;
+                request.setAttribute("errMsg", errMsg);
+                LOGGER.warn(errMsg);
+            } else {
+                LOGGER.trace("odczytany kod: " + productBarcode + "; produkt: " + foundProduct.toString());
+                request.setAttribute("product", foundProduct);
+            }
         }
     }
 

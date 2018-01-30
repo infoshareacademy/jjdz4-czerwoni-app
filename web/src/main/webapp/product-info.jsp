@@ -27,10 +27,26 @@
     <%@include file="links.jsp"%>
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
-            <div class="col">
-                <h5>Informacje o produkcie:</h5>
-                <c:out value="${productData}"/>
-            </div>
+            <c:choose>
+                <c:when test="${errMsg != null}">
+                    <div class="col errorMessage">
+                        <h5>Wystąpił problem:</h5>
+                        <c:out value="${errMsg}"/>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <div class="col">
+                        <h5>Produkt:</h5>
+                        <c:out value="${product.toString()}"/>
+                    </div>
+                    <div class="col">
+                            <%--  a href img src kod.png--%>
+                    </div>
+                    <div class="col">
+                            <%--  a href img src link z obiektu.img --%>
+                    </div>
+                </c:otherwise>
+            </c:choose>
         </div>
         <div class="row m-0">
             <span class="mx-auto p-2">&#169 infoShare Academy</span>

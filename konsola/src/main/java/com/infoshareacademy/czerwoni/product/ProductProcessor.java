@@ -31,7 +31,7 @@ public class ProductProcessor {
      * @param barcode kod kreskowy produktu
      * @return szczegółowe informacje na temat odczytanego produktu
      */
-    static public String getProductDataFromAPI(String barcode) {
+    static String getProductDataFromAPI(String barcode) {
         Product product = getProductFromAPI(barcode);
         return (product == null) ? "" : product.toString() + "\n";
     }
@@ -63,7 +63,7 @@ public class ProductProcessor {
         pathScanner.nextLine();
     }
 
-    static private Product getProductFromAPI(String barcode) {
+    static public Product getProductFromAPI(String barcode) {
         Product product = null;
 
         if (connectToAPI(barcode)) {
