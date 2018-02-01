@@ -6,8 +6,6 @@ import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 import java.util.Base64;
 import java.util.Scanner;
@@ -31,7 +29,7 @@ public class ProductProcessor {
      * @param barcode kod kreskowy produktu
      * @return szczegółowe informacje na temat odczytanego produktu
      */
-    static String getProductDataFromAPI(String barcode) {
+    static String getProductDescFromAPI(String barcode) {
         Product product = getProductFromAPI(barcode);
         return (product == null) ? "" : product.toString() + "\n";
     }
@@ -49,43 +47,53 @@ public class ProductProcessor {
         String imageFilename = pathScanner.nextLine();
 
         String productBarcode = BarCodeReader.decodeBarcodeFromFile(imageFilename);
+        printProductDescription(productBarcode);
+
+        System.out.println("Naciśnij Enter aby wrócić do menu");
+        pathScanner.nextLine();
+    }
+
+    private static void printProductDescription(String productBarcode) {
         if (productBarcode.isEmpty()) {
             String msg = "Nie znaleziono kodu kreskowego\n";
-            System.out.println(msg);  // // "No barcode found/decoded\n"
+            System.out.println(msg);
             logger.error(msg);
         } else {
             System.out.println("Odczytany kod kreskowy: " + productBarcode);  // "Decoded barcode: "
-            String productData = getProductDataFromAPI(productBarcode);
+            String productData = getProductDescFromAPI(productBarcode);
             System.out.println(FOUND_PRODUCT_MSG + productData);  // "Product found: "
             logger.trace("odczytany kod: " + productBarcode + "; produkt: " + productData);
         }
-        System.out.println("Naciśnij Enter aby wrócić do menu");
-        pathScanner.nextLine();
     }
 
     static public Product getProductFromAPI(String barcode) {
         Product product = null;
 
         if (connectToAPI(barcode)) {
-            InputStream content;
-            String respJSON = "";
-
-            try {
-                content = httpURLConnection.getInputStream();
-                BufferedReader in =
-                        new BufferedReader(new InputStreamReader(content));
-                respJSON = in.readLine();
-            } catch (IOException e) {
-                logger.error(e.getMessage());
-                e.printStackTrace();
-            }
-
-            Gson gson = new Gson();
-            product = gson.fromJson(respJSON, Product.class);
-
+            product = fetchDataFromAPI();
             httpURLConnection.disconnect();
         }
 
+        return product;
+    }
+
+    private static Product fetchDataFromAPI() {
+        Product product;
+        InputStream content;
+        String respJSON = "";
+
+        try {
+            content = httpURLConnection.getInputStream();
+            BufferedReader in =
+                    new BufferedReader(new InputStreamReader(content));
+            respJSON = in.readLine();
+        } catch (IOException e) {
+            logger.error(e.getMessage());
+            e.printStackTrace();
+        }
+
+        Gson gson = new Gson();
+        product = gson.fromJson(respJSON, Product.class);
         return product;
     }
 

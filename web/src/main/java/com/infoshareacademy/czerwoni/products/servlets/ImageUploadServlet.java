@@ -18,6 +18,8 @@ import javax.servlet.http.Part;
 import java.io.*;
 import java.util.UUID;
 
+import com.infoshareacademy.czerwoni.product.Product;
+
 
 @WebServlet("/FileUpload")
 
@@ -77,7 +79,7 @@ public class ImageUploadServlet extends HttpServlet {
             request.setAttribute("errMsg", errMsg);
             LOGGER.warn(errMsg);
         } else {
-            Object foundProduct = ProductProcessor.getProductFromAPI(productBarcode);
+            Product foundProduct = ProductProcessor.getProductFromAPI(productBarcode);
             if (foundProduct == null) {
                 errMsg = "Nie znaleziono produktu dla kodu: " + productBarcode;
                 request.setAttribute("errMsg", errMsg);
@@ -85,6 +87,9 @@ public class ImageUploadServlet extends HttpServlet {
             } else {
                 LOGGER.trace("odczytany kod: " + productBarcode + "; produkt: " + foundProduct.toString());
                 request.setAttribute("product", foundProduct);
+
+                String imgFilePath = "/barcodes" + File.separator + fileName;
+                request.setAttribute("localImg", imgFilePath);
             }
         }
     }
@@ -103,7 +108,7 @@ public class ImageUploadServlet extends HttpServlet {
     }
 
     private static String getStoragePath() {
-        final String BARCODE_DIR = "../user-storage/barcodes";
+        final String BARCODE_DIR = System.getProperty("jboss.home.dir") + "/user-storage/barcodes"; //"../user-storage/barcodes";
         final String TMP_DIR = "/tmp";
 
         File directory = new File(BARCODE_DIR);
@@ -122,7 +127,7 @@ public class ImageUploadServlet extends HttpServlet {
 
             filecontent = filePart.getInputStream();
 
-            int read = 0;
+            int read;
             final byte[] bytes = new byte[1024];
 
             while ((read = filecontent.read(bytes)) != -1) {
