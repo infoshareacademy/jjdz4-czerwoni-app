@@ -26,11 +26,31 @@
     <%@include file="header.jsp"%>
     <%@include file="links.jsp"%>
     <div>
-        <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
-            <div class="col">
-                <h5>Informacje o produkcie:</h5>
-                <c:out value="${productData}"/>
-            </div>
+        <div class="row mt-3 pl-2 pr-2 pt-3 pb-3 border border-secondary">
+            <c:choose>
+                <c:when test="${errMsg != null}">
+                    <div class="col errorMessage">
+                        <h5>Wystąpił problem:</h5>
+                        <c:out value="${errMsg}"/>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <div class="col-8">
+                        <div class="row pl-2">
+                            <h3>Produkt:</h3>
+                            <c:out value="${product.toString()}"/>
+                        </div>
+                        <div class="row mt-3 pl-2 pr-2 pt-3">
+                            <img src="${localImg}">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                            <%--<div class="row">--%>
+                        <img src="${product.getProductImage()}" alt="${product.getProductName()}">
+                            <%--</div>--%>
+                    </div>
+                </c:otherwise>
+            </c:choose>
         </div>
         <div class="row m-0">
             <span class="mx-auto p-2">&#169 infoShare Academy</span>
