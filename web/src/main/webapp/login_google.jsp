@@ -31,7 +31,7 @@
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
             <div class="col">
-                <div class="row"><h1>Zaloguj</h1></div>
+                <div class="row questRadio"><h5>Witamy w WDYW, aby przejść dalej musisz się zalogować</h5></div>
                 ${errorMessage}
                 <div class="row">
                     <form class="questionForm" method="post" action="/login">
@@ -42,12 +42,51 @@
                         <input type="submit" value="login" name="login"/>
                     </form>
                 </div>
-                <div class="row">
-                    <div class="g-signin2" data-onsuccess="onSignIn" id="myP"></div>
-                    <img id="myImg"><br>
-                    <p id="name"></p>
-                    <div id="status"></div>
-                    <button onclick="myFunction()">Sign Out</button>
+
+            </div>
+            <!-- Trigger the modal with a button -->
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal
+            </button>
+
+            <!-- Modal -->
+            <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div id="login-modal" class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">WDYW Logowanie</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form action="#">
+                                <div class="form-group">
+                                    <label for="email">Email address:</label>
+                                    <input type="email" class="form-control" id="email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="pwd">Password:</label>
+                                    <input type="password" class="form-control" id="pwd">
+                                </div>
+                                <div class="checkbox">
+                                    <label><input type="checkbox"> Remember me</label>
+                                </div>
+                                <br/>
+                                <p>Jeżeli nie masz konta to zarejestruj się lu zaloguj się po przez konto Google</p><br/>
+                                <button type="submit" class="btn btn-default">Submit</button>
+                                <div class="g-signin2" data-onsuccess="onSignIn" id="myP"></div>
+                                <img id="myImg"><br>
+                                <p id="name"></p>
+                                <div id="status"></div>
+                                <button class="button" onclick="myFunction()">Sign Out</button>
+                            </form>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -62,7 +101,7 @@
                 document.getElementById("myImg").src = imagurl;
                 document.getElementById("name").innerHTML = name;
                 document.getElementById("myP").style.visibility = "hidden";
-                document.getElementById("status").innerHTML = 'Welcome ' + name + '!<a href=success.jsp?email=' + email + '&name=' + name + '/>Continue with Google login</a></p>'
+                document.getElementById("status").innerHTML = 'Welcome ' + name + '!<a href=success.jsp?email=' + email + '&name=' + name + '/> Continue with Google login</a></p>'
             }
         </script>
 

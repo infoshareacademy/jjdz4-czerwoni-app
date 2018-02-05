@@ -65,12 +65,12 @@
                     <div class="row">
                         <div class="col-lg-11">
                             <label>Odpowiedź: </label><br/><input size="80" name="answerName" type="text"
-                                                                  value="${answer.answerName}"/><br/><br/>
+                                                                  value="${answer.answerName}" minlength="3" required/><br/><br/>
                             <label>Kategoria: </label><br/><input size="40" name="categoryName" type="text"
-                                                                  value="${answer.relatedCategory.categoryName}"/><br/><br/>
+                                                                  value="${answer.relatedCategory.categoryName}" minlength="3" required/><br/><br/>
                             <label>Link Allegro: </label><br/><input size="60" name="categoryAllegroLink"
                                                                      type="text"
-                                                                     value="${answer.relatedCategory.categoryAllegroLink}"/><br/><br/>
+                                                                     value="${answer.relatedCategory.categoryAllegroLink}" minlength="3" required/><br/><br/>
                         </div>
                         <div class="col-lg-1">
                             <c:if test="${isUpdateAnswer==true}">
