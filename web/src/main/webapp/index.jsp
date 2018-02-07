@@ -54,14 +54,14 @@
                                 <h4 class="modal-title">WDYW Logowanie</h4>
                             </div>
                             <div class="modal-body">
-                                <form action="#">
+                                <form method="post" action="login">
                                     <div class="form-group">
-                                        <label for="email">Email address:</label>
-                                        <input type="email" class="form-control" id="email">
+                                        <label for="login">Login:</label>
+                                        <input type="text" class="form-control" id="login" minlength="3" name="login">
                                     </div>
                                     <div class="form-group">
-                                        <label for="pwd">Password:</label>
-                                        <input type="password" class="form-control" id="pwd">
+                                        <label for="password">Hasło:</label>
+                                        <input type="password" class="form-control" id="password" minlength="3" name="password">
                                     </div>
                                     <button type="submit" class="btn btn-default">Zaloguj</button>
                                     <br/>
@@ -74,6 +74,7 @@
                                     <p id="name"></p>
                                     <div id="status"></div>
                                     <%--<button class="button" onclick="logoutGoogle()">Wyloguj google</button>--%>
+                                    <div id="logoutGoogleButton"></div>
                                 </form>
 
                             </div>
@@ -94,15 +95,17 @@
                         document.getElementById("name").innerHTML = name;
                         document.getElementById("myP").style.visibility = "hidden";
                         document.getElementById("status").innerHTML = 'Witaj ' + name + '!<a href=index.jsp?email=' + email + '&name=' + name + '/> Start przy użyciu konta Google</a></p>'
+                        document.getElementById("logoutGoogleButton").innerHTML =  '<button class="button" onclick="logoutGoogle()">Wyloguj google</button>'
                     }
                 </script>
 
-                <%--<script>--%>
-                    <%--function logoutGoogle() {--%>
-                        <%--gapi.auth2.getAuthInstance().disconnect();--%>
-                        <%--location.reload();--%>
-                    <%--}--%>
-                <%--</script>--%>
+                <script>
+                    function logoutGoogle() {
+                        gapi.auth2.getAuthInstance().disconnect();
+                        location.reload();
+                        document.getElementById("logoutGoogleButton").innerHTML =''
+                    }
+                </script>
             </div>
         </div>
         <div class="row m-0">

@@ -22,7 +22,11 @@
       <url-pattern>/add-answer.jsp</url-pattern>
       <url-pattern>/add-answer.jsp</url-pattern>
       <url-pattern>/show-all-question</url-pattern>
-
+      <url-pattern>/question.jsp</url-pattern>
+      <url-pattern>/questions</url-pattern>
+      <url-pattern>/file-upload.jsp</url-pattern>
+      <url-pattern>/phrase-finder.jsp</url-pattern>
+      <url-pattern>/allegro-categories</url-pattern>
       <http-method>GET</http-method>
       <http-method>POST</http-method>
     </web-resource-collection>
