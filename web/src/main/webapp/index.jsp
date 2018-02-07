@@ -94,7 +94,8 @@
                         document.getElementById("myImg").src = imagurl;
                         document.getElementById("name").innerHTML = name;
                         document.getElementById("myP").style.visibility = "hidden";
-                        document.getElementById("status").innerHTML = 'Witaj ' + name + '!<a href=index.jsp?email=' + email + '&name=' + name + '/> Start przy użyciu konta Google</a></p>'
+                        document.getElementById("status").innerHTML = 'Witaj ' + name + '!<a href=google-user?email=' + email + '&name=' + name + '/> Start przy użyciu konta Google</a></p>'
+//                        document.getElementById("status").innerHTML = 'Witaj ' + name + '!<a href=index.jsp?email=' + email + '&name=' + name + '/> Start przy użyciu konta Google</a></p>'
                         document.getElementById("logoutGoogleButton").innerHTML =  '<button class="button" onclick="logoutGoogle()">Wyloguj google</button>'
                     }
                 </script>

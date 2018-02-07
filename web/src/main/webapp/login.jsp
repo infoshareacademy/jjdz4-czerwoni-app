@@ -39,6 +39,7 @@
                 <input type="password" id="password" name="password">
                 <input type="submit" value="login" name="login"/>
                 <br/>
+                <br/>
                 <div class="questRadio">
                     <p>Jeżeli nie masz konta to <span style="text-decoration: underline"><a href="add-user.jsp"> ZAREJESTRUJ SIĘ</a></span> </br>
                         lub zaloguj się po przez konto Google</p><br/>

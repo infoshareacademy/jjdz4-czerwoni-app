@@ -1,5 +1,7 @@
 package com.infoshareacademy.czerwoni.users.servlets;
 
+import com.infoshareacademy.czerwoni.question.servlets.LoginServlet;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,5 +14,10 @@ public class GoogleUserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         request.setAttribute("name",request.getParameter("name"));
         request.setAttribute("email",request.getParameter("email"));
+        //TODO Hasło wpisane do zmiany
+        //TODO Pokazać email użytkownika Google
+        //TODO Czy zapisywac do BD?
+
+        LoginServlet.loginUser(request, response, "monmar","monmar");
     }
 }
