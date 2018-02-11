@@ -1,4 +1,4 @@
-package com.infoshareacademy.czerwoni.allegro.dao;
+package com.infoshareacademy.czerwoni.allegro.service;
 
 import com.infoshareacademy.czerwoni.allegro.AllegroCategory;
 import com.infoshareacademy.czerwoni.parse.ParseXmlAllegroCategories;
@@ -32,11 +32,13 @@ public class CategoriesServiceBean implements CategoriesService {
 
     @Override
     public AllegroCategory getMainCategory(int catId) {
-        if (catId == 0) {
-            return null;
-        } else {
-            return allCategories.stream().filter(category -> category.getCatId() == catId).findFirst().get();
+        if (catId != 0) {
+            return allCategories.stream()
+                    .filter(allegroCategory -> allegroCategory.getCatId() == catId)
+                    .findFirst()
+                    .get();
         }
+        return null;
     }
 
     @Override

@@ -41,12 +41,12 @@
                             <c:out value="${product.toString()}"/>
                         </div>
                         <div class="row mt-3 pl-2 pr-2 pt-3">
-                            <img src="${localImg}">
+                            <img class="img-fluid" src="${localImg}">
                         </div>
                     </div>
                     <div class="col-4">
                             <%--<div class="row">--%>
-                        <img src="${product.getProductImage()}" alt="${product.getProductName()}">
+                        <img class="img-fluid" src="${product.getProductImage()}" alt="${product.getProductName()}">
                             <%--</div>--%>
                     </div>
                 </c:otherwise>
