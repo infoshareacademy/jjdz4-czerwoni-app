@@ -59,12 +59,27 @@ public class CategoriesServiceBean implements CategoriesService {
     }
     @Override
     public AllegroCategory getParentCat(int parentId) {
-        return allCategories.stream().filter(category -> category.getCatId() == parentId).findFirst().get();
+        return allCategories.stream()
+                .filter(category -> category.getCatId() == parentId)
+                .findFirst()
+                .get();
     }
 
     @Override
     public AllegroCategory getCategoryById(int id) {
-        return allCategories.stream().filter(category -> category.getCatId() == id).findFirst().get();
+        return allCategories.stream()
+                .filter(category -> category.getCatId() == id)
+                .findFirst()
+                .get();
     }
+
+    @Override
+    public AllegroCategory getCategoryByName(String name) {
+        return allCategories.stream()
+                .filter(allegroCategory -> allegroCategory.getCatName().equals(name))
+                .findFirst()
+                .get();
+    }
+
 
 }

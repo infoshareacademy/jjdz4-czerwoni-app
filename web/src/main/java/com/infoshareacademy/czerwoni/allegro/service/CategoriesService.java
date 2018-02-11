@@ -11,4 +11,5 @@ public interface CategoriesService {
     List<AllegroCategory> getBreadCrumbs(int catId);
     AllegroCategory getParentCat(int id);
     AllegroCategory getCategoryById(int id);
+    AllegroCategory getCategoryByName(String name);
 }
