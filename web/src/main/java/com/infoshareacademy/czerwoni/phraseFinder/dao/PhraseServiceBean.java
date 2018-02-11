@@ -1,7 +1,7 @@
 package com.infoshareacademy.czerwoni.phraseFinder.dao;
 
 import com.infoshareacademy.czerwoni.allegro.AllegroCategory;
-import com.infoshareacademy.czerwoni.allegro.dao.CategoriesService;
+import com.infoshareacademy.czerwoni.allegro.service.CategoriesService;
 import com.infoshareacademy.czerwoni.parse.ParseXmlAllegroCategories;
 
 import javax.ejb.Stateless;

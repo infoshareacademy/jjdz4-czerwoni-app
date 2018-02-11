@@ -1,8 +1,7 @@
 package com.infoshareacademy.czerwoni.allegro.servlets;
 
 import com.infoshareacademy.czerwoni.allegro.AllegroCategory;
-import com.infoshareacademy.czerwoni.allegro.dao.CategoriesService;
-import com.infoshareacademy.czerwoni.allegro.dao.DataPromoService;
+import com.infoshareacademy.czerwoni.allegro.service.CategoriesService;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -20,20 +19,24 @@ public class PrintCategories extends HttpServlet {
 
     @EJB
     CategoriesService categoriesService;
-    @EJB
-    DataPromoService dataPromoService;
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+
         int parentID = Integer.parseInt(req.getParameter("parent"));
         Map<AllegroCategory, String> categories = categoriesService.getCategories(parentID);
         AllegroCategory mainCategory = categoriesService.getMainCategory(parentID);
         String lastCategoryLink = null;
         List<AllegroCategory> breadCrumbs = categoriesService.getBreadCrumbs(parentID);
-        if (parentID != 0) lastCategoryLink = mainCategory.generateLink();
+
+        if (parentID != 0) {
+            lastCategoryLink = mainCategory.generateLink();
+        }
+
         req.setAttribute("mainCat", mainCategory);
         req.setAttribute("list", categories);
         req.setAttribute("lastCatLink", lastCategoryLink);
         req.setAttribute("breadCrumbs", breadCrumbs);
+
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/allegro-categories.jsp");
         requestDispatcher.forward(req, resp);
     }

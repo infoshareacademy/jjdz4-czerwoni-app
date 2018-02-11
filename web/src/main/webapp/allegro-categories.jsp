@@ -42,7 +42,7 @@
                                         </span>
                                     </div>
                                 </a>
-                                <a href="${category.value}">
+                                <a href="${category.value}" target="_blank">
                                     <div class="px-3 py-2 text-center" style="border: 1px white;border-top-style: dotted; color: yellow;">
                                         Przejdź do kategorii w serwisie Allegro
                                     </div>
@@ -51,7 +51,7 @@
                         </c:forEach>
                     </c:when>
                     <c:otherwise>
-                        <a href="${lastCatLink}" class="col-4 px-0">
+                        <a href="${lastCatLink}" target="_blank" class="col-4 px-0">
                             <div class="py-3" style="border: 1px white;border-top-style: dotted;">
                                 Przejdź do serwisu Allegro
                             </div>
