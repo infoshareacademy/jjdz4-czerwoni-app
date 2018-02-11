@@ -33,6 +33,7 @@ public class ShowCategoryServlet extends HttpServlet {
             answerId = Integer.parseInt(request.getParameter("answerRadio"));
         }
         catch (NumberFormatException nfe){
+            //TODO Nie robimy nfe.printStackTrace(); tylko przekazujemy wyjatek do Loggera (inaczej nam sie zatraci gdy np. logujemy do pliku) - uwagi Piotra
             nfe.printStackTrace();
             request.setAttribute("noChoiceError","Musisz zaznaczyć odpowiedź!!!");
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("question.jsp");
@@ -48,10 +49,10 @@ public class ShowCategoryServlet extends HttpServlet {
         request.setAttribute("category", category);
         List<Category> categoryList = null;
 
-        if(((List<Category>) session.getAttribute("categoryList"))==null) {
+        if((session.getAttribute("categoryList"))==null) {
             categoryList= new ArrayList<>();
         }
-        else if (((List<Category>) session.getAttribute("categoryList"))!=null) {
+        else if ((session.getAttribute("categoryList"))!=null) {
             categoryList = (List<Category>) session.getAttribute("categoryList");
         }
         categoryList.add(category);

@@ -1,7 +1,5 @@
 package com.infoshareacademy.czerwoni.users.servlets;
 
-import com.infoshareacademy.czerwoni.question.servlets.LoginServlet;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

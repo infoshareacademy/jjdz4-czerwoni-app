@@ -26,19 +26,19 @@ public class AddAnswersServlet extends HttpServlet {
     @Inject
     CategoryServiceLocal categoryService;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-       if(request.getParameter("add-answer")!=null) {
-           addAnswerAndExit(request, response);
-       }
-        if(request.getParameter("add-next-answer")!=null) {
+        if (request.getParameter("add-answer") != null) {
+            addAnswerAndExit(request, response);
+        }
+        if (request.getParameter("add-next-answer") != null) {
             addNextAnswer(request, response);
         }
-        if(request.getParameter("remove-answer")!=null) {
+        if (request.getParameter("remove-answer") != null) {
             removeAnswer(request, response);
         }
-        if(request.getParameter("edit-answer")!=null){
-           editAnswer(request,response);
+        if (request.getParameter("edit-answer") != null) {
+            editAnswer(request, response);
         }
     }
 
@@ -46,6 +46,7 @@ public class AddAnswersServlet extends HttpServlet {
         HttpSession session = request.getSession();
         session.removeAttribute("isUpdateAnswer");
         session.removeAttribute("answer");
+
         Question question = (Question) session.getAttribute("question");
         List<Answer> answerList;
         answerList = question.getAnswerList();
@@ -59,6 +60,7 @@ public class AddAnswersServlet extends HttpServlet {
         questionAnswerService.addAnswer(answer);
         answerList.add(answer);
         question.setAnswerList(answerList);
+
         questionAnswerService.updateQuestion(question);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-answers.jsp");
         requestDispatcher.forward(request, response);
@@ -66,17 +68,17 @@ public class AddAnswersServlet extends HttpServlet {
 
     private void addAnswerAndExit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        if(session.getAttribute("isUpdateAnswer")!=null){
+        if (session.getAttribute("isUpdateAnswer") != null) {
             Answer answer = (Answer) session.getAttribute("answer");
             answer.setAnswerName(request.getParameter("answerName"));
             answer.getRelatedCategory().setCategoryName(request.getParameter("categoryName"));
             answer.getRelatedCategory().setCategoryAllegroLink(request.getParameter("categoryAllegroLink"));
+
             categoryService.updateCategory(answer.getRelatedCategory());
             questionAnswerService.updateAnswer(answer);
             Question question = (Question) session.getAttribute("question");
-            session.setAttribute("question",questionAnswerService.getQuestionById(question.getQuestionId()));
-        }
-        else {
+            session.setAttribute("question", questionAnswerService.getQuestionById(question.getQuestionId()));
+        } else {
             Question question = (Question) session.getAttribute("question");
             List<Answer> answerList;
             answerList = question.getAnswerList();
@@ -85,6 +87,7 @@ public class AddAnswersServlet extends HttpServlet {
             Category category = new Category();
             category.setCategoryName(request.getParameter("categoryName"));
             category.setCategoryAllegroLink(request.getParameter("categoryAllegroLink"));
+
             categoryService.addCategory(category);
             answer.setRelatedCategory(category);
             questionAnswerService.addAnswer(answer);
@@ -92,21 +95,22 @@ public class AddAnswersServlet extends HttpServlet {
             question.setAnswerList(answerList);
             questionAnswerService.updateQuestion(question);
         }
-            session.removeAttribute("answer");
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("question-added.jsp");
-            requestDispatcher.forward(request, response);
-            session.setAttribute("question", null);
+        session.removeAttribute("answer");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("question-added.jsp");
+        requestDispatcher.forward(request, response);
+        session.setAttribute("question", null);
     }
 
     private void removeAnswer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Answer answer = questionAnswerService.getAnswerById(Integer.parseInt(request.getParameter("answerRadio")));
+
         questionAnswerService.removeAnswer(answer);
         categoryService.removeCategory(answer.getRelatedCategory());
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("edit-message.jsp");
         requestDispatcher.forward(request, response);
     }
 
-    private void editAnswer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    private void editAnswer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         Integer answerId = null;
         try {
@@ -121,10 +125,9 @@ public class AddAnswersServlet extends HttpServlet {
         session.setAttribute("isUpdateAnswer", true);
         session.removeAttribute("answer");
         Answer answer = questionAnswerService.getAnswerById(answerId);
-        request.setAttribute("radioAnswerId",answerId);
-        session.setAttribute("answer",answer);
+        request.setAttribute("radioAnswerId", answerId);
+        session.setAttribute("answer", answer);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-answers.jsp");
-        requestDispatcher.forward(request,response);
-
+        requestDispatcher.forward(request, response);
     }
 }
