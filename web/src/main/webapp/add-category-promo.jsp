@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<!DOCTYPE html>
+
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
@@ -24,32 +24,14 @@
 <div class="container">
     <%@include file="header.jsp"%>
     <%@include file="links.jsp"%>
-    <div>
-        <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
-            <div>
-                <div class="row">
-                    <div class="col-12 justify-content-center"><h3>Panel administratora</h3></div>
-                </div>
-                <div class="row">
-                    <a href="add-question" class="col-lg-5 justify-content-center link-button mx-auto">
-                        Dodaj pytanie
-                    </a>
-                    <a href="show-all-question" class="col-lg-5 justify-content-center link-button mx-auto">
-                        Usuń lub edytuj pytania
-                    </a>
-                    <a href="add-category-promo.jsp" class="col-lg-5 justify-content-center link-button mx-auto">
-                        Dodaj kategorię do promowanych
-                    </a>
-                    <a class="col-lg-5 justify-content-center link-button mx-auto" href="index.jsp">
-                        Usuń kategorię z promowanych
-                    </a>
-                </div>
+
+        <div>
+            <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
+                <form method="post" action="add-category-promo">
+                    <h7>Dodaj kategorię do promowania.</h7>
+                </form>
             </div>
         </div>
-        <div class="row m-0">
-            <span class="mx-auto p-2">&#169 infoShare Academy</span>
-        </div>
-    </div>
 </div>
 </body>
 </html>

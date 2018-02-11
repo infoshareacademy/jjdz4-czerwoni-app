@@ -1,4 +1,4 @@
-package com.infoshareacademy.czerwoni.allegro.dao;
+package com.infoshareacademy.czerwoni.allegro.service;
 
 import com.infoshareacademy.czerwoni.allegro.AllegroCategory;
 
