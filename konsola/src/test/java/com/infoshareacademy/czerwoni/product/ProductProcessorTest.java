@@ -8,32 +8,32 @@ public class ProductProcessorTest {
 
     @Test
     public void getProductDataFromAPI_validArg() {
-        assertThat(ProductProcessor.getProductDataFromAPI("5900084063241"))
+        assertThat(ProductProcessor.getProductDescFromAPI("5900084063241"))
                 .startsWith("Kamis Musztarda grillowa 290 g");
     }
 
     @Test
     public void getProductDataFromAPI_invalidArg() {
-        assertThat(ProductProcessor.getProductDataFromAPI("aaa"))
-                .contains("400-Bad Request");
+        assertThat(ProductProcessor.getProductDescFromAPI("aaa"))
+                .isNullOrEmpty();
     }
 
     /*
     taki przypadek w praktyce nie zaistnieje, gdyz jest zabezpieczenie przed nim,
-    tj. nie dojdzie wtedy do wywołania funkcji getProductDataFromAPI()
+    tj. nie dojdzie wtedy do wywołania funkcji getProductDescFromAPI()
 
     @Test
     public void getProductDataFromAPI_nullArg() {
-        ProductProcessor.getProductDataFromAPI(null);
+        ProductProcessor.getProductDescFromAPI(null);
     }  */
 
     /*
     taki przypadek w praktyce nie zaistnieje, gdyz jest zabezpieczenie przed nim,
-    tj. nie dojdzie wtedy do wywołania funkcji getProductDataFromAPI()
+    tj. nie dojdzie wtedy do wywołania funkcji getProductDescFromAPI()
 
     @Test
     public void getProductDataFromAPI_emptyArg() {
-        ProductProcessor.getProductDataFromAPI("");
+        ProductProcessor.getProductDescFromAPI("");
     } */
 
 }

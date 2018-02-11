@@ -4,15 +4,13 @@ import com.google.gson.Gson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Base64;
 import java.util.Scanner;
+
+import static java.net.HttpURLConnection.HTTP_OK;
 
 /**
  * klasa obsługująca przetwarzanie produktu: odczytanie kodu kreskowego ze wskazanego pliku
@@ -20,8 +18,10 @@ import java.util.Scanner;
  */
 public class ProductProcessor {
 
+    private static HttpURLConnection httpURLConnection;
     private static Logger logger = LoggerFactory.getLogger(ProductProcessor.class);
-    static String FOUND_PRODUCT_MSG = "Zidentyfikowany produkt: ";
+    private static String FOUND_PRODUCT_MSG = "Zidentyfikowany produkt: ";
+
     /**
      * metoda pobierająca dane produktu z webowego interfejsu API
      * na podstawie jego kodu kreskowego
@@ -29,56 +29,9 @@ public class ProductProcessor {
      * @param barcode kod kreskowy produktu
      * @return szczegółowe informacje na temat odczytanego produktu
      */
-    static public String getProductDataFromAPI(String barcode) {
-        String LOG_ERR_MSG = "wyjątek w ProductProcessor.getProductDataFromAPI()";
-        String response = null;
-
-        try {
-            String webAPI = "http://www.produktywsieci.gs1.pl/api/products/" + barcode + "?aggregation=SOCIAL";
-
-            final int statusCodeOK = 200;
-            final String authName = "mateusz@infoshareacademy.com",
-                    authToken = "cc2ef9333d20dbd97bfb395e1f82fd3b4e5ef8a1e1be37598ba60faf2256efac";
-            final String authString = authName + ":" + authToken;
-            final String authEncoding = Base64.getEncoder().encodeToString((authString).getBytes("UTF-8"));
-
-            URL urlAPI = new URL(webAPI);
-            HttpURLConnection httpURLConnection = (HttpURLConnection) urlAPI.openConnection();
-            httpURLConnection.setRequestMethod("GET");
-            httpURLConnection.setRequestProperty("Accept", "text/json"); // "text/json"  "application/json"
-            httpURLConnection.setRequestProperty("Authorization", "Basic " + authEncoding);
-
-            response = ((httpURLConnection.getResponseCode() == statusCodeOK) ?
-                    "success (" : "failed (HTTP error code : ")
-                    + httpURLConnection.getResponseCode() + "-" + httpURLConnection.getResponseMessage() + ")";
-            logger.debug("connection to: " + webAPI + ", response: " + httpURLConnection.getResponseCode() + "-" + httpURLConnection.getResponseMessage());
-
-            InputStream content = httpURLConnection.getInputStream();
-            BufferedReader in =
-                    new BufferedReader(new InputStreamReader(content));
-            String respJSON = in.readLine();
-
-            Gson gson = new Gson();
-            // Product product = gson.fromJson(in, Product.class);
-            Product product = gson.fromJson(respJSON, Product.class);
-
-            if (product != null) {
-                response = product.toString();
-            } else {
-                response = "null product";
-            }
-            response = response + "\n";
-
-            httpURLConnection.disconnect();
-
-        } catch (MalformedURLException e) {
-            logger.error(LOG_ERR_MSG, e);
-        } catch (IOException e) {
-            logger.error(LOG_ERR_MSG, e);
-            e.printStackTrace();
-        }
-        return response;
-
+    static String getProductDescFromAPI(String barcode) {
+        Product product = getProductFromAPI(barcode);
+        return (product == null) ? "" : product.toString() + "\n";
     }
 
     /**
@@ -94,17 +47,81 @@ public class ProductProcessor {
         String imageFilename = pathScanner.nextLine();
 
         String productBarcode = BarCodeReader.decodeBarcodeFromFile(imageFilename);
+        printProductDescription(productBarcode);
+
+        System.out.println("Naciśnij Enter aby wrócić do menu");
+        pathScanner.nextLine();
+    }
+
+    private static void printProductDescription(String productBarcode) {
         if (productBarcode.isEmpty()) {
             String msg = "Nie znaleziono kodu kreskowego\n";
-            System.out.println(msg);  // // "No barcode found/decoded\n"
+            System.out.println(msg);
             logger.error(msg);
         } else {
             System.out.println("Odczytany kod kreskowy: " + productBarcode);  // "Decoded barcode: "
-            String productData = getProductDataFromAPI(productBarcode);
+            String productData = getProductDescFromAPI(productBarcode);
             System.out.println(FOUND_PRODUCT_MSG + productData);  // "Product found: "
             logger.trace("odczytany kod: " + productBarcode + "; produkt: " + productData);
         }
-        System.out.println("Naciśnij Enter aby wrócić do menu");
-        pathScanner.nextLine();
+    }
+
+    static public Product getProductFromAPI(String barcode) {
+        Product product = null;
+
+        if (connectToAPI(barcode)) {
+            product = fetchDataFromAPI();
+            httpURLConnection.disconnect();
+        }
+
+        return product;
+    }
+
+    private static Product fetchDataFromAPI() {
+        Product product;
+        InputStream content;
+        String respJSON = "";
+
+        try {
+            content = httpURLConnection.getInputStream();
+            BufferedReader in =
+                    new BufferedReader(new InputStreamReader(content));
+            respJSON = in.readLine();
+        } catch (IOException e) {
+            logger.error(e.getMessage());
+            e.printStackTrace();
+        }
+
+        Gson gson = new Gson();
+        product = gson.fromJson(respJSON, Product.class);
+        return product;
+    }
+
+    static private boolean connectToAPI(String barcode) {
+        boolean isConnected = false;
+
+        try {
+            String webAPI = "http://www.produktywsieci.gs1.pl/api/products/" + barcode + "?aggregation=SOCIAL";
+            final String authName = "mateusz@infoshareacademy.com",
+                    authToken = "cc2ef9333d20dbd97bfb395e1f82fd3b4e5ef8a1e1be37598ba60faf2256efac";
+            final String authString = authName + ":" + authToken;
+            final String authEncoding = Base64.getEncoder().encodeToString((authString).getBytes("UTF-8"));
+
+            URL urlAPI = new URL(webAPI);
+            httpURLConnection = (HttpURLConnection) urlAPI.openConnection();
+            httpURLConnection.setRequestMethod("GET");
+            httpURLConnection.setRequestProperty("Accept", "text/json"); // "text/json"  "application/json"
+            httpURLConnection.setRequestProperty("Authorization", "Basic " + authEncoding);
+
+            isConnected = (httpURLConnection.getResponseCode() == HTTP_OK);
+
+            String response = (isConnected ? "success (" : "failed (HTTP error code : ")
+                    + httpURLConnection.getResponseCode() + "-" + httpURLConnection.getResponseMessage() + ")";
+            logger.debug("connection to: " + webAPI + ", response: " + httpURLConnection.getResponseCode() + "-" + httpURLConnection.getResponseMessage());
+        } catch (IOException e) {
+            logger.error(e.getMessage());
+        } finally {
+            return isConnected;
+        }
     }
 }
