@@ -85,6 +85,13 @@
 
                     </div>
                 </div>
+
+                <script type="text/javascript">
+                    $(window).on('load',function(){
+                        $('#myModal').modal('show');
+                    });
+                </script>
+
                 <script type="text/javascript">
                     function onSignIn(googleUser) {
                         var profile = googleUser.getBasicProfile();
