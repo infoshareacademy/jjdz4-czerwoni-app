@@ -38,7 +38,7 @@ public class ShowCategoryServlet extends HttpServlet {
         }
         catch (NumberFormatException nfe){
             //TODO Nie robimy nfe.printStackTrace(); tylko przekazujemy wyjatek do Loggera (inaczej nam sie zatraci gdy np. logujemy do pliku) - uwagi Piotra
-            logger.info("Nie podano odpowiedzi");
+            logger.error("Nie podano odpowiedzi");
            // nfe.printStackTrace();
             request.setAttribute("noChoiceError","Musisz zaznaczyć odpowiedź!!!");
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("question.jsp");

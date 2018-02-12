@@ -16,6 +16,7 @@
 <div class="container">
     <%@include file="header.jsp"%>
     <%@include file="links.jsp"%>
+    <%@include file="login-window.jsp" %>
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
             <div class="col-12 text-center"><h4>Kategorie Allegro</h4></div>

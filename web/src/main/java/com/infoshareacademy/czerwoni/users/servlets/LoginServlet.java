@@ -29,9 +29,7 @@ public class LoginServlet extends HttpServlet {
             return;
         }
         if (request.getHeader("Referer").contains("index.jsp") || request.getHeader("Referer").contains("/")) {
-//            session.setAttribute("login",request.getParameter("login"));
             session.setAttribute("login",login);
-            //response.sendRedirect("admin-panel.jsp");
             response.sendRedirect(request.getHeader("Referer"));
             return;
         }

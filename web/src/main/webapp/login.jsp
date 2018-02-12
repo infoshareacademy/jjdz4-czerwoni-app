@@ -28,49 +28,11 @@
 <div class="container">
     <%@include file="header.jsp"%>
     <%@include file="links.jsp"%>
+    <%@include file="login-window.jsp"%>
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
-            <h1>Zaloguj</h1>
-            ${errorMessage}
-            <form class="questionForm" method="post" action="/login">
-                <label for="userName">Login:</label>
-                <input type="text" id="userName" name="login">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password">
-                <input type="submit" value="login" name="login"/>
-                <br/>
-                <br/>
-                <div class="questRadio">
-                    <p>Jeżeli nie masz konta to <span style="text-decoration: underline"><a href="add-user.jsp"> ZAREJESTRUJ SIĘ</a></span> </br>
-                        lub zaloguj się po przez konto Google</p><br/>
-                </div>
-                <div class="g-signin2" data-onsuccess="onSignIn" id="myP"></div>
-                <%--<button class="button" onclick="logoutGoogle()">Wyloguj google</button>--%>
-                <div id="logoutGoogleButton"></div>
-                <img id="myImg"><br>
-                <p id="name"></p>
-                <div id="status"></div>
-            </form>
-            <script type="text/javascript">
-                function onSignIn(googleUser) {
-                    var profile = googleUser.getBasicProfile();
-                    var imagurl = profile.getImageUrl();
-                    var name = profile.getName();
-                    var email = profile.getEmail();
-                    document.getElementById("myImg").src = imagurl;
-                    document.getElementById("name").innerHTML = name;
-                    document.getElementById("myP").style.visibility = "hidden";
-                    document.getElementById("status").innerHTML = 'Witaj ' + name + '!<a href=index.jsp?email=' + email + '&name=' + name + '/> Start przy użyciu konta Google</a></p>'
-                    document.getElementById("logoutGoogleButton").innerHTML =  '<button class="button" onclick="logoutGoogle()">Wyloguj google</button>'
-                }
-            </script>
-            <script>
-                function logoutGoogle() {
-                    gapi.auth2.getAuthInstance().disconnect();
-                    location.reload();
-                    document.getElementById("logoutGoogleButton").innerHTML =''
-                }
-            </script>
+
+
         </div>
         <div class="row m-0">
             <span class="mx-auto p-2">&#169 infoShare Academy</span>
