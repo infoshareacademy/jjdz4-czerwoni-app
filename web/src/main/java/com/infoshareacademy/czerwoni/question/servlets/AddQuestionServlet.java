@@ -61,9 +61,20 @@ AddQuestionServlet extends HttpServlet {
         session.setAttribute("mode", "editMode");
 
         if(questionLevel>1) {
-            Answer answer = questionAnswerService.getAnswerById(Integer.parseInt(request.getParameter("answer")));
-            answer.setRelatedQuest(question);
-            questionAnswerService.updateAnswer(answer);
+            try {
+                Answer answer = questionAnswerService.getAnswerById(Integer.parseInt(request.getParameter("answer")));
+                answer.setRelatedQuest(question);
+                questionAnswerService.updateAnswer(answer);
+            }
+            catch (NumberFormatException nfe){
+                nfe.printStackTrace();
+                request.setAttribute("NFErrorMessage", "Musisz wybrac odpowiedź!!!");
+                List<Answer> answersList = questionAnswerService.getAnswersWithoutRelatedQuestion();
+                request.setAttribute("answersListWithoutRelatedQuestion", answersList);
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-question.jsp");
+                requestDispatcher.forward(request, response);
+                return;
+            }
         }
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-answers.jsp");
         requestDispatcher.forward(request, response);

@@ -39,10 +39,3 @@
     </c:if>
 </div>
 </div>
-<script>
-    function logoutGoogle() {
-        gapi.auth2.getAuthInstance().disconnect();
-        location.reload();
-        document.getElementById("logoutGoogleButton").innerHTML = ''
-    }
-</script>
