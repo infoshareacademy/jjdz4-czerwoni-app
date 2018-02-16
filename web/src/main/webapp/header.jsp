@@ -34,8 +34,15 @@
     <c:if test="${sessionScope.login!=null}">
         <div class="col logtext">
             Zalogowano: <a href="admin-panel.jsp"> ${sessionScope.login}</a>
-            <a href="logout"><span>Wyloguj</span></a>
+            <a href="logout" onclick="logoutGoogle()"><span>Wyloguj</span></a>
         </div>
     </c:if>
 </div>
 </div>
+<script>
+    function logoutGoogle() {
+        gapi.auth2.getAuthInstance().disconnect();
+        location.reload();
+        document.getElementById("logoutGoogleButton").innerHTML = ''
+    }
+</script>

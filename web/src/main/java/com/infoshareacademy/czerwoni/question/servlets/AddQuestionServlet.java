@@ -16,7 +16,8 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet("add-question")
-public class AddQuestionServlet extends HttpServlet {
+public class
+AddQuestionServlet extends HttpServlet {
     @EJB
     QuestionAnswerServiceLocal questionAnswerService;
 
@@ -28,9 +29,6 @@ public class AddQuestionServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-
-//        session.removeAttribute("answersList");
-//        session.removeAttribute("question");
         session.removeAttribute("isUpdateAnswer");
         List<Answer> answersList = questionAnswerService.getAnswersWithoutRelatedQuestion();
         request.setAttribute("answersListWithoutRelatedQuestion", answersList);
@@ -61,9 +59,12 @@ public class AddQuestionServlet extends HttpServlet {
         session.removeAttribute("isUpdateAnswer");
         session.setAttribute("question", question);
         session.setAttribute("mode", "editMode");
-        Answer answer = questionAnswerService.getAnswerById(Integer.parseInt(request.getParameter("answer")));
-        answer.setRelatedQuest(question);
-        questionAnswerService.updateAnswer(answer);
+
+        if(questionLevel>1) {
+            Answer answer = questionAnswerService.getAnswerById(Integer.parseInt(request.getParameter("answer")));
+            answer.setRelatedQuest(question);
+            questionAnswerService.updateAnswer(answer);
+        }
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-answers.jsp");
         requestDispatcher.forward(request, response);
     }
