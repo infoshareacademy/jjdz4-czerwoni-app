@@ -5,12 +5,13 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "roles")
-
+@NamedQuery(name = "getAllRoles", query = "from Roles")
 public class Roles implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
+    @Column(name = "id")
+    private int roleId;
     @Column(name = "user_login",nullable = false)
     private String userLogin;
     @Column(name = "user_role")
@@ -18,13 +19,12 @@ public class Roles implements Serializable {
     @Column(name = "role_group")
     private String userGroup;
 
-
-    public int getId() {
-        return id;
+    public int getRoleId() {
+        return roleId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
     }
 
     public String getUserLogin() {
