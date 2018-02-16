@@ -30,18 +30,23 @@
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
             <form class="questionForm" method="post" action="add-user">
-                <label>Treść pytania: </label><br/><input size="80" name="questionName" type="text" minlength="3" required/> <br/><br/>
-                <label>Poziom pytania: </label><br/><input size="20" name="questionLevel" type="number" min="1" max="30" required/>
+                <label>Login: </label><br/><input size="80" name="login" type="text" minlength="3" required/> <br/><br/>
+                <label>Hasło: </label><br/><input size="80" name="password" type="password" required/> <br/><br/>
+                <label>Powtórz hasło: </label><br/><input size="80" name="password2" type="password" required/> <br/><br/>
+                <label>Imię: </label><br/><input size="80" name="name" type="text" minlength="3"/> <br/><br/>
+                <label>Nazwisko: </label><br/><input size="80" name="surename" type="text" minlength="3"/> <br/><br/>
+                <label>E-mail: </label><br/><input size="80" name="email" type="email" required/> <br/><br/>
+
                 <div class="errorMessage">${NFErrorMessage}</div>
                 <br/>
-                <label>Wybierz odpowiedź nadrzędną: </label><br/>
-                <select name="answer">
-                    <option value="wybierz odpowiedź">Wybierz odpowiedź</option>
-                    <c:forEach var="list" items="${answersListWithoutRelatedQuestion}">
-                        <option value="${list.answerId}">${list.answerName}</option>
+                <label>Wybierz rolę: </label><br/>
+                <select name="reles">
+                    <option value="Wybierz rolę">Wybierz rolę</option>
+                    <c:forEach var="list" items="${rolesList}">
+                        <option value="${list.roleId}">${list.userRole}</option>
                     </c:forEach>
                 </select><br/><br/>
-                <input class="button" type="submit" name="add-question" value="Dalej"/>
+                <input class="button" type="submit" name="add-user" value="Zapisz"/>
             </form>
         </div>
         <div class="row m-0">
