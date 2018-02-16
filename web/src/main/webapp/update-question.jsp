@@ -28,9 +28,9 @@
             <form method="post">
                 <div class="questionForm">
                     <label>Treść pytania: </label><br/><input size="80" name="questionName" type="text"
-                                                              value="${sessionScope.question.questionName}"/> <br/><br/>
-                    <label>Poziom pytania: </label><br/><input size="20" name="questionLevel" type="text"
-                                                               value="${sessionScope.question.questionLevel}"/>
+                                                              value="${sessionScope.question.questionName}" minlength="3" required/> <br/><br/>
+                    <label>Poziom pytania: </label><br/><input size="20" name="questionLevel" type="number"
+                                                               value="${sessionScope.question.questionLevel}" min="1" max="30" required/>
                     <div class="errorMessage">${NFErrorMessage}</div>
                     <br/>
                 </div>

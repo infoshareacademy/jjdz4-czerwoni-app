@@ -1,4 +1,4 @@
-package com.infoshareacademy.czerwoni.question.servlets;
+package com.infoshareacademy.czerwoni.users.servlets;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,9 +13,15 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String login = request.getParameter("login");
+        String password = request.getParameter("password");
+        loginUser(request, response, login, password);
+    }
+
+    public static void loginUser(HttpServletRequest request, HttpServletResponse response, String login, String password) throws ServletException, IOException {
         HttpSession session = request.getSession();
         try {
-            request.login(request.getParameter("login"), request.getParameter("password"));
+            request.login(login, password);
         } catch (ServletException se) {
             request.setAttribute("errorMessage", se.getMessage());
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("login.jsp");
@@ -23,11 +29,11 @@ public class LoginServlet extends HttpServlet {
             return;
         }
         if (request.getHeader("Referer").contains("index.jsp") || request.getHeader("Referer").contains("/")) {
-            session.setAttribute("login",request.getParameter("login"));
-            response.sendRedirect("admin-panel.jsp");
+            session.setAttribute("login",login);
+            response.sendRedirect(request.getHeader("Referer"));
             return;
         }
-        session.setAttribute("login",request.getParameter("login"));
+        session.setAttribute("login",login);
         response.sendRedirect(request.getHeader("Referer"));
     }
 }
