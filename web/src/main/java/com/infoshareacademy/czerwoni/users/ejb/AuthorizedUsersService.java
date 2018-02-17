@@ -7,7 +7,6 @@ import com.infoshareacademy.czerwoni.users.domain.*;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 
@@ -28,9 +27,11 @@ public class AuthorizedUsersService implements AuthorizedUsersServiceLocal {
     }
 
     @Override
-    public Set<Roles> getRolesNameList(){
-        Set<Roles> rolesSet = new HashSet<>();
-                rolesSet.addAll(authorizedUsersRepository.getAllRoles());
+    public Set<String> getRolesNameList(){
+        Set<String> rolesSet = new HashSet<>();
+        authorizedUsersRepository
+                .getAllRoles()
+                .forEach(roles -> rolesSet.add(roles.getUserRole()));
         return rolesSet;
     }
 }
