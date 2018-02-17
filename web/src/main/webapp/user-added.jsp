@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 
 <html lang="pl">
@@ -29,25 +29,14 @@
     <%@include file="links.jsp"%>
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
-            <form class="questionForm" method="post" action="add-user">
-                <label>Login: </label><br/><input size="50" name="login" type="text" minlength="3" required/> <br/><br/>
-                <label>Hasło: </label><br/><input size="50" name="password" type="password" required/> <br/><br/>
-                <label>Powtórz hasło: </label><br/><input size="40" name="password2" type="password" required/> <br/><br/>
-                <label>Imię: </label><br/><input size="40" name="name" type="text" minlength="3"/> <br/><br/>
-                <label>Nazwisko: </label><br/><input size="40" name="surname" type="text" minlength="3"/> <br/><br/>
-                <label>E-mail: </label><br/><input size="50" name="email" type="email" required/> <br/><br/>
+                <div class="col-lg-12"> Dodano użytkownika:
+                    <span style="color: #0088cc"> ${users.name} ${users.surname} </span><br/>
+                        email: <span style="color: #0088cc">${users.email}</span>
+                </div>
+                <br/><br/>
 
-                <div class="errorMessage">${NFErrorMessage}</div>
-                <br/>
-                <label>Wybierz rolę: </label><br/>
-                <select name="roles">
-                    <option value="Wybierz rolę">Wybierz rolę</option>
-                    <c:forEach var="list" items="${rolesList}">
-                        <option value="${list}">${list}</option>
-                    </c:forEach>
-                </select><br/><br/>
-                <input class="button" type="submit" name="add-user" value="Zapisz"/>
-            </form>
+
+
         </div>
         <div class="row m-0">
             <span class="mx-auto p-2">&#169 infoShare Academy</span>

@@ -11,6 +11,6 @@ public interface AuthorizedUsersServiceLocal {
 
     void addAuthorizedUser(Users users, Roles roles);
     String getHexPassword(String password);
-    Set<Roles> getRolesNameList();
+    Set<String> getRolesNameList();
 
 }
