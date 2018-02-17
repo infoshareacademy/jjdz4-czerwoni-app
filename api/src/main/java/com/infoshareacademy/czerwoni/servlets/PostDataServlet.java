@@ -16,7 +16,7 @@ public class PostDataServlet extends HttpServlet {
         // super.doPost(req, resp);
 
         PrintWriter writer = resp.getWriter();
-        writer.println("<!DOCTYPE html><html><body> jestem w PostData"
+        writer.println("<!DOCTYPE html><html><body> PostData test"
                 + "</body></html>");
     }
 }
