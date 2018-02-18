@@ -4,6 +4,8 @@ import com.infoshareacademy.czerwoni.question.domain.Answer;
 import com.infoshareacademy.czerwoni.question.domain.Category;
 import com.infoshareacademy.czerwoni.question.ejb.CategoryServiceLocal;
 import com.infoshareacademy.czerwoni.question.ejb.QuestionAnswerServiceLocal;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
@@ -26,6 +28,8 @@ public class ShowCategoryServlet extends HttpServlet {
     @Inject
     CategoryServiceLocal categoryService;
 
+    private final static Logger logger = LoggerFactory.getLogger(ShowCategoryServlet.class.getName());
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Integer answerId;
         HttpSession session = request.getSession();
@@ -33,7 +37,9 @@ public class ShowCategoryServlet extends HttpServlet {
             answerId = Integer.parseInt(request.getParameter("answerRadio"));
         }
         catch (NumberFormatException nfe){
-            nfe.printStackTrace();
+            //TODO Nie robimy nfe.printStackTrace(); tylko przekazujemy wyjatek do Loggera (inaczej nam sie zatraci gdy np. logujemy do pliku) - uwagi Piotra
+            logger.error("Nie podano odpowiedzi");
+           // nfe.printStackTrace();
             request.setAttribute("noChoiceError","Musisz zaznaczyć odpowiedź!!!");
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("question.jsp");
             requestDispatcher.forward(request,response);
@@ -48,10 +54,10 @@ public class ShowCategoryServlet extends HttpServlet {
         request.setAttribute("category", category);
         List<Category> categoryList = null;
 
-        if(((List<Category>) session.getAttribute("categoryList"))==null) {
+        if((session.getAttribute("categoryList"))==null) {
             categoryList= new ArrayList<>();
         }
-        else if (((List<Category>) session.getAttribute("categoryList"))!=null) {
+        else if ((session.getAttribute("categoryList"))!=null) {
             categoryList = (List<Category>) session.getAttribute("categoryList");
         }
         categoryList.add(category);

@@ -16,7 +16,8 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet("add-question")
-public class AddQuestionServlet extends HttpServlet {
+public class
+AddQuestionServlet extends HttpServlet {
     @EJB
     QuestionAnswerServiceLocal questionAnswerService;
 
@@ -28,9 +29,6 @@ public class AddQuestionServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-
-//        session.removeAttribute("answersList");
-//        session.removeAttribute("question");
         session.removeAttribute("isUpdateAnswer");
         List<Answer> answersList = questionAnswerService.getAnswersWithoutRelatedQuestion();
         request.setAttribute("answersListWithoutRelatedQuestion", answersList);
@@ -61,9 +59,23 @@ public class AddQuestionServlet extends HttpServlet {
         session.removeAttribute("isUpdateAnswer");
         session.setAttribute("question", question);
         session.setAttribute("mode", "editMode");
-        Answer answer = questionAnswerService.getAnswerById(Integer.parseInt(request.getParameter("answer")));
-        answer.setRelatedQuest(question);
-        questionAnswerService.updateAnswer(answer);
+
+        if(questionLevel>1) {
+            try {
+                Answer answer = questionAnswerService.getAnswerById(Integer.parseInt(request.getParameter("answer")));
+                answer.setRelatedQuest(question);
+                questionAnswerService.updateAnswer(answer);
+            }
+            catch (NumberFormatException nfe){
+                nfe.printStackTrace();
+                request.setAttribute("NFErrorMessage", "Musisz wybrac odpowiedź!!!");
+                List<Answer> answersList = questionAnswerService.getAnswersWithoutRelatedQuestion();
+                request.setAttribute("answersListWithoutRelatedQuestion", answersList);
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-question.jsp");
+                requestDispatcher.forward(request, response);
+                return;
+            }
+        }
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-answers.jsp");
         requestDispatcher.forward(request, response);
     }

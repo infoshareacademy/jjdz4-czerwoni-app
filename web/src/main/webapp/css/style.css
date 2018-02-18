@@ -209,3 +209,7 @@ html > body > div > div > div > div > a > div {
     border: 2px white;
     border-top-style: dotted;
 }
+
+#login-modal {
+    background-color: #343a40;
+}

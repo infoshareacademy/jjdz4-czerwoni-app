@@ -19,6 +19,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
             integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
             crossorigin="anonymous"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id"
+          content="830889560506-bfd7gjnpsj4o3ss6n24f2pis4dscu4u9.apps.googleusercontent.com">
 </head>
 <body class="bg-dark">
 <div class="container">
@@ -65,12 +68,12 @@
                     <div class="row">
                         <div class="col-lg-11">
                             <label>Odpowiedź: </label><br/><input size="80" name="answerName" type="text"
-                                                                  value="${answer.answerName}"/><br/><br/>
+                                                                  value="${answer.answerName}" minlength="3" required/><br/><br/>
                             <label>Kategoria: </label><br/><input size="40" name="categoryName" type="text"
-                                                                  value="${answer.relatedCategory.categoryName}"/><br/><br/>
+                                                                  value="${answer.relatedCategory.categoryName}" minlength="3" required/><br/><br/>
                             <label>Link Allegro: </label><br/><input size="60" name="categoryAllegroLink"
                                                                      type="text"
-                                                                     value="${answer.relatedCategory.categoryAllegroLink}"/><br/><br/>
+                                                                     value="${answer.relatedCategory.categoryAllegroLink}" minlength="3" required/><br/><br/>
                         </div>
                         <div class="col-lg-1">
                             <c:if test="${isUpdateAnswer==true}">
