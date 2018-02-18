@@ -7,9 +7,11 @@ import java.io.Serializable;
 @Entity
 @Table(name = "users")
 public class Users implements Serializable{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name = "id")
+    private int userId;
     @Column(nullable = false)
     private String login;
     @Column(nullable = false)
@@ -21,22 +23,12 @@ public class Users implements Serializable{
     @Column(unique = true, nullable = false)
     private String email;
 
-
-    public String getEmail() {
-        return email;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getLogin() {
@@ -69,5 +61,12 @@ public class Users implements Serializable{
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

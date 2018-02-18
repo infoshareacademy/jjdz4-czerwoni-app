@@ -20,7 +20,9 @@
       <url-pattern>/add-question</url-pattern>
       <url-pattern>/admin-panel.jsp</url-pattern>
       <url-pattern>/add-answer.jsp</url-pattern>
-      <url-pattern>/add-answer.jsp</url-pattern>
+      <url-pattern>/add-answers.jsp</url-pattern>
+      <url-pattern>/add-user.jsp</url-pattern>
+      <url-pattern>/add-user</url-pattern>
       <url-pattern>/show-all-question</url-pattern>
       <url-pattern>/question.jsp</url-pattern>
       <url-pattern>/questions</url-pattern>
