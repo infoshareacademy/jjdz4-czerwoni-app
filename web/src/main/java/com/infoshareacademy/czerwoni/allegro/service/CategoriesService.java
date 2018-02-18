@@ -12,4 +12,5 @@ public interface CategoriesService {
     AllegroCategory getParentCat(int id);
     AllegroCategory getCategoryById(int id);
     AllegroCategory getCategoryByName(String name);
+    boolean checkIfCategoryExists(int catId);
 }

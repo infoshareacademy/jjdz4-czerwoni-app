@@ -40,7 +40,7 @@
                     <a href="show-all-question" class="col-lg-5 justify-content-center link-button mx-auto">
                         Usuń lub edytuj pytania
                     </a>
-                    <a href="add-category-promo.jsp" class="col-lg-5 justify-content-center link-button mx-auto">
+                    <a href="add-category-promo" class="col-lg-5 justify-content-center link-button mx-auto">
                         Dodaj kategorię do promowanych
                     </a>
                     <a class="col-lg-5 justify-content-center link-button mx-auto" href="index.jsp">

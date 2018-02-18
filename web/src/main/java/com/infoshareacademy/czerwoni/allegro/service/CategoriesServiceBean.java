@@ -81,5 +81,12 @@ public class CategoriesServiceBean implements CategoriesService {
                 .get();
     }
 
-
+    @Override
+    public boolean checkIfCategoryExists(int catId) {
+        if (allCategories.stream()
+                .anyMatch(allegroCategory -> allegroCategory.getCatId() == catId)){
+            return true;
+        }
+        return false;
+    }
 }

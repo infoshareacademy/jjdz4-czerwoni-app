@@ -31,9 +31,16 @@
 
         <div>
             <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
-                <form method="post" action="add-category-promo">
-                    <h7>Dodaj kategorię do promowania.</h7>
-                </form>
+                <div class="col">
+                    <h3 class="mx-auto">Dodaj kategorię do promowania.</h3>
+                    <form method="post" action="/add-category-promo">
+                        <label class="pt-2">Podaj Id wyszukiwanej kategorii: </label><br/>
+                        <input type="text" name="id"/><br/>
+                        <label class="pt-2">Podaj nazwę kategorii: </label><br/>
+                        <input type="text" name="categoryName"/><br/>
+                        <input type="submit" class="pt-2"/>
+                    </form>
+                </div>
             </div>
         </div>
 </div>

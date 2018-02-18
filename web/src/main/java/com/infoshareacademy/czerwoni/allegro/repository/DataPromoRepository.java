@@ -11,6 +11,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 @Stateless
 public class DataPromoRepository {
@@ -22,7 +24,15 @@ public class DataPromoRepository {
     @PersistenceContext(unitName = "pUnit")
     EntityManager entityManager;
 
-    public void addCategory(AllegroCategory allegroCategory) {entityManager.persist(allegroCategory.getCatId());}
+    public boolean addCategory(AllegroCategory allegroCategory) {
+        if (checkIfCategoryExists(allegroCategory.getCatId())) {
+            DataPromo dataPromo = new DataPromo();
+            dataPromo.setPromotedCategory(allegroCategory.getCatId());
+            entityManager.persist(dataPromo);
+            return true;
+        }
+        return false;
+    }
 
     public void removeCategory(AllegroCategory allegroCategory) {entityManager.remove(entityManager.contains(allegroCategory));}
 
@@ -55,5 +65,15 @@ public class DataPromoRepository {
             promoCatInt.add((Integer) id);
         }
         return promoCatInt;
+    }
+
+    public List<AllegroCategory> getSearchedCategories(String keyWord) {
+        return allegroCategories.stream()
+                .filter(allegroCategory -> allegroCategory.getCatName().equals(keyWord))
+                .collect(Collectors.toList());
+    }
+
+    private boolean checkIfCategoryExists(int id) {
+        return categoriesService.checkIfCategoryExists(id);
     }
 }

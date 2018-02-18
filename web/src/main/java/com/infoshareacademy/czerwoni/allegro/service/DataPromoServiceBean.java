@@ -5,12 +5,13 @@ import com.infoshareacademy.czerwoni.allegro.repository.DataPromoRepository;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import java.util.List;
 
 @Stateless
 public class DataPromoServiceBean implements DataPromoService {
 
-    @EJB
+    @Inject
     DataPromoRepository dataPromoRepository;
 
     @Override
