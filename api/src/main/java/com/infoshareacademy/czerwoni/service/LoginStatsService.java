@@ -1,13 +1,14 @@
 package com.infoshareacademy.czerwoni.service;
 
 import com.infoshareacademy.czerwoni.domain.LoginStat;
+import com.infoshareacademy.czerwoni.repository.LoginStatsRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -17,23 +18,27 @@ public class LoginStatsService {
 
     private Logger LOGGER = LoggerFactory.getLogger(LoginStatsService.class);
 
+    @Inject
+    private LoginStatsRepository statsRepository;
+
     public LoginStatsService() {
     }
 
     @POST
     @Path("/AddLoginStat")
     @Consumes(MediaType.APPLICATION_JSON)
-    /* {
-        "userLogin": "adam",
-        "loginTime": "2018-02-18T15:59:57.653"
-       }        */
-    //    @Produces(MediaType.TEXT_PLAIN)
     public Response addLoginStat(LoginStat loginStat) {
 
-        LOGGER.info("user {} has loogged at {}",
-                loginStat.getUserLogin(),
-                loginStat.getLoginTime());
+        if (loginStat.getUserLogin().isEmpty()) {
+            LOGGER.warn("Pusty login!");
+        } else {
+            LOGGER.info("login: {} czas logowania: {}",
+                    loginStat.getUserLogin(),
+                    loginStat.getLoginTime());
+        }
 
-        return Response.status(Response.Status.CREATED).build();
+        Response.Status status = statsRepository.addStat(loginStat)
+                ? Response.Status.CREATED : Response.Status.NOT_IMPLEMENTED;
+        return Response.status(status).build();
     }
 }
