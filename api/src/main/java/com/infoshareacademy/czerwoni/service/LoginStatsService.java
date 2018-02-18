@@ -27,10 +27,10 @@ public class LoginStatsService {
         "userLogin": "adam",
         "loginTime": "2018-02-18T15:59:57.653"
        }        */
-//    @Produces(MediaType.TEXT_PLAIN)
+    //    @Produces(MediaType.TEXT_PLAIN)
     public Response addLoginStat(LoginStat loginStat) {
 
-        LOGGER.info("login stats: {} o {}",
+        LOGGER.info("user {} has loogged at {}",
                 loginStat.getUserLogin(),
                 loginStat.getLoginTime());
 
