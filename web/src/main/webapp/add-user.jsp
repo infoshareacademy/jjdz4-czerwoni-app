@@ -25,29 +25,53 @@
 </head>
 <body class="bg-dark">
 <div class="container">
-    <%@include file="header.jsp"%>
-    <%@include file="links.jsp"%>
+    <%@include file="header.jsp" %>
+    <%@include file="links.jsp" %>
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
             <form class="questionForm" method="post" action="add-user">
-                <label>Login: </label><br/><input size="50" name="login" type="text" minlength="3" required/> <br/><br/>
-                <label>Hasło: </label><br/><input size="50" name="password" type="password" required/> <br/><br/>
-                <label>Powtórz hasło: </label><br/><input size="40" name="password2" type="password" required/> <br/><br/>
-                <label>Imię: </label><br/><input size="40" name="name" type="text" minlength="3"/> <br/><br/>
-                <label>Nazwisko: </label><br/><input size="40" name="surname" type="text" minlength="3"/> <br/><br/>
-                <label>E-mail: </label><br/><input size="50" name="email" type="email" required/> <br/><br/>
+                <fieldset>
+                    <label>Login: </label><br/><input size="50" name="login" type="text" minlength="3" required/>
+                    <br/><br/>
+                    <label>Hasło: </label><br/><input size="50" name="password" id="password" type="password"
+                                                      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
+                                                      title="Password must contain at least 6 characters, including UPPER/lowercase and numbers."
+                                                      required/>
+                    <br/><br/>
+                    <label>Powtórz hasło: </label><br/><input size="40" name="confirm_password" id="confirm_password"
+                                                              type="password" required/>
+                    <br/><br/>
+                    <label>Imię: </label><br/><input size="40" name="name" type="text" minlength="3"/> <br/><br/>
+                    <label>Nazwisko: </label><br/><input size="40" name="surname" type="text" minlength="3"/> <br/><br/>
+                    <label>E-mail: </label><br/><input size="50" name="email" type="email" required/> <br/><br/>
 
-                <div class="errorMessage">${NFErrorMessage}</div>
-                <br/>
-                <label>Wybierz rolę: </label><br/>
-                <select name="roles">
-                    <option value="Wybierz rolę">Wybierz rolę</option>
-                    <c:forEach var="list" items="${rolesList}">
-                        <option value="${list}">${list}</option>
-                    </c:forEach>
-                </select><br/><br/>
-                <input class="button" type="submit" name="add-user" value="Zapisz"/>
+                    <div class="errorMessage">${NFErrorMessage}</div>
+                    <br/>
+                    <label>Wybierz rolę: </label><br/>
+                    <select name="roles" required>
+                        <option value="">Wybierz rolę</option>
+                        <c:forEach var="list" items="${rolesList}">
+                            <option value="${list}">${list}</option>
+                        </c:forEach>
+                    </select><br/><br/>
+                    <input class="button" type="submit" name="add-user" value="Zapisz"/>
+                </fieldset>
             </form>
+            <script>
+                var password = document.getElementById("password")
+                    , confirm_password = document.getElementById("confirm_password");
+
+                function validatePassword() {
+                    if (password.value != confirm_password.value) {
+                        confirm_password.setCustomValidity("Hasła nie są zgodne");
+                    } else {
+                        confirm_password.setCustomValidity('');
+                    }
+                }
+
+                password.onchange = validatePassword;
+                confirm_password.onkeyup = validatePassword;
+            </script>
         </div>
         <div class="row m-0">
             <span class="mx-auto p-2">&#169 infoShare Academy</span>

@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.Set;
 
 @WebServlet("add-user")
-public class AddUserServlet extends HttpServlet{
+public class AddUserServlet extends HttpServlet {
 
     @Inject
     AuthorizedUsersServiceLocal authorizedUsersService;
@@ -25,7 +25,7 @@ public class AddUserServlet extends HttpServlet{
         Set<String> rolesList = authorizedUsersService.getRolesNameList();
         request.setAttribute("rolesList", rolesList);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-user.jsp");
-        requestDispatcher.forward(request,response);
+        requestDispatcher.forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -39,9 +39,11 @@ public class AddUserServlet extends HttpServlet{
         roles.setUserGroup(request.getParameter("roles"));
         roles.setUserRole(request.getParameter("roles"));
         roles.setUserLogin(request.getParameter("login"));
-        authorizedUsersService.addAuthorizedUser(users,roles);
-        request.setAttribute("users",users);
+
+        authorizedUsersService.addAuthorizedUser(users, roles);
+        request.setAttribute("users", users);
+
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("user-added.jsp");
-        requestDispatcher.forward(request,response);
+        requestDispatcher.forward(request, response);
     }
 }
