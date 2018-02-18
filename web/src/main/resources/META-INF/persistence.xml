@@ -12,6 +12,9 @@
             <property name="hibernate.archive.autodetection" value="class"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.connection.characterEncoding" value="utf8"/>
+            <property name="hibernate.connection.CharSet" value="utf8"/>
+            <property name="hibernate.connection.useUnicode" value="true"/>
             <!--<property name="hibernate.connection.CharSet">utf8</property>-->
             <!--<property name="hibernate.connection.characterEncoding">utf8</property>-->
             <!--<property name="hibernate.connection.url" value="jdbc:mysql://localhost:32768/WDYW?relaxAutoCommit=true&amp;amp;autoReconnect=true&amp;amp;useUnicode=true&amp;amp;characterEncoding=utf8"/>-->

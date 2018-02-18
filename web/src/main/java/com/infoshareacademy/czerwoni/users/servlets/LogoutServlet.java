@@ -1,4 +1,4 @@
-package com.infoshareacademy.czerwoni.question.servlets;
+package com.infoshareacademy.czerwoni.users.servlets;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

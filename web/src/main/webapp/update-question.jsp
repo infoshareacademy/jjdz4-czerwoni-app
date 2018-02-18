@@ -18,6 +18,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
             integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
             crossorigin="anonymous"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id"
+          content="830889560506-bfd7gjnpsj4o3ss6n24f2pis4dscu4u9.apps.googleusercontent.com">
 </head>
 <body class="bg-dark">
 <div class="container">
@@ -28,9 +31,9 @@
             <form method="post">
                 <div class="questionForm">
                     <label>Treść pytania: </label><br/><input size="80" name="questionName" type="text"
-                                                              value="${sessionScope.question.questionName}"/> <br/><br/>
-                    <label>Poziom pytania: </label><br/><input size="20" name="questionLevel" type="text"
-                                                               value="${sessionScope.question.questionLevel}"/>
+                                                              value="${sessionScope.question.questionName}" minlength="3" required/> <br/><br/>
+                    <label>Poziom pytania: </label><br/><input size="20" name="questionLevel" type="number"
+                                                               value="${sessionScope.question.questionLevel}" min="1" max="30" required/>
                     <div class="errorMessage">${NFErrorMessage}</div>
                     <br/>
                 </div>
