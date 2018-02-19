@@ -55,11 +55,8 @@ public class ImageUploadServlet extends HttpServlet {
 
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        FileInfo fileInfo = new FileInfo();
-
         try {
-            fetchDataFromRequest(request, fileInfo);
+            FileInfo fileInfo = fetchDataFromRequest(request);
             UploadService.saveFileIntoStorage(fileInfo);
             prepareOutData(request, fileInfo);
         } catch (FileNotFoundException fne) {
@@ -92,8 +89,10 @@ public class ImageUploadServlet extends HttpServlet {
         }
     }
 
-    private void fetchDataFromRequest(HttpServletRequest request, FileInfo fileInfo)
+    private FileInfo fetchDataFromRequest(HttpServletRequest request)
             throws ServletException, IOException {
+
+        FileInfo fileInfo = new FileInfo();
 
         fileInfo.setFilePart(request.getPart("file"));
         if (fileInfo.getFilePart().getSubmittedFileName().equals(""))
@@ -106,6 +105,8 @@ public class ImageUploadServlet extends HttpServlet {
         if (!extension.isEmpty()) {
             fileInfo.setFileName(fileInfo.getFileName() + "." + extension);
         }
+
+        return fileInfo;
     }
 
 

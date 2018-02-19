@@ -58,7 +58,7 @@ public class BarCodeReader {
 
             decodedBarcode = String.valueOf(tmpResult.getText());
         } catch (NotFoundException e) {
-            logger.warn("wyjątek w BarCodeReader.decodeBarcode()", e);
+            logger.warn("BarCodeReader.decodeBarcode() : nie znaleziono kodu kreskowego", e);
             throw e;
         }
 
@@ -84,7 +84,7 @@ public class BarCodeReader {
             File imgFile = new File(fileName);
             barcodeString = decodeBarcode(imgFile, decodeHintsMap);
         } catch (Exception e) {
-            String msg = e.getMessage().equals("") ? "Problem z odczytem pliku: " + fileName : e.getMessage();
+            String msg = e.getMessage() == null ? "Problem z odczytem pliku: " + fileName : e.getMessage();
             System.out.println(msg);
             logger.error(msg, e);
         }
