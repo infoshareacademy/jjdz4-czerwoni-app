@@ -35,8 +35,12 @@ public class DataPromoServiceBean implements DataPromoService {
     }
 
     @Override
-    public List<AllegroCategory> setPromotedCategories(List<AllegroCategory> categories) {
-        dataPromoRepository.setPromotedCategories(categories);
-        return categories;
+    public List<AllegroCategory> setPromotedCategories() {
+        return dataPromoRepository.setPromotedCategories();
+    }
+
+    @Override
+    public List<AllegroCategory> getSearchedCategories(String keyWord) {
+        return dataPromoRepository.getSearchedCategories(keyWord);
     }
 }

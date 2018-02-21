@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @Stateless
 public class DataPromoRepository {
 
-    List<AllegroCategory> allegroCategories = ParseXmlAllegroCategories.deserialization();
+    List<AllegroCategory> categories = ParseXmlAllegroCategories.deserialization();
     @EJB
     CategoriesService categoriesService;
 
@@ -37,13 +37,13 @@ public class DataPromoRepository {
     public void removeCategory(AllegroCategory allegroCategory) {entityManager.remove(entityManager.contains(allegroCategory));}
 
     public AllegroCategory getPromotedCategoryById(Integer id) {
-        return allegroCategories.stream()
+        return categories.stream()
                 .filter(category -> category.getCatId() == entityManager.find(DataPromo.class, id).getPromotedCategory())
                 .findFirst()
                 .get();
     }
 
-    public List<AllegroCategory> setPromotedCategories(List<AllegroCategory> categories) {
+    public List<AllegroCategory> setPromotedCategories() {
         List promoCatOb = entityManager.createNamedQuery("getAllPromotedCategories").getResultList();
         for (AllegroCategory category: categories) {
             category.setPromoted(false);
@@ -68,8 +68,16 @@ public class DataPromoRepository {
     }
 
     public List<AllegroCategory> getSearchedCategories(String keyWord) {
-        return allegroCategories.stream()
-                .filter(allegroCategory -> allegroCategory.getCatName().equals(keyWord))
+        if (keyWord != null) {
+            keyWord = keyWord.toLowerCase();
+        }
+
+        String finalKeyWord = keyWord;
+        return categories.stream()
+                .filter(allegroCategory -> allegroCategory
+                        .getCatName()
+                        .toLowerCase()
+                        .equals(finalKeyWord))
                 .collect(Collectors.toList());
     }
 

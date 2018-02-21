@@ -28,10 +28,9 @@
     <%@include file="header.jsp"%>
     <%@include file="links.jsp"%>
     <%@include file="login-window.jsp" %>
-
         <div>
             <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
-                <div class="col">
+                <div class="col-12">
                     <h3 class="mx-auto">Dodaj kategorię do promowania.</h3>
                     <form method="post" action="/add-category-promo">
                         <label class="pt-2">Podaj Id wyszukiwanej kategorii: </label><br/>
@@ -41,8 +40,26 @@
                         <input type="submit" class="pt-2"/>
                     </form>
                 </div>
+                <div class="col-12">
+                    <c:choose>
+                        <c:when test="${not empty searchedCategories}">
+                            <c:forEach var="category" items="${searchedCategories}">
+                                <div class="row justify-content-start">
+                                    <a href="/allegro-categories?parent=${category.key.catId}" class="col-4 px-0">
+                                        <div class="py-2 text-center" style="border: 1px white;border-top-style: dotted;"><span <c:if test="${category.key.promoted==true}">style="font-weight: bold; color: aqua;"</c:if>>
+                                            <c:out value="${category.key.catPosition+1}"/>. <c:out value="${category.key.catName}"/><br/>
+                                        </span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </c:forEach>
+                        </c:when>
+                        <c:otherwise>
+                            <div class="errorMessage">${NFErrorMessage}</div>
+                        </c:otherwise>
+                    </c:choose>
+                </div>
             </div>
         </div>
-</div>
 </body>
 </html>

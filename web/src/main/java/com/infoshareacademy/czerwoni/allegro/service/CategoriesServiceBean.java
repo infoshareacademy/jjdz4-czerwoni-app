@@ -20,7 +20,7 @@ public class CategoriesServiceBean implements CategoriesService {
 
     @Override
     public Map<AllegroCategory, String> getCategories(int parentId) {
-        List<AllegroCategory> categories = dataPromoService.setPromotedCategories(allCategories);
+        List<AllegroCategory> categories = dataPromoService.setPromotedCategories();
         Map<AllegroCategory, String> categoriesMap;
         categoriesMap = categories.stream()
                 .filter(category -> category.getCatParent() == parentId)
