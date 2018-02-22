@@ -23,8 +23,6 @@ public class PhraseFinder extends HttpServlet {
     @Inject
     PhraseService phraseService;
 
-    @Inject
-    CategoriesService categoriesService;
 
        @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -36,12 +34,10 @@ public class PhraseFinder extends HttpServlet {
 
         String category = request.getParameter("phrase");
 
-
-        List <AllegroCategory> firstFive = phraseService.getFirst5Categories(category);
+        Map <AllegroCategory, String> firstFive = phraseService.getFirst5Categories(category.toLowerCase());
 
 
         request.setAttribute("phraseList", firstFive );
-        request.setAttribute("link",firstFive);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/phrase-finder.jsp");
         requestDispatcher.forward(request, response);
     }

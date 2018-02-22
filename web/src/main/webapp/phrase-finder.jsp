@@ -33,25 +33,23 @@
                 <h5>Podaj frazę, po której będziemy szukać produkty:</h5>
                 <form method="POST" action="/phrase-finder" >
 
+
                     <input type="text" name="phrase" id="phrase"/>
                     <input type="submit" value="Szukaj" name="search" id="search"/>
-
                 </form>
+                    <br/>
                     <c:choose>
                         <c:when test="${not empty phraseList}">
                             <c:forEach var="onePhrase" items="${phraseList}">
-                                <div class="row justify-content-start">
-
-                                    <a href="${link}">${onePhrase}</a>
-                                    <br>
+                                <div class="col">
+                                    <h5><a href="${onePhrase.value}">${onePhrase.key.catName} ID:${onePhrase.key.catId}</a>
+                                    <br/></h5>
                                 </div>
                             </c:forEach>
+                            <br/>
                         </c:when>
-
                     </c:choose>
-
                 </div>
-
         </div>
     </div>
         <div class="row m-0">

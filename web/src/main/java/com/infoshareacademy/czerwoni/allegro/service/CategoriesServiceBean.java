@@ -67,4 +67,5 @@ public class CategoriesServiceBean implements CategoriesService {
         return allCategories.stream().filter(category -> category.getCatId() == id).findFirst().get();
     }
 
+
 }

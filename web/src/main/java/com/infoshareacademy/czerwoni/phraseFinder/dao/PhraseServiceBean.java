@@ -17,28 +17,15 @@ public class PhraseServiceBean implements PhraseService {
 
     List<AllegroCategory> allCategories = ParseXmlAllegroCategories.deserialization();
 
-    @Inject
-    CategoriesService categoriesService;
-
 
     @Override
-    public List<AllegroCategory> getFirst5Categories(String phrase)
+    public Map<AllegroCategory, String> getFirst5Categories(String phrase)
     {
 
-        List<AllegroCategory> phraseList = allCategories.stream().filter(c-> c.getCatName().toLowerCase().contains(phrase)).collect(Collectors.toList());
+        Map<AllegroCategory, String> phraseList = allCategories.stream().filter(c-> c.getCatName().toLowerCase().contains(phrase)).
+                limit(5).collect(Collectors.toMap(category -> category, AllegroCategory::generateLink));
 
-        List<AllegroCategory> first5 = new ArrayList<AllegroCategory>();
-
-        Map<String, String> five = new HashMap<>();
-
-        if (!phrase.isEmpty()){
-            for(int i =0;i<5;i++){
-                //first5.add(phraseList.get(i));
-                first5.add(phraseList.get(i));
-    //            five.put(getName(first5,i),getLink(first5, i));
-            }
-        }
-        return first5;
+        return phraseList;
     }
 
 
