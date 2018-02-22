@@ -15,8 +15,8 @@ public class DataPromoServiceBean implements DataPromoService {
     DataPromoRepository dataPromoRepository;
 
     @Override
-    public void addCategory(AllegroCategory allegroCategory) {
-        dataPromoRepository.addCategory(allegroCategory);
+    public boolean addCategory(int id) {
+        return dataPromoRepository.addCategory(id);
     }
 
     @Override

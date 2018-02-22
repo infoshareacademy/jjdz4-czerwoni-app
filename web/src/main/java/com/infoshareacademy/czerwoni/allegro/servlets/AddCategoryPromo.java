@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @WebServlet("/add-category-promo")
@@ -26,36 +27,24 @@ public class AddCategoryPromo extends HttpServlet {
     CategoriesService categoriesService;
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getSession().setAttribute("id", req.getParameter("id"));
-        req.getSession().setAttribute("categoryName", req.getParameter("categoryName"));
-        String categoryName = req.getSession().getAttribute("categoryName").toString();
-        Integer id;
-        try {
-            id = Integer.parseInt(req.getSession().getAttribute("id").toString());
-        } catch (NumberFormatException e) {
-            id = null;
-        }
+        addCategoryToPromo(req, resp);
+    }
 
-        if (categoryName.isEmpty() && id != null) {
-            dataPromoService.addCategory(categoriesService.getCategoryById(id));
-        }
-
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("add-category-promo.jsp");
         requestDispatcher.forward(req, resp);
     }
 
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<AllegroCategory> categories;
-
-        try {
-            categories = dataPromoService
-                    .getSearchedCategories(req.getSession().getAttribute("categoryName").toString());
-        } catch (NullPointerException e) {
-            categories = null;
+    private void addCategoryToPromo(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        boolean catAdded = false;
+        if (req.getParameter("id") != null) {
+            catAdded = dataPromoService.addCategory(Integer.parseInt(req.getParameter("id")));
         }
 
-        if (categories != null) {
-            req.setAttribute("searchedCategories", categories);
+        if (!catAdded) {
+            req.setAttribute("errorMessage", "Nie odnaleziono kategorii!");
+        } else {
+            req.setAttribute("okMessage", "Kategoria dodana poprawnie!");
         }
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("add-category-promo.jsp");

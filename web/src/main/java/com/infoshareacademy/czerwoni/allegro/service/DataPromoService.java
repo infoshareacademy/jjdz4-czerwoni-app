@@ -5,7 +5,7 @@ import com.infoshareacademy.czerwoni.allegro.AllegroCategory;
 import java.util.List;
 
 public interface DataPromoService {
-    void addCategory(AllegroCategory allegroCategory);
+    boolean addCategory(int id);
     AllegroCategory getPromotedCategoryById(int Id);
     List<Integer> getAllPromotedCategories();
     void removeCategory(AllegroCategory allegroCategory);

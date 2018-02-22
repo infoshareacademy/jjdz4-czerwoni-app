@@ -24,10 +24,10 @@ public class DataPromoRepository {
     @PersistenceContext(unitName = "pUnit")
     EntityManager entityManager;
 
-    public boolean addCategory(AllegroCategory allegroCategory) {
-        if (checkIfCategoryExists(allegroCategory.getCatId())) {
+    public boolean addCategory(int id) {
+        if (checkIfCategoryExists(id)) {
             DataPromo dataPromo = new DataPromo();
-            dataPromo.setPromotedCategory(allegroCategory.getCatId());
+            dataPromo.setPromotedCategory(categoriesService.getCategoryById(id).getCatId());
             entityManager.persist(dataPromo);
             return true;
         }
