@@ -37,9 +37,20 @@
                     <input type="submit" value="Szukaj" name="search" id="search"/>
 
                 </form>
-                    <br>
-                    <h3><a href="${link}">${phrase}</a></h3>
-            </div>
+                    <c:choose>
+                        <c:when test="${not empty phraseList}">
+                            <c:forEach var="onePhrase" items="${phraseList}">
+                                <div class="row justify-content-start">
+
+                                    <a href="${link}">${onePhrase}</a>
+                                    <br>
+                                </div>
+                            </c:forEach>
+                        </c:when>
+
+                    </c:choose>
+
+                </div>
 
         </div>
     </div>
