@@ -26,9 +26,9 @@ public class AddCategoryPromo extends HttpServlet {
     CategoriesService categoriesService;
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (!req.getParameter("idSearch").isEmpty()) {
+        if (req.getParameter("idSearch") != null && req.getParameter("nameSearch") == null) {
             addCategoryById(req, resp);
-        } else if (!req.getParameter("nameSearch").isEmpty()) {
+        } else if (req.getParameter("nameSearch") != null && req.getParameter("idSearch") == null) {
             addCategoryByName(req, resp);
         }
     }
