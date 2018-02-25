@@ -35,9 +35,7 @@
                     <form method="post" action="/add-category-promo">
                         <label class="pt-2">Podaj Id wyszukiwanej kategorii: </label><br/>
                         <input type="text" name="id"/><br/>
-                        <label class="pt-2">Podaj nazwę kategorii: </label><br/>
-                        <input type="text" name="categoryName"/><br/>
-                        <input type="submit" class="pt-2"/>
+                        <input type="submit" class="pt-2" value="Dodaj kategorię"/>
                     </form>
                     <c:choose>
                         <c:when test="${not empty errorMessage}">
@@ -47,7 +45,6 @@
                             <div class="logtext">${okMessage}</div>
                         </c:when>
                     </c:choose>
-                    <%--<div class="errorMessage">${Message}</div>--%>
                 </div>
             </div>
         </div>
