@@ -3,10 +3,10 @@ package com.infoshareacademy.czerwoni.allegro.service;
 import com.infoshareacademy.czerwoni.allegro.AllegroCategory;
 import com.infoshareacademy.czerwoni.allegro.repository.DataPromoRepository;
 
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.util.List;
+import java.util.Map;
 
 @Stateless
 public class DataPromoServiceBean implements DataPromoService {
@@ -40,7 +40,7 @@ public class DataPromoServiceBean implements DataPromoService {
     }
 
     @Override
-    public List<AllegroCategory> getSearchedCategories(String keyWord) {
+    public Map<AllegroCategory, List<AllegroCategory>> getSearchedCategories(String keyWord) {
         return dataPromoRepository.getSearchedCategories(keyWord);
     }
 }

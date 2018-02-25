@@ -35,16 +35,32 @@
                     <form method="post" action="/add-category-promo">
                         <label class="pt-2">Podaj Id wyszukiwanej kategorii: </label><br/>
                         <input type="text" name="id"/><br/>
-                        <input type="submit" class="pt-2" value="Dodaj kategorię"/>
+                        <input type="submit" name="idSearch" class="pt-2" value="Dodaj kategorię"/>
                     </form>
                     <c:choose>
-                        <c:when test="${not empty errorMessage}">
-                            <div class="errorMessage">${errorMessage}</div>
+                        <c:when test="${not empty errorMessageId}">
+                            <div class="errorMessage">${errorMessageId}</div>
                         </c:when>
-                        <c:when test="${not empty okMessage}">
-                            <div class="logtext">${okMessage}</div>
+                        <c:when test="${not empty okMessageId}">
+                            <div class="logtext">${okMessageId}</div>
                         </c:when>
                     </c:choose>
+                </div>
+                <div class="col-12">
+                    <form method="post" action="/add-category-promo">
+                        <label class="pt-2">Podaj nazwę wyszukiwanej kategorii: </label><br/>
+                        <input type="text" name="name"/><br/>
+                        <input type="submit" name="nameSearch" class="pt-2" value="Dodaj kategorię"/>
+                    </form>
+                    <c:choose>
+                        <c:when test="${not empty errorMessageName}">
+                            <div class="errorMessage">${errorMessageName}</div>
+                        </c:when>
+                        <c:when test="${not empty okMessageName}">
+                            <div class="logtext">${okMessageName}</div>
+                        </c:when>
+                    </c:choose>
+
                 </div>
             </div>
         </div>
