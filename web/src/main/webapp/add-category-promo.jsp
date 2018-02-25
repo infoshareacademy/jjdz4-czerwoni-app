@@ -28,14 +28,25 @@
     <%@include file="header.jsp"%>
     <%@include file="links.jsp"%>
     <%@include file="login-window.jsp" %>
-
         <div>
             <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
-                <form method="post" action="add-category-promo">
-                    <h7>Dodaj kategorię do promowania.</h7>
-                </form>
+                <div class="col-12">
+                    <h3 class="mx-auto">Dodaj kategorię do promowania.</h3>
+                    <form method="post" action="/add-category-promo">
+                        <label class="pt-2">Podaj Id wyszukiwanej kategorii: </label><br/>
+                        <input type="text" name="id"/><br/>
+                        <input type="submit" class="pt-2" value="Dodaj kategorię"/>
+                    </form>
+                    <c:choose>
+                        <c:when test="${not empty errorMessage}">
+                            <div class="errorMessage">${errorMessage}</div>
+                        </c:when>
+                        <c:when test="${not empty okMessage}">
+                            <div class="logtext">${okMessage}</div>
+                        </c:when>
+                    </c:choose>
+                </div>
             </div>
         </div>
-</div>
 </body>
 </html>

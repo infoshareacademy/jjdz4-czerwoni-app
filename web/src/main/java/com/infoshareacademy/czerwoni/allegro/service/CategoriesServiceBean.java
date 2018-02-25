@@ -20,7 +20,7 @@ public class CategoriesServiceBean implements CategoriesService {
 
     @Override
     public Map<AllegroCategory, String> getCategories(int parentId) {
-        List<AllegroCategory> categories = dataPromoService.setPromotedCategories(allCategories);
+        List<AllegroCategory> categories = dataPromoService.setPromotedCategories();
         Map<AllegroCategory, String> categoriesMap;
         categoriesMap = categories.stream()
                 .filter(category -> category.getCatParent() == parentId)
@@ -59,12 +59,34 @@ public class CategoriesServiceBean implements CategoriesService {
     }
     @Override
     public AllegroCategory getParentCat(int parentId) {
-        return allCategories.stream().filter(category -> category.getCatId() == parentId).findFirst().get();
+        return allCategories.stream()
+                .filter(category -> category.getCatId() == parentId)
+                .findFirst()
+                .get();
     }
 
     @Override
     public AllegroCategory getCategoryById(int id) {
-        return allCategories.stream().filter(category -> category.getCatId() == id).findFirst().get();
+        return allCategories.stream()
+                .filter(category -> category.getCatId() == id)
+                .findFirst()
+                .get();
     }
 
+    @Override
+    public AllegroCategory getCategoryByName(String name) {
+        return allCategories.stream()
+                .filter(allegroCategory -> allegroCategory.getCatName().equals(name))
+                .findFirst()
+                .get();
+    }
+
+    @Override
+    public boolean checkIfCategoryExists(int catId) {
+        if (allCategories.stream()
+                .anyMatch(allegroCategory -> allegroCategory.getCatId() == catId)){
+            return true;
+        }
+        return false;
+    }
 }
