@@ -72,7 +72,7 @@
                     <c:when test="${not empty categoriesMap}">
                         <c:forEach var="category" items="${categoriesMap}">
                             <div>
-                                <form method="post" action="/allegro-categories">
+                                <form method="post" action="/add-category-promo">
                                     <div class="py-2 text-center" style="border: 1px white;border-top-style: dotted;">
                                         <span class="text-left col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8" <c:if test="${category.key.promoted==true}">style="font-weight: bold; color: aqua;"</c:if>>
                                             <c:out value="${category.value}"/>
