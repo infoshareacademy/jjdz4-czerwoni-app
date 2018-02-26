@@ -20,6 +20,7 @@ public class LoginServlet extends HttpServlet {
 
     public static void loginUser(HttpServletRequest request, HttpServletResponse response, String login, String password) throws ServletException, IOException {
         HttpSession session = request.getSession();
+        String email = (String) request.getAttribute("email");
         try {
             request.login(login, password);
         } catch (ServletException se) {
@@ -33,6 +34,7 @@ public class LoginServlet extends HttpServlet {
             response.sendRedirect(request.getHeader("Referer"));
             return;
         }
+
         session.setAttribute("login",login);
         response.sendRedirect(request.getHeader("Referer"));
     }

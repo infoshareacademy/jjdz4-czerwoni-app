@@ -5,14 +5,17 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "roles")
-@NamedQuery(name = "getAllRoles", query = "from Roles")
+@NamedQueries({
+        @NamedQuery(name = "getAllRoles", query = "from Roles"),
+        @NamedQuery(name = "getRolesByLogin", query = "from Roles where userLogin=:login")
+})
 public class Roles implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int roleId;
-    @Column(name = "user_login",nullable = false)
+    @Column(name = "user_login", nullable = false)
     private String userLogin;
     @Column(name = "user_role")
     private String userRole;
