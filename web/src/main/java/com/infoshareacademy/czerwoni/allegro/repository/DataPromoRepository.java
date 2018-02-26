@@ -71,9 +71,8 @@ public class DataPromoRepository {
                         .getCatName()
                         .toLowerCase()
                         .contains(keyWord.toLowerCase()))
-                .sorted(Comparator
-                        .comparing(allegroCategory -> allegroCategory.getCatParent()))
-                .collect(Collectors.toMap(category -> category, category -> getBreadCrumbsString(category.getCatId())));
+                .collect(Collectors
+                        .toMap(category -> category, category -> getBreadCrumbsString(category.getCatId())));
     }
 
     private boolean checkIfCategoryExists(int id) {
@@ -87,9 +86,9 @@ public class DataPromoRepository {
         for (AllegroCategory category: breadCrumbs) {
             breadCrumbString
                     .append(category.getCatName())
-                    .append(">");
+                    .append(" > ");
         }
 
-        return breadCrumbString.toString();
+        return breadCrumbString.deleteCharAt(breadCrumbString.length()-2).toString();
     }
 }

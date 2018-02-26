@@ -71,23 +71,19 @@
                 <c:choose>
                     <c:when test="${not empty categoriesMap}">
                         <c:forEach var="category" items="${categoriesMap}">
-                            <div>
                                 <form method="post" action="/add-category-promo">
                                     <div class="py-2 text-center" style="border: 1px white;border-top-style: dotted;">
-                                        <span class="text-left col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8" <c:if test="${category.key.promoted==true}">style="font-weight: bold; color: aqua;"</c:if>>
-                                            <c:out value="${category.value}"/>
-                                            <c:out value="${category.key.catName}"/><t/>
-                                        </span>
-                                        <span class="text-center col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                                            <button type="submit" name="addCategoryByName" value="${category.key.catId}">Dodaj kategorię</button>
-                                        </span>
+                                        <c:out value="${category.value}"/>
+                                        <input type="submit" name="addCategoryByName" value="Dodaj kategorię"/>
                                     </div>
                                 </form>
-                            </div>
                         </c:forEach>
                     </c:when>
                 </c:choose>
                 </div>
+            </div>
+            <div class="row m-0">
+                <span class="mx-auto p-2">&#169 infoShare Academy</span>
             </div>
         </div>
 </body>
