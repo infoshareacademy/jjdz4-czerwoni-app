@@ -35,17 +35,47 @@
                     <form method="post" action="/add-category-promo">
                         <label class="pt-2">Podaj Id wyszukiwanej kategorii: </label><br/>
                         <input type="text" name="id"/><br/>
-                        <input type="submit" class="pt-2" value="Dodaj kategorię"/>
+                        <input type="submit" name="idSearch" class="pt-2" value="Dodaj kategorię"/>
                     </form>
                     <c:choose>
-                        <c:when test="${not empty errorMessage}">
-                            <div class="errorMessage">${errorMessage}</div>
+                        <c:when test="${not empty errorMessageId}">
+                            <div class="errorMessage">${errorMessageId}</div>
                         </c:when>
-                        <c:when test="${not empty okMessage}">
-                            <div class="logtext">${okMessage}</div>
+                        <c:when test="${not empty okMessageId}">
+                            <div class="logtext">${okMessageId}</div>
                         </c:when>
                     </c:choose>
                 </div>
+                <div class="col-12">
+                    <form method="post" action="/add-category-promo">
+                        <label class="pt-2">Podaj nazwę wyszukiwanej kategorii: </label><br/>
+                        <input type="text" name="name"/><br/>
+                        <input type="submit" name="nameSearch" class="pt-2" value="Szukaj"/>
+                    </form>
+                    <c:choose>
+                        <c:when test="${not empty errorMessageName}">
+                            <div class="errorMessage">${errorMessageName}</div>
+                        </c:when>
+                        <c:when test="${not empty okMessageName}">
+                            <div class="logtext">${okMessageName}</div>
+                        </c:when>
+                    </c:choose>
+                <c:choose>
+                    <c:when test="${not empty categoriesMap}">
+                        <c:forEach var="category" items="${categoriesMap}">
+                                <form method="post" action="/add-category-promo">
+                                    <div class="py-2 text-center" style="border: 1px white;border-top-style: dotted;">
+                                        <c:out value="${category.value}"/>
+                                        <input type="submit" name="addCategoryByName" value="Dodaj kategorię o id ${category.key.catId}"/>
+                                    </div>
+                                </form>
+                        </c:forEach>
+                    </c:when>
+                </c:choose>
+                </div>
+            </div>
+            <div class="row m-0">
+                <span class="mx-auto p-2">&#169 infoShare Academy</span>
             </div>
         </div>
 </body>
