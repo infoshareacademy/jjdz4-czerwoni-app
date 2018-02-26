@@ -26,38 +26,38 @@
 </head>
 <body class="bg-dark">
 <div class="container">
-    <%@include file="header.jsp"%>
-    <%@include file="links.jsp"%>
+    <%@include file="header.jsp" %>
+    <%@include file="links.jsp" %>
     <%@include file="login-window.jsp" %>
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
             <div class="col-12 text-center"><h4>Wyszukiwarka po słowie</h4></div>
-                <div class="col">
+            <div class="col">
                 <h5>Podaj frazę, po której będziemy szukać produkty:</h5>
-                <form method="POST" action="/phrase-finder" >
+                <form method="POST" action="/phrase-finder">
 
 
                     <input type="text" name="phrase" id="phrase"/>
                     <input type="submit" value="Szukaj" name="search" id="search"/>
                 </form>
-                    <br/>
-                    <c:choose>
-                        <c:when test="${not empty phraseList}">
-                            <c:forEach var="onePhrase" items="${phraseList}">
-                                <div class="col">
-                                    <h5><a href="${onePhrase.value}">${onePhrase.key.catName} ID:${onePhrase.key.catId}</a>
+                <br/>
+                <c:choose>
+                    <c:when test="${not empty phraseList}">
+                        <c:forEach var="onePhrase" items="${phraseList}">
+                            <div class="col">
+                                <h5><a href="${onePhrase.value}">${onePhrase.key.catName} ID:${onePhrase.key.catId}</a>
                                     <br/></h5>
-                                </div>
-                            </c:forEach>
-                            <br/>
-                        </c:when>
-                    </c:choose>
-                </div>
+                            </div>
+                        </c:forEach>
+                        <br/>
+                    </c:when>
+                </c:choose>
+            </div>
         </div>
     </div>
-        <div class="row m-0">
-            <span class="mx-auto p-2">&#169 infoShare Academy</span>
-        </div>
+    <div class="row m-0">
+        <span class="mx-auto p-2">&#169 infoShare Academy</span>
     </div>
+</div>
 </body>
 </html>
