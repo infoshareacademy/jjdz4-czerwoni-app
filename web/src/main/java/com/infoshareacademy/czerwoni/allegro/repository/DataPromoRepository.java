@@ -26,7 +26,9 @@ public class DataPromoRepository {
         if (checkIfCategoryExists(id)) {
             DataPromo dataPromo = new DataPromo();
             dataPromo.setPromotedCategory(categoriesService.getCategoryById(id).getCatId());
-            entityManager.persist(dataPromo);
+            if (!checkIfAlreadyPromoted(id)) {
+                entityManager.persist(dataPromo);
+            }
             return true;
         }
         return false;
@@ -56,27 +58,36 @@ public class DataPromoRepository {
         return categories;
     }
 
-    public List<Integer> getAllCategories() {
+    public List<AllegroCategory> getAllCategories() {
         List promoCatOb = entityManager.createNamedQuery("getAllPromotedCategories").getResultList();
-        List<Integer> promoCatInt = new ArrayList<>();
+        List<AllegroCategory> promoCat = new ArrayList<>();
         for (Object id: promoCatOb) {
-            promoCatInt.add((Integer) id);
+            promoCat.add(categoriesService.getCategoryById((Integer) id));
         }
-        return promoCatInt;
+        return promoCat;
     }
 
     public Map<AllegroCategory, String> getSearchedCategories(String keyWord) {
-        return categories.stream()
-                .filter(allegroCategory -> allegroCategory
-                        .getCatName()
-                        .toLowerCase()
-                        .contains(keyWord.toLowerCase()))
-                .collect(Collectors
-                        .toMap(category -> category, category -> getBreadCrumbsString(category.getCatId())));
+        if (!keyWord.isEmpty()) {
+            return categories.stream()
+                    .filter(allegroCategory -> allegroCategory
+                            .getCatName()
+                            .toLowerCase()
+                            .contains(keyWord.toLowerCase()))
+                    .collect(Collectors
+                            .toMap(category -> category, category -> getBreadCrumbsString(category.getCatId())));
+        }
+        return Collections.EMPTY_MAP;
     }
 
     private boolean checkIfCategoryExists(int id) {
         return categoriesService.checkIfCategoryExists(id);
+    }
+
+    private boolean checkIfAlreadyPromoted(int id) {
+        List<AllegroCategory> categories = getAllCategories();
+        return categories.stream()
+                .anyMatch(allegroCategory -> allegroCategory.getCatId() == id);
     }
 
     private String getBreadCrumbsString(int id) {

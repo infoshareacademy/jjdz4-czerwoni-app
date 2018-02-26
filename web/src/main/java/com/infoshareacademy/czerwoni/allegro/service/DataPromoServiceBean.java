@@ -25,7 +25,7 @@ public class DataPromoServiceBean implements DataPromoService {
     }
 
     @Override
-    public List<Integer> getAllPromotedCategories() {
+    public List<AllegroCategory> getAllPromotedCategories() {
         return dataPromoRepository.getAllCategories();
     }
 

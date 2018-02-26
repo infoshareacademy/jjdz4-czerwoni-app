@@ -12,10 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @WebServlet("/add-category-promo")
 public class AddCategoryPromo extends HttpServlet {
@@ -27,9 +24,17 @@ public class AddCategoryPromo extends HttpServlet {
     CategoriesService categoriesService;
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (req.getParameter("idSearch") != null && req.getParameter("nameSearch") == null) {
+        if (req.getParameter("nameSearch") == null
+                && req.getParameter("idSearch") != null
+                && req.getParameter("addCategoryByName") == null) {
             addCategoryById(req, resp);
-        } else if (req.getParameter("nameSearch") != null && req.getParameter("idSearch") == null) {
+        } else if (req.getParameter("nameSearch") != null
+                && req.getParameter("idSearch") == null
+                && req.getParameter("addCategoryByName") == null) {
+            displayCategoryByName(req, resp);
+        } else if (req.getParameter("nameSearch") == null
+                && req.getParameter("idSearch") == null
+                && req.getParameter("addCategoryByName") != null) {
             addCategoryByName(req, resp);
         }
     }
@@ -62,7 +67,7 @@ public class AddCategoryPromo extends HttpServlet {
         requestDispatcher.forward(req, resp);
     }
 
-    private void addCategoryByName(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private void displayCategoryByName(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Map<AllegroCategory, String> categories = dataPromoService.getSearchedCategories(req.getParameter("name"));
         req.setAttribute("categoriesMap", categories);
 
@@ -70,14 +75,21 @@ public class AddCategoryPromo extends HttpServlet {
             req.setAttribute("errorMessageName", "Nie odnaleziono kategorii!");
         }
 
-        boolean catAdded = false;
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("add-category-promo.jsp");
+        requestDispatcher.forward(req, resp);
+    }
 
-        if (req.getParameter("addCategoryByName") != null) {
-            catAdded = dataPromoService.addCategory(Integer.parseInt(req.getParameter("addCategoryById")));
-        }
+    private void addCategoryByName(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        StringBuilder categoryIdString = new StringBuilder(req.getParameter("addCategoryByName"));
+        Integer categoryId;
+        categoryId = Integer.parseInt(categoryIdString.delete(0, 17).toString());
 
-        if (catAdded) {
-            req.setAttribute("okMessageName", "Kategoria dodana poprawnie");
+        boolean catAdded = dataPromoService.addCategory(categoryId);
+
+        if (!catAdded) {
+            req.setAttribute("errorMessageName", "Nie odnaleziono kategorii!");
+        } else {
+            req.setAttribute("okMessageName", "Kategoria dodana poprawnie!");
         }
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("add-category-promo.jsp");
