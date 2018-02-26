@@ -40,7 +40,7 @@ public class DataPromoServiceBean implements DataPromoService {
     }
 
     @Override
-    public Map<AllegroCategory, List<AllegroCategory>> getSearchedCategories(String keyWord) {
+    public Map<AllegroCategory, String> getSearchedCategories(String keyWord) {
         return dataPromoRepository.getSearchedCategories(keyWord);
     }
 }

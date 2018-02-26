@@ -3,16 +3,13 @@ package com.infoshareacademy.czerwoni.allegro.repository;
 import com.infoshareacademy.czerwoni.allegro.AllegroCategory;
 import com.infoshareacademy.czerwoni.allegro.service.CategoriesService;
 import com.infoshareacademy.czerwoni.allegro.domain.DataPromo;
-import com.infoshareacademy.czerwoni.allegro.service.CategoriesServiceBean;
 import com.infoshareacademy.czerwoni.parse.ParseXmlAllegroCategories;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Stateless
@@ -68,15 +65,31 @@ public class DataPromoRepository {
         return promoCatInt;
     }
 
-    public Map<AllegroCategory, List<AllegroCategory>> getSearchedCategories(String keyWord) {
+    public Map<AllegroCategory, String> getSearchedCategories(String keyWord) {
         return categories.stream()
                 .filter(allegroCategory -> allegroCategory
                         .getCatName()
-                        .equalsIgnoreCase(keyWord))
-                .collect(Collectors.toMap(category -> category, category -> categoriesService.getBreadCrumbs(category.getCatId())));
+                        .toLowerCase()
+                        .contains(keyWord.toLowerCase()))
+                .sorted(Comparator
+                        .comparing(allegroCategory -> allegroCategory.getCatParent()))
+                .collect(Collectors.toMap(category -> category, category -> getBreadCrumbsString(category.getCatId())));
     }
 
     private boolean checkIfCategoryExists(int id) {
         return categoriesService.checkIfCategoryExists(id);
+    }
+
+    private String getBreadCrumbsString(int id) {
+        List<AllegroCategory> breadCrumbs = categoriesService.getBreadCrumbs(id);
+        StringBuilder breadCrumbString = new StringBuilder();
+
+        for (AllegroCategory category: breadCrumbs) {
+            breadCrumbString
+                    .append(category.getCatName())
+                    .append(">");
+        }
+
+        return breadCrumbString.toString();
     }
 }

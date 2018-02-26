@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @WebServlet("/add-category-promo")
 public class AddCategoryPromo extends HttpServlet {
@@ -62,8 +63,22 @@ public class AddCategoryPromo extends HttpServlet {
     }
 
     private void addCategoryByName(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Map<AllegroCategory, List<AllegroCategory>> categories = dataPromoService.getSearchedCategories(req.getParameter("name"));
+        Map<AllegroCategory, String> categories = dataPromoService.getSearchedCategories(req.getParameter("name"));
         req.setAttribute("categoriesMap", categories);
+
+        if (categories.isEmpty()) {
+            req.setAttribute("errorMessageName", "Nie odnaleziono kategorii!");
+        }
+
+        boolean catAdded = false;
+
+        if (req.getParameter("addCategoryByName") != null) {
+            catAdded = dataPromoService.addCategory(Integer.parseInt(req.getParameter("addCategoryById")));
+        }
+
+        if (catAdded) {
+            req.setAttribute("okMessageName", "Kategoria dodana poprawnie");
+        }
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("add-category-promo.jsp");
         requestDispatcher.forward(req, resp);
