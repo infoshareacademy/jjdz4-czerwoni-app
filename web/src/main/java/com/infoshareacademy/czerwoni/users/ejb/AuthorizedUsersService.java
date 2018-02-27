@@ -6,6 +6,12 @@ import com.infoshareacademy.czerwoni.users.domain.*;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.Response;
+import java.time.LocalDateTime;
 import java.util.*;
 
 
@@ -55,5 +61,28 @@ public class AuthorizedUsersService implements AuthorizedUsersServiceLocal {
     }
     public Roles getRolesByLogin(String login){
         return authorizedUsersRepository.getRolesByLogin(login);
+    }
+    @Override
+    public void addStatsToApi(String userLogin, LocalDateTime loginTime) {
+        String address = "localhost:8080/AddLoginStat";
+
+        ApiStats apiStats = new ApiStats();
+
+        Client client = ClientBuilder.newClient();
+        WebTarget webTarget = client.target(address);
+        Response response = webTarget.request().post(Entity.json(apiStats));
+        response.close();
+//        if (response.getStatus() == 200) {
+//            TranslateResponse result = response.readEntity(TranslateResponse.class);
+//            response.close();
+//
+//            return result.getData().getTranslations().get(0).getTranslatedText();
+//        } else {
+//            ErrorResponse result = response.readEntity(ErrorResponse.class);
+//            response.close();
+//
+//            throw new RuntimeException(result.getError().getMessage());
+//        }
+
     }
 }

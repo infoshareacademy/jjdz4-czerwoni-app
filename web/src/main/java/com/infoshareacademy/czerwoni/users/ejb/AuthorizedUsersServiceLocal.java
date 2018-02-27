@@ -3,6 +3,7 @@ package com.infoshareacademy.czerwoni.users.ejb;
 import com.infoshareacademy.czerwoni.users.domain.*;
 
 import javax.ejb.Local;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
@@ -17,4 +18,5 @@ public interface AuthorizedUsersServiceLocal {
     void updateAuthorizedUser(Users users, Roles roles);
     Users getUserByEmail(String email);
     Roles getRolesByLogin(String login);
+    void addStatsToApi(String userLogin, LocalDateTime loginTime);
 }
