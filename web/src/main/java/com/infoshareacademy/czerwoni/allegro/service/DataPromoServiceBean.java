@@ -3,19 +3,20 @@ package com.infoshareacademy.czerwoni.allegro.service;
 import com.infoshareacademy.czerwoni.allegro.AllegroCategory;
 import com.infoshareacademy.czerwoni.allegro.repository.DataPromoRepository;
 
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import java.util.List;
+import java.util.Map;
 
 @Stateless
 public class DataPromoServiceBean implements DataPromoService {
 
-    @EJB
+    @Inject
     DataPromoRepository dataPromoRepository;
 
     @Override
-    public void addCategory(AllegroCategory allegroCategory) {
-        dataPromoRepository.addCategory(allegroCategory);
+    public boolean addCategory(int id) {
+        return dataPromoRepository.addCategory(id);
     }
 
     @Override
@@ -24,7 +25,7 @@ public class DataPromoServiceBean implements DataPromoService {
     }
 
     @Override
-    public List<Integer> getAllPromotedCategories() {
+    public List<AllegroCategory> getAllPromotedCategories() {
         return dataPromoRepository.getAllCategories();
     }
 
@@ -34,8 +35,12 @@ public class DataPromoServiceBean implements DataPromoService {
     }
 
     @Override
-    public List<AllegroCategory> setPromotedCategories(List<AllegroCategory> categories) {
-        dataPromoRepository.setPromotedCategories(categories);
-        return categories;
+    public List<AllegroCategory> setPromotedCategories() {
+        return dataPromoRepository.setPromotedCategories();
+    }
+
+    @Override
+    public Map<AllegroCategory, String> getSearchedCategories(String keyWord) {
+        return dataPromoRepository.getSearchedCategories(keyWord);
     }
 }

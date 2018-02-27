@@ -3,6 +3,8 @@ package com.infoshareacademy.czerwoni.products.servlets;
 
 import com.infoshareacademy.czerwoni.product.BarCodeReader;
 import com.infoshareacademy.czerwoni.product.ProductProcessor;
+import com.infoshareacademy.czerwoni.products.domain.FileInfo;
+import com.infoshareacademy.czerwoni.products.service.UploadService;
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,11 +29,11 @@ import com.infoshareacademy.czerwoni.product.Product;
 
 public class ImageUploadServlet extends HttpServlet {
 
-    private static Logger LOGGER = LoggerFactory.getLogger(ProductProcessor.class);
-    private String fileName;
-    private String filePath;
-    private Part filePart;
-    private String errMsg;
+    private static Logger LOGGER = LoggerFactory.getLogger(ImageUploadServlet.class);
+    private static String NO_BARCODE_FOUND = "Nie znaleziono kodu kreskowego";
+    private final String GENERIC_ERR_MSG = "Albo nie wskazałeś pliku do przesłania, albo "
+            + "próbujesz go zapisać w nieistniejącej lub niedostępnej "
+            + "lokalizacji.";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -53,118 +55,65 @@ public class ImageUploadServlet extends HttpServlet {
 
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        final String GENERIC_ERR_MSG = "Albo nie wskazałeś pliku do przesłania, albo "
-                + "próbujesz go zapisać w nieistniejącej lub niedostępnej "
-                + "lokalizacji.";
-
         try {
-            fetchDataFromRequest(request);
-            saveFileIntoStorage(filePath, fileName, filePart);
-            prepareOutData(request);
-
+            FileInfo fileInfo = fetchDataFromRequest(request);
+            UploadService.saveFileIntoStorage(fileInfo);
+            prepareOutData(request, fileInfo);
         } catch (FileNotFoundException fne) {
-            errMsg = fne.getMessage().equals("") ? GENERIC_ERR_MSG : fne.getMessage();
+            String errMsg = fne.getMessage().equals("") ? GENERIC_ERR_MSG : fne.getMessage();
             request.setAttribute("errMsg", errMsg);
-
-            LOGGER.error("Problemy w trakcie przesyłu pliku. Błąd: {0}",
-                    new Object[]{fne.getMessage()});
+            LOGGER.error("Problemy w trakcie przesyłu pliku. Błąd: {}",
+                    fne.getMessage());
         }
     }
 
-    private void prepareOutData(HttpServletRequest request) {
+    private void prepareOutData(HttpServletRequest request, FileInfo fileInfo) {
 
-        String productBarcode = BarCodeReader.decodeBarcodeFromFile(filePath + "/" + fileName);
+        String productBarcode = BarCodeReader.decodeBarcodeFromFile(fileInfo.getFilePath() + File.separator + fileInfo.getFileName());
         if (productBarcode.isEmpty()) {
-            errMsg = "Nie znaleziono kodu kreskowego";
-            request.setAttribute("errMsg", errMsg);
-            LOGGER.warn(errMsg);
+            request.setAttribute("errMsg", NO_BARCODE_FOUND);
+            LOGGER.warn(NO_BARCODE_FOUND);
         } else {
             Product foundProduct = ProductProcessor.getProductFromAPI(productBarcode);
             if (foundProduct == null) {
-                errMsg = "Nie znaleziono produktu dla kodu: " + productBarcode;
+                String errMsg = "Nie znaleziono produktu dla kodu: " + productBarcode;
                 request.setAttribute("errMsg", errMsg);
                 LOGGER.warn(errMsg);
             } else {
                 LOGGER.trace("odczytany kod: " + productBarcode + "; produkt: " + foundProduct.toString());
                 request.setAttribute("product", foundProduct);
 
-                String imgFilePath = "/barcodes" + File.separator + fileName;
+                String imgFilePath = "/barcodes" + File.separator + fileInfo.getFileName();
                 request.setAttribute("localImg", imgFilePath);
             }
         }
     }
 
-    private void fetchDataFromRequest(HttpServletRequest request) throws ServletException, IOException {
-        filePart = request.getPart("file");
-        if (filePart.getSubmittedFileName().equals(""))
+    private FileInfo fetchDataFromRequest(HttpServletRequest request)
+            throws ServletException, IOException {
+
+        FileInfo fileInfo = new FileInfo();
+
+        fileInfo.setFilePart(request.getPart("file"));
+        if (fileInfo.getFilePart().getSubmittedFileName().equals(""))
             throw new FileNotFoundException("Podano pustą nazwę pliku z kodem kreskowym");
-        filePath = getStoragePath();
-        fileName = UUID.randomUUID().toString();
 
-        String extension = FilenameUtils.getExtension(getFileName(filePart));
+        fileInfo.setFilePath(UploadService.getStoragePath());
+        fileInfo.setFileName(UUID.randomUUID().toString());
+
+        String extension = FilenameUtils.getExtension(UploadService.getFileName(fileInfo.getFilePart()));
         if (!extension.isEmpty()) {
-            fileName = fileName + "." + extension;
+            fileInfo.setFileName(fileInfo.getFileName() + "." + extension);
         }
-    }
 
-    private static String getStoragePath() {
-        final String BARCODE_DIR = System.getProperty("jboss.home.dir") + "/user-storage/barcodes"; //"../user-storage/barcodes";
-        final String TMP_DIR = "/tmp";
-
-        File directory = new File(BARCODE_DIR);
-
-        return directory.exists() ? BARCODE_DIR :
-                (directory.mkdirs() ? BARCODE_DIR : TMP_DIR);
-    }
-
-    private static void saveFileIntoStorage(String path, String fileName, Part filePart) throws IOException {
-        OutputStream out = null;
-        InputStream filecontent = null;
-
-        try {
-            out = new FileOutputStream(
-                    new File(path + File.separator + fileName));
-
-            filecontent = filePart.getInputStream();
-
-            int read;
-            final byte[] bytes = new byte[1024];
-
-            while ((read = filecontent.read(bytes)) != -1) {
-                out.write(bytes, 0, read);
-            }
-
-            LOGGER.trace(
-                    "Plik {0} został przesłany do {1}",
-                    new Object[]{fileName, path});
-        } finally {
-            if (out != null) {
-                out.close();
-            }
-
-            if (filecontent != null) {
-                filecontent.close();
-            }
-        }
+        return fileInfo;
     }
 
 
-    private String getFileName(final Part part) {
-        final String partHeader = part.getHeader("content-disposition");
 
-        LOGGER.trace("Nagłówek części = {0}", partHeader);
 
-        for (String content : part.getHeader("content-disposition")
-                .split(";")) {
-            if (content.trim()
-                    .startsWith("filename")) {
-                return content.substring(content.indexOf('=') + 1)
-                        .trim()
-                        .replace("\"", "");
-            }
 
-        }
-        return null;
-    }
+
+
 
 }

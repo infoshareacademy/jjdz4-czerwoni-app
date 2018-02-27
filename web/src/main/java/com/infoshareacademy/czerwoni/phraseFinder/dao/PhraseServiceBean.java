@@ -7,6 +7,8 @@ import com.infoshareacademy.czerwoni.parse.ParseXmlAllegroCategories;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Stateless
 public class PhraseServiceBean implements PhraseService {
@@ -31,9 +33,10 @@ public class PhraseServiceBean implements PhraseService {
     }
 
     @Override
-    public String getLinkByPhrase(String phrase)
+    public List getLinkByPhrase(String phrase)
     {
-        AllegroCategory allegroCategory = allCategories.stream().filter(category -> category.getCatName().toLowerCase().contains(phrase.toLowerCase())).findFirst().get();
-        return allegroCategory.generateLink();
+        return allCategories.stream()
+                .filter(category -> category.getCatName().toLowerCase().contains(phrase.toLowerCase()))
+                .collect(Collectors.toList()).subList(0, 4);
     }
 }
