@@ -1,5 +1,6 @@
 package com.infoshareacademy.czerwoni.users.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.time.LocalDateTime;
@@ -22,7 +23,7 @@ public class ApiStats {
     public void setUserLogin(String userLogin) {
         this.userLogin = userLogin;
     }
-
+    @JsonFormat(pattern = "dd::MM::yyyy")
     public LocalDateTime getLoginTime() {
         return loginTime;
     }

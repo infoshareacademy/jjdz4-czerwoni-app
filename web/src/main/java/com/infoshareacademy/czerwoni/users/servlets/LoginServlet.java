@@ -1,5 +1,8 @@
 package com.infoshareacademy.czerwoni.users.servlets;
 
+import com.infoshareacademy.czerwoni.users.ejb.AuthorizedUsersServiceLocal;
+
+import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,9 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 @WebServlet("login")
 public class LoginServlet extends HttpServlet {
+
+    @Inject
+    AuthorizedUsersServiceLocal authorizedUsersService;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String login = request.getParameter("login");
@@ -18,6 +25,7 @@ public class LoginServlet extends HttpServlet {
         request.logout();
         request.getSession().invalidate();
         loginUser(request, response, login, password);
+        authorizedUsersService.addStatsToApi(login, LocalDateTime.now());
     }
 
     public static void loginUser(HttpServletRequest request, HttpServletResponse response, String login, String password) throws ServletException, IOException {

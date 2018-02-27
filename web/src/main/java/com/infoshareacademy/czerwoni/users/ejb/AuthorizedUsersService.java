@@ -6,20 +6,25 @@ import com.infoshareacademy.czerwoni.users.domain.*;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.servlet.annotation.WebServlet;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.logging.Level;
 
 
 @Stateless
 public class AuthorizedUsersService implements AuthorizedUsersServiceLocal {
 
     @Inject
-    AuthorizedUsersRepository authorizedUsersRepository;
+    private AuthorizedUsersRepository authorizedUsersRepository;
+    private WebTarget webTarget;
+    private static final String API_BASE_URL = "http://localhost:8080/api";
 
     @Override
     public void addAuthorizedUser(Users users, Roles roles) {
@@ -64,14 +69,27 @@ public class AuthorizedUsersService implements AuthorizedUsersServiceLocal {
     }
     @Override
     public void addStatsToApi(String userLogin, LocalDateTime loginTime) {
-        String address = "localhost:8080/AddLoginStat";
-
+        webTarget = ClientBuilder.newClient().target(API_BASE_URL);
         ApiStats apiStats = new ApiStats();
+        apiStats.setUserLogin(userLogin);
+        apiStats.setLoginTime(loginTime);
+        final Response response = webTarget.path("/AddLoginStat")
+                .request(MediaType.APPLICATION_JSON_TYPE)
+                .post(Entity.entity(apiStats, MediaType.APPLICATION_JSON_TYPE));
+        response.readEntity(ApiStats.class);
 
-        Client client = ClientBuilder.newClient();
-        WebTarget webTarget = client.target(address);
-        Response response = webTarget.request().post(Entity.json(apiStats));
-        response.close();
+        }
+
+
+
+//        String address = "localhost:8080/AddLoginStat";
+//
+//        ApiStats apiStats = new ApiStats();
+//
+//        Client client = ClientBuilder.newClient();
+//        WebTarget webTarget = client.target(address);
+//        Response response = webTarget.request().post(Entity.json(apiStats));
+//        response.close();
 //        if (response.getStatus() == 200) {
 //            TranslateResponse result = response.readEntity(TranslateResponse.class);
 //            response.close();
@@ -84,5 +102,4 @@ public class AuthorizedUsersService implements AuthorizedUsersServiceLocal {
 //            throw new RuntimeException(result.getError().getMessage());
 //        }
 
-    }
 }
