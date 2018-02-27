@@ -9,6 +9,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -26,7 +27,7 @@ public class DataPromoRepository {
         if (checkIfCategoryExists(id)) {
             DataPromo dataPromo = new DataPromo();
             dataPromo.setPromotedCategory(categoriesService.getCategoryById(id).getCatId());
-            if (!checkIfAlreadyPromoted(id)) {
+            if (!checkIfCategoryPromoted(id)) {
                 entityManager.persist(dataPromo);
             }
             return true;
@@ -34,7 +35,15 @@ public class DataPromoRepository {
         return false;
     }
 
-    public void removeCategory(AllegroCategory allegroCategory) {entityManager.remove(entityManager.contains(allegroCategory));}
+    public boolean removeCategory(int id) {
+        if (checkIfCategoryPromoted(id)){
+            List<DataPromo> dataPromos = getDataPromoById();
+            DataPromo dataPromo = dataPromos.stream().filter(promo -> promo.getPromotedCategory() == id).findFirst().get();
+            entityManager.remove(entityManager.contains(dataPromo) ? dataPromo : entityManager.merge(dataPromo));
+            return true;
+        }
+        return false;
+    }
 
     public AllegroCategory getPromotedCategoryById(Integer id) {
         return categories.stream()
@@ -84,7 +93,7 @@ public class DataPromoRepository {
         return categoriesService.checkIfCategoryExists(id);
     }
 
-    private boolean checkIfAlreadyPromoted(int id) {
+    private boolean checkIfCategoryPromoted(int id) {
         List<AllegroCategory> categories = getAllCategories();
         return categories.stream()
                 .anyMatch(allegroCategory -> allegroCategory.getCatId() == id);
@@ -99,7 +108,11 @@ public class DataPromoRepository {
                     .append(category.getCatName())
                     .append(" > ");
         }
-
         return breadCrumbString.deleteCharAt(breadCrumbString.length()-2).toString();
+    }
+
+    private List<DataPromo> getDataPromoById() {
+        String query = "FROM DataPromo";
+        return entityManager.createQuery(query).getResultList();
     }
 }

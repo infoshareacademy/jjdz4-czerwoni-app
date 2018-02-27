@@ -59,7 +59,7 @@
                 <c:choose>
                     <c:when test="${not empty categoriesMap}">
                         <c:forEach var="category" items="${categoriesMap}">
-                                <form method="post" action="/add-category-promo">
+                                <form method="post" action="/remove-category-promo">
                                     <div class="py-2 text-center" style="border: 1px white;border-top-style: dotted;">
                                         <c:out value="${category.value}"/>
                                         <input type="submit" name="addCategoryByName" value="Dodaj kategorię o id ${category.key.catId}"/>

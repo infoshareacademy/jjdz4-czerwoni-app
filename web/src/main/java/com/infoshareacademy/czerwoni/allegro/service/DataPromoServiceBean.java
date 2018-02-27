@@ -30,8 +30,8 @@ public class DataPromoServiceBean implements DataPromoService {
     }
 
     @Override
-    public void removeCategory(AllegroCategory allegroCategory) {
-        dataPromoRepository.removeCategory(allegroCategory);
+    public boolean removeCategory(int id) {
+        return dataPromoRepository.removeCategory(id);
     }
 
     @Override

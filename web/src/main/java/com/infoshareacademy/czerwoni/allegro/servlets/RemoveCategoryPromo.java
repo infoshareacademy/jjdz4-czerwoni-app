@@ -39,10 +39,11 @@ public class RemoveCategoryPromo extends HttpServlet {
 
         if (req.getParameter("id") != null) {
             try {
-                catRemoved = dataPromoService.addCategory(Integer.parseInt(req.getParameter("id")));
+                catRemoved = dataPromoService.removeCategory(Integer.parseInt(req.getParameter("id")));
             } catch (NumberFormatException e) {
                 req.setAttribute("errorMessageId", "Wprowadzono niepoprawne dane!");
-                RequestDispatcher requestDispatcher = req.getRequestDispatcher("add-category-promo.jsp");
+
+                RequestDispatcher requestDispatcher = req.getRequestDispatcher("remove-category-promo.jsp");
                 requestDispatcher.forward(req, resp);
             }
         }
@@ -50,8 +51,9 @@ public class RemoveCategoryPromo extends HttpServlet {
         if (!catRemoved) {
             req.setAttribute("errorMessageId", "Nie odnaleziono kategorii!");
         } else {
-            req.setAttribute("okMessageId", "Kategoria dodana poprawnie!");
+            req.setAttribute("okMessageId", "Kategoria usunięta!");
         }
+
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("remove-category-promo.jsp");
         requestDispatcher.forward(req, resp);
     }
