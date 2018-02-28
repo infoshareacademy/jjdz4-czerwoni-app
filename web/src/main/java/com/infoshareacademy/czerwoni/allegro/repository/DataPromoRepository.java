@@ -7,6 +7,7 @@ import com.infoshareacademy.czerwoni.parse.ParseXmlAllegroCategories;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -17,7 +18,8 @@ import java.util.stream.Collectors;
 public class DataPromoRepository {
 
     List<AllegroCategory> categories = ParseXmlAllegroCategories.deserialization();
-    @EJB
+
+    @Inject
     CategoriesService categoriesService;
 
     @PersistenceContext(unitName = "pUnit")
@@ -49,7 +51,7 @@ public class DataPromoRepository {
         return categories.stream()
                 .filter(category -> category.getCatId() == entityManager.find(DataPromo.class, id).getPromotedCategory())
                 .findFirst()
-                .get();
+                .orElse(null);
     }
 
     public List<AllegroCategory> setPromotedCategories() {
@@ -85,6 +87,16 @@ public class DataPromoRepository {
                             .contains(keyWord.toLowerCase()))
                     .collect(Collectors
                             .toMap(category -> category, category -> getBreadCrumbsString(category.getCatId())));
+        }
+        return Collections.EMPTY_MAP;
+    }
+
+    public Map<AllegroCategory, String> getPromotedCategories() {
+        List<AllegroCategory> categoriesList = getAllCategories();
+        if (!categoriesList.isEmpty()) {
+            return categoriesList.stream()
+                    .collect(Collectors
+                    .toMap(category -> category, category -> getBreadCrumbsString(category.getCatId())));
         }
         return Collections.EMPTY_MAP;
     }

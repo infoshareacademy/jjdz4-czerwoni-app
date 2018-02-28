@@ -12,4 +12,5 @@ public interface DataPromoService {
     boolean removeCategory(int id);
     List<AllegroCategory> setPromotedCategories();
     Map<AllegroCategory, String> getSearchedCategories(String keyWord);
+    Map<AllegroCategory, String> getPromotedCategories();
 }
