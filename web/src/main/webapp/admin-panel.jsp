@@ -43,7 +43,7 @@
                     <a href="add-category-promo" class="col-lg-5 justify-content-center link-button mx-auto">
                         Dodaj kategorię do promowanych
                     </a>
-                    <a class="col-lg-5 justify-content-center link-button mx-auto" href="index.jsp">
+                    <a class="col-lg-5 justify-content-center link-button mx-auto" href="remove-category-promo">
                         Usuń kategorię z promowanych
                     </a>
                     <a class="col-lg-5 justify-content-center link-button mx-auto" href="add-user">

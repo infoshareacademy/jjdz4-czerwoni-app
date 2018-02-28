@@ -9,7 +9,7 @@ public interface DataPromoService {
     boolean addCategory(int id);
     AllegroCategory getPromotedCategoryById(int Id);
     List<AllegroCategory> getAllPromotedCategories();
-    void removeCategory(AllegroCategory allegroCategory);
+    boolean removeCategory(int id);
     List<AllegroCategory> setPromotedCategories();
     Map<AllegroCategory, String> getSearchedCategories(String keyWord);
 }
