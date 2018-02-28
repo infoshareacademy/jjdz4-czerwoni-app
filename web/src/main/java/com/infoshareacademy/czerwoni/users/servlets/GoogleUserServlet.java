@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 @WebServlet("google-user")
 public class GoogleUserServlet extends HttpServlet {
@@ -39,6 +40,7 @@ public class GoogleUserServlet extends HttpServlet {
             authorizedUsersService.addAuthorizedUser(users,roles);
         }
         LoginServlet.loginUser(request, response, "guser", "Guser1");
+        authorizedUsersService.addStatsToApi(email, LocalDateTime.now());
 
     }
 }

@@ -22,10 +22,13 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
+        String email = authorizedUsersService.getEmailByLogin(login);
         request.logout();
         request.getSession().invalidate();
         loginUser(request, response, login, password);
-        authorizedUsersService.addStatsToApi(login, LocalDateTime.now());
+        if (request.getSession().getAttribute("login") != null) {
+            authorizedUsersService.addStatsToApi(email, LocalDateTime.now());
+        }
     }
 
     public static void loginUser(HttpServletRequest request, HttpServletResponse response, String login, String password) throws ServletException, IOException {
@@ -40,12 +43,12 @@ public class LoginServlet extends HttpServlet {
             return;
         }
         if (request.getHeader("Referer").contains("index.jsp") || request.getHeader("Referer").contains("/")) {
-            session.setAttribute("login",login);
+            session.setAttribute("login", login);
             response.sendRedirect(request.getHeader("Referer"));
             return;
         }
 
-        session.setAttribute("login",login);
+        session.setAttribute("login", login);
         response.sendRedirect(request.getHeader("Referer"));
     }
 }

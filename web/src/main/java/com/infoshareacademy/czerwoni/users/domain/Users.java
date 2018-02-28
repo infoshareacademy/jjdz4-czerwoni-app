@@ -7,10 +7,11 @@ import java.io.Serializable;
 @Entity
 @Table(name = "users")
 @NamedQueries({
-@NamedQuery(name = "getAllUsers", query = "from Users"),
-@NamedQuery(name = "getUserByEmail", query = "from Users where email=:email")
+        @NamedQuery(name = "getAllUsers", query = "from Users"),
+        @NamedQuery(name = "getUserByEmail", query = "from Users where email=:email"),
+        @NamedQuery(name = "getEmailByLogin", query = "select email from Users where login=:login")
 })
-public class Users implements Serializable{
+public class Users implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -66,6 +67,7 @@ public class Users implements Serializable{
     public void setSurname(String surname) {
         this.surname = surname;
     }
+
     public String getEmail() {
         return email;
     }

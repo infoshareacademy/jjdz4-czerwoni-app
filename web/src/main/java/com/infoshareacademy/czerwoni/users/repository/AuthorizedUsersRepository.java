@@ -38,4 +38,8 @@ public class AuthorizedUsersRepository {
     public Roles getRolesByLogin(String login) {
         return (Roles) entityManager.createNamedQuery("getRolesByLogin").setParameter("login", login).getSingleResult();
     }
+
+    public String getEmailByLogin(String login) {
+        return (String) entityManager.createNamedQuery("getEmailByLogin").setParameter("login", login).getSingleResult();
+    }
 }

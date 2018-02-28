@@ -19,4 +19,5 @@ public interface AuthorizedUsersServiceLocal {
     Users getUserByEmail(String email);
     Roles getRolesByLogin(String login);
     void addStatsToApi(String userLogin, LocalDateTime loginTime);
+    String getEmailByLogin(String login);
 }

@@ -1,8 +1,8 @@
 package com.infoshareacademy.czerwoni.users.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDateTime;
 
 public class ApiStats {
@@ -23,7 +23,8 @@ public class ApiStats {
     public void setUserLogin(String userLogin) {
         this.userLogin = userLogin;
     }
-    @JsonFormat(pattern = "dd::MM::yyyy")
+
+    @XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
     public LocalDateTime getLoginTime() {
         return loginTime;
     }
