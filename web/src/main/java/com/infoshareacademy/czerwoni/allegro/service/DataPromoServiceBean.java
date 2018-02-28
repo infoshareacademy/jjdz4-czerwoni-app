@@ -30,8 +30,8 @@ public class DataPromoServiceBean implements DataPromoService {
     }
 
     @Override
-    public void removeCategory(AllegroCategory allegroCategory) {
-        dataPromoRepository.removeCategory(allegroCategory);
+    public boolean removeCategory(int id) {
+        return dataPromoRepository.removeCategory(id);
     }
 
     @Override
@@ -42,5 +42,10 @@ public class DataPromoServiceBean implements DataPromoService {
     @Override
     public Map<AllegroCategory, String> getSearchedCategories(String keyWord) {
         return dataPromoRepository.getSearchedCategories(keyWord);
+    }
+
+    @Override
+    public Map<AllegroCategory, String> getPromotedCategories() {
+        return dataPromoRepository.getPromotedCategories();
     }
 }
