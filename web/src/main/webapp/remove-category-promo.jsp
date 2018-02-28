@@ -35,7 +35,7 @@
                     <form method="post" action="/remove-category-promo">
                         <label class="pt-2">Podaj Id kategorii do usunięcia: </label><br/>
                         <input type="text" name="id"/><br/>
-                        <input type="submit" name="idSearch" class="pt-2" value="Usuń kategorię"/>
+                        <input type="submit" name="idRemove" class="pt-2" value="Usuń kategorię"/>
                     </form>
                     <c:choose>
                         <c:when test="${not empty errorMessageId}">
@@ -47,25 +47,31 @@
                     </c:choose>
                 </div>
                 <div class="col-12">
-                        <label class="pt-2">Wybierz kategorię z listy: </label><br/>
-                    <c:choose>
-                        <c:when test="${not empty errorMessageName}">
-                            <div class="errorMessage">${errorMessageName}</div>
-                        </c:when>
-                        <c:when test="${not empty okMessageName}">
-                            <div class="logtext">${okMessageName}</div>
-                        </c:when>
-                    </c:choose>
+                    <label class="pt-2">lub wybierz kategorię z listy.</label><br/>
+
                 <c:choose>
                     <c:when test="${not empty categoriesMap}">
                         <c:forEach var="category" items="${categoriesMap}">
                                 <form method="post" action="/remove-category-promo">
                                     <div class="py-2 text-center" style="border: 1px white;border-top-style: dotted;">
                                         <c:out value="${category.value}"/>
-                                        <input type="submit" name="addCategoryByName" value="Dodaj kategorię o id ${category.key.catId}"/>
+                                        <input type="submit" name="removeCategoryFromList" value="Usuń kategorię o id ${category.key.catId}"/>
                                     </div>
                                 </form>
                         </c:forEach>
+                    </c:when>
+                    <c:otherwise>
+                        <form method="post" action="/remove-category-promo">
+                            <input type="submit" name="showList" value="Pokaż listę">
+                        </form>
+                    </c:otherwise>
+                </c:choose>
+                    <c:choose>
+                    <c:when test="${not empty errorMessageDelete}">
+                        <div class="errorMessage">${errorMessageDelete}</div>
+                    </c:when>
+                    <c:when test="${not empty okMessageDelete}">
+                        <div class="logtext">${okMessageDelete}</div>
                     </c:when>
                 </c:choose>
                 </div>
