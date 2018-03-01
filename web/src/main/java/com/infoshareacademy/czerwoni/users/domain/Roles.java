@@ -22,6 +22,14 @@ public class Roles implements Serializable {
     @Column(name = "role_group")
     private String userGroup;
 
+    public Roles(){}
+
+    public Roles(String userLogin, String userRole, String userGroup) {
+        this.userLogin = userLogin;
+        this.userRole = userRole;
+        this.userGroup = userGroup;
+    }
+
     public int getRoleId() {
         return roleId;
     }

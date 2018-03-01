@@ -28,6 +28,16 @@ public class Users implements Serializable {
     @Column(unique = true, nullable = false)
     private String email;
 
+    public Users(){}
+
+    public Users(String login, String password, String name, String surname,String email){
+        this.login=login;
+        this.password=password;
+        this.name=name;
+        this.surname=surname;
+        this.email=email;
+    }
+
     public int getUserId() {
         return userId;
     }

@@ -26,16 +26,8 @@ public class GoogleUserServlet extends HttpServlet {
         request.setAttribute("email",request.getParameter("email"));
 
         if(!authorizedUsersService.isEmailUserExist(email)){
-            Users users = new Users();
-            Roles roles = new Roles();
-            users.setName(name);
-            users.setLogin(email);
-            users.setEmail(email);
-            users.setPassword(authorizedUsersService.getHexPassword(email));
-
-            roles.setUserLogin(email);
-            roles.setUserRole("user");
-            roles.setUserGroup("user");
+            Users users = new Users(email, authorizedUsersService.getHexPassword(email), name, name, email);
+            Roles roles = new Roles(email,"user","user");
 
             authorizedUsersService.addAuthorizedUser(users,roles);
         }

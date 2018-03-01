@@ -37,17 +37,8 @@ public class AddUserServlet extends HttpServlet {
         String role = request.getParameter("roles");
 
         if (!authorizedUsersService.isEmailUserExist(email)) {
-            Users users = new Users();
-            Roles roles = new Roles();
-
-            users.setLogin(login);
-            users.setPassword(authorizedUsersService.getHexPassword(password));
-            users.setName(name);
-            users.setSurname(surname);
-            users.setEmail(email);
-            roles.setUserGroup(role);
-            roles.setUserRole(role);
-            roles.setUserLogin(login);
+            Users users = new Users(login, authorizedUsersService.getHexPassword(password), name, surname, email);
+            Roles roles = new Roles(role, role, login);
 
             authorizedUsersService.addAuthorizedUser(users, roles);
             request.setAttribute("users", users);
@@ -67,7 +58,6 @@ public class AddUserServlet extends HttpServlet {
             authorizedUsersService.updateAuthorizedUser(users1, roles1);
             request.setAttribute("users", users1);
         }
-
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("user-added.jsp");
         requestDispatcher.forward(request, response);
