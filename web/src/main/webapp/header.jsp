@@ -19,16 +19,9 @@
                     <label for="exampleDropdownFormPassword1">Hasło</label>
                     <input type="password" class="form-control" id="exampleDropdownFormPassword1" name="password" placeholder="Password">
                 </div>
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input">
-                        Zapamiętaj mnie
-                    </label>
-                </div>
                 <button type="submit" class="btn btn-secondary">Zaloguj się</button>
             </form>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#" style="color: aliceblue">Nie masz konta? Zapisz się!</a>
         </div>
     </div>
     <c:if test="${sessionScope.login!=null}">
