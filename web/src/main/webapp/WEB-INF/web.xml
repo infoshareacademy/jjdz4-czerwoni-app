@@ -71,5 +71,17 @@
       <page-encoding>UTF-8</page-encoding>
     </jsp-property-group>
   </jsp-config>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/success.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>401</error-code>
+    <location>/success.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>403</error-code>
+    <location>/success.jsp</location>
+  </error-page>
 
 </web-app>

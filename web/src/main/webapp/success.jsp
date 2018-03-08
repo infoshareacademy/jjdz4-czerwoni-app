@@ -4,5 +4,4 @@
 %>
 
 <%=name %>
-
-<%=email + "vkhvkjbkljblkjb" %>
+<%=email + "gdzie wchdzisz?!" %>
