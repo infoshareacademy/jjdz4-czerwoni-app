@@ -20,39 +20,40 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
             integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
             crossorigin="anonymous"></script>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id"
-          content="830889560506-bfd7gjnpsj4o3ss6n24f2pis4dscu4u9.apps.googleusercontent.com">
 </head>
 <body class="bg-dark">
 <div class="container">
-    <%@include file="header.jsp" %>
-    <%@include file="links.jsp" %>
+    <%@include file="header.jsp"%>
+    <%@include file="links.jsp"%>
     <%@include file="login-window.jsp" %>
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
             <div class="col-12 text-center"><h4>Wyszukiwarka po słowie</h4></div>
             <div class="col">
                 <h5>Podaj frazę, po której będziemy szukać produkty:</h5>
-                <form method="POST" action="/phrase-finder">
-
+                <form method="POST" action="/phrase-finder" >
 
                     <input type="text" name="phrase" id="phrase"/>
                     <input type="submit" value="Szukaj" name="search" id="search"/>
+                    <br><br/>
                 </form>
-                <br/>
+
                 <c:choose>
-                    <c:when test="${not empty phraseList}">
-                        <c:forEach var="onePhrase" items="${phraseList}">
-                            <div class="col">
-                                <h5><a href="${onePhrase.value}">${onePhrase.key.catName} ID:${onePhrase.key.catId}</a>
-                                    <br/></h5>
+                    <c:when test="${not empty phraseMap}">
+                        <c:forEach var="phrase" items="${phraseMap}">
+                            <div class="row justify-content">
+                                <a href="${phrase['value']}"> Kategoria: <c:out value="${phrase.key.catName}"/>, ID:<c:out value="${phrase.key.catId}"/> </a>
+                                <br>
                             </div>
                         </c:forEach>
-                        <br/>
+                    </c:when>
+                    <c:when test="${ phraseMap}">
+                        <h5> Problemik, brak szukanej frazy w kategoriach, spróbuj ponownie.</h5>
                     </c:when>
                 </c:choose>
+                <br>
             </div>
+
         </div>
     </div>
     <div class="row m-0">

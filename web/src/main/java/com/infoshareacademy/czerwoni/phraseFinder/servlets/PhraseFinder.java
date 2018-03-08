@@ -11,15 +11,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 
 @WebServlet("/phrase-finder")
 public class PhraseFinder extends HttpServlet {
 
+    final static int LIMIT = 5;
+
     @Inject
     PhraseService phraseService;
-
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,10 +33,14 @@ public class PhraseFinder extends HttpServlet {
 
         String category = request.getParameter("phrase");
 
-        Map<AllegroCategory, String> firstFive = phraseService.getFirst5Categories(category.toLowerCase());
+
+        Map<AllegroCategory, String> fistNPhrases = phraseService.getFirstXCategories(category,LIMIT);
 
 
-        request.setAttribute("phraseList", firstFive);
+
+
+        request.setAttribute("phraseMap", fistNPhrases);
+        request.setAttribute("link",fistNPhrases);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/phrase-finder.jsp");
         requestDispatcher.forward(request, response);
     }

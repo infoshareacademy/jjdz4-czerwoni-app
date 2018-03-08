@@ -10,9 +10,7 @@ import java.util.Map;
 @Local
 public interface PhraseService {
 
-    Map<AllegroCategory, String> getFirst5Categories(String phrase);
-
-    String getName(List<AllegroCategory> listOfFive, int i);
-
-    String getLink(List<AllegroCategory> listOfFive, int i);
+        Map<AllegroCategory, String> getFirstXCategories(String phrase, int limit);
+        String getName(List<AllegroCategory> listOfFive, int i);
+        String getLink(List<AllegroCategory> listOfFive, int i);
 }
