@@ -41,22 +41,22 @@
     <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>
-            <plugin>
-                <groupId>org.wildfly.plugins</groupId>
-                <artifactId>wildfly-maven-plugin</artifactId>
-                <version>1.2.0.Final</version>
-                <configuration>
-                    <name>api.war</name>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>install</phase>
-                        <goals>
-                            <goal>deploy</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+            <!--<plugin>-->
+            <!--<groupId>org.wildfly.plugins</groupId>-->
+            <!--<artifactId>wildfly-maven-plugin</artifactId>-->
+            <!--<version>1.2.0.Final</version>-->
+            <!--<configuration>-->
+            <!--<name>api.war</name>-->
+            <!--</configuration>-->
+            <!--<executions>-->
+            <!--<execution>-->
+            <!--<phase>install</phase>-->
+            <!--<goals>-->
+            <!--<goal>deploy</goal>-->
+            <!--</goals>-->
+            <!--</execution>-->
+            <!--</executions>-->
+            <!--</plugin>-->
         </plugins>
     </build>
 </project>
