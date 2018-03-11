@@ -29,7 +29,7 @@
     <%@include file="links.jsp"%>
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
-            <form class="questionForm" method="post" action="add-user">
+            <form class="questionForm" method="post" action="add-question">
                 <label>Treść pytania: </label><br/><input size="80" name="questionName" type="text" minlength="3" required/> <br/><br/>
                 <label>Poziom pytania: </label><br/><input size="20" name="questionLevel" type="number" min="1" max="30" required/>
                 <div class="errorMessage">${NFErrorMessage}</div>

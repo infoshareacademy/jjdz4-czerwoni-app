@@ -1,0 +1,60 @@
+version: '3.4'
+services:
+  wdyw_db:
+    container_name: "wdyw_db"
+    image: mysql:latest
+    environment:
+      - MYSQL_DATABASE=wdyw_db
+      - MYSQL_USER=wdyw
+      - MYSQL_PASSWORD=wdyw
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - 3307:3306
+
+  wdyw_db_r:
+    container_name: "wdyw_db_r"
+    image: mysql:latest
+    environment:
+        - MYSQL_R_DATABASE=wdyw_db_r
+        - MYSQL_R_USER=wdyw
+        - MYSQL_R_PASSWORD=wdyw
+        - MYSQL_R_ROOT_PASSWORD=root
+    ports:
+        - 3308:3306
+
+  jjdz4-webapp:
+    container_name: "jjdz4-webapp"
+    build: .
+    environment:
+      - MYSQL_URI=WDYW_DB:3306
+      - MYSQL_DATABASE=wdyw_db
+      - MYSQL_USER=wdyw
+      - MYSQL_PASSWORD=wdyw
+      - DATASOURCE_NAME=java:/WDYWDs
+      - MYSQL_R_URI=WDYW_DB_R:3306
+      - MYSQL_R_DATABASE=wdyw_db_r
+      - MYSQL_R_USER=wdyw
+      - MYSQL_R_PASSWORD=wdyw
+      - DATASOURCE_R_NAME=java:/WDYWreportsDS
+#      - MYSQL_R_DATABASE=WDYW_DB_R
+#      - DATASOURCE_R_NAME=java:/WDYWreportsDS
+    ports:
+      - 8081:8080
+      - 9991:9990
+    depends_on:
+      - wdyw_db
+      - wdyw_db_r
+#  jjdz4-api-reports:
+#        container_name: "jjdz4-api-reports"
+#        build: .
+#        environment:
+#          - MYSQL_R_URI=WDYW_DB_R:3306
+#          - MYSQL_R_DATABASE=wdyw_db_r
+#          - MYSQL_R_USER=wdyw
+#          - MYSQL_R_PASSWORD=wdyw
+#          - DATASOURCE_R_NAME=java:/WDYWreportsDS
+#        ports:
+#          - 8082:8080
+#          - 9992:9990
+#        depends_on:
+#          - wdyw_db_r
