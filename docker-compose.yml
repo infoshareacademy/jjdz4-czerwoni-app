@@ -36,25 +36,9 @@ services:
       - MYSQL_R_USER=wdyw
       - MYSQL_R_PASSWORD=wdyw
       - DATASOURCE_R_NAME=java:/WDYWreportsDS
-#      - MYSQL_R_DATABASE=WDYW_DB_R
-#      - DATASOURCE_R_NAME=java:/WDYWreportsDS
     ports:
       - 4090:8080
       - 9991:9990
     depends_on:
       - wdyw_db
       - wdyw_db_r
-#  jjdz4-api-reports:
-#        container_name: "jjdz4-api-reports"
-#        build: .
-#        environment:
-#          - MYSQL_R_URI=WDYW_DB_R:3306
-#          - MYSQL_R_DATABASE=wdyw_db_r
-#          - MYSQL_R_USER=wdyw
-#          - MYSQL_R_PASSWORD=wdyw
-#          - DATASOURCE_R_NAME=java:/WDYWreportsDS
-#        ports:
-#          - 8082:8080
-#          - 9992:9990
-#        depends_on:
-#          - wdyw_db_r
