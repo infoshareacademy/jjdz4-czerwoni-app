@@ -39,7 +39,7 @@ services:
 #      - MYSQL_R_DATABASE=WDYW_DB_R
 #      - DATASOURCE_R_NAME=java:/WDYWreportsDS
     ports:
-      - 8081:8080
+      - 4090:8080
       - 9991:9990
     depends_on:
       - wdyw_db
