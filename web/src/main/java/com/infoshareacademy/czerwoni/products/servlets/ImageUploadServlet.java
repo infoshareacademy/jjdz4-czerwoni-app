@@ -3,7 +3,6 @@ package com.infoshareacademy.czerwoni.products.servlets;
 
 import com.infoshareacademy.czerwoni.product.BarCodeReader;
 import com.infoshareacademy.czerwoni.product.ProductProcessor;
-import com.infoshareacademy.czerwoni.product.Product;
 import com.infoshareacademy.czerwoni.products.domain.FileInfo;
 import com.infoshareacademy.czerwoni.products.service.UploadService;
 import org.apache.commons.io.FilenameUtils;
@@ -17,15 +16,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import javax.servlet.http.Part;
+import java.io.*;
 import java.util.UUID;
+
+import com.infoshareacademy.czerwoni.product.Product;
 
 
 @WebServlet("/FileUpload")
 
 @MultipartConfig
+
 public class ImageUploadServlet extends HttpServlet {
 
     private static Logger LOGGER = LoggerFactory.getLogger(ImageUploadServlet.class);
@@ -107,6 +108,12 @@ public class ImageUploadServlet extends HttpServlet {
 
         return fileInfo;
     }
+
+
+
+
+
+
 
 
 }

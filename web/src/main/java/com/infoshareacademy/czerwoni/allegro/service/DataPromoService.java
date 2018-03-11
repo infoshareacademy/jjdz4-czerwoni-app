@@ -3,11 +3,14 @@ package com.infoshareacademy.czerwoni.allegro.service;
 import com.infoshareacademy.czerwoni.allegro.AllegroCategory;
 
 import java.util.List;
+import java.util.Map;
 
 public interface DataPromoService {
-    void addCategory(AllegroCategory allegroCategory);
+    boolean addCategory(int id);
     AllegroCategory getPromotedCategoryById(int Id);
-    List<Integer> getAllPromotedCategories();
-    void removeCategory(AllegroCategory allegroCategory);
-    List<AllegroCategory> setPromotedCategories(List<AllegroCategory> categories);
+    List<AllegroCategory> getAllPromotedCategories();
+    boolean removeCategory(int id);
+    List<AllegroCategory> setPromotedCategories();
+    Map<AllegroCategory, String> getSearchedCategories(String keyWord);
+    Map<AllegroCategory, String> getPromotedCategories();
 }
