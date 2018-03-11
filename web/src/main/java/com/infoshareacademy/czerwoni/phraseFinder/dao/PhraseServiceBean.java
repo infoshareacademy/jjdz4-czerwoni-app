@@ -4,8 +4,6 @@ import com.infoshareacademy.czerwoni.allegro.AllegroCategory;
 import com.infoshareacademy.czerwoni.parse.ParseXmlAllegroCategories;
 
 import javax.ejb.Stateless;
-import java.util.Comparator;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -23,21 +21,21 @@ public class PhraseServiceBean implements PhraseService {
                 filter(c-> c.getCatName().toLowerCase().
                         contains(phrase.toLowerCase()))
                 .limit(limitCategoriesToPrint).collect(Collectors.toMap(c -> c, AllegroCategory::generateLink));
-
-
-
         return phraseMap;
     }
 
-
     @Override
-    public String getName(List<AllegroCategory> listOfFive, int i){
-        return listOfFive.get(i).getCatName();
+    public String errorResponse(String msg) {
+        String response;
+
+        if (msg==null){
+            response = "Najpierw wpisz frazę, którą chcesz wyszukać.";
+        }
+        else{
+            response = msg;
+        }
+            return response;
     }
 
-    @Override
-    public String getLink(List<AllegroCategory> listOfFive, int i){
-        return listOfFive.get(i).generateLink();
-    }
 
 }

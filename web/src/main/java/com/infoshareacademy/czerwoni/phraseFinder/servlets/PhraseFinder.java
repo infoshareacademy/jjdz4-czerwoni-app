@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
 
 
@@ -32,15 +31,17 @@ public class PhraseFinder extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String category = request.getParameter("phrase");
+        String error = null;
 
 
-        Map<AllegroCategory, String> fistNPhrases = phraseService.getFirstXCategories(category,LIMIT);
+    Map<AllegroCategory, String> firstNPhrases = phraseService.getFirstXCategories(category,LIMIT);
+    if (firstNPhrases.isEmpty())
+    {
+        error = phraseService.errorResponse(category);
+    }
 
-
-
-
-        request.setAttribute("phraseMap", fistNPhrases);
-        request.setAttribute("link",fistNPhrases);
+        request.setAttribute("phraseMap", firstNPhrases);
+        request.setAttribute("error",error);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/phrase-finder.jsp");
         requestDispatcher.forward(request, response);
     }

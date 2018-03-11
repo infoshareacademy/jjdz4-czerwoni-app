@@ -39,16 +39,21 @@
                 </form>
 
                 <c:choose>
-                    <c:when test="${not empty phraseMap}">
+
+                    <c:when test="${error == null}">
                         <c:forEach var="phrase" items="${phraseMap}">
-                            <div class="row justify-content">
+                            <div>
                                 <a href="${phrase['value']}"> Kategoria: <c:out value="${phrase.key.catName}"/>, ID:<c:out value="${phrase.key.catId}"/> </a>
                                 <br>
                             </div>
                         </c:forEach>
                     </c:when>
-                    <c:when test="${ phraseMap}">
-                        <h5> Problemik, brak szukanej frazy w kategoriach, spróbuj ponownie.</h5>
+                </c:choose>
+                <c:choose>
+                    <c:when test="${error != null}">
+                        <div class="errorMessage" >
+                            Brak kategorii pod podaną nazwą: <c:out value="${error}"> </c:out>
+                        </div>
                     </c:when>
                 </c:choose>
                 <br>
