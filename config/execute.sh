@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#cat ./WDYW_Data.sql
+#mysql wdyw_db < ./WDYW_Data.sql
+
 # Usage: execute.sh [WildFly mode] [configuration file]
 #
 # The default mode is 'standalone' and default configuration is based on the
@@ -89,4 +92,3 @@ echo "=> Restarting WildFly"
 
 #run wildfly
 $JBOSS_HOME/bin/$JBOSS_MODE.sh -b 0.0.0.0 -bmanagement 0.0.0.0 -c $JBOSS_CONFIG
-

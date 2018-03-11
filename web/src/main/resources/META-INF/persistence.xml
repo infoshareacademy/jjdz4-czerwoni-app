@@ -20,7 +20,8 @@
             <!--<property name="hibernate.connection.url" value="jdbc:mysql://localhost:32768/WDYW?relaxAutoCommit=true&amp;amp;autoReconnect=true&amp;amp;useUnicode=true&amp;amp;characterEncoding=utf8"/>-->
             <!--<property name="hibernate.connection.characterEncoding" value="UTF-8"/>-->
             <!--<property name="hibernate.connection.url" value="jdbc:mysql://localhost:32768/WDYW?characterEncoding=UTF-8"/>-->
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
+            <property name="hibernate.hbm2ddl.import_files" value="WDYW_Data.sql"/>
         </properties>
     </persistence-unit>
 </persistence>
