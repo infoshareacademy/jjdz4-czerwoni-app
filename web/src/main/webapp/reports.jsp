@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<!DOCTYPE html>
+
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
@@ -27,36 +27,36 @@
 <div class="container">
     <%@include file="header.jsp"%>
     <%@include file="links.jsp"%>
+    <%@include file="login-window.jsp" %>
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
-            <div>
-                <div class="row">
-                    <div class="col-12 justify-content-center"><h3>Panel administratora</h3></div>
-                </div>
-                <div class="row">
-                    <a href="add-question" class="col-lg-5 justify-content-center link-button mx-auto">
-                        Dodaj pytanie
-                    </a>
-                    <a href="show-all-question" class="col-lg-5 justify-content-center link-button mx-auto">
-                        Usuń lub edytuj pytania
-                    </a>
-                    <a href="add-category-promo" class="col-lg-5 justify-content-center link-button mx-auto">
-                        Dodaj kategorię do promowanych
-                    </a>
-                    <a class="col-lg-5 justify-content-center link-button mx-auto" href="remove-category-promo">
-                        Usuń kategorię z promowanych
-                    </a>
-                    <a class="col-lg-5 justify-content-center link-button mx-auto" href="add-user">
-                        Dodaj użytkownika
-                    </a>
-                    <a class="col-lg-5 justify-content-center link-button mx-auto" href="reports">
-                        Raporty
-                    </a>
-                </div>
+            <div class="col-12 mx-auto">
+                <h3>Raport aktywności użytkowników</h3>
+                <form method="post" action="/reports">
+                    <label class="pt-2">Podaj e-mail szukanego użytkownika: </label><br/>
+                    <input type="email" name="email"/><br/>
+                    <input type="submit" name="emailSearch" class="pt-2" value="Wyświetl raport"/>
+                </form><br/>
+                <form method="post" action="/reports">
+                    <input type="submit" name="showAll" value="Pokaż raport"/>
+                </form>
+                <c:choose>
+                    <c:when test="${not empty errorMessageReport}">
+                        <div class="errorMessage">${errorMessageReport}</div>
+                    </c:when>
+                    <c:when test="${not empty okMessageId}">
+                        <div class="logtext">${okMessageId}</div>
+                    </c:when>
+                </c:choose>
+                <c:choose>
+                    <c:when test="${not empty statsList}">
+                        <c:forEach var="stat" items="${statsList}">
+                            <c:out value="${stat.userLogin}"/>
+                        </c:forEach>
+                    </c:when>
+                </c:choose>
             </div>
-        </div>
-        <div class="row m-0">
-            <span class="mx-auto p-2">&#169 infoShare Academy</span>
+            </div>
         </div>
     </div>
 </div>
