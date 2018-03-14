@@ -28,8 +28,14 @@ public class ReportServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         List<ApiStats> stats = Collections.emptyList();
 
-        if (!req.getParameter("showAll").isEmpty()) {
+        if (req.getParameter("showAll") != null
+                && req.getParameter("userName") == null
+                && req.getParameter("email") == null) {
             stats = apiStatsService.getFullReport();
+        } else if(req.getParameter("showAll") == null
+                && req.getParameter("userName") == null
+                && req.getParameter("email") != null) {
+            stats = apiStatsService.getReportByEmail(req.getParameter("email"));
         }
 
         req.setAttribute("statsList", stats);

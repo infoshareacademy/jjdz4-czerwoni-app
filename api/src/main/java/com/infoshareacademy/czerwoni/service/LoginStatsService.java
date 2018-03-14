@@ -53,4 +53,17 @@ public class LoginStatsService {
 
         return Response.ok(stats).build();
     }
+
+    @GET
+    @Path("/GetStats/email")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getStatsByEmail(@QueryParam("email") String email) {
+        List<LoginStat> stats = statsRepository.getStatListByEmail(email);
+
+        if (stats.isEmpty()) {
+            return Response.noContent().build();
+        }
+
+        return Response.ok(stats).build();
+    }
 }

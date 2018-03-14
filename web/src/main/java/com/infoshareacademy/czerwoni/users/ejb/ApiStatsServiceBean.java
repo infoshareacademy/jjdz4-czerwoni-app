@@ -26,7 +26,7 @@ public class ApiStatsServiceBean implements ApiStatsService {
 
     @Override
     public List<ApiStats> getReportByEmail(String email) {
-        return null;
+        return apiStatsRepository.getReportByEmail(email);
     }
 
     @Override

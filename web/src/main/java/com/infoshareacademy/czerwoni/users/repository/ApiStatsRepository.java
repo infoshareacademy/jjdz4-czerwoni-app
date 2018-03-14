@@ -37,7 +37,7 @@ public class ApiStatsRepository {
     }
 
     public List<ApiStats> getReportByEmail(String email) {
-        return getStatsList(API_URL.concat("/email/")
+        return getStatsList(API_URL.concat("/email?email=")
                 .concat(email));
     }
 
