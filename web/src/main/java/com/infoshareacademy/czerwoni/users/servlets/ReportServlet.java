@@ -36,6 +36,10 @@ public class ReportServlet extends HttpServlet {
                 && req.getParameter("userName") == null
                 && req.getParameter("email") != null) {
             stats = apiStatsService.getReportByEmail(req.getParameter("email"));
+        } else if (req.getParameter("showAll") == null
+                && req.getParameter("userName") != null
+                && req.getParameter("email") == null) {
+            stats = apiStatsService.getReportForUser(req.getParameter("userName"));
         }
 
         req.setAttribute("statsList", stats);

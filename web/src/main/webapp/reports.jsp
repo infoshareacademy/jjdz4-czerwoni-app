@@ -74,6 +74,9 @@
             </div>
             </div>
         </div>
+    <div class="row m-0">
+        <span class="mx-auto p-2">&#169 infoShare Academy</span>
+    </div>
     </div>
 </div>
 </body>

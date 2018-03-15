@@ -1,7 +1,6 @@
 package com.infoshareacademy.czerwoni.users.repository;
 
 import com.infoshareacademy.czerwoni.users.domain.ApiStats;
-import com.infoshareacademy.czerwoni.users.domain.Users;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -26,13 +25,8 @@ public class ApiStatsRepository {
     }
 
     public List<ApiStats> getReportByUserName(String userName) {
-        List<Users> users = authorizedUsersRepository.getAllUsers();
-        String searchedUserEmail = users.stream()
-                .filter(user -> user.getName() == userName)
-                .findFirst()
-                .get()
-                .getEmail();
-        return getStatsList(API_URL.concat("/email/")
+        String searchedUserEmail = authorizedUsersRepository.getUserByLogin(userName).getEmail();
+        return getStatsList(API_URL.concat("/email?email=")
                 .concat(searchedUserEmail));
     }
 

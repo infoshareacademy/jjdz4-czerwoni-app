@@ -21,7 +21,7 @@ public class ApiStatsServiceBean implements ApiStatsService {
 
     @Override
     public List<ApiStats> getReportForUser(String userLogin) {
-        return null;
+        return apiStatsRepository.getReportByUserName(userLogin);
     }
 
     @Override
