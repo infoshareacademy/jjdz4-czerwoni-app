@@ -8,7 +8,5 @@ import java.util.List;
 public interface ApiStatsService {
 
     List<ApiStats> getFullReport();
-    List<ApiStats> getReportForUser(String userLogin);
     List<ApiStats> getReportByEmail(String email);
-    List<ApiStats> getReportByDate(LocalDateTime startDate, LocalDateTime endDate);
 }

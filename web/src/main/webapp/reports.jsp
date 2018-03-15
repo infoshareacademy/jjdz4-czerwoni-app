@@ -36,18 +36,11 @@
                     <form method="post" action="/reports">
                         <label class="pt-2">Podaj e-mail szukanego użytkownika: </label><br/>
                         <input type="email" name="email"/>
-                        <input type="submit" name="report" class="pl-2" value="Wyświetl raport"/>
-                    </form>
-                </div>
-                <div>
-                    <form method="post" action="/reports">
-                        <label class="pt-2">Podaj login szukanego użytkownika: </label><br/>
-                        <input type="text" name="userName"/>
-                        <input type="submit" name="report" class="pl-2" value="Wyświetl raport"/>
+                        <input type="button" name="report" class="pl-2" value="Wyświetl raport"/>
                     </form>
                 </div>
                 <form method="post" action="/reports">
-                    <input type="submit" name="showAll" value="Pełen raport"/><br/>
+                    <input type="submit" name="showAll" value="Wyświetl pełen raport"/><br/>
                 </form><br/>
                 <c:choose>
                     <c:when test="${not empty errorMessageReport}">

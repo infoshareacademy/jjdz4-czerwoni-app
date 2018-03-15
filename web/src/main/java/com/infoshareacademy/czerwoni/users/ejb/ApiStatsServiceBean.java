@@ -20,18 +20,7 @@ public class ApiStatsServiceBean implements ApiStatsService {
     }
 
     @Override
-    public List<ApiStats> getReportForUser(String userLogin) {
-        return apiStatsRepository.getReportByUserName(userLogin);
-    }
-
-    @Override
     public List<ApiStats> getReportByEmail(String email) {
         return apiStatsRepository.getReportByEmail(email);
     }
-
-    @Override
-    public List<ApiStats> getReportByDate(LocalDateTime startDate, LocalDateTime endDate) {
-        return null;
-    }
-
 }

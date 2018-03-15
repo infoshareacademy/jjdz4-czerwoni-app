@@ -29,5 +29,4 @@ public class LoginStatsRepository {
                 .setParameter("userLogin", email)
                 .getResultList();
     }
-
 }
