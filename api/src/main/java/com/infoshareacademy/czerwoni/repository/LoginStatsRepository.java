@@ -10,7 +10,7 @@ import java.util.List;
 @Stateless
 public class LoginStatsRepository {
 
-    @PersistenceContext(unitName = "pUnit")
+    @PersistenceContext(unitName = "pUnitR")
     private EntityManager entityManager;
 
     public boolean addStat(LoginStat loginStat) {
