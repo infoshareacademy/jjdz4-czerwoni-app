@@ -32,13 +32,13 @@
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
             <div class="col-12 mx-auto">
                 <h3>Raport aktywności użytkowników</h3>
-                <div>
+                <%--<div>
                     <form method="post" action="/reports">
                         <label class="pt-2">Podaj e-mail szukanego użytkownika: </label><br/>
                         <input type="email" name="email"/>
                         <input type="button" name="report" class="pl-2" value="Wyświetl raport"/>
                     </form>
-                </div>
+                </div><br/>--%>
                 <form method="post" action="/reports">
                     <input type="submit" name="showAll" value="Wyświetl pełen raport"/><br/>
                 </form><br/>
@@ -52,13 +52,33 @@
                 </c:choose>
                 <c:choose>
                     <c:when test="${not empty statsList}">
+                        <div class="row">
+                            <div class="col-md-3 col-lg-3 col-sm-3 col-xl-3 d-inline-block mb-2">
+                                Nazwa użytkownika:<br/>
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-sm-3 col-xl-3 d-inline-block mb-2">
+                                Email:<br/>
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-sm-3 col-xl-3 d-inline-block mb-2">
+                                Ilość wizyt:
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-sm-3 col-xl-3 d-inline-block mb-2">
+                                Ostatnia wizyta:
+                            </div>
+                        </div>
                         <c:forEach var="stat" items="${statsList}">
                             <div class="row">
                                 <div class="col-md-3 col-lg-3 col-sm-3 col-xl-3 d-inline-block">
-                                    <c:out value="${stat.loginTime}"/><br/>
+                                    <c:out value="${stat.userName}"/><br/>
                                 </div>
-                                <div class="col-md-6 col-lg-6 col-sm-6 col-xl-6 d-inline-block">
+                                <div class="col-md-3 col-lg-3 col-sm-3 col-xl-3 d-inline-block">
                                     <c:out value="${stat.userLogin}"/>
+                                </div>
+                                <div class="col-md-3 col-lg-3 col-sm-3 col-xl-3 d-inline-block">
+                                    <c:out value="${stat.visitCount}"/>
+                                </div>
+                                <div class="col-md-3 col-lg-3 col-sm-3 col-xl-3 d-inline-block">
+                                    <c:out value="${stat.lastVisit}"/>
                                 </div>
                             </div>
                         </c:forEach>

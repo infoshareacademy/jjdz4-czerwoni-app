@@ -5,7 +5,6 @@ import com.infoshareacademy.czerwoni.users.repository.ApiStatsRepository;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Stateless
@@ -13,6 +12,11 @@ public class ApiStatsServiceBean implements ApiStatsService {
 
     @Inject
     ApiStatsRepository apiStatsRepository;
+
+    @Override
+    public List<ApiStats> getLoginCount() {
+        return apiStatsRepository.getLoginCount();
+    }
 
     @Override
     public List<ApiStats> getFullReport() {
@@ -23,4 +27,6 @@ public class ApiStatsServiceBean implements ApiStatsService {
     public List<ApiStats> getReportByEmail(String email) {
         return apiStatsRepository.getReportByEmail(email);
     }
+
+
 }
