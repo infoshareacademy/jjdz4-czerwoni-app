@@ -33,14 +33,19 @@ public class ApiStatsRepository {
                 returnList.add(new ApiStats(apiStat.getUserLogin(),
                         getLogin(apiStat.getUserLogin()),
                         getVisitCount(apiStat.getUserLogin(), listFromAPI),
-                        getLastVisit(apiStat.getUserLogin())));
+                        getLastVisit(apiStat.getUserLogin(), listFromAPI)));
             }
         }
         return returnList;
     }
 
-    private LocalDateTime getLastVisit(String userLogin) {
-        return LocalDateTime.now();
+    private LocalDateTime getLastVisit(String userLogin, List<ApiStats> apiStats)
+    {
+        return apiStats.stream()
+                .filter(stat -> stat.getUserLogin().equalsIgnoreCase(userLogin))
+                .reduce((first, second) -> second)
+                .get()
+                .getLoginTime();
     }
 
     private Integer getVisitCount(String userLogin, List<ApiStats> apiStats) {
@@ -53,7 +58,7 @@ public class ApiStatsRepository {
     private String getLogin(String userLogin) {
         String login;
         try {
-            login = getUserByEmail(userLogin).getName();
+            login = getUserByEmail(userLogin).getLogin();
         } catch (NullPointerException e) {
             return "Google User";
         }
@@ -63,14 +68,6 @@ public class ApiStatsRepository {
     private boolean checkIfAdded(ApiStats apiStat, List<ApiStats> returnList) {
         return returnList.stream()
                 .anyMatch(stat -> stat.getUserLogin().equalsIgnoreCase(apiStat.getUserLogin()));
-    }
-
-    public Map<Users, Integer> getDailyLoginCount() {
-        return null;
-    }
-
-    public Map<Users, LocalDateTime> getLastLoginTime() {
-        return null;
     }
 
     public List<ApiStats> getFullReport() {
