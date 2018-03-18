@@ -1,6 +1,8 @@
 package com.infoshareacademy.czerwoni.phraseFinder.servlets;
 
 import com.infoshareacademy.czerwoni.allegro.AllegroCategory;
+import com.infoshareacademy.czerwoni.allegro.repository.DataPromoRepository;
+import com.infoshareacademy.czerwoni.allegro.service.CategoriesService;
 import com.infoshareacademy.czerwoni.phraseFinder.dao.PhraseService;
 
 import javax.inject.Inject;
@@ -17,7 +19,8 @@ import java.util.Map;
 @WebServlet("/phrase-finder")
 public class PhraseFinder extends HttpServlet {
 
-    final static int LIMIT = 5;
+    @Inject
+    DataPromoRepository dataPromoRepository;
 
     @Inject
     PhraseService phraseService;
@@ -31,17 +34,28 @@ public class PhraseFinder extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String category = request.getParameter("phrase");
+        Integer limit = Integer.parseInt(request.getParameter("limit"));
         String error = null;
 
 
-    Map<AllegroCategory, String> firstNPhrases = phraseService.getFirstXCategories(category,LIMIT);
+    Map<AllegroCategory, String> firstNPhrases = phraseService.getFirstXCategories(category,limit);
     if (firstNPhrases.isEmpty())
     {
         error = phraseService.errorResponse(category);
     }
 
+        Map<AllegroCategory, String> breadCrumbsMap = null;
+
+        for (AllegroCategory allegroCategory : firstNPhrases.keySet())
+        {
+            {
+                breadCrumbsMap.put(allegroCategory, dataPromoRepository.getBreadCrumbsString(allegroCategory.getCatId()));
+            }
+        }
+
         request.setAttribute("phraseMap", firstNPhrases);
         request.setAttribute("error",error);
+        request.setAttribute("breadCrumbsMap", breadCrumbsMap);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/phrase-finder.jsp");
         requestDispatcher.forward(request, response);
     }

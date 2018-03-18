@@ -9,6 +9,7 @@ import java.util.Map;
 @Local
 public interface PhraseService {
 
-        Map<AllegroCategory, String> getFirstXCategories(String phrase, int limit);
+        Map<AllegroCategory, String> getFirstXCategories(String phrase, Integer limit);
+
         String errorResponse(String msg);
 }

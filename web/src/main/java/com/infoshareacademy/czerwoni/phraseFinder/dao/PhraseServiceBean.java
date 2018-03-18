@@ -14,7 +14,7 @@ public class PhraseServiceBean implements PhraseService {
     List<AllegroCategory> allCategories = ParseXmlAllegroCategories.deserialization();
 
     @Override
-    public Map<AllegroCategory, String> getFirstXCategories(String phrase, int limitCategoriesToPrint)
+    public Map<AllegroCategory, String> getFirstXCategories(String phrase, Integer limitCategoriesToPrint)
     {
 
         Map<AllegroCategory, String> phraseMap = allCategories.stream().
@@ -23,6 +23,8 @@ public class PhraseServiceBean implements PhraseService {
                 .limit(limitCategoriesToPrint).collect(Collectors.toMap(c -> c, AllegroCategory::generateLink));
         return phraseMap;
     }
+
+
 
     @Override
     public String errorResponse(String msg) {
