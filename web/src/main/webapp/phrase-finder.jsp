@@ -41,9 +41,9 @@
 
                     <h5>Podaj maksymalną ilość odpowiedzi: </h5>
 
-                    <input type="number" name="limit" id="limit"/>
+                    <input type="number" name="limit" id="limit" placeholder=" większa niż 0" min="1"/>
                     <br/>
-                    <input type="submit" value="Szukaj" name="search" id="search"/>
+                    <input type="submit" value="Szukaj" name="search" id="search" placeholder="Twoja fraza"/>
                 </form>
                 <c:choose>
 
@@ -53,8 +53,7 @@
                             <c:forEach var="breadCrumbs" items="${breadCrumbsMap}">
                                 <c:if test="${phrase.key==breadCrumbs.key}">
                                     <div>
-                                        Kategoria: <c:out value="${phrase.key.catName}"/>,
-                                        ID:<c:out value="${phrase.key.catId}"/>
+                                        Kategoria: <c:out value="${phrase.key.catName}"/>
                                         <a href="${phrase['value']}"><c:out value="${breadCrumbs.value}"/>
                                         </a>
                                         <br>
@@ -71,6 +70,14 @@
                         </div>
                     </c:when>
                 </c:choose>
+                <c:choose>
+                    <c:when test="${error != null}">
+                        <div class="errorMessage">
+                            Brak kategorii pod podaną nazwą: <c:out value="${error}"> </c:out>
+                        </div>
+                    </c:when>
+                </c:choose>
+
                 <br>
             </div>
 

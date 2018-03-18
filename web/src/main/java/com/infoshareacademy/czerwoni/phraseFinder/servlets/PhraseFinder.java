@@ -2,8 +2,7 @@ package com.infoshareacademy.czerwoni.phraseFinder.servlets;
 
 import com.infoshareacademy.czerwoni.allegro.AllegroCategory;
 import com.infoshareacademy.czerwoni.allegro.repository.DataPromoRepository;
-import com.infoshareacademy.czerwoni.allegro.service.CategoriesService;
-import com.infoshareacademy.czerwoni.phraseFinder.dao.PhraseService;
+import com.infoshareacademy.czerwoni.phraseFinder.service.PhraseService;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
@@ -38,8 +37,7 @@ public class PhraseFinder extends HttpServlet {
         Integer limit;
         try {
             limit = Integer.parseInt(request.getParameter("limit"));
-        }
-        catch (NumberFormatException nfe){
+        } catch (IllegalArgumentException iae){
             limit=5;
         }
         String error = null;
