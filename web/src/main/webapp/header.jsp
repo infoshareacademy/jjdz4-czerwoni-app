@@ -5,11 +5,18 @@
     </h1></a>
 </div>
 <div class="col text-lg-right text-sm-center text-md-right text-center">
-    <c:if test="${sessionScope.login!=null}">
-        <div class="col logtext mt-3" style="color: #ffffff;">
-            <i class="icon-user"></i> <a href="admin-panel.jsp"> ${sessionScope.login}</a>
-            <a href="logout" onclick="logoutGoogle()"><span>Wyloguj</span></a>
-        </div>
-    </c:if>
+    <c:choose>
+        <c:when test="${sessionScope.login==null}">
+            <div class="mt-3">
+                <i class="icon-user"></i> <a href="index.jsp"><span>Zaloguj</span></a>
+            </div>
+        </c:when>
+        <c:otherwise>
+            <div class="col logtext mt-3" style="color: #ffffff;">
+                <i class="icon-user"></i> <a href="admin-panel.jsp"> ${sessionScope.login}</a>
+                <a href="logout" onclick="logoutGoogle()"><span>Wyloguj</span></a>
+            </div>
+        </c:otherwise>
+    </c:choose>
 </div>
 </div>

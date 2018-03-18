@@ -52,36 +52,24 @@
                 </c:choose>
                 <c:choose>
                     <c:when test="${not empty statsList}">
-                        <div class="row">
-                            <div class="col-md-3 col-lg-3 col-sm-3 col-xl-3 d-inline-block mb-2">
-                                Nazwa użytkownika:<br/>
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-sm-3 col-xl-3 d-inline-block mb-2">
-                                Email:<br/>
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-sm-3 col-xl-3 d-inline-block mb-2">
-                                Ilość wizyt:
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-sm-3 col-xl-3 d-inline-block mb-2">
-                                Ostatnia wizyta:
-                            </div>
-                        </div>
-                        <c:forEach var="stat" items="${statsList}">
-                            <div class="row">
-                                <div class="col-md-3 col-lg-3 col-sm-3 col-xl-3 d-inline-block">
-                                    <c:out value="${stat.userName}"/><br/>
-                                </div>
-                                <div class="col-md-3 col-lg-3 col-sm-3 col-xl-3 d-inline-block">
-                                    <c:out value="${stat.userLogin}"/>
-                                </div>
-                                <div class="col-md-3 col-lg-3 col-sm-3 col-xl-3 d-inline-block">
-                                    <c:out value="${stat.visitCount}"/>
-                                </div>
-                                <div class="col-md-3 col-lg-3 col-sm-3 col-xl-3 d-inline-block">
-                                    <c:out value="${stat.lastVisit}"/>
-                                </div>
-                            </div>
-                        </c:forEach>
+                        <table class="table table-striped table-dark">
+                            <thead>
+                                <th scope="col">Nazwa użytkownika</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Ilość wizyt</th>
+                                <th scope="col">Ostatnia wizyta</th>
+                            </thead>
+                            <tbody>
+                            <c:forEach var="stat" items="${statsList}">
+                                <tr>
+                                    <td><c:out value="${stat.userName}"/></td>
+                                    <td><c:out value="${stat.userLogin}"/></td>
+                                    <td><c:out value="${stat.visitCount}"/></td>
+                                    <td><c:out value="${stat.lastVisit}"/></td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
                     </c:when>
                 </c:choose>
             </div>

@@ -39,6 +39,13 @@ public class ReportServlet extends HttpServlet {
             stats = apiStatsService.getLoginCount(req.getParameter("email"));
         }
 
+        if (stats.isEmpty()) {
+            req.setAttribute("errorMessageReport" , "Nie znaleziono użytkownika!");
+
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("reports.jsp");
+            requestDispatcher.forward(req, resp);
+        }
+
         req.setAttribute("statsList", stats);
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("reports.jsp");

@@ -11,6 +11,7 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -42,24 +43,31 @@ public class ApiStatsRepository {
     public List<ApiStats> getLoginCount(String email) {
         List<ApiStats> listFromAPI = getReportByEmail(email);
         List<ApiStats> returnList = new ArrayList<>();
-        for (ApiStats apiStat: listFromAPI) {
-            if (!checkIfAdded(apiStat, returnList)) {
-                returnList.add(new ApiStats(apiStat.getUserLogin(),
-                        getLogin(apiStat.getUserLogin()),
-                        getVisitCount(apiStat.getUserLogin(), listFromAPI),
-                        getLastVisit(apiStat.getUserLogin(), listFromAPI)));
+        try {
+            for (ApiStats apiStat: listFromAPI) {
+                if (!checkIfAdded(apiStat, returnList)) {
+                    returnList.add(new ApiStats(apiStat.getUserLogin(),
+                            getLogin(apiStat.getUserLogin()),
+                            getVisitCount(apiStat.getUserLogin(), listFromAPI),
+                            getLastVisit(apiStat.getUserLogin(), listFromAPI)));
+                }
             }
+        } catch (NullPointerException e) {
+            returnList = Collections.EMPTY_LIST;
         }
         return returnList;
     }
 
-    private LocalDateTime getLastVisit(String userLogin, List<ApiStats> apiStats)
+    private String getLastVisit(String userLogin, List<ApiStats> apiStats)
     {
-        return apiStats.stream()
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String lastVisit = apiStats.stream()
                 .filter(stat -> stat.getUserLogin().equalsIgnoreCase(userLogin))
                 .reduce((first, second) -> second)
                 .get()
-                .getLoginTime();
+                .getLoginTime()
+                .format(formatter);
+        return lastVisit;
     }
 
     private Integer getVisitCount(String userLogin, List<ApiStats> apiStats) {

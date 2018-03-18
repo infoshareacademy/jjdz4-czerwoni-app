@@ -17,12 +17,12 @@ public class ApiStats {
     @JsonIgnore
     private Integer visitCount;
     @JsonIgnore
-    private LocalDateTime lastVisit;
+    private String lastVisit;
 
     public ApiStats() {
     }
 
-    public ApiStats(String userLogin, String userName, Integer visitCount, LocalDateTime lastVisit) {
+    public ApiStats(String userLogin, String userName, Integer visitCount, String lastVisit) {
         this.userLogin = userLogin;
         this.userName = userName;
         this.visitCount = visitCount;
@@ -62,11 +62,11 @@ public class ApiStats {
         this.visitCount = visitCount;
     }
 
-    public LocalDateTime getLastVisit() {
+    public String getLastVisit() {
         return lastVisit;
     }
 
-    public void setLastVisit(LocalDateTime lastVisit) {
+    public void setLastVisit(String lastVisit) {
         this.lastVisit = lastVisit;
     }
 }
