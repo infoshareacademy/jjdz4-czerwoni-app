@@ -1,7 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 
+<!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
@@ -25,24 +26,11 @@
 </head>
 <body class="bg-dark">
 <div class="container">
-    <%@include file="header.jsp"%>
-    <%@include file="links.jsp"%>
+    <%@include file="header.jsp" %>
+    <%@include file="links.jsp" %>
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
-            <form class="questionForm" method="post" action="add-question">
-                <label>Treść pytania: </label><br/><input size="80" name="questionName" type="text" minlength="3" required/> <br/><br/>
-                <label>Poziom pytania: </label><br/><input size="20" name="questionLevel" type="number" min="1" max="30" required/>
-                <div class="errorMessage">${NFErrorMessage}</div>
-                <br/>
-                <label>Wybierz odpowiedź nadrzędną: </label><br/>
-                <select name="answer">
-                    <option value="wybierz odpowiedź">Wybierz odpowiedź</option>
-                    <c:forEach var="list" items="${answersListWithoutRelatedQuestion}">
-                        <option value="${list.answerId}">${list.answerName}</option>
-                    </c:forEach>
-                </select><br/><br/>
-                <input class="button" type="submit" name="add-question" value="Dalej"/>
-            </form>
+            <div class="errorMessage"><h3>Nie masz uprawnień do tej opcji, skontaktuj się z administratorem.</h3></div>
         </div>
         <div class="row m-0">
             <span class="mx-auto p-2">&#169 infoShare Academy</span>
