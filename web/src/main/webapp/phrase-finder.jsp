@@ -37,22 +37,22 @@
                 <form method="POST" action="/phrase-finder" >
 
                     <input type="text" name="phrase" id="phrase"/>
-                    <input type="submit" value="Szukaj" name="search" id="search"/>
                     <br/>
                 </form>
                 <h5>Podaj maksymalną ilość odpowiedzi: </h5>
                 <form method="POST" action="/phrase-finder">
-                    <input type="text" name="limit" id="limit">
+                    <input type="number" name="limit" id="limit"/>
                     <br/>
+                    <input type="submit" value="Szukaj" name="search" id="search"/>
                 </form>
                 <c:choose>
 
                     <c:when test="${error == null}">
                         <c:forEach var="phrase" items="${phraseMap}">
                             <div>
-                                <a href="${phrase['value']}"> Kategoria: <c:out value="${phrase.key.catName}"/>,
+                                 Kategoria: <c:out value="${phrase.key.catName}"/>,
                                     ID:<c:out value="${phrase.key.catId}"/>
-                                    BC:<c:out value="${breadCrumbsMap['value']}"/>
+                                <a href="${phrase['value']}"><c:out value="${breadCrumbsMap['value']}"/>
                                 </a>
                                 <br>
                             </div>

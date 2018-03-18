@@ -34,7 +34,7 @@ public class PhraseFinder extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String category = request.getParameter("phrase");
-        Integer limit = Integer.parseInt(request.getParameter("limit"));
+        Integer limit =Integer.parseInt(request.getParameter("limit"));
         String error = null;
 
 
