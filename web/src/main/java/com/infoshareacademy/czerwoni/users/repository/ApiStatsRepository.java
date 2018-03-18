@@ -39,6 +39,20 @@ public class ApiStatsRepository {
         return returnList;
     }
 
+    public List<ApiStats> getLoginCount(String email) {
+        List<ApiStats> listFromAPI = getReportByEmail(email);
+        List<ApiStats> returnList = new ArrayList<>();
+        for (ApiStats apiStat: listFromAPI) {
+            if (!checkIfAdded(apiStat, returnList)) {
+                returnList.add(new ApiStats(apiStat.getUserLogin(),
+                        getLogin(apiStat.getUserLogin()),
+                        getVisitCount(apiStat.getUserLogin(), listFromAPI),
+                        getLastVisit(apiStat.getUserLogin(), listFromAPI)));
+            }
+        }
+        return returnList;
+    }
+
     private LocalDateTime getLastVisit(String userLogin, List<ApiStats> apiStats)
     {
         return apiStats.stream()

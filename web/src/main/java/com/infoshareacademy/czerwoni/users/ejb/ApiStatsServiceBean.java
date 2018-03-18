@@ -19,6 +19,11 @@ public class ApiStatsServiceBean implements ApiStatsService {
     }
 
     @Override
+    public List<ApiStats> getLoginCount(String email) {
+        return apiStatsRepository.getLoginCount(email);
+    }
+
+    @Override
     public List<ApiStats> getFullReport() {
         return apiStatsRepository.getFullReport();
     }

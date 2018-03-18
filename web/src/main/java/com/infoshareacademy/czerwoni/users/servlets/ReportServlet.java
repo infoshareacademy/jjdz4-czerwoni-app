@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 @WebServlet("/reports")
 public class ReportServlet extends HttpServlet {
@@ -31,14 +30,14 @@ public class ReportServlet extends HttpServlet {
         List<ApiStats> stats = Collections.EMPTY_LIST;
 
         if (req.getParameter("showAll") != null
-                && req.getParameter("userName") == null
+                && req.getParameter("reportByEmail") == null
                 && req.getParameter("email") == null) {
             stats = apiStatsService.getLoginCount();
-        }/* else if(req.getParameter("showAll") == null
-                && req.getParameter("userName") == null
+        } else if(req.getParameter("showAll") == null
+                && req.getParameter("reportByEmail") != null
                 && req.getParameter("email") != null) {
-//            stats = apiStatsService.getReportByEmail(req.getParameter("email"));
-        }*/
+            stats = apiStatsService.getLoginCount(req.getParameter("email"));
+        }
 
         req.setAttribute("statsList", stats);
 

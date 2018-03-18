@@ -32,13 +32,13 @@
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
             <div class="col-12 mx-auto">
                 <h3>Raport aktywności użytkowników</h3>
-                <%--<div>
+                <div>
                     <form method="post" action="/reports">
                         <label class="pt-2">Podaj e-mail szukanego użytkownika: </label><br/>
                         <input type="email" name="email"/>
-                        <input type="button" name="report" class="pl-2" value="Wyświetl raport"/>
+                        <input type="Submit" name="reportByEmail" class="pl-2" value="Wyświetl raport"/>
                     </form>
-                </div><br/>--%>
+                </div><br/>
                 <form method="post" action="/reports">
                     <input type="submit" name="showAll" value="Wyświetl pełen raport"/><br/>
                 </form><br/>
