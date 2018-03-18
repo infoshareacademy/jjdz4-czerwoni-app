@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -34,7 +35,13 @@ public class PhraseFinder extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String category = request.getParameter("phrase");
-        Integer limit =Integer.parseInt(request.getParameter("limit"));
+        Integer limit;
+        try {
+            limit = Integer.parseInt(request.getParameter("limit"));
+        }
+        catch (NumberFormatException nfe){
+            limit=5;
+        }
         String error = null;
 
 
@@ -44,7 +51,7 @@ public class PhraseFinder extends HttpServlet {
         error = phraseService.errorResponse(category);
     }
 
-        Map<AllegroCategory, String> breadCrumbsMap = null;
+        Map<AllegroCategory, String> breadCrumbsMap = new HashMap<>();
 
         for (AllegroCategory allegroCategory : firstNPhrases.keySet())
         {

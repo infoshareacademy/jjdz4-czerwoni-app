@@ -26,21 +26,21 @@
 </head>
 <body class="bg-dark">
 <div class="container">
-    <%@include file="header.jsp"%>
-    <%@include file="links.jsp"%>
+    <%@include file="header.jsp" %>
+    <%@include file="links.jsp" %>
     <%@include file="login-window.jsp" %>
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
             <div class="col-12 text-center"><h4>Wyszukiwarka po słowie</h4></div>
             <div class="col">
                 <h5>Podaj frazę, po której będziemy szukać produkty:</h5>
-                <form method="POST" action="/phrase-finder" >
+                <form method="POST" action="/phrase-finder">
 
                     <input type="text" name="phrase" id="phrase"/>
                     <br/>
-                </form>
-                <h5>Podaj maksymalną ilość odpowiedzi: </h5>
-                <form method="POST" action="/phrase-finder">
+
+                    <h5>Podaj maksymalną ilość odpowiedzi: </h5>
+
                     <input type="number" name="limit" id="limit"/>
                     <br/>
                     <input type="submit" value="Szukaj" name="search" id="search"/>
@@ -49,19 +49,24 @@
 
                     <c:when test="${error == null}">
                         <c:forEach var="phrase" items="${phraseMap}">
-                            <div>
-                                 Kategoria: <c:out value="${phrase.key.catName}"/>,
-                                    ID:<c:out value="${phrase.key.catId}"/>
-                                <a href="${phrase['value']}"><c:out value="${breadCrumbsMap['value']}"/>
-                                </a>
-                                <br>
-                            </div>
+
+                            <c:forEach var="breadCrumbs" items="${breadCrumbsMap}">
+                                <c:if test="${phrase.key==breadCrumbs.key}">
+                                    <div>
+                                        Kategoria: <c:out value="${phrase.key.catName}"/>,
+                                        ID:<c:out value="${phrase.key.catId}"/>
+                                        <a href="${phrase['value']}"><c:out value="${breadCrumbs.value}"/>
+                                        </a>
+                                        <br>
+                                    </div>
+                                </c:if>
+                            </c:forEach>
                         </c:forEach>
                     </c:when>
                 </c:choose>
                 <c:choose>
                     <c:when test="${error != null}">
-                        <div class="errorMessage" >
+                        <div class="errorMessage">
                             Brak kategorii pod podaną nazwą: <c:out value="${error}"> </c:out>
                         </div>
                     </c:when>
