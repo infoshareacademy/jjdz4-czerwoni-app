@@ -111,7 +111,7 @@ public class DataPromoRepository {
                 .anyMatch(allegroCategory -> allegroCategory.getCatId() == id);
     }
 
-    private String getBreadCrumbsString(int id) {
+    public String getBreadCrumbsString(int id) {
         List<AllegroCategory> breadCrumbs = categoriesService.getBreadCrumbs(id);
         StringBuilder breadCrumbString = new StringBuilder();
 
