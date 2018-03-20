@@ -31,20 +31,25 @@
     <%@include file="login-window.jsp" %>
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
-            <div class="col-12 text-center"><h4>Wyszukiwarka po słowie</h4></div>
-            <div class="col">
-                <h5>Podaj frazę, po której będziemy szukać produkty:</h5>
+            <div class="col-12 text-center"><h3>Wyszukiwarka po słowie</h3></div>
+            <div class="col-4">
                 <form method="POST" action="/phrase-finder">
+                    <div class="form-group">
+                        <label>Podaj frazę do <wyszukania></wyszukania>:</label>
 
-                    <input type="text" name="phrase" id="phrase"/>
-                    <br/>
-
-                    <h5>Podaj maksymalną ilość odpowiedzi: </h5>
-
-                    <input type="number" name="limit" id="limit" placeholder=" większa niż 0" min="1"/>
-                    <br/>
-                    <input type="submit" value="Szukaj" name="search" id="search" placeholder="Twoja fraza"/>
+                        <input type="text" class="form-control" name="phrase" id="phrase" placeholder="Fraza"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Podaj maksymalną ilość odpowiedzi:</label>
+                        <input type="number" class="form-control" name="limit" id="limit" placeholder=" większa niż 0"
+                               min="1"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Szukaj" name="search" class="btn btn-primary btn-lg btn-block"/>
+                    </div>
                 </form>
+            </div>
+            <div class="col-8">
                 <c:choose>
 
                     <c:when test="${error == null}">
@@ -65,7 +70,7 @@
                 </c:choose>
                 <c:choose>
                     <c:when test="${error != null}">
-                        <div class="errorMessage">
+                        <div class="alert alert-danger" role="alert">
                             Brak kategorii pod podaną nazwą: <c:out value="${error}"> </c:out>
                         </div>
                     </c:when>
@@ -77,15 +82,14 @@
                         </div>
                     </c:when>
                 </c:choose>
-
-                <br>
             </div>
-
         </div>
+
     </div>
-    <div class="row m-0">
-        <span class="mx-auto p-2">&#169 infoShare Academy</span>
-    </div>
+</div>
+<div class="row m-0">
+    <span class="mx-auto p-2">&#169 infoShare Academy</span>
+</div>
 </div>
 </body>
 </html>
