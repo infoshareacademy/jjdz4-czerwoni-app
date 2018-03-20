@@ -38,7 +38,7 @@ public class AddUserServlet extends HttpServlet {
 
         if (!authorizedUsersService.isEmailUserExist(email)) {
             Users users = new Users(login, authorizedUsersService.getHexPassword(password), name, surname, email);
-            Roles roles = new Roles(role, role, login);
+            Roles roles = new Roles(login, role, role );
 
             authorizedUsersService.addAuthorizedUser(users, roles);
             request.setAttribute("users", users);
