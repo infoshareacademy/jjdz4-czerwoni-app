@@ -37,6 +37,8 @@ echo "=> DATASOURCE_R_NAME: " $DATASOURCE_R_NAME
 echo "=> MYSQL_USER: " $MYSQL_R_USER
 echo "=> MYSQL_PASSWORD: " $MYSQL_R_PASSWORD
 
+echo "=> Configure WildFly by CLI"
+
 $JBOSS_CLI -c << EOF
 batch
 
@@ -74,7 +76,7 @@ data-source add --name=mysqlDSR --driver-name=mysql --jndi-name=$DATASOURCE_R_NA
 run-batch
 EOF
 
-# Deploy the WAR
+echo "=> Deploy the WARs"
 cp /opt/jboss/wildfly/config/web.war $JBOSS_HOME/$JBOSS_MODE/deployments/
 cp /opt/jboss/wildfly/config/api.war $JBOSS_HOME/$JBOSS_MODE/deployments/
 
@@ -87,8 +89,8 @@ fi
 
 echo "=> Restarting WildFly"
 
-#add user for console management tool
+echo "=> add user for console management tool"
 /opt/jboss/wildfly/bin/add-user.sh admin abcd1234 --silent
 
-#run wildfly
+echo "=> Run WildFly"
 $JBOSS_HOME/bin/$JBOSS_MODE.sh -b 0.0.0.0 -bmanagement 0.0.0.0 -c $JBOSS_CONFIG

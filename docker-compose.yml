@@ -9,7 +9,7 @@ services:
       - MYSQL_PASSWORD=wdyw
       - MYSQL_ROOT_PASSWORD=root
     ports:
-      - 3307:3306
+      - 4062:3306
 
   wdyw_db_r:
     container_name: "wdyw_db_r"
@@ -20,7 +20,7 @@ services:
         - MYSQL_PASSWORD=wdyw
         - MYSQL_ROOT_PASSWORD=root
     ports:
-        - 3308:3306
+        - 4063:3306
 
   jjdz4-webapp:
     container_name: "jjdz4-webapp"
@@ -37,8 +37,8 @@ services:
       - MYSQL_R_PASSWORD=wdyw
       - DATASOURCE_R_NAME=java:/WDYWreportsDS
     ports:
-      - 4090:8080
-      - 9991:9990
+      - 4060:8080
+      - 4061:9990
     depends_on:
       - wdyw_db
       - wdyw_db_r
