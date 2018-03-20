@@ -12,7 +12,7 @@
             </div>
         </c:when>
         <c:otherwise>
-            <div class="col logtext mt-3" style="color: #ffffff;">
+            <div class="col mt-3">
                 <i class="icon-user"></i> <a href="admin-panel.jsp"> ${sessionScope.login}</a>
                 <a href="logout" onclick="logoutGoogle()"><span>Wyloguj</span></a>
             </div>
