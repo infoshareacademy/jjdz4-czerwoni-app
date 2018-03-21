@@ -42,4 +42,10 @@ public class AuthorizedUsersRepository {
     public String getEmailByLogin(String login) {
         return (String) entityManager.createNamedQuery("getEmailByLogin").setParameter("login", login).getSingleResult();
     }
+
+    public Users getUserByLogin(String login) {
+        return entityManager.createNamedQuery("getUserByLogin", Users.class)
+                .setParameter("login", login)
+                .getSingleResult();
+    }
 }
