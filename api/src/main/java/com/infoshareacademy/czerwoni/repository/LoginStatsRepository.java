@@ -23,4 +23,10 @@ public class LoginStatsRepository {
                 .getResultList();
     }
 
+    public List<LoginStat> getStatListByEmail(String email) {
+        return (List<LoginStat>) entityManager
+                .createQuery("from LoginStat where userLogin= :userLogin")
+                .setParameter("userLogin", email)
+                .getResultList();
+    }
 }
