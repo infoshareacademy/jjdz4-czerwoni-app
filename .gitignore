@@ -11,6 +11,6 @@ buildNumber.properties
 *.iml
 log/
 organizer-zakupowy.iml
+konsola/log/log.out
 # Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
 !/.mvn/wrapper/maven-wrapper.jar
-konsola/log/log.out
