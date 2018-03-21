@@ -2,6 +2,7 @@ package com.infoshareacademy.czerwoni.users.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -9,7 +10,8 @@ import java.io.Serializable;
 @NamedQueries({
         @NamedQuery(name = "getAllUsers", query = "from Users"),
         @NamedQuery(name = "getUserByEmail", query = "from Users where email=:email"),
-        @NamedQuery(name = "getEmailByLogin", query = "select email from Users where login=:login")
+        @NamedQuery(name = "getEmailByLogin", query = "select email from Users where login=:login"),
+        @NamedQuery(name = "getUserByLogin", query = "from Users where login=:login")
 })
 public class Users implements Serializable {
 
@@ -28,14 +30,15 @@ public class Users implements Serializable {
     @Column(unique = true, nullable = false)
     private String email;
 
-    public Users(){}
+    public Users() {
+    }
 
-    public Users(String login, String password, String name, String surname,String email){
-        this.login=login;
-        this.password=password;
-        this.name=name;
-        this.surname=surname;
-        this.email=email;
+    public Users(String login, String password, String name, String surname, String email) {
+        this.login = login;
+        this.password = password;
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
     }
 
     public int getUserId() {

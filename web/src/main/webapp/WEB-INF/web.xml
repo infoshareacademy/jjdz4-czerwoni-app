@@ -29,6 +29,7 @@
       <url-pattern>/file-upload.jsp</url-pattern>
       <url-pattern>/phrase-finder.jsp</url-pattern>
       <url-pattern>/allegro-categories</url-pattern>
+      <url-pattern>/reports</url-pattern>
       <http-method>GET</http-method>
       <http-method>POST</http-method>
     </web-resource-collection>

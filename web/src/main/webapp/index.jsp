@@ -39,8 +39,10 @@
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
             <h3><fmt:message key="home.welcomeInfo" bundle="${WDYWlanguage}"/></h3>
-            <fmt:message key="home.detailInfo" bundle="${WDYWlanguage}"/>
-            <div class="col-12 text-center">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                <fmt:message key="home.detailInfo" bundle="${WDYWlanguage}"/>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                 <ul>
                     <li><fmt:message key="home.listDetails1" bundle="${WDYWlanguage}"/></li>
                     <li><fmt:message key="home.listDetails2" bundle="${WDYWlanguage}"/></li>
