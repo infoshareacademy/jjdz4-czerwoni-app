@@ -1,12 +1,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<c:if test="${sessionScope.language == null}">
+    <c:set var="language" scope="session" value="en_GB"/>
+</c:if>
 
+<fmt:setLocale value="${language}" scope="session"/>
+<fmt:setBundle basename="what" var="WDYWlanguage"/>
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="${language}">
 <head>
+
+
     <meta charset="UTF-8">
-    <title>What do you want?</title>
+    <title><fmt:message key="home.mainName" bundle="${WDYWlanguage}"/></title>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
             crossorigin="anonymous"></script>
@@ -30,15 +38,16 @@
     <%@include file="links.jsp" %>
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
-            <h3>Witamy w aplikacji What Do You Want</h3>
-            Aplikacja została stworzona na potrzeby projektu grupowego, w ramach kursu Junior Java Developer.<br/>
-            Co możesz zrobić za pomocą naszej aplikacji:
-            <ul>
-                <li>Rozpoznasz produkt po kodzie kreskowym</li>
-                <li>Pomożemy Ci znaleźć idealny produkt</li>
-                <li>Szybko wyszukasz interesującą Cię kategorię Allegro</li>
-                <li>Szybko przejrzysz kategorie Allegro</li>
-            </ul>
+            <h3><fmt:message key="home.welcomeInfo" bundle="${WDYWlanguage}"/></h3>
+            <fmt:message key="home.detailInfo" bundle="${WDYWlanguage}"/>
+            <div class="col-12 text-center">
+                <ul>
+                    <li><fmt:message key="home.listDetails1" bundle="${WDYWlanguage}"/></li>
+                    <li><fmt:message key="home.listDetails2" bundle="${WDYWlanguage}"/></li>
+                    <li><fmt:message key="home.listDetails3" bundle="${WDYWlanguage}"/></li>
+                    <li><fmt:message key="home.listDetails4" bundle="${WDYWlanguage}"/></li>
+                </ul>
+            </div>
             <div>
                 <%@include file="login-window.jsp" %>
             </div>
