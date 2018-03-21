@@ -32,6 +32,7 @@
             <form class="questionForm" method="post" action="add-user">
                 <fieldset>
                     <label>Login: </label><br/><input size="50" name="login" type="text" minlength="3" required/>
+                    <div class="errorMessage">${userExistError}</div>
                     <br/><br/>
                     <label>Hasło: </label><br/><input size="50" name="password" id="password" type="password"
                                                       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"

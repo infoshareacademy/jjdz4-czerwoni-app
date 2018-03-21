@@ -36,6 +36,14 @@ public class AddUserServlet extends HttpServlet {
         String email = request.getParameter("email");
         String role = request.getParameter("roles");
 
+        if(authorizedUsersService.isLoginExist(login)){
+            request.setAttribute("userExistError", "Użytkownik o podanym loginie już istnieje!");
+            Set<String> rolesList = authorizedUsersService.getRolesNameList();
+            request.setAttribute("rolesList", rolesList);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-user.jsp");
+            requestDispatcher.forward(request, response);
+        }
+
         if (!authorizedUsersService.isEmailUserExist(email)) {
             Users users = new Users(login, authorizedUsersService.getHexPassword(password), name, surname, email);
             Roles roles = new Roles(login, role, role );
@@ -51,6 +59,7 @@ public class AddUserServlet extends HttpServlet {
             users1.setName(name);
             users1.setSurname(surname);
             users1.setEmail(email);
+            users1.setUserType("user");
             roles1.setUserGroup(role);
             roles1.setUserRole(role);
             roles1.setUserLogin(login);
