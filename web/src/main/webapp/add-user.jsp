@@ -45,13 +45,12 @@
                     <label>Imię: </label><br/><input size="40" name="name" type="text" minlength="3"/> <br/><br/>
                     <label>Nazwisko: </label><br/><input size="40" name="surname" type="text" minlength="3"/> <br/><br/>
                     <label>E-mail: </label><br/><input size="50" name="email" type="email" required/> <br/><br/>
-
-                    <div class="errorMessage">${NFErrorMessage}</div>
+                    <div class="errorMessage">${emailExistError}</div>
                     <br/>
                     <label>Wybierz rolę: </label><br/>
                     <select name="roles" required>
                         <option value="">Wybierz rolę</option>
-                        <c:forEach var="list" items="${rolesList}">
+                        <c:forEach var="list" items="${sessionScope.rolesList}">
                             <option value="${list}">${list}</option>
                         </c:forEach>
                     </select><br/><br/>

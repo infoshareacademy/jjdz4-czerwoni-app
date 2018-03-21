@@ -27,4 +27,4 @@ INSERT INTO `Answer`(answerId, answerName, relatedQuest_questionId, question_id,
 
 INSERT INTO `roles`(id, user_login, user_role, role_group) VALUES (1, 'adminUser', 'admin', 'admin'), (2, 'monmar', 'admin', 'admin'), (3, 'guser', 'user', 'user');
 
-INSERT INTO `users`(id, login, password, name, surname, email) VALUES (1, 'adminUser', '0192023a7bbd73250516f069df18b500', NULL, NULL, 'admin@gmail.com'), (2, 'monmar', '82802dab4a1b2ef08bbc853ed484785e', NULL, NULL, 'monmar1104@gmail.com'),  (3, 'guser', 'f1ff8b071153bada470ad8511349011a', 'guser', 'guser', 'guser@email.pl');
+INSERT INTO `users`(id, login, password, name, surname, email, userType) VALUES (1, 'adminUser', '0192023a7bbd73250516f069df18b500', NULL, NULL, 'admin@gmail.com', 'user'), (2, 'monmar', '82802dab4a1b2ef08bbc853ed484785e', NULL, NULL, 'monmar1104@gmail.com', 'user'),  (3, 'guser', 'f1ff8b071153bada470ad8511349011a', 'guser', 'guser', 'guser@email.pl', 'google');
