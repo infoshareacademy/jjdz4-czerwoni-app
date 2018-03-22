@@ -1,9 +1,13 @@
 
 ALTER DATABASE `wdyw_db` CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci;
-# ALTER DATABASE `wdyw_db` CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
-# ALTER DATABASE `WDYW` CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 ALTER DATABASE `WDYW` CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci;
+
+set CHARACTER_SET_CLIENT = utf8mb4;
+
+set CHARACTER_SET_CONNECTION = utf8mb4;
+
+set CHARACTER_SET_RESULTS = utf8mb4;
 
 alter table `Category` modify column `categoryAllegroLink` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL;
 alter table `Category` modify column `categoryName` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL;
