@@ -4,7 +4,6 @@ services:
     container_name: "wdyw_db"
     image: mysql:latest
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
-#    command: client --default-character-set=utf8
 #    command: mysqld --character-set-results=utf8
 #    command: mysqld --character-set-client=utf8
 #    command: mysqld --character-set-connection=utf8
