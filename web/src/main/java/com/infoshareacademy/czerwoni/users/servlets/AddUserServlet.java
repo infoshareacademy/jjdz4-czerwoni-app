@@ -22,7 +22,7 @@ public class AddUserServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Set<String> rolesList = authorizedUsersService.getRolesNameList();
-        request.setAttribute("rolesList", rolesList);
+        request.getSession().setAttribute("rolesList", rolesList);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-user.jsp");
         requestDispatcher.forward(request, response);
     }
@@ -36,30 +36,48 @@ public class AddUserServlet extends HttpServlet {
         String email = request.getParameter("email");
         String role = request.getParameter("roles");
 
-        if (!authorizedUsersService.isEmailUserExist(email)) {
-            Users users = new Users(login, authorizedUsersService.getHexPassword(password), name, surname, email);
-            Roles roles = new Roles(role, role, login);
-
-            authorizedUsersService.addAuthorizedUser(users, roles);
-            request.setAttribute("users", users);
+        if (authorizedUsersService.isLoginExist(login)) {
+            request.setAttribute("userExistError", "Użytkownik o podanym loginie już istnieje!");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-user.jsp");
+            requestDispatcher.forward(request, response);
         } else {
-            Users users1 = authorizedUsersService.getUserByEmail(email);
-            Roles roles1 = authorizedUsersService.getRolesByLogin(users1.getLogin());
 
-            users1.setLogin(login);
-            users1.setPassword(authorizedUsersService.getHexPassword(password));
-            users1.setName(name);
-            users1.setSurname(surname);
-            users1.setEmail(email);
-            roles1.setUserGroup(role);
-            roles1.setUserRole(role);
-            roles1.setUserLogin(login);
+            if (authorizedUsersService.isEmailUserExist(email)) {
+                Users users = authorizedUsersService.getUserByEmail(email);
+                if (users.getUserType().equals("user")) {
+                    request.setAttribute("emailExistError", "Podany adres email jest juz zarejestrowany!");
+                    RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-user.jsp");
+                    requestDispatcher.forward(request, response);
+                }
+            } else {
 
-            authorizedUsersService.updateAuthorizedUser(users1, roles1);
-            request.setAttribute("users", users1);
+                if (!authorizedUsersService.isEmailUserExist(email)) {
+                    Users users = new Users(login, authorizedUsersService.getHexPassword(password), name, surname, email);
+                    Roles roles = new Roles(login, role, role);
+
+                    authorizedUsersService.addAuthorizedUser(users, roles);
+                    request.setAttribute("users", users);
+                } else {
+                    Users users1 = authorizedUsersService.getUserByEmail(email);
+                    Roles roles1 = authorizedUsersService.getRolesByLogin(users1.getLogin());
+
+                    users1.setLogin(login);
+                    users1.setPassword(authorizedUsersService.getHexPassword(password));
+                    users1.setName(name);
+                    users1.setSurname(surname);
+                    users1.setEmail(email);
+                    users1.setUserType("user");
+                    roles1.setUserGroup(role);
+                    roles1.setUserRole(role);
+                    roles1.setUserLogin(login);
+
+                    authorizedUsersService.updateAuthorizedUser(users1, roles1);
+                    request.setAttribute("users", users1);
+                }
+
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("user-added.jsp");
+                requestDispatcher.forward(request, response);
+            }
         }
-
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("user-added.jsp");
-        requestDispatcher.forward(request, response);
     }
 }

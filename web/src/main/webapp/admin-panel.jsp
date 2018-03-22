@@ -49,6 +49,9 @@
                     <a class="col-lg-5 justify-content-center link-button mx-auto" href="add-user">
                         Dodaj użytkownika
                     </a>
+                    <a class="col-lg-5 justify-content-center link-button mx-auto" href="reports">
+                        Raporty
+                    </a>
                 </div>
             </div>
         </div>

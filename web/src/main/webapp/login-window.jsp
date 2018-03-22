@@ -21,9 +21,7 @@
                     <button type="submit" class="btn btn-default">Zaloguj</button>
                     <br/>
                     <div class="questRadio">
-                        <p>Jeżeli nie masz konta to <span style="text-decoration: underline"><a
-                                href="add-user.jsp"> ZAREJESTRUJ SIĘ</a></span> </br>
-                            lub zaloguj się po przez konto Google</p><br/>
+                        <p>lub zaloguj się po przez konto Google</p><br/>
                     </div>
                     <div class="g-signin2" data-onsuccess="onSignIn" id="myP"></div>
                     <img id="myImg"><br>

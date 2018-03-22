@@ -6,11 +6,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 
 @Path("/")
@@ -40,5 +39,31 @@ public class LoginStatsService {
         Response.Status status = statsRepository.addStat(loginStat)
                 ? Response.Status.CREATED : Response.Status.NOT_IMPLEMENTED;
         return Response.status(status).build();
+    }
+
+    @GET
+    @Path("/GetStats/all")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllStats() {
+        List<LoginStat> stats = statsRepository.getStatList();
+
+        if (stats.isEmpty()) {
+            return Response.noContent().build();
+        }
+
+        return Response.ok(stats).build();
+    }
+
+    @GET
+    @Path("/GetStats/email")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getStatsByEmail(@QueryParam("email") String email) {
+        List<LoginStat> stats = statsRepository.getStatListByEmail(email);
+
+        if (stats.isEmpty()) {
+            return Response.noContent().build();
+        }
+
+        return Response.ok(stats).build();
     }
 }
