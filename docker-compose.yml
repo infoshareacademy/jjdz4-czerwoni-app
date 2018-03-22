@@ -3,6 +3,11 @@ services:
   wdyw_db:
     container_name: "wdyw_db"
     image: mysql:latest
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci #--init-connect='SET NAMES UTF8;' --innodb-flush-log-at-trx-commit=0
+#    command: mysqld --character-set-result=utf8
+#    command: mysqld --character-set-server=utf8
+#    command: mysqld --character-set-client=utf8
+#    command: mysqld --character-set-connection=utf8
     environment:
       - MYSQL_DATABASE=wdyw_db
       - MYSQL_USER=wdyw
@@ -37,7 +42,7 @@ services:
       - MYSQL_R_PASSWORD=wdyw
       - DATASOURCE_R_NAME=java:/WDYWreportsDS
     ports:
-      - 4090:8080
+      - 4160:8080
       - 9991:9990
     depends_on:
       - wdyw_db
