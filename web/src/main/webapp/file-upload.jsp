@@ -1,12 +1,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<fmt:setBundle basename="what" var="WDYWlanguage" scope="session"/>
 
 <!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>What do you want?</title>
+    <title><fmt:message key="all.mainName" bundle="${WDYWlanguage}"/></title>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
             crossorigin="anonymous"></script>
@@ -32,11 +34,11 @@
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
             <div class="col">
-                <h5>Wskaż plik z kodem kreskowym produktu</h5>
+                <h5><fmt:message key="barcode.mainInfo" bundle="${WDYWlanguage}"/></h5>
                 <form method="POST" action="/FileUpload" enctype="multipart/form-data">
-                    Plik:
-                    <input type="file" name="file" id="file"/>
-                    <input type="submit" value="Prześlij plik" name="upload" id="upload"/>
+                    <fmt:message key="barcode.file" bundle="${WDYWlanguage}"/>
+                    <input type="file" value="<fmt:message key="barcode.chooseFileButton" bundle="${WDYWlanguage}"/>" name="file" id="file"/>
+                    <input type="submit" value="<fmt:message key="barcode.sendFileButton" bundle="${WDYWlanguage}"/>" name="upload" id="upload"/>
                 </form>
                 <br>
             </div>

@@ -1,18 +1,33 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<fmt:setBundle basename="what" var="WDYWlanguage" scope="session"/>
+
+
 <div class="row nav nav-pills nav-fill">
     <div class="nav-item w-25 border-left-0">
-        <a title="Pobierz dane o produkcie na podstawie kodu kreskowego" class="nav-link" href="/file-upload.jsp"><i
-                class="icon-barcode"></i> <span class="d-none d-lg-inline-block">Kod kreskowy</span></a>
+        <a title=
+           <fmt:message key="links.barcodeDetails" bundle="${WDYWlanguage}"/> class="nav-link"
+           href="/file-upload.jsp"><i
+                class="icon-barcode"></i> <span class="d-none d-lg-inline-block">
+             <fmt:message key="links.barcode" bundle="${WDYWlanguage}"/></span></a>
     </div>
     <div class="nav-item w-25">
-        <a title="Odpowiedz na kilka pytań aby wybrać najlepszą kategorię produktów" class="nav-link"
-           href="questions"><i class="icon-cart-arrow-down"></i> <span class="d-none d-lg-inline-block">Pomocnik zakupowy</span></a>
+        <a title=
+           <fmt:message key="links.helperDetails" bundle="${WDYWlanguage}"/> class="nav-link"
+           href="questions"><i class="icon-cart-arrow-down"></i> <span class="d-none d-lg-inline-block">
+            <fmt:message key="links.helper" bundle="${WDYWlanguage}"/> </span></a>
     </div>
     <div class="nav-item w-25">
-        <a title="Wyszukaj interesującą cię kategorię produktow" class="nav-link" href="phrase-finder.jsp"><i
-                class="icon-search"></i> <span class="d-none d-lg-inline-block">Wyszukiwarka Allegro</span></a>
+        <a title=
+           <fmt:message key="links.phraseDetails" bundle="${WDYWlanguage}"/> href="phrase-finder.jsp"><i
+                class="icon-search"></i> <span class="d-none d-lg-inline-block"><fmt:message key="links.phrase"
+                                                                                             bundle="${WDYWlanguage}"/></span></a>
     </div>
     <div class="nav-item w-25">
-        <a title="Znajdź interesującą cię kategorię Allegro" class="nav-link" href="/allegro-categories?parent=0"><i
-                class="icon-tags"></i> <span class="d-none d-lg-inline-block">Kategorie Allegro</span></a>
+        <a title=
+           <fmt:message key="links.categoriesDetails" bundle="${WDYWlanguage}"/> class="nav-link"
+           href="/allegro-categories?parent=0"><i
+                class="icon-tags"></i> <span class="d-none d-lg-inline-block"><fmt:message key="links.categories"
+                                                                                           bundle="${WDYWlanguage}"/></span></a>
     </div>
 </div>
