@@ -5,12 +5,12 @@ import com.infoshareacademy.czerwoni.allegro.AllegroCategory;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FoundData {
+public class FoundPhraseData {
     private Map<AllegroCategory, String> firstNPhrases;
     private String error;
     private HashMap<AllegroCategory, String> breadCrumbsMap;
 
-    public FoundData(Map<AllegroCategory, String> firstNPhrases) {
+    public FoundPhraseData(Map<AllegroCategory, String> firstNPhrases) {
         this.firstNPhrases = firstNPhrases;
         this.breadCrumbsMap = new HashMap<>();
     }

@@ -1,8 +1,6 @@
 package com.infoshareacademy.czerwoni.phraseFinder.servlets;
 
-import com.infoshareacademy.czerwoni.allegro.AllegroCategory;
-import com.infoshareacademy.czerwoni.allegro.repository.DataPromoRepository;
-import com.infoshareacademy.czerwoni.phraseFinder.domain.FoundData;
+import com.infoshareacademy.czerwoni.phraseFinder.domain.FoundPhraseData;
 import com.infoshareacademy.czerwoni.phraseFinder.service.PhraseService;
 
 import javax.inject.Inject;
@@ -13,15 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 
 @WebServlet("/phrase-finder")
 public class PhraseFinder extends HttpServlet {
-
-//    @Inject
-//    DataPromoRepository dataPromoRepository;
 
     @Inject
     PhraseService phraseService;
@@ -40,29 +33,13 @@ public class PhraseFinder extends HttpServlet {
             limit = Integer.parseInt(request.getParameter("limit"));
         }
         catch (NumberFormatException nfe){
-            limit=5;
+            limit = PhraseService.DEFAULT_LIMIT;
         }
-        // String error = null;
 
-
-//        Map<AllegroCategory, String> firstNPhrases = phraseService.getFirstXCategories(category,limit);
-//        if (firstNPhrases.isEmpty())    {
-//            error = phraseService.errorResponse(category);
-//        }
-//
-//        Map<AllegroCategory, String> breadCrumbsMap = new HashMap<>();
-//        for (AllegroCategory allegroCategory : firstNPhrases.keySet())
-//        {
-//            {
-//                breadCrumbsMap.put(allegroCategory, dataPromoRepository.getBreadCrumbsString(allegroCategory.getCatId()));
-//            }
-//        }
-
-        FoundData foundData = phraseService.dataToPrint(category, limit);
-
-        request.setAttribute("phraseMap", foundData.getFirstNPhrases());
-        request.setAttribute("error", foundData.getError());
-        request.setAttribute("breadCrumbsMap", foundData.getBreadCrumbsMap());
+        FoundPhraseData foundPhraseData = phraseService.getDataToPrint(category, limit);
+        request.setAttribute("phraseMap", foundPhraseData.getFirstNPhrases());
+        request.setAttribute("error", foundPhraseData.getError());
+        request.setAttribute("breadCrumbsMap", foundPhraseData.getBreadCrumbsMap());
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/phrase-finder.jsp");
         requestDispatcher.forward(request, response);
     }

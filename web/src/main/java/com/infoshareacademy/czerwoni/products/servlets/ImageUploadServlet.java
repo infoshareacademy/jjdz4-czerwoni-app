@@ -1,6 +1,7 @@
 package com.infoshareacademy.czerwoni.products.servlets;
 
 
+import com.infoshareacademy.czerwoni.phraseFinder.domain.FoundPhraseData;
 import com.infoshareacademy.czerwoni.phraseFinder.service.PhraseService;
 import com.infoshareacademy.czerwoni.product.BarCodeReader;
 import com.infoshareacademy.czerwoni.product.ProductProcessor;
@@ -86,6 +87,15 @@ public class ImageUploadServlet extends HttpServlet {
             } else {
                 LOGGER.trace("odczytany kod: " + productBarcode + "; produkt: " + foundProduct.toString());
                 request.setAttribute("product", foundProduct);
+
+                String[] nameParts = foundProduct.getProductName().split(" ");
+                FoundPhraseData foundPhraseData = phraseService.getDataToPrint(nameParts[0], phraseService.DEFAULT_LIMIT);
+                if (foundPhraseData.getFirstNPhrases().size() == 0) {
+                    foundPhraseData = phraseService.getDataToPrint(nameParts[1], phraseService.DEFAULT_LIMIT);
+                }
+                request.setAttribute("phraseMap", foundPhraseData.getFirstNPhrases());
+                request.setAttribute("error", foundPhraseData.getError());
+                request.setAttribute("breadCrumbsMap", foundPhraseData.getBreadCrumbsMap());
 
                 String imgFilePath = "/barcodes" + File.separator + fileInfo.getFileName();
                 request.setAttribute("localImg", imgFilePath);
