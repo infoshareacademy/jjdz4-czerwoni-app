@@ -41,7 +41,7 @@
 
                     <h5>Podaj maksymalną ilość odpowiedzi: </h5>
 
-                    <input type="number" name="limit" id="limit"/>
+                    <input type="number" name="limit" id="limit" value="5"/>
                     <br/>
                     <input type="submit" value="Szukaj" name="search" id="search"/>
                 </form>
@@ -55,7 +55,8 @@
                                     <div>
                                         Kategoria: <c:out value="${phrase.key.catName}"/>,
                                         ID:<c:out value="${phrase.key.catId}"/>
-                                        <a href="${phrase['value']}"><c:out value="${breadCrumbs.value}"/>
+                                        <a target="_blank" href="${phrase['value']}"><c:out
+                                                value="${breadCrumbs.value}"/>
                                         </a>
                                         <br>
                                     </div>

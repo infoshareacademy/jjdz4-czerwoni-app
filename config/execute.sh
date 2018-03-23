@@ -67,7 +67,8 @@ data-source add --name=mysqlDSR --driver-name=mysql --jndi-name=$DATASOURCE_R_NA
 
 /subsystem=security/security-domain=WDYWSecurityDomain/authentication=classic/login-module=Database:add(code=Database,flag=required,module-options=[("dsJndiName"=>"java:/WDYWDs"),("principalsQuery"=>"select password from users where login=?"),("rolesQuery"=>"select user_role, 'Roles' from roles where user_login=?"),("hashAlgorithm"=>"MD5"),("hashEncoding" =>"hex")])
 
-#
+/subsystem=undertow/configuration=handler/file=barcodes:add(path=${JBOSS_HOME}/user-storage/barcodes, directory-listing=false)
+/subsystem=undertow/server=default-server/host=default-host/location="/barcodes":add(handler="barcodes")
 
 
 # Execute the batch

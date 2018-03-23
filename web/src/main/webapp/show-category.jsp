@@ -68,7 +68,7 @@
                     <div>
                         <c:if test="${isNextQuestion == true}">
                             Czy chcesz szukac dalej?<br/><br/>
-                            <input class="button" type="submit" name="questions" value="Dalej">
+                            <input class="questButton" type="submit" name="questions" value="Dalej">
                         </c:if>
                     </div>
 

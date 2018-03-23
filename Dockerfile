@@ -8,6 +8,8 @@ COPY api/target/api.war /opt/jboss/wildfly/config/
 CMD ["/opt/jboss/wildfly/config/execute.sh"]
 
 RUN mkdir ~/tmp
+RUN mkdir ~/wildfly/user-storage
+RUN mkdir ~/wildfly/user-storage/barcodes
 
 #RUN { \
 #    echo '[mysqld]'; \
