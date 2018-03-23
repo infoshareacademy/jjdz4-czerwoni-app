@@ -38,18 +38,51 @@
                     </div>
                 </c:when>
                 <c:otherwise>
-                    <div class="col-8">
-                        <div class="row pl-2">
-                            <h3>Produkt:</h3>
-                            <c:out value="${product.toString()}"/>
+                    <div class="col-12">
+                        <div class="row">
+                            <h4>
+                                Produkt: <c:out value="${product.toString()}"/>
+                            </h4>
                         </div>
+                        <div class="row">
+                            <c:choose>
+
+                                <c:when test="${error == null}">
+                                    <c:forEach var="phrase" items="${phraseMap}">
+
+                                        <c:forEach var="breadCrumbs" items="${breadCrumbsMap}">
+                                            <c:if test="${phrase.key==breadCrumbs.key}">
+                                                <div>
+                                                    Kategoria: <c:out value="${phrase.key.catName}"/>,
+                                                    ID:<c:out value="${phrase.key.catId}"/>
+                                                    <a target="_blank" href="${phrase['value']}"><c:out
+                                                            value="${breadCrumbs.value}"/>
+                                                    </a>
+                                                    <br>
+                                                </div>
+                                            </c:if>
+                                        </c:forEach>
+                                    </c:forEach>
+                                </c:when>
+                            </c:choose>
+                            <c:choose>
+                                <c:when test="${error != null}">
+                                    <div class="errorMessage">
+                                        Nie znaleziono kategorii dla tego produktu
+                                    </div>
+                                </c:when>
+                            </c:choose>
+                        </div>
+                    </div>
+
+                    <div class="col-8">
                         <div class="row mt-3 pl-2 pr-2 pt-3">
                             <img class="img-fluid" src="${localImg}">
                         </div>
                     </div>
                     <div class="col-4">
                             <%--<div class="row">--%>
-                        <img class="img-fluid" src="${product.getProductImage()}" alt="${product.getProductName()}">
+                        <img class="img-fluid" src="${product.getProductImage()}">
                             <%--</div>--%>
                     </div>
                 </c:otherwise>
