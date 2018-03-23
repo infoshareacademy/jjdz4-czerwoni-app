@@ -1,11 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<fmt:setBundle basename="what" var="WDYWlanguage" scope="session"/>
 
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>What do you want?</title>
+    <title><fmt:message key="all.mainName" bundle="${WDYWlanguage}"/></title>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
             crossorigin="anonymous"></script>
@@ -25,11 +27,12 @@
 </head>
 <body class="bg-dark">
 <div class="container">
-    <%@include file="header.jsp"%>
-    <%@include file="links.jsp"%>
+    <%@include file="header.jsp" %>
+    <%@include file="links.jsp" %>
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
-            Pytanie: ${question.questionName} zostało zmienione.
+            <fmt:message key="editMsg.question" bundle="${WDYWlanguage}"/>${question.questionName}
+            <fmt:message key="editMsg.changed" bundle="${WDYWlanguage}"/>
         </div>
         <div class="row m-0">
             <span class="mx-auto p-2">&#169 infoShare Academy</span>

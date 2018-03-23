@@ -110,6 +110,19 @@ html > body > div > div > div > div > a > div {
     float: left;
 }
 
+.questButton {
+    background-color: #005580;
+    color: aliceblue;
+    width: 80px;
+    height: 50px;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    float: left;
+}
+
 .editButton {
     background-color: #005580;
     color: aliceblue;
@@ -218,7 +231,7 @@ html > body > div > div > div > div > a > div {
 
 
 
-/*Now the CSS*/
+/*CSS for questionTree */
 * {margin: 0; padding: 0;}
 
 .tree ul {
@@ -318,6 +331,3 @@ right connector from last child*/
 .tree li a:hover+ul ul::before{
     border-color:  #94a0b4;
 }
-
-/*Thats all. I hope you enjoyed it.
-Thanks :)*/

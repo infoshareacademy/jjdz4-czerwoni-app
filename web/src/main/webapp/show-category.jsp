@@ -1,11 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<fmt:setBundle basename="what" var="WDYWlanguage" scope="session"/>
 
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>What do you want?</title>
+    <title><fmt:message key="all.mainName" bundle="${WDYWlanguage}"/></title>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
             crossorigin="anonymous"></script>
@@ -25,11 +27,11 @@
 </head>
 <body class="bg-dark">
 <div class="container">
-    <%@include file="header.jsp"%>
-    <%@include file="links.jsp"%>
+    <%@include file="header.jsp" %>
+    <%@include file="links.jsp" %>
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
-            <div class="title"><h4>Wybór kategorii na podstawie pytań</h4></div>
+            <div class="title"><h4><fmt:message key="helper.mainInfo" bundle="${WDYWlanguage}"/></h4></div>
             <div class="questionForm">
                 <form method="post" action="questions">
 
@@ -51,13 +53,14 @@
                         </c:if>
                     </c:forEach>
                     <div id="category">
-                        Twoja kategoria Allegro to:
-                        <a id="categoryName"
-                           href="${category.categoryAllegroLink}" target="_blank">${category.categoryName}</a><br/><br/>
+                        <fmt:message key="helper.answerCategories" bundle="${WDYWlanguage}"/> <a id="categoryName"
+                                                                                                 href="${category.categoryAllegroLink}"
+                                                                                                 target="_blank">${category.categoryName}</a><br/><br/>
                     </div>
                     <div>
                         <c:if test="${sessionScope.question.questionLevel>1}">
-                            Wszystkie wyszukane kategorie kategorie:
+                            <fmt:message key="helper.answerAllFoundCategories" bundle="${WDYWlanguage}"/> <a
+                                id="categoryName"
                             <c:forEach var="catAnswerList" items="${sessionScope.categoryList}">
                                 <a id="categoryName" href="${catAnswerList.categoryAllegroLink}" target="_blank"><span
                                         class="vertSeparator"> |</span> ${catAnswerList.categoryName} </a>
@@ -67,8 +70,10 @@
                     <br/><br/>
                     <div>
                         <c:if test="${isNextQuestion == true}">
-                            Czy chcesz szukac dalej?<br/><br/>
-                            <input class="button" type="submit" name="questions" value="Dalej">
+                            <fmt:message key="helper.question" bundle="${WDYWlanguage}"/>
+                            <br/><br/>
+                            <input class="questButton" type="submit" name="questions"
+                                   value="<fmt:message key="helper.buttonNext" bundle="${WDYWlanguage}"/>    ">
                         </c:if>
                     </div>
 
