@@ -47,11 +47,7 @@ public class ShowQuestionDiagramServlet extends HttpServlet {
                 "          content=\"830889560506-bfd7gjnpsj4o3ss6n24f2pis4dscu4u9.apps.googleusercontent.com\">\n" +
                 "</head>\n" +
                 "<body class=\"bg-dark\">\n" +
-//                "<div class=\"container\">\n" +
-//                "    <%@include file=\"header.jsp\" %>\n" +
-//                "    <%@include file=\"links.jsp\" %>\n" +
                 "    <div>\n" +
-//                "        <div class=\"row mt-3 pl-2 pr-2 pt-3 border border-secondary\">\n" +
                 "            <div class=\"tree\">");
 
         printQuestionTree(writer, questionAnswerService.getAllQuestions().get(0).getQuestionId());
@@ -60,39 +56,28 @@ public class ShowQuestionDiagramServlet extends HttpServlet {
                 "        </div>\n" +
                 "        <div class=\"row m-0\">\n" +
                 "            <span class=\"mx-auto p-2\">&#169 infoShare Academy</span>\n" +
-//                "        </div>\n" +
                 "    </div>\n" +
-//                "</div>\n" +
                 "</body>\n" +
                 "</html>");
-
-
-
-
-//        RequestDispatcher requestDispatcher = request.getRequestDispatcher("show-question-diagram1.jsp");
-//        requestDispatcher.include(request, response);
     }
 
     private void printQuestionTree(PrintWriter writer, int questionId) {
-            Question question = questionAnswerService.getQuestionById(questionId);
+        Question question = questionAnswerService.getQuestionById(questionId);
 
-            writer.println("<ul>");
-                writer.println("<li >");
-                    writer.println("<a href = \"#\" >"+question.getQuestionName()+"</a >");
-                        writer.println("<ul >");
-                        for (Answer a:question.getAnswerList()) {
-                            writer.println("<li >");
-                            writer.println("<a href = \""+a.getRelatedCategory().getCategoryAllegroLink() +"\" target=\"_blank\" >" + a.getAnswerName() + "</a >");
-                            if(a.getRelatedQuest()!=null){
-                                printQuestionTree(writer, a.getRelatedQuest().getQuestionId());
-                            }
-                            writer.println("</li >");
-                        }
-                        writer.println("</ul >");
-                writer.println("</li >");
-            writer.println("</ul >");
-
-
-
+        writer.println("<ul>");
+        writer.println("<li >");
+        writer.println("<a href = \"#\" >" + question.getQuestionName() + "</a >");
+        writer.println("<ul >");
+        for (Answer a : question.getAnswerList()) {
+            writer.println("<li >");
+            writer.println("<a href = \"" + a.getRelatedCategory().getCategoryAllegroLink() + "\" target=\"_blank\" >" + a.getAnswerName() + "</a >");
+            if (a.getRelatedQuest() != null) {
+                printQuestionTree(writer, a.getRelatedQuest().getQuestionId());
+            }
+            writer.println("</li >");
+        }
+        writer.println("</ul >");
+        writer.println("</li >");
+        writer.println("</ul >");
     }
 }
