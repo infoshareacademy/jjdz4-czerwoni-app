@@ -2,8 +2,8 @@ package com.infoshareacademy.czerwoni.phraseFinder.servlets;
 
 import com.infoshareacademy.czerwoni.allegro.AllegroCategory;
 import com.infoshareacademy.czerwoni.allegro.repository.DataPromoRepository;
-import com.infoshareacademy.czerwoni.allegro.service.CategoriesService;
-import com.infoshareacademy.czerwoni.phraseFinder.dao.PhraseService;
+import com.infoshareacademy.czerwoni.phraseFinder.domain.FoundData;
+import com.infoshareacademy.czerwoni.phraseFinder.service.PhraseService;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
@@ -20,8 +20,8 @@ import java.util.Map;
 @WebServlet("/phrase-finder")
 public class PhraseFinder extends HttpServlet {
 
-    @Inject
-    DataPromoRepository dataPromoRepository;
+//    @Inject
+//    DataPromoRepository dataPromoRepository;
 
     @Inject
     PhraseService phraseService;
@@ -42,27 +42,27 @@ public class PhraseFinder extends HttpServlet {
         catch (NumberFormatException nfe){
             limit=5;
         }
-        String error = null;
+        // String error = null;
 
 
-    Map<AllegroCategory, String> firstNPhrases = phraseService.getFirstXCategories(category,limit);
-    if (firstNPhrases.isEmpty())
-    {
-        error = phraseService.errorResponse(category);
-    }
+//        Map<AllegroCategory, String> firstNPhrases = phraseService.getFirstXCategories(category,limit);
+//        if (firstNPhrases.isEmpty())    {
+//            error = phraseService.errorResponse(category);
+//        }
+//
+//        Map<AllegroCategory, String> breadCrumbsMap = new HashMap<>();
+//        for (AllegroCategory allegroCategory : firstNPhrases.keySet())
+//        {
+//            {
+//                breadCrumbsMap.put(allegroCategory, dataPromoRepository.getBreadCrumbsString(allegroCategory.getCatId()));
+//            }
+//        }
 
-        Map<AllegroCategory, String> breadCrumbsMap = new HashMap<>();
+        FoundData foundData = phraseService.dataToPrint(category, limit);
 
-        for (AllegroCategory allegroCategory : firstNPhrases.keySet())
-        {
-            {
-                breadCrumbsMap.put(allegroCategory, dataPromoRepository.getBreadCrumbsString(allegroCategory.getCatId()));
-            }
-        }
-
-        request.setAttribute("phraseMap", firstNPhrases);
-        request.setAttribute("error",error);
-        request.setAttribute("breadCrumbsMap", breadCrumbsMap);
+        request.setAttribute("phraseMap", foundData.getFirstNPhrases());
+        request.setAttribute("error", foundData.getError());
+        request.setAttribute("breadCrumbsMap", foundData.getBreadCrumbsMap());
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/phrase-finder.jsp");
         requestDispatcher.forward(request, response);
     }
