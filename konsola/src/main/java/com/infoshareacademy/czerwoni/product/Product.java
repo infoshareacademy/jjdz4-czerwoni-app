@@ -24,7 +24,7 @@ public class Product {
         this.GTIN = GTIN;
         this.BrandOwner = brandOwner;
         this.Manufacturer = manufacturerName;
-        this.Brand = brandName;
+        this.Brand = (!brandName.equals("null")) ? brandName : "";
         this.ProductName = productName;
     }
 
@@ -76,7 +76,6 @@ public class Product {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         return stringBuilder
-                //.append(" Product name: ")
                 .append(ProductName)
                 .append(" (nazwa marki: ")
                 .append(Brand)

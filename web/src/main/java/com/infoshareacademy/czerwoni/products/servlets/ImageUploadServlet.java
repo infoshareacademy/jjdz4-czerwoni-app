@@ -1,6 +1,8 @@
 package com.infoshareacademy.czerwoni.products.servlets;
 
 
+import com.infoshareacademy.czerwoni.phraseFinder.domain.FoundPhraseData;
+import com.infoshareacademy.czerwoni.phraseFinder.service.PhraseService;
 import com.infoshareacademy.czerwoni.product.BarCodeReader;
 import com.infoshareacademy.czerwoni.product.ProductProcessor;
 import com.infoshareacademy.czerwoni.products.domain.FileInfo;
@@ -9,6 +11,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -16,7 +19,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 import java.io.*;
 import java.util.UUID;
 
@@ -34,6 +36,9 @@ public class ImageUploadServlet extends HttpServlet {
     private final String GENERIC_ERR_MSG = "Albo nie wskazałeś pliku do przesłania, albo "
             + "próbujesz go zapisać w nieistniejącej lub niedostępnej "
             + "lokalizacji.";
+
+    @Inject
+    PhraseService phraseService;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -82,6 +87,15 @@ public class ImageUploadServlet extends HttpServlet {
             } else {
                 LOGGER.trace("odczytany kod: " + productBarcode + "; produkt: " + foundProduct.toString());
                 request.setAttribute("product", foundProduct);
+
+                String[] nameParts = foundProduct.getProductName().split(" ");
+                FoundPhraseData foundPhraseData = phraseService.getDataToPrint(nameParts[0], phraseService.DEFAULT_LIMIT);
+                if (foundPhraseData.getFirstNPhrases().size() == 0) {
+                    foundPhraseData = phraseService.getDataToPrint(nameParts[1], phraseService.DEFAULT_LIMIT);
+                }
+                request.setAttribute("phraseMap", foundPhraseData.getFirstNPhrases());
+                request.setAttribute("error", foundPhraseData.getError());
+                request.setAttribute("breadCrumbsMap", foundPhraseData.getBreadCrumbsMap());
 
                 String imgFilePath = "/barcodes" + File.separator + fileInfo.getFileName();
                 request.setAttribute("localImg", imgFilePath);

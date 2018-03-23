@@ -65,6 +65,10 @@
                             <c:forEach var="breadCrumbs" items="${breadCrumbsMap}">
                                 <c:if test="${phrase.key==breadCrumbs.key}">
                                     <div>
+                                        Kategoria: <c:out value="${phrase.key.catName}"/>,
+                                        ID:<c:out value="${phrase.key.catId}"/>
+                                        <a target="_blank" href="${phrase['value']}"><c:out
+                                                value="${breadCrumbs.value}"/>
                                         =>
                                         <a href="${phrase['value']}"><c:out value="${breadCrumbs.value}"/>
                                         </a>

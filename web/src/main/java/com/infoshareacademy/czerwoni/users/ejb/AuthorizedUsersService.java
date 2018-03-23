@@ -8,7 +8,6 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.client.*;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -47,6 +46,11 @@ public class AuthorizedUsersService implements AuthorizedUsersServiceLocal {
     @Override
     public boolean isEmailUserExist(String email) {
         return getAllUsers().stream().anyMatch(users -> users.getEmail().equals(email));
+    }
+
+    @Override
+    public boolean isLoginExist(String login) {
+        return getAllUsers().stream().anyMatch(users -> users.getLogin().equals(login));
     }
 
     @Override
