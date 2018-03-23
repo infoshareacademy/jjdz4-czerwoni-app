@@ -19,7 +19,8 @@
     </div>
     <div class="nav-item w-25">
         <a title=
-           <fmt:message key="links.phraseDetails" bundle="${WDYWlanguage}"/> href="phrase-finder.jsp"><i
+           <fmt:message key="links.phraseDetails" bundle="${WDYWlanguage}"/> class="nav-link"
+           href="phrase-finder.jsp"><i
                 class="icon-search"></i> <span class="d-none d-lg-inline-block"><fmt:message key="links.phrase"
                                                                                              bundle="${WDYWlanguage}"/></span></a>
     </div>

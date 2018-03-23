@@ -36,38 +36,26 @@
     <%@include file="links.jsp" %>
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
-            <h3>Witamy w aplikacji What Do You Want</h3>
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                Aplikacja została stworzona na potrzeby projektu grupowego, w ramach kursu Junior Java Developer.<br/>
-                Co możesz zrobić za pomocą naszej aplikacji:<br/>
-            </div>
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                <ul>
-                    <li>Rozpoznasz produkt po kodzie kreskowym</li>
-                    <li>Pomożemy Ci znaleźć idealny produkt</li>
-                    <li>Szybko wyszukasz interesującą Cię kategorię Allegro</li>
-                    <li>Szybko przejrzysz kategorie Allegro</li>
-                </ul>
-            </div>
-
             <h3><fmt:message key="home.welcomeInfo" bundle="${WDYWlanguage}"/></h3>
-            <fmt:message key="home.detailInfo" bundle="${WDYWlanguage}"/>
-            <div class="col-12 text-center">
-                <ul>
-                    <li><fmt:message key="home.listDetails1" bundle="${WDYWlanguage}"/></li>
-                    <li><fmt:message key="home.listDetails2" bundle="${WDYWlanguage}"/></li>
-                    <li><fmt:message key="home.listDetails3" bundle="${WDYWlanguage}"/></li>
-                    <li><fmt:message key="home.listDetails4" bundle="${WDYWlanguage}"/></li>
-                </ul>
-            </div>
-            <div>
-                <%@include file="login-window.jsp" %>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+
+                <fmt:message key="home.detailInfo" bundle="${WDYWlanguage}"/>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                    <ul>
+                        <li><fmt:message key="home.listDetails1" bundle="${WDYWlanguage}"/></li>
+                        <li><fmt:message key="home.listDetails2" bundle="${WDYWlanguage}"/></li>
+                        <li><fmt:message key="home.listDetails3" bundle="${WDYWlanguage}"/></li>
+                        <li><fmt:message key="home.listDetails4" bundle="${WDYWlanguage}"/></li>
+                    </ul>
+                </div>
+                <div>
+                    <%@include file="login-window.jsp" %>
+                </div>
             </div>
         </div>
         <div class="row m-0">
             <span class="mx-auto p-2">&#169 infoShare Academy</span>
         </div>
     </div>
-</div>
 </body>
 </html>

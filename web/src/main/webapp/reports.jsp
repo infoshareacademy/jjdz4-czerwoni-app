@@ -1,11 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<fmt:setBundle basename="what" var="WDYWlanguage" scope="session"/>
 
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>What do you want?</title>
+    <title><fmt:message key="all.mainName" bundle="${WDYWlanguage}"/></title>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
             crossorigin="anonymous"></script>
@@ -31,16 +33,16 @@
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
             <div class="col-12 mx-auto">
-                <h3>Raport aktywności użytkowników</h3>
+                <h3><fmt:message key="reports.title" bundle="${WDYWlanguage}"/></h3>
                 <div>
                     <form method="post" action="/reports">
-                        <label class="pt-2">Podaj e-mail szukanego użytkownika: </label><br/>
+                        <label class="pt-2"><fmt:message key="reports.typeEmail" bundle="${WDYWlanguage}"/> </label><br/>
                         <input type="email" name="email"/>
-                        <input type="Submit" name="reportByEmail" class="pl-2" value="Wyświetl raport"/>
+                        <input type="Submit" name="reportByEmail" class="pl-2" value=<fmt:message key="reports.show" bundle="${WDYWlanguage}"/>/>
                     </form>
                 </div><br/>
                 <form method="post" action="/reports">
-                    <input type="submit" name="showAll" value="Wyświetl pełen raport"/><br/>
+                    <input type="submit" name="showAll" value="<fmt:message key="reports.fullShow" bundle="${WDYWlanguage}"/>|/><br/>
                 </form><br/>
                 <c:choose>
                     <c:when test="${not empty errorMessageReport}">
@@ -54,10 +56,10 @@
                     <c:when test="${not empty statsList}">
                         <table class="table table-striped table-dark">
                             <thead>
-                                <th scope="col">Nazwa użytkownika</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Ilość wizyt</th>
-                                <th scope="col">Ostatnia wizyta</th>
+                                <th scope="col"><fmt:message key="reports.name" bundle="${WDYWlanguage}"/></th>
+                                <th scope="col"><fmt:message key="reports.email" bundle="${WDYWlanguage}"/></th>
+                                <th scope="col"><fmt:message key="reports.counter" bundle="${WDYWlanguage}"/></th>
+                                <th scope="col"><fmt:message key="reports.lastVisit" bundle="${WDYWlanguage}"/></th>
                             </thead>
                             <tbody>
                             <c:forEach var="stat" items="${statsList}">
