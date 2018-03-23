@@ -72,7 +72,7 @@
                         <c:if test="${isNextQuestion == true}">
                             <fmt:message key="helper.question" bundle="${WDYWlanguage}"/>
                             <br/><br/>
-                            <input class="button" type="submit" name="questions"
+                            <input class="questButton" type="submit" name="questions"
                                    value="<fmt:message key="helper.buttonNext" bundle="${WDYWlanguage}"/>    ">
                         </c:if>
                     </div>

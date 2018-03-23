@@ -44,7 +44,7 @@
                         </div>
                     </c:forEach>
                     <div class="errorMessage">${noChoiceError}</div>
-                    <div><input class="button" type="submit" name="questions"
+                    <div><input class="questButton" type="submit" name="questions"
                                 value="<fmt:message key="helper.buttonNext" bundle="${WDYWlanguage}"/>"></div>
                 </form>
             </div>
