@@ -9,7 +9,7 @@ buildNumber.properties
 .mvn/timing.properties
 .idea
 *.iml
-log/
+konsola/log/
 organizer-zakupowy.iml
 konsola/log/log.out
 # Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)

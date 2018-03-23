@@ -19,26 +19,35 @@ public class Users implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int userId;
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String login;
     @Column(nullable = false)
     private String password;
-    @Column
+
     private String name;
-    @Column
+
     private String surname;
+
     @Column(unique = true, nullable = false)
     private String email;
+
+
+    private String userType;
 
     public Users() {
     }
 
-    public Users(String login, String password, String name, String surname, String email) {
+    public Users(String login, String password, String name, String surname, String email){
+        this(login, password, name, surname, email, "user");
+    }
+
+    public Users(String login, String password, String name, String surname, String email, String userType) {
         this.login = login;
         this.password = password;
         this.name = name;
         this.surname = surname;
         this.email = email;
+        this.userType = userType;
     }
 
     public int getUserId() {
@@ -89,6 +98,14 @@ public class Users implements Serializable {
         this.email = email;
     }
 
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -97,21 +114,24 @@ public class Users implements Serializable {
         Users users = (Users) o;
 
         if (userId != users.userId) return false;
-        if (login != null ? !login.equals(users.login) : users.login != null) return false;
-        if (password != null ? !password.equals(users.password) : users.password != null) return false;
+        if (!login.equals(users.login)) return false;
+        if (!password.equals(users.password)) return false;
         if (name != null ? !name.equals(users.name) : users.name != null) return false;
         if (surname != null ? !surname.equals(users.surname) : users.surname != null) return false;
-        return email != null ? email.equals(users.email) : users.email == null;
+        if (!email.equals(users.email)) return false;
+        return userType != null ? userType.equals(users.userType) : users.userType == null;
     }
 
     @Override
     public int hashCode() {
         int result = userId;
-        result = 31 * result + (login != null ? login.hashCode() : 0);
-        result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + login.hashCode();
+        result = 31 * result + password.hashCode();
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (surname != null ? surname.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + email.hashCode();
+        result = 31 * result + (userType != null ? userType.hashCode() : 0);
         return result;
     }
+
 }

@@ -15,6 +15,7 @@ public interface AuthorizedUsersServiceLocal {
     Set<String> getRolesNameList();
     List<Users> getAllUsers();
     boolean isEmailUserExist(String email);
+    boolean isLoginExist(String login);
     void updateAuthorizedUser(Users users, Roles roles);
     Users getUserByEmail(String email);
     Roles getRolesByLogin(String login);

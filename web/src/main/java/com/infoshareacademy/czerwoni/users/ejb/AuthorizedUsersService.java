@@ -49,6 +49,11 @@ public class AuthorizedUsersService implements AuthorizedUsersServiceLocal {
     }
 
     @Override
+    public boolean isLoginExist(String login) {
+        return getAllUsers().stream().anyMatch(users -> users.getLogin().equals(login));
+    }
+
+    @Override
     public void updateAuthorizedUser(Users users, Roles roles) {
         authorizedUsersRepository.updateAuthorizedUser(users, roles);
     }
