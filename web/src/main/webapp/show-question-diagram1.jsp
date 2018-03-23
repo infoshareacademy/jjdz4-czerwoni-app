@@ -33,19 +33,34 @@
             <div class="tree">
 
 
-                <ul>
-                    <c:forEach var="list" items="${questionList}">
-                        <li>
-                            <a href="#"> ${list.questionName} </a>
+                <%--<ul>--%>
+                    <%--<c:forEach var="list" items="${questionList}">--%>
+                        <%--<li>--%>
+                            <%--<a href="#"> ${list.questionName} </a>--%>
 
-                            <ul>
-                                <c:forEach var="alist" items="${list.answerList}">
-                                    <li id="annswerName"><a href="#"> ${alist.answerName}</a></li>
-                                </c:forEach>
-                            </ul>
-                        </li>
-                    </c:forEach>
-                </ul>
+                            <%--<ul>--%>
+                                <%--<c:forEach var="alist" items="${list.answerList}">--%>
+                                    <%--<li id="annswerName"><a href="#"> ${alist.answerName}</a></li>--%>
+                                    <%--<ul>--%>
+                                        <%--<c:forEach var="list" items="${questionList}">--%>
+                                            <%--<li>--%>
+                                                <%--<a href="#"> ${list.questionName} </a>--%>
+
+                                                <%--<ul>--%>
+                                                    <%--<c:forEach var="alist" items="${list.answerList}">--%>
+                                                        <%--<li id="annswerName"><a href="#"> ${alist.answerName}</a></li>--%>
+                                                    <%--</c:forEach>--%>
+                                                <%--</ul>--%>
+                                            <%--</li>--%>
+                                        <%--</c:forEach>--%>
+                                    <%--</ul>--%>
+                                <%--</c:forEach>--%>
+                            <%--</ul>--%>
+                        <%--</li>--%>
+                    <%--</c:forEach>--%>
+                <%--</ul>--%>
+
+
 
 
                 <%--<ul>--%>
@@ -84,6 +99,7 @@
                         <%--</ul>--%>
                     <%--</li>--%>
                 <%--</ul>--%>
+
             </div>
         </div>
         <div class="row m-0">

@@ -32,6 +32,7 @@
             <form class="questionForm" method="post" action="add-user">
                 <fieldset>
                     <label>Login: </label><br/><input size="50" name="login" type="text" minlength="3" required/>
+                    <div class="errorMessage">${userExistError}</div>
                     <br/><br/>
                     <label>Hasło: </label><br/><input size="50" name="password" id="password" type="password"
                                                       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
@@ -44,13 +45,12 @@
                     <label>Imię: </label><br/><input size="40" name="name" type="text" minlength="3"/> <br/><br/>
                     <label>Nazwisko: </label><br/><input size="40" name="surname" type="text" minlength="3"/> <br/><br/>
                     <label>E-mail: </label><br/><input size="50" name="email" type="email" required/> <br/><br/>
-
-                    <div class="errorMessage">${NFErrorMessage}</div>
+                    <div class="errorMessage">${emailExistError}</div>
                     <br/>
                     <label>Wybierz rolę: </label><br/>
                     <select name="roles" required>
                         <option value="">Wybierz rolę</option>
-                        <c:forEach var="list" items="${rolesList}">
+                        <c:forEach var="list" items="${sessionScope.rolesList}">
                             <option value="${list}">${list}</option>
                         </c:forEach>
                     </select><br/><br/>
