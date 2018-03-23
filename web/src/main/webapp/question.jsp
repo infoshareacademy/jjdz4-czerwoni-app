@@ -41,7 +41,7 @@
                         </div>
                     </c:forEach>
                     <div class="errorMessage">${noChoiceError}</div>
-                    <div><input class="button" type="submit" name="questions" value="Dalej"></div>
+                    <div><input class="questButton" type="submit" name="questions" value="Dalej"></div>
                 </form>
             </div>
         </div>

@@ -110,6 +110,19 @@ html > body > div > div > div > div > a > div {
     float: left;
 }
 
+.questButton {
+    background-color: #005580;
+    color: aliceblue;
+    width: 80px;
+    height: 50px;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    float: left;
+}
+
 .editButton {
     background-color: #005580;
     color: aliceblue;
