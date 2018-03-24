@@ -8,7 +8,7 @@
                 <h4 class="modal-title">WDYW Logowanie</h4>
             </div>
             <div class="modal-body">
-                <form method="post" action="login">
+                <form method="post" action="login" enctype="text/plain">
                     <div class="form-group">
                         <label for="login">Login:</label>
                         <input type="text" class="form-control" id="login" minlength="3" name="login">

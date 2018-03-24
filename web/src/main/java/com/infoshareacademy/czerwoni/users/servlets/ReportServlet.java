@@ -1,7 +1,6 @@
 package com.infoshareacademy.czerwoni.users.servlets;
 
 import com.infoshareacademy.czerwoni.users.domain.ApiStats;
-import com.infoshareacademy.czerwoni.users.domain.Users;
 import com.infoshareacademy.czerwoni.users.ejb.ApiStatsService;
 
 import javax.inject.Inject;

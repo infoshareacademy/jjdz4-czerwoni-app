@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 @Stateless
 public class CategoriesServiceBean implements CategoriesService {
 
-    List<AllegroCategory> allCategories = ParseXmlAllegroCategories.deserialization();
+    private List<AllegroCategory> allCategories = ParseXmlAllegroCategories.deserialization();
 
     @EJB
     CategoriesService categoriesService;

@@ -10,12 +10,10 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Stateless
@@ -24,7 +22,7 @@ public class ApiStatsRepository {
     @Inject
     AuthorizedUsersRepository authorizedUsersRepository;
 
-    private final static String API_URL = "http://localhost:8080/api/GetStats";
+    private final static String API_URL = "http://localhost:4160/api/GetStats";
 
     public List<ApiStats> getLoginCount() {
         List<ApiStats> listFromAPI = getFullReport();
@@ -61,13 +59,12 @@ public class ApiStatsRepository {
     private String getLastVisit(String userLogin, List<ApiStats> apiStats)
     {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        String lastVisit = apiStats.stream()
+        return apiStats.stream()
                 .filter(stat -> stat.getUserLogin().equalsIgnoreCase(userLogin))
                 .reduce((first, second) -> second)
                 .get()
                 .getLoginTime()
                 .format(formatter);
-        return lastVisit;
     }
 
     private Integer getVisitCount(String userLogin, List<ApiStats> apiStats) {
@@ -93,14 +90,12 @@ public class ApiStatsRepository {
     }
 
     public List<ApiStats> getFullReport() {
-        List<ApiStats> apiStats = getStatsList(API_URL.concat("/all"));
-        return apiStats;
+        return getStatsList(API_URL.concat("/all"));
     }
 
     public List<ApiStats> getReportByEmail(String email) {
-        List<ApiStats> apiStats = getStatsList(API_URL.concat("/email?email=")
+        return getStatsList(API_URL.concat("/email?email=")
                 .concat(email));
-        return apiStats;
     }
 
     private List<ApiStats> getStatsList(String URL) {

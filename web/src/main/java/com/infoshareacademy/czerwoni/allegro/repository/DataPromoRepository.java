@@ -5,19 +5,17 @@ import com.infoshareacademy.czerwoni.allegro.service.CategoriesService;
 import com.infoshareacademy.czerwoni.allegro.domain.DataPromo;
 import com.infoshareacademy.czerwoni.parse.ParseXmlAllegroCategories;
 
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Stateless
 public class DataPromoRepository {
 
-    List<AllegroCategory> categories = ParseXmlAllegroCategories.deserialization();
+    private List<AllegroCategory> categories = ParseXmlAllegroCategories.deserialization();
 
     @Inject
     CategoriesService categoriesService;

@@ -28,7 +28,7 @@
     <%@include file="header.jsp"%>
     <%@include file="links.jsp"%>
     <div>
-        <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
+        <div class="row mt-3 pl-2 pr-2 pt-3">
             <form method="post" action="add-answers">
                 <div class="questionForm row">
                     <div col-lg-12 style="width: 800px">

@@ -30,7 +30,7 @@
     <%@include file="links.jsp" %>
     <%@include file="login-window.jsp" %>
     <div>
-        <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
+        <div class="row mt-3 pl-2 pr-2 pt-3">
             <div class="col-12 text-center"><h4>Wyszukiwarka po słowie</h4></div>
             <div class="col">
                 <h5>Podaj frazę, po której będziemy szukać produkty:</h5>

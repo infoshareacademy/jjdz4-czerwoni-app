@@ -28,15 +28,12 @@
     <%@include file="header.jsp"%>
     <%@include file="links.jsp"%>
     <div>
-        <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
+        <div class="row mt-3 pl-2 pr-2 pt-3">
                 <div class="col-lg-12"> Dodano użytkownika:
                     <span style="color: #0088cc"> ${users.name} ${users.surname} </span><br/>
                         email: <span style="color: #0088cc">${users.email}</span>
                 </div>
                 <br/><br/>
-
-
-
         </div>
         <div class="row m-0">
             <span class="mx-auto p-2">&#169 infoShare Academy</span>

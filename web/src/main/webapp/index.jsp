@@ -29,7 +29,7 @@
     <%@include file="header.jsp" %>
     <%@include file="links.jsp" %>
     <div>
-        <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
+        <div class="row mt-3 pl-2 pr-2 pt-3">
             <h3>Witamy w aplikacji What Do You Want</h3>
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                 Aplikacja została stworzona na potrzeby projektu grupowego, w ramach kursu Junior Java Developer.<br/>

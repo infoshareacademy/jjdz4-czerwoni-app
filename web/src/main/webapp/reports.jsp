@@ -29,7 +29,7 @@
     <%@include file="links.jsp"%>
     <%@include file="login-window.jsp" %>
     <div>
-        <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
+        <div class="row mt-3 pl-2 pr-2 pt-3">
             <div class="col-12 mx-auto">
                 <h3>Raport aktywności użytkowników</h3>
                 <div>

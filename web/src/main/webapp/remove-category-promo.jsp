@@ -29,7 +29,7 @@
     <%@include file="links.jsp"%>
     <%@include file="login-window.jsp" %>
         <div>
-            <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
+            <div class="row mt-3 pl-2 pr-2 pt-3">
                 <div class="col-12">
                     <h3 class="mx-auto">Usuń kategorię z listy promowanych.</h3>
                     <form method="post" action="/remove-category-promo">

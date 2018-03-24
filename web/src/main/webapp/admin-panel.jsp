@@ -28,7 +28,7 @@
     <%@include file="header.jsp"%>
     <%@include file="links.jsp"%>
     <div>
-        <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
+        <div class="row mt-3 pl-2 pr-2 pt-3">
             <div>
                 <div class="row">
                     <div class="col-12 justify-content-center"><h3>Panel administratora</h3></div>

@@ -29,7 +29,7 @@
     <%@include file="header.jsp" %>
     <%@include file="links.jsp" %>
     <div>
-        <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
+        <div class="row mt-3 pl-2 pr-2 pt-3">
             <div class="errorMessage"><h3>Nie masz uprawnień do tej opcji, skontaktuj się z administratorem.</h3></div>
         </div>
         <div class="row m-0">

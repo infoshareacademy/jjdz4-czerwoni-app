@@ -29,7 +29,7 @@
     <%@include file="links.jsp"%>
     <%@include file="login-window.jsp" %>
         <div>
-            <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
+            <div class="row mt-3 pl-2 pr-2 pt-3">
                 <div class="col-12">
                     <h3 class="mx-auto">Dodaj kategorię do promowania.</h3>
                     <form method="post" action="/add-category-promo">
@@ -78,5 +78,6 @@
                 <span class="mx-auto p-2">&#169 infoShare Academy</span>
             </div>
         </div>
+</div>
 </body>
 </html>
