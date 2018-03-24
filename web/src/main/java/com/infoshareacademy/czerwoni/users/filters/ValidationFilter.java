@@ -36,28 +36,33 @@ public class ValidationFilter implements Filter {
 
         HttpServletRequest httpReq = (HttpServletRequest) servletRequest;
         HttpServletResponse httpResp = (HttpServletResponse) servletResponse;
-
-        String deniedReason;
         Cookie tokenCookie = tokenService.fetchTokenCookie(httpReq);
 
         if (tokenCookie == null || tokenCookie.getValue().trim().equals("")) {
-            deniedReason = NO_COOKIE_OR_EMPTY;
-            LOG.info(deniedReason);
+            LOG.info(NO_COOKIE_OR_EMPTY);
             httpResp.sendError(HttpServletResponse.SC_FORBIDDEN);
-        } else {
-            String tokenFromReq = servletRequest.getParameter("token");
-            if (!tokenFromReq.equals(tokenCookie.getValue())) {
-                deniedReason = TOKEN_VIOLATION;
-                LOG.warn(deniedReason);
-                httpResp.sendError(HttpServletResponse.SC_FORBIDDEN, deniedReason);
-            } else {
-                filterChain.doFilter(servletRequest, servletResponse);
-            }
+        } else if (validateTokens(tokenCookie, servletRequest, httpResp)) {
+            filterChain.doFilter(servletRequest, servletResponse);
         }
     }
 
     @Override
     public void destroy() {
 
+    }
+
+    private boolean validateTokens(Cookie tokenCookie, ServletRequest servletRequest, HttpServletResponse httpResp) throws IOException {
+        boolean isValid;
+        String tokenFromReq = servletRequest.getParameter("token");
+
+        isValid = (tokenFromReq != null);
+        if (isValid) {
+            isValid = tokenFromReq.equals(tokenCookie.getValue());
+        }
+        if (!isValid) {
+            LOG.warn(TOKEN_VIOLATION);
+            httpResp.sendError(HttpServletResponse.SC_FORBIDDEN);
+        }
+        return isValid;
     }
 }
