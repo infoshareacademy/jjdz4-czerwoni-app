@@ -1,3 +1,5 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -9,6 +11,7 @@
             </div>
             <div class="modal-body">
                 <form method="post" action="login">
+                    <input type="hidden" name="token" value="${authToken}"/>
                     <div class="form-group">
                         <label for="login">Login:</label>
                         <input type="text" class="form-control" id="login" minlength="3" name="login">

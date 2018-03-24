@@ -8,7 +8,7 @@
     <c:choose>
         <c:when test="${sessionScope.login==null}">
             <div class="mt-3">
-                <i class="icon-user"></i> <a href="index.jsp"><span>Zaloguj</span></a>
+                <i class="icon-user"></i> <a href="init"><span>Zaloguj</span></a>
             </div>
         </c:when>
         <c:otherwise>
