@@ -1,17 +1,17 @@
 
-alter table `Category` modify column `categoryAllegroLink` longtext CHARACTER SET utf8 COLLATE utf8mb4_unicode_ci NULL;
-alter table `Category` modify column `categoryName` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL;
+alter table `Category` modify column `categoryAllegroLink` longtext CHARACTER SET utf8 COLLATE utf8_polish_ci NULL;
+alter table `Category` modify column `categoryName` longtext CHARACTER SET utf8 COLLATE utf8_polish_ci NULL;
 
-alter table `Question` modify column `questionName` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL;
+alter table `Question` modify column `questionName` longtext CHARACTER SET utf8 COLLATE utf8_polish_ci NULL;
 
-alter table `Answer` modify column `answerName` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL;
+alter table `Answer` modify column `answerName` longtext CHARACTER SET utf8 COLLATE utf8_polish_ci NULL;
 
-alter table `users` modify column `login` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL;
-alter table `users` modify column `name` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL;
-alter table `users` modify column `surname` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL;
-alter table `users` modify column `email` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL;
+alter table `users` modify column `login` longtext CHARACTER SET utf8 COLLATE utf8_polish_ci NULL;
+alter table `users` modify column `name` longtext CHARACTER SET utf8 COLLATE utf8_polish_ci NULL;
+alter table `users` modify column `surname` longtext CHARACTER SET utf8 COLLATE utf8_polish_ci NULL;
+alter table `users` modify column `email` longtext CHARACTER SET utf8 COLLATE utf8_polish_ci NULL;
 
-alter table `roles` modify column `user_login` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL;
+alter table `roles` modify column `user_login` longtext CHARACTER SET utf8 COLLATE utf8_polish_ci NULL;
 
 INSERT INTO `Category`(categoryId, categoryAllegroLink, categoryName) VALUES (9, 'https://allegro.pl/dzial/elektronika', 'Elektronika'), (10, 'https://allegro.pl/kategoria/sport-i-turystyka', 'Sport i turystyka'), (11, 'https://allegro.pl/dzial/dom-i-zdrowie', 'Dom i zdrowie'), (12, 'https://allegro.pl/kategoria/tv-i-video-telewizory-5120?order=m', 'Telewizory'), (13, 'https://allegro.pl/kategoria/komputery?order=m', 'Komputery'), (14, 'https://allegro.pl/kategoria/sprzet-audio-dla-domu-11?order=m', 'Sprzęt audio'),  (15, 'https://allegro.pl/kategoria/bieganie-147262?order=m', 'Bieganie'),  (16, 'https://allegro.pl/kategoria/rowery-i-akcesoria-16414?order=m', 'Rowery'),(17, 'https://allegro.pl/kategoria/silownia-i-fitness-19626?order=m', 'Siłownia i fitness'),(18, 'https://allegro.pl/kategoria/ogrod-1532?order=m', 'Ogród'),(19, 'https://allegro.pl/kategoria/narzedzia-1536?order=m', 'Narzędzia'),(20, 'https://allegro.pl/kategoria/utrzymanie-czystosci-253343?order=m', 'Utrzymanie czystości'),(21, 'https://allegro.pl/kategoria/rowery-mtb-gorskie-16483?order=m', 'Rowery górskie'),(22, 'https://allegro.pl/kategoria/rowery-szosowe-16484?order=m', 'Rowery szosowe'),(23, 'https://allegro.pl/kategoria/rowery-crossowe-125055?order=m', 'Rowery crossowe'),(24, 'https://allegro.pl/kategoria/bieganie-obuwie-147264?order=m', 'Obuwie do biegania'),(25, 'https://allegro.pl/kategoria/bieganie-odziez-147265?order=m', 'Odzież do biegania'),(26, 'https://allegro.pl/kategoria/bieganie-odzywki-i-suplementy-147268?order=m','Odżywki i suplementy dla biegaczy'),(27, 'https://allegro.pl/kategoria/silownia-i-fitness-fitness-110132?order=m', 'Fitness'),(28, 'https://allegro.pl/kategoria/silownia-i-fitness-silownia-110145?order=m', 'Siłownia');
 
