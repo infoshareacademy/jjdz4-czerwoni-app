@@ -1,6 +1,8 @@
 package com.infoshareacademy.czerwoni.users.ejb;
 
 import javax.ejb.Local;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 
 @Local
 public interface TokenService {
@@ -10,4 +12,6 @@ public interface TokenService {
     String generateToken();
 
     String buildCookieName(String reqURI);
+
+    Cookie fetchTokenCookie(HttpServletRequest httpReq);
 }

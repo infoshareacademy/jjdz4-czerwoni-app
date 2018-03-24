@@ -37,16 +37,9 @@ public class ValidationFilter implements Filter {
         HttpServletRequest httpReq = (HttpServletRequest) servletRequest;
         HttpServletResponse httpResp = (HttpServletResponse) servletResponse;
 
-        Cookie tokenCookie = null;
         String deniedReason;
+        Cookie tokenCookie = tokenService.fetchTokenCookie(httpReq);
 
-        if (httpReq.getCookies() != null) {
-            String cookieExpectedName = tokenService.buildCookieName(httpReq.getRequestURI());
-            tokenCookie = Arrays.stream(httpReq.getCookies())
-                    .filter(c -> c.getName().equals(cookieExpectedName))
-                    .findFirst()
-                    .orElse(null);
-        }
         if (tokenCookie == null || tokenCookie.getValue().trim().equals("")) {
             deniedReason = NO_COOKIE_OR_EMPTY;
             LOG.info(deniedReason);
