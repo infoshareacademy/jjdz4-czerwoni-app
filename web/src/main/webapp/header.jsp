@@ -16,7 +16,7 @@
             </div>
         </c:when>
         <c:otherwise>
-            <div class="col mt-3">
+            <div class="col mt-2">
                 <i class="icon-user"></i> <a href="admin-panel.jsp"> ${sessionScope.login}</a>
                 <a href="logout" onclick="logoutGoogle()"><span><fmt:message key="home.logoutButton" bundle="${WDYWlanguage}"/></span></a>
             </div>

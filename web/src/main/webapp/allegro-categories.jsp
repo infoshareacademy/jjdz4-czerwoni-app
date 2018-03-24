@@ -2,10 +2,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setBundle basename="what" var="WDYWlanguage" scope="session"/>
 
+<%@ page contentType="text/html; charset=UTF-8" %>
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <%@ page contentType="text/html; charset=UTF-8" %>
     <meta charset="UTF-8">
     <title><fmt:message key="home.mainName" bundle="${WDYWlanguage}"/></title>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
