@@ -65,14 +65,10 @@
                             <c:forEach var="breadCrumbs" items="${breadCrumbsMap}">
                                 <c:if test="${phrase.key==breadCrumbs.key}">
                                     <div>
-                                        Kategoria: <c:out value="${phrase.key.catName}"/>,
-                                        ID:<c:out value="${phrase.key.catId}"/>
-                                        <a target="_blank" href="${phrase['value']}"><c:out
-                                                value="${breadCrumbs.value}"/>
                                         =>
-                                        <a href="${phrase['value']}"><c:out value="${breadCrumbs.value}"/>
-                                        </a>
-                                        <br>
+                                            <a href="${phrase['value']}"><c:out value="${breadCrumbs.value}"/>
+                                            </a>
+                                            <br/>
                                     </div>
                                 </c:if>
                             </c:forEach>
@@ -90,10 +86,10 @@
             </div>
         </div>
 
-</div>
-<div class="row m-0">
-    <span class="mx-auto p-2">&#169 infoShare Academy</span>
-</div>
+    </div>
+    <div class="row m-0">
+        <span class="mx-auto p-2">&#169 infoShare Academy</span>
+    </div>
 </div>
 </body>
 </html>
