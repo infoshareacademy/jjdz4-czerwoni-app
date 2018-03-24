@@ -20,6 +20,8 @@ public class TokenServiceBean implements TokenService {
     private static final String TOKEN_VIOLATION = "Niezgodność tokenów!";
     private static final String NO_COOKIE_OR_EMPTY = "Brak cookie (lub puste)!";
 
+    private static final String CSRF_TOKEN_NAME = "X-TOKEN";
+    public static final String LOGIN_URI = "/login";
 
     @Override
     public String generateToken() {
