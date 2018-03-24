@@ -1,29 +1,3 @@
-
-USE wdyw_db;
-
-ALTER DATABASE `wdyw_db` DEFAULT CHARACTER SET utf8 COLLATE utf8_polish_ci;
-
-ALTER TABLE `Category` CONVERT TO CHARACTER SET utf8 COLLATE utf8_polish_ci;
-
-ALTER TABLE `Category` DEFAULT CHARACTER SET utf8 COLLATE utf8_polish_ci;
-
-ALTER TABLE `Answer` CONVERT TO CHARACTER SET utf8 COLLATE utf8_polish_ci;
-
-ALTER TABLE `Answer` DEFAULT CHARACTER SET utf8 COLLATE utf8_polish_ci;
-
-ALTER TABLE `Question` CONVERT TO CHARACTER SET utf8 COLLATE utf8_polish_ci;
-
-ALTER TABLE `Question` DEFAULT CHARACTER SET utf8 COLLATE utf8_polish_ci;
-
-ALTER TABLE `users` CONVERT TO CHARACTER SET utf8 COLLATE utf8_polish_ci;
-
-ALTER TABLE `users` DEFAULT CHARACTER SET utf8 COLLATE utf8_polish_ci;
-
-ALTER TABLE `roles` CONVERT TO CHARACTER SET utf8 COLLATE utf8_polish_ci;
-
-ALTER TABLE `roles` DEFAULT CHARACTER SET utf8 COLLATE utf8_polish_ci;
-
-
 # alter table `Category` modify column `categoryAllegroLink` longtext CHARACTER SET utf8 COLLATE utf8mb4_unicode_ci NULL;
 # alter table `Category` modify column `categoryName` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL;
 #
