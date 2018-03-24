@@ -12,6 +12,7 @@
             </div>
             <div class="modal-body">
                 <form method="post" action="login">
+                    <input type="hidden" name="token" value="${authToken}"/>
                     <div class="form-group">
                         <label for="login"><fmt:message key="loginWindow.login" bundle="${WDYWlanguage}"/></label>
                         <input type="text" class="form-control" id="login" minlength="3" name="login">

@@ -12,7 +12,7 @@
     <c:choose>
         <c:when test="${sessionScope.login==null}">
             <div class="mt-3">
-                <i class="icon-user"></i> <a href="index.jsp"><span><fmt:message key="home.loginButton" bundle="${WDYWlanguage}"/></span></a>
+                <i class="icon-user"></i> <a href="init"><span><fmt:message key="home.loginButton" bundle="${WDYWlanguage}"/></span></a>
             </div>
         </c:when>
         <c:otherwise>
