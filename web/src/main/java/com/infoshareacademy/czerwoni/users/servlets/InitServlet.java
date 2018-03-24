@@ -21,15 +21,18 @@ public class InitServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String token = tokenService.generateToken();
-        String reqURI = "/login"; // req.getRequestURI();
-        String cookieName = tokenService.buildCookieName(reqURI);
-        //Lock the cookie from JS access and we use the SameSite new attribute protection
-        String cookieSpec = String.format("%s=%s; Path=%s; HttpOnly; SameSite=Strict",
-                cookieName, token, reqURI);
-        resp.addHeader("Set-Cookie", cookieSpec);
+        setTokenCookie(resp, token);
 
         req.setAttribute("authToken", token);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("index.jsp");
         requestDispatcher.forward(req, resp);
+    }
+
+    private void setTokenCookie(HttpServletResponse resp, String token) {
+        String cookieName = tokenService.buildCookieName(tokenService.LOGIN_URI);
+        //Lock the cookie from JS access and we use the SameSite attribute protection
+        String cookieSpec = String.format("%s=%s; Path=%s; HttpOnly; SameSite=Strict",
+                cookieName, token, tokenService.LOGIN_URI);
+        resp.addHeader("Set-Cookie", cookieSpec);
     }
 }
