@@ -1,13 +1,23 @@
-.dropdown > div > a:hover{
-    background-color:#888888;
+/*.dropdown > div > a:hover{*/
+    /*background-color:#888888;*/
+/*}*/
+
+/*.dropdown > button > div:hover {*/
+    /*background-color: #888888;*/
+/*}*/
+
+/*.dropdown > button > img {*/
+    /*max-height: 25px;*/
+/*}*/
+
+body {
+    background-image: url("background.jpg");
 }
 
-.dropdown > button > div:hover {
-    background-color: #888888;
-}
-
-.dropdown > button > img {
-    max-height: 25px;
+body > div {
+    background-color: rgba(51, 51, 51, 0.8);
+    background-size: auto;
+    margin-top: 10px;
 }
 
 a {
