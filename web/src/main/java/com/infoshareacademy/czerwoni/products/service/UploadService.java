@@ -13,6 +13,9 @@ public class UploadService {
     private final static String BARCODE_DIR = System.getProperty("jboss.home.dir") + "/user-storage/barcodes"; //"../user-storage/barcodes";
     private static Logger LOGGER = LoggerFactory.getLogger(UploadService.class);
 
+    private UploadService() {
+    }
+
     public static String getStoragePath() {
         File directory = new File(BARCODE_DIR);
 
@@ -39,15 +42,11 @@ public class UploadService {
     }
 
     public static void saveFileIntoStorage(FileInfo fileInfo) throws IOException {
-        OutputStream out = null;
-        InputStream filecontent = null;
-
-        try {
-            out = new FileOutputStream(
-                    new File(fileInfo.getFilePath() + File.separator + fileInfo.getFileName()));
-
-            filecontent = fileInfo.getFilePart().getInputStream();
-
+        try (
+                OutputStream out = new FileOutputStream(
+                        new File(fileInfo.getFilePath() + File.separator + fileInfo.getFileName()));
+                InputStream filecontent = fileInfo.getFilePart().getInputStream()
+        ) {
             int read;
             final byte[] bytes = new byte[1024];
 
@@ -56,14 +55,6 @@ public class UploadService {
             }
 
             LOGGER.trace("Plik {} został przesłany do {}", fileInfo.getFileName(), fileInfo.getFilePath());
-        } finally {
-            if (out != null) {
-                out.close();
-            }
-
-            if (filecontent != null) {
-                filecontent.close();
-            }
         }
     }
 }

@@ -19,10 +19,6 @@ public class FoundPhraseData {
         return firstNPhrases;
     }
 
-    public void setFirstNPhrases(Map<AllegroCategory, String> firstNPhrases) {
-        this.firstNPhrases = firstNPhrases;
-    }
-
     public String getError() {
         return error;
     }
@@ -31,11 +27,8 @@ public class FoundPhraseData {
         this.error = error;
     }
 
-    public HashMap<AllegroCategory, String> getBreadCrumbsMap() {
+    public Map<AllegroCategory, String> getBreadCrumbsMap() {
         return breadCrumbsMap;
     }
 
-    public void setBreadCrumbsMap(HashMap<AllegroCategory, String> breadCrumbsMap) {
-        this.breadCrumbsMap = breadCrumbsMap;
-    }
 }
