@@ -1,9 +1,11 @@
 package com.infoshareacademy.czerwoni.users.ejb;
 
 import java.security.SecureRandom;
+import javax.ejb.Stateless;
 import javax.xml.bind.DatatypeConverter;
 
-public class SecurityServiceBean implements SecurityService {
+@Stateless
+public class TokenServiceBean implements TokenService {
 
     private final SecureRandom secureRandom = new SecureRandom();
 
@@ -15,7 +17,8 @@ public class SecurityServiceBean implements SecurityService {
     }
 
     @Override
-    public String fetchCookieName(String reqURI) {
-        return null;
+    public String buildCookieName(String reqURI) {
+        String backendServiceName = reqURI.replaceAll("/", "-");
+        return CSRF_TOKEN_NAME + "-" + backendServiceName;
     }
 }
