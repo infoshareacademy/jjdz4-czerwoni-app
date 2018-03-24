@@ -8,7 +8,10 @@
 # The default mode is 'standalone' and default configuration is based on the
 # mode. It can be 'standalone.xml' or 'domain.xml'.
 
-mysql -u $MYSQL_USER -p $MYSQL_DATABASE < ./charset.sql
+ls -la
+pwd
+
+mysql -u $MYSQL_USER -p $MYSQL_DATABASE < /opt/jboss/wildfly/config/charset.sql
 
 JBOSS_HOME=/opt/jboss/wildfly
 JBOSS_CLI=$JBOSS_HOME/bin/jboss-cli.sh
