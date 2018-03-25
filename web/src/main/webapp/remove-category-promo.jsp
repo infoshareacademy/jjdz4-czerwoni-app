@@ -55,7 +55,8 @@
                                 <form method="post" action="/remove-category-promo">
                                     <div class="py-2 text-center" style="border: 1px white;border-top-style: dotted;">
                                         <c:out value="${category.value}"/>
-                                        <input type="submit" name="removeCategoryFromList" value="Usuń kategorię o id ${category.key.catId}"/>
+                                        <input type="hidden" name="removeCategoryFromList" value="${category.key.catId}">
+                                        <input type="submit" name="removeCategory" value="Usuń kategorię"/>
                                     </div>
                                 </form>
                         </c:forEach>
