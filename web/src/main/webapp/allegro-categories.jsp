@@ -1,11 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<fmt:setLocale value="${language}" />
 <fmt:setBundle basename="what" var="WDYWlanguage" scope="session"/>
-
-<%@ page contentType="text/html; charset=UTF-8" %>
-
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="${language}">
 <head>
     <meta charset="UTF-8">
     <title><fmt:message key="home.mainName" bundle="${WDYWlanguage}"/></title>
@@ -76,7 +76,7 @@
                     <c:otherwise>
                         <a href="${lastCatLink}" target="_blank" class="col-4 px-0">
                             <div class="py-3" style="border: 1px white;border-top-style: dotted;">
-                                <fmt:message key="categories.redirectToAllegroService" bundle="${WDYWlanguage}"/>
+                                <fmt:message key="categories.mainInfo" bundle="${WDYWlanguage}"/>
                             </div>
                         </a>
                     </c:otherwise>

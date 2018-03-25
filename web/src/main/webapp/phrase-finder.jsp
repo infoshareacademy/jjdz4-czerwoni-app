@@ -1,11 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
-<fmt:setBundle basename="what" var="WDYWlanguage" scope="session"/>
-
-<html lang="pl">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<fmt:setBundle basename="what" var="WDYWlanguage"/>
+<fmt:setLocale value="${language}" />
+<!doctype html>
+<html lang="${language}">
 <head>
+
+
     <meta charset="UTF-8">
     <title><fmt:message key="all.mainName" bundle="${WDYWlanguage}"/></title>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
