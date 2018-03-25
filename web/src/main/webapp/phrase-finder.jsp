@@ -68,7 +68,7 @@
                                 <c:if test="${phrase.key==breadCrumbs.key}">
                                     <div>
                                         =>
-                                        <a href="${phrase['value']}" target="_blank"><c:out value="${breadCrumbs.value}" /> ta
+                                        <a href="${phrase['value']}" target="_blank"><c:out value="${breadCrumbs.value}" />
                                         </a>
                                         <br/>
                                     </div>
