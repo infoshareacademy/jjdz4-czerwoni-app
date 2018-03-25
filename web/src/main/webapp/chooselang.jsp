@@ -7,12 +7,15 @@
        value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}"
        scope="session"/>
 <fmt:setLocale value="${language}"/>
-<form>
-    <select id="language" name="language" onchange="updateLanguage()">
-        <option value="en_GB" ${language == 'en_GB' ? 'selected' : ''}><img src="if_GB.png"/></option>
-        <option value="pl_PL" ${language == 'pl_PL' ? 'selected' : ''}><img src="if_PL.png"/></option>
-    </select>
-</form>
+<%--<form>--%>
+    <%--<select id="language" name="language" onchange="updateLanguage()">--%>
+        <%--<option value="en_GB" ${language == 'en_GB' ? 'selected' : ''}><img src="if_GB.png"/></option>--%>
+        <%--<option value="pl_PL" ${language == 'pl_PL' ? 'selected' : ''}><img src="if_PL.png"/></option>--%>
+    <%--</select>--%>
+<%--</form>--%>
+
+<input type="button" id="language" name="language" class="lang_ButtonPL" value="pl_PL" onclick="updateLanguage()">
+<input type="button" id="language" name="language" class="lang_ButtonEN" value="en_GB" onclick="updateLanguage()">
 
 <script>
     function updateLanguage() {
@@ -27,6 +30,5 @@
                 'language=' + $('#language').val()
             );
         }
-        location.reload();
     }
 </script>
