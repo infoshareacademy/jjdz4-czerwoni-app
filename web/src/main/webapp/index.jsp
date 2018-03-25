@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:if test="${sessionScope.language == null}">
-    <c:set var="language" scope="session" value="en_GB"/>
+    <c:set var="language" scope="session" value="pl_PL"/>
 </c:if>
 
 <fmt:setLocale value="${language}" scope="session"/>

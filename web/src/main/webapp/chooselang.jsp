@@ -9,8 +9,8 @@
 <fmt:setLocale value="${language}"/>
 <form>
     <select id="language" name="language" onchange="updateLanguage()">
-        <option value="en_GB" ${language == 'en_GB' ? 'selected' : ''}>English</option>
-        <option value="pl_PL" ${language == 'pl_PL' ? 'selected' : ''}>Polish</option>
+        <option value="en_GB" ${language == 'en_GB' ? 'selected' : ''}><img src="if_GB.png"/></option>
+        <option value="pl_PL" ${language == 'pl_PL' ? 'selected' : ''}><img src="if_PL.png"/></option>
     </select>
 </form>
 
@@ -27,5 +27,6 @@
                 'language=' + $('#language').val()
             );
         }
+        location.reload();
     }
 </script>
