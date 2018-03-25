@@ -81,7 +81,7 @@ public class RemoveCategoryPromo extends HttpServlet {
     private void removeCategoryFromList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         StringBuilder categoryIdString = new StringBuilder(req.getParameter("removeCategoryFromList"));
         Integer categoryId;
-        categoryId = Integer.parseInt(categoryIdString.delete(0, 22).toString());
+        categoryId = Integer.parseInt(categoryIdString.toString());
 
         boolean catAdded = dataPromoService.removeCategory(categoryId);
 
