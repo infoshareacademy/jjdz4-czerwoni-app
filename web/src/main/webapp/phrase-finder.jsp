@@ -2,7 +2,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <fmt:setBundle basename="what" var="WDYWlanguage"/>
-<fmt:setLocale value="${language}" />
+<fmt:setLocale value="${language}"/>
 <!doctype html>
 <html lang="${language}">
 <head>
@@ -68,9 +68,9 @@
                                 <c:if test="${phrase.key==breadCrumbs.key}">
                                     <div>
                                         =>
-                                            <a href="${phrase['value']}"><c:out value="${breadCrumbs.value}"/>
-                                            </a>
-                                            <br/>
+                                        <a href="${phrase['value']}"><c:out value="${breadCrumbs.value}"/>
+                                        </a>
+                                        <br/>
                                     </div>
                                 </c:if>
                             </c:forEach>
