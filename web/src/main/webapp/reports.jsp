@@ -42,7 +42,7 @@
                     </form>
                 </div><br/>
                 <form method="post" action="/reports">
-                    <label>lub wyświetl pełen raport </label>
+                    <label><fmt:message key="reports.orShowFullReport" bundle="${WDYWlanguage}"/> </label>
                     <input type="submit" name="showAll" value=<fmt:message key="reports.showFull" bundle="${WDYWlanguage}"/>/> <br/>
                 </form><br/>
                 <c:choose>
