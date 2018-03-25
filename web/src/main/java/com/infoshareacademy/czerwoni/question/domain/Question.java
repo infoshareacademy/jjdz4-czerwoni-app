@@ -2,6 +2,7 @@ package com.infoshareacademy.czerwoni.question.domain;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
 @NamedQueries({
         @NamedQuery(name = "selectAllQuestions", query = "from Question ")
 })
-public class Question{
+public class Question implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, unique = true)
@@ -19,7 +20,7 @@ public class Question{
     private String questionName;
     private int questionLevel;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "question_id")
     private List<Answer> answerList = new ArrayList<>();
 

@@ -1,4 +1,26 @@
 
+ALTER DATABASE `wdyw_db` DEFAULT CHARACTER SET utf8 COLLATE utf8_polish_ci;
+
+ALTER TABLE `Category` CONVERT TO CHARACTER SET utf8 COLLATE utf8_polish_ci;
+
+ALTER TABLE `Category` DEFAULT CHARACTER SET utf8 COLLATE utf8_polish_ci;
+
+ALTER TABLE `Answer` CONVERT TO CHARACTER SET utf8 COLLATE utf8_polish_ci;
+
+ALTER TABLE `Answer` DEFAULT CHARACTER SET utf8 COLLATE utf8_polish_ci;
+
+ALTER TABLE `Question` CONVERT TO CHARACTER SET utf8 COLLATE utf8_polish_ci;
+
+ALTER TABLE `Question` DEFAULT CHARACTER SET utf8 COLLATE utf8_polish_ci;
+
+ALTER TABLE `users` CONVERT TO CHARACTER SET utf8 COLLATE utf8_polish_ci;
+
+ALTER TABLE `users` DEFAULT CHARACTER SET utf8 COLLATE utf8_polish_ci;
+
+ALTER TABLE `roles` CONVERT TO CHARACTER SET utf8 COLLATE utf8_polish_ci;
+
+ALTER TABLE `roles` DEFAULT CHARACTER SET utf8 COLLATE utf8_polish_ci;
+
 alter table `Category` modify column `categoryAllegroLink` longtext CHARACTER SET utf8 COLLATE utf8_polish_ci NULL;
 alter table `Category` modify column `categoryName` longtext CHARACTER SET utf8 COLLATE utf8_polish_ci NULL;
 
@@ -6,10 +28,10 @@ alter table `Question` modify column `questionName` longtext CHARACTER SET utf8 
 
 alter table `Answer` modify column `answerName` longtext CHARACTER SET utf8 COLLATE utf8_polish_ci NULL;
 
-alter table `users` modify column `login` longtext CHARACTER SET utf8 COLLATE utf8_polish_ci NULL;
+alter table `users` modify column `login` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_polish_ci NULL;
 alter table `users` modify column `name` longtext CHARACTER SET utf8 COLLATE utf8_polish_ci NULL;
 alter table `users` modify column `surname` longtext CHARACTER SET utf8 COLLATE utf8_polish_ci NULL;
-alter table `users` modify column `email` longtext CHARACTER SET utf8 COLLATE utf8_polish_ci NULL;
+alter table `users` modify column `email` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_polish_ci NULL;
 
 alter table `roles` modify column `user_login` longtext CHARACTER SET utf8 COLLATE utf8_polish_ci NULL;
 
@@ -24,3 +46,14 @@ INSERT INTO `roles`(id, user_login, user_role, role_group) VALUES (1, 'adminUser
 INSERT INTO `users`(id, login, password, name, surname, email, userType) VALUES (1, 'adminUser', '0192023a7bbd73250516f069df18b500', NULL, NULL, 'admin@gmail.com', 'user'), (2, 'monmar', '82802dab4a1b2ef08bbc853ed484785e', NULL, NULL, 'monmar1104@gmail.com', 'user'),  (3, 'guser', 'f1ff8b071153bada470ad8511349011a', 'guser', 'guser', 'guser@email.pl', 'google');
 
 INSERT INTO `DataPromo`(promoId, promotedCategory) VALUES (1, 2), (2, 10),  (3, 4);
+
+ALTER TABLE Answer DROP FOREIGN KEY FK9ru570073brbwn9xy94dy2kj9;
+ALTER TABLE Answer ADD CONSTRAINT FK9ru570073brbwn9xy94dy2kj9 FOREIGN KEY (relatedQuest_questionId) REFERENCES Question (questionId) ON DELETE CASCADE;
+
+ALTER TABLE Answer DROP FOREIGN KEY FKfiomvt17psxodcis3d8nmopx8;
+ALTER TABLE Answer ADD CONSTRAINT FKfiomvt17psxodcis3d8nmopx8 FOREIGN KEY (question_id) REFERENCES Question (questionId) ON DELETE CASCADE;
+
+ALTER TABLE Answer DROP FOREIGN KEY FKo79reu9fhbkfov69u170jyeh1;
+ALTER TABLE Answer ADD CONSTRAINT FKo79reu9fhbkfov69u170jyeh1 FOREIGN KEY (relatedCategory_categoryId) REFERENCES Category (categoryId) ON DELETE CASCADE;
+
+

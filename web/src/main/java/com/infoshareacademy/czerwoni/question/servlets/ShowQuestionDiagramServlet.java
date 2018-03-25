@@ -46,7 +46,8 @@ public class ShowQuestionDiagramServlet extends HttpServlet {
                 "    <meta name=\"google-signin-client_id\"\n" +
                 "          content=\"830889560506-bfd7gjnpsj4o3ss6n24f2pis4dscu4u9.apps.googleusercontent.com\">\n" +
                 "</head>\n" +
-                "<body class=\"bg-dark\">\n" +
+//                "<body class=\"bg-dark\">\n" +
+                "<body class=\"diagram\">\n" +
                 "    <div>\n" +
                 "            <div class=\"tree\">");
 
