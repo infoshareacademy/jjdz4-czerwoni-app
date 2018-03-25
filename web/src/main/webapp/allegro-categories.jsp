@@ -26,7 +26,7 @@
     <meta name="google-signin-client_id"
           content="830889560506-bfd7gjnpsj4o3ss6n24f2pis4dscu4u9.apps.googleusercontent.com">
 </head>
-<body class="bg-dark">
+<body>
 <div class="container">
     <%@include file="header.jsp" %>
     <%@include file="links.jsp" %>

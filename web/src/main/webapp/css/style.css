@@ -12,6 +12,12 @@
 
 body {
     background-image: url("background.jpg");
+    background-size: cover;
+}
+
+.diagram {
+    background-image: none;
+    background-color: #343a40
 }
 
 body > div {
@@ -315,7 +321,7 @@ right connector from last child*/
     border: 1px solid #ccc;
     padding: 5px 10px;
     text-decoration: none;
-    color: #666;
+    color: #c8e4f8;
     font-family: arial, verdana, tahoma;
     font-size: 11px;
     display: inline-block;

@@ -27,23 +27,26 @@
 </head>
 <body class="bg-dark">
 <div class="container">
-    <%@include file="header.jsp"%>
-    <%@include file="links.jsp"%>
+    <%@include file="header.jsp" %>
+    <%@include file="links.jsp" %>
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
-            <div class="row">
-                <div class="col-lg-12"> <fmt:message key="questionAdded.questionAdded" bundle="${WDYWlanguage}"/>
-                    <span id="questionName"> ${question.questionName} <fmt:message key="questionAdded.level" bundle="${WDYWlanguage}"/> ${question.questionLevel})</span></div>
-                <br/><br/>
-            </div>
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-12"> <fmt:message key="addCategoryPromo.addCategoryId" bundle="${WDYWlanguage}"/>
+                        <span id="questionName"> ${question.questionName} <fmt:message key="questionAdded.level" bundle="${WDYWlanguage}"/> ${question.questionLevel})</span>
+                    </div>
+                    <br/>
+                </div>
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <ol type="a">
-                        <c:forEach var="alist" items="${question.answerList}">
-                            <li>${alist.answerName} QId_${alist.relatedQuest.questionId}</li>
-                        </c:forEach>
-                    </ol>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <ol type="a">
+                            <c:forEach var="alist" items="${question.answerList}">
+                                <li>${alist.answerName} QId_${alist.relatedQuest.questionId}</li>
+                            </c:forEach>
+                        </ol>
+                    </div>
                 </div>
             </div>
         </div>

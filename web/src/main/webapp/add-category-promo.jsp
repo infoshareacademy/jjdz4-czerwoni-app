@@ -68,13 +68,13 @@
                 <c:choose>
                     <c:when test="${not empty categoriesMap}">
                         <c:forEach var="category" items="${categoriesMap}">
-                            <form method="post" action="/add-category-promo">
-                                <div class="py-2 text-center" style="border: 1px white;border-top-style: dotted;">
-                                    <c:out value="${category.value}"/>
-                                    <input type="submit" name="addCategoryByName"
-                                           value="<fmt:message key="addCategoryPromo.addCategoryId" bundle="${WDYWlanguage}"/> ${category.key.catId}"/>
-                                </div>
-                            </form>
+                                <form method="post" action="/add-category-promo">
+                                    <div class="py-2 text-center" style="border: 1px white;border-top-style: dotted;">
+                                        <c:out value="${category.value}"/>
+                                        <input type="hidden" name="addCategoryByName" value="${category.key.catId}">
+                                        <input type="submit" name="addCategory" value="<fmt:message key="addCategoryPromo.addCategoryId" bundle="${WDYWlanguage}"/> "/>
+                                    </div>
+                                </form>
                         </c:forEach>
                     </c:when>
                 </c:choose>

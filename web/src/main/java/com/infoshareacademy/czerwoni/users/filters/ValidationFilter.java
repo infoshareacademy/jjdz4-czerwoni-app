@@ -7,62 +7,40 @@ import org.slf4j.LoggerFactory;
 import javax.inject.Inject;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Arrays;
+
+import static com.infoshareacademy.czerwoni.users.ejb.TokenServiceBean.LOGIN_URI;
 
 @WebFilter(
         filterName = "ValidationFilter",
-        urlPatterns = {"/login"}
+        urlPatterns = {LOGIN_URI}
 )
 public class ValidationFilter implements Filter {
-
-    private static final Logger LOG = LoggerFactory.getLogger(ValidationFilter.class);
-    private static final String TOKEN_VIOLATION = "Niezgodność tokenow !";
-    private static final String NO_COOKIE_OR_EMPTY = "Brak ciasteczka... ktoś był głodny? ;-)";
 
     @Inject
     private TokenService tokenService;
 
+    private static final Logger LOG = LoggerFactory.getLogger(ValidationFilter.class);
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-
+        LOG.debug("Filter init");
     }
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-
-        HttpServletRequest httpReq = (HttpServletRequest) servletRequest;
-        HttpServletResponse httpResp = (HttpServletResponse) servletResponse;
-        Cookie tokenCookie = tokenService.fetchTokenCookie(httpReq);
-
-        if (tokenCookie == null || tokenCookie.getValue().trim().equals("")) {
-            LOG.info(NO_COOKIE_OR_EMPTY);
-            httpResp.sendError(HttpServletResponse.SC_FORBIDDEN);
-        } else if (validateTokens(tokenCookie, servletRequest, httpResp)) {
+        if (tokenService.validateTokens(servletRequest)) {
             filterChain.doFilter(servletRequest, servletResponse);
+        } else {
+            HttpServletResponse httpResp = (HttpServletResponse) servletResponse;
+            httpResp.sendError(HttpServletResponse.SC_FORBIDDEN);
         }
     }
 
     @Override
     public void destroy() {
-
+        LOG.debug("Filter shutdown");
     }
 
-    private boolean validateTokens(Cookie tokenCookie, ServletRequest servletRequest, HttpServletResponse httpResp) throws IOException {
-        boolean isValid;
-        String tokenFromReq = servletRequest.getParameter("token");
-
-        isValid = (tokenFromReq != null);
-        if (isValid) {
-            isValid = tokenFromReq.equals(tokenCookie.getValue());
-        }
-        if (!isValid) {
-            LOG.warn(TOKEN_VIOLATION);
-            httpResp.sendError(HttpServletResponse.SC_FORBIDDEN);
-        }
-        return isValid;
-    }
 }

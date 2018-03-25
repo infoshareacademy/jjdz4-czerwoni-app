@@ -25,87 +25,21 @@
           content="830889560506-bfd7gjnpsj4o3ss6n24f2pis4dscu4u9.apps.googleusercontent.com">
 </head>
 <body class="bg-dark">
-<div class="container">
+<%-- <div class="container">--%>
+
+<div>
     <%@include file="header.jsp" %>
     <%@include file="links.jsp" %>
-    <div>
-        <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
-            <div class="tree">
+    <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
+        <div class="tree">
 
 
-                <%--<ul>--%>
-                    <%--<c:forEach var="list" items="${questionList}">--%>
-                        <%--<li>--%>
-                            <%--<a href="#"> ${list.questionName} </a>--%>
-
-                            <%--<ul>--%>
-                                <%--<c:forEach var="alist" items="${list.answerList}">--%>
-                                    <%--<li id="annswerName"><a href="#"> ${alist.answerName}</a></li>--%>
-                                    <%--<ul>--%>
-                                        <%--<c:forEach var="list" items="${questionList}">--%>
-                                            <%--<li>--%>
-                                                <%--<a href="#"> ${list.questionName} </a>--%>
-
-                                                <%--<ul>--%>
-                                                    <%--<c:forEach var="alist" items="${list.answerList}">--%>
-                                                        <%--<li id="annswerName"><a href="#"> ${alist.answerName}</a></li>--%>
-                                                    <%--</c:forEach>--%>
-                                                <%--</ul>--%>
-                                            <%--</li>--%>
-                                        <%--</c:forEach>--%>
-                                    <%--</ul>--%>
-                                <%--</c:forEach>--%>
-                            <%--</ul>--%>
-                        <%--</li>--%>
-                    <%--</c:forEach>--%>
-                <%--</ul>--%>
-
-
-
-
-                <%--<ul>--%>
-                    <%--<li>--%>
-                        <%--<a href="#">Parent</a>--%>
-                        <%--<ul>--%>
-                            <%--<li>--%>
-                                <%--<a href="#">Child</a>--%>
-                                <%--<ul>--%>
-                                    <%--<li>--%>
-                                        <%--<a href="#">Grand Child</a>--%>
-                                    <%--</li>--%>
-                                <%--</ul>--%>
-                            <%--</li>--%>
-                            <%--<li>--%>
-                                <%--<a href="#">Child</a>--%>
-                                <%--<ul>--%>
-                                    <%--<li><a href="#">Grand Child</a></li>--%>
-                                    <%--<li>--%>
-                                        <%--<a href="#">Grand Child</a>--%>
-                                        <%--<ul>--%>
-                                            <%--<li>--%>
-                                                <%--<a href="#">Great Grand Child</a>--%>
-                                            <%--</li>--%>
-                                            <%--<li>--%>
-                                                <%--<a href="#">Great Grand Child</a>--%>
-                                            <%--</li>--%>
-                                            <%--<li>--%>
-                                                <%--<a href="#">Great Grand Child</a>--%>
-                                            <%--</li>--%>
-                                        <%--</ul>--%>
-                                    <%--</li>--%>
-                                    <%--<li><a href="#">Grand Child</a></li>--%>
-                                <%--</ul>--%>
-                            <%--</li>--%>
-                        <%--</ul>--%>
-                    <%--</li>--%>
-                <%--</ul>--%>
-
-            </div>
-        </div>
-        <div class="row m-0">
-            <span class="mx-auto p-2">&#169 infoShare Academy</span>
         </div>
     </div>
+    <div class="row m-0">
+        <span class="mx-auto p-2">&#169 infoShare Academy</span>
+    </div>
 </div>
+<%--</div>--%>
 </body>
 </html>

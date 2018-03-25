@@ -31,6 +31,7 @@ import com.infoshareacademy.czerwoni.product.Product;
 
 public class ImageUploadServlet extends HttpServlet {
 
+    private static final String ERR_MSG_ATTR = "errMsg";
     private static Logger LOGGER = LoggerFactory.getLogger(ImageUploadServlet.class);
     private static String NO_BARCODE_FOUND = "Nie znaleziono kodu kreskowego";
     private final String GENERIC_ERR_MSG = "Albo nie wskazałeś pliku do przesłania, albo "
@@ -38,16 +39,16 @@ public class ImageUploadServlet extends HttpServlet {
             + "lokalizacji.";
 
     @Inject
-    PhraseService phraseService;
+    private PhraseService phraseService;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        processRequest(request, response);
+        processRequest(request);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        processRequest(request, response);
+        processRequest(request);
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/product-info.jsp");
         requestDispatcher.forward(request, response);
@@ -59,14 +60,14 @@ public class ImageUploadServlet extends HttpServlet {
     }
 
 
-    private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void processRequest(HttpServletRequest request) throws ServletException, IOException {
         try {
             FileInfo fileInfo = fetchDataFromRequest(request);
             UploadService.saveFileIntoStorage(fileInfo);
             prepareOutData(request, fileInfo);
         } catch (FileNotFoundException fne) {
             String errMsg = fne.getMessage().equals("") ? GENERIC_ERR_MSG : fne.getMessage();
-            request.setAttribute("errMsg", errMsg);
+            request.setAttribute(ERR_MSG_ATTR, errMsg);
             LOGGER.error("Problemy w trakcie przesyłu pliku. Błąd: {}",
                     fne.getMessage());
         }
@@ -76,13 +77,13 @@ public class ImageUploadServlet extends HttpServlet {
 
         String productBarcode = BarCodeReader.decodeBarcodeFromFile(fileInfo.getFilePath() + File.separator + fileInfo.getFileName());
         if (productBarcode.isEmpty()) {
-            request.setAttribute("errMsg", NO_BARCODE_FOUND);
+            request.setAttribute(ERR_MSG_ATTR, NO_BARCODE_FOUND);
             LOGGER.warn(NO_BARCODE_FOUND);
         } else {
             Product foundProduct = ProductProcessor.getProductFromAPI(productBarcode);
             if (foundProduct == null) {
                 String errMsg = "Nie znaleziono produktu dla kodu: " + productBarcode;
-                request.setAttribute("errMsg", errMsg);
+                request.setAttribute(ERR_MSG_ATTR, errMsg);
                 LOGGER.warn(errMsg);
             } else {
                 LOGGER.trace("odczytany kod: " + productBarcode + "; produkt: " + foundProduct.toString());
