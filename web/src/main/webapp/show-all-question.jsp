@@ -1,11 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<fmt:setBundle basename="what" var="WDYWlanguage" scope="session"/>
 
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>What do you want?</title>
+    <title><fmt:message key="all.mainName" bundle="${WDYWlanguage}"/></title>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
             crossorigin="anonymous"></script>
@@ -29,7 +31,7 @@
     <%@include file="links.jsp"%>
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
-            <div class="title"><h3>Edycja pytań</h3></div>
+            <div class="title"><h3><fmt:message key="showAllQuestion.editQuestion" bundle="${WDYWlanguage}"/></h3></div>
             <div>
                 <form method="get">
                     <c:forEach var="list" items="${questionList}">
@@ -39,7 +41,7 @@
                             </div>
                             <div class="col-lg-11">
                                 <label id="questionName">
-                                        ${list.questionName} (poziom: ${list.questionLevel},
+                                        ${list.questionName} <fmt:message key="showAllQuestion.level" bundle="${WDYWlanguage}"/> ${list.questionLevel},
                                     QId_${list.questionId})
                                 </label>
                                 <ol type="a">
@@ -55,13 +57,13 @@
                         <div class="col-lg-6">
                             <button class="button" type="submit" formaction="remove-question"
                                     name="remove-question">
-                                Usuń
+                                <fmt:message key="showAllQuestion.del" bundle="${WDYWlanguage}"/>
                             </button>
                         </div>
                         <div class="col-lg-6">
                             <button class="button" type="submit" formaction="update-question"
                                     name="update-question">
-                                Edutuj
+                                <fmt:message key="showAllQuestion.edit" bundle="${WDYWlanguage}"/>
                             </button>
                         </div>
                         <div class="errorMessage">${NFErrorMessage}</div>

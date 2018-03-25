@@ -1,11 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<fmt:setBundle basename="what" var="WDYWlanguage" scope="session"/>
 
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>What do you want?</title>
+    <title><fmt:message key="all.mainName" bundle="${WDYWlanguage}"/></title>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
             crossorigin="anonymous"></script>
@@ -30,13 +32,13 @@
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
             <form class="questionForm" method="post" action="add-question">
-                <label>Treść pytania: </label><br/><input size="80" name="questionName" type="text" minlength="3" required/> <br/><br/>
-                <label>Poziom pytania: </label><br/><input size="20" name="questionLevel" type="number" min="1" max="30" required/>
+                <label><fmt:message key="addQuestion.question" bundle="${WDYWlanguage}"/> </label><br/><input size="80" name="questionName" type="text" minlength="3" required/> <br/><br/>
+                <label><fmt:message key="addQuestion.questionLevel" bundle="${WDYWlanguage}"/> </label><br/><input size="20" name="questionLevel" type="number" min="1" max="30" required/>
                 <div class="errorMessage">${NFErrorMessage}</div>
                 <br/>
-                <label>Wybierz odpowiedź nadrzędną: </label><br/>
+                <label><fmt:message key="addQuestion.pickUpperAnswer" bundle="${WDYWlanguage}"/> </label><br/>
                 <select name="answer">
-                    <option value="wybierz odpowiedź">Wybierz odpowiedź</option>
+                    <option value="wybierz odpowiedź"><fmt:message key="addQuestion.pickAnswer" bundle="${WDYWlanguage}"/></option>
                     <c:forEach var="list" items="${answersListWithoutRelatedQuestion}">
                         <option value="${list.answerId}">${list.answerName}</option>
                     </c:forEach>

@@ -1,11 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<fmt:setBundle basename="what" var="WDYWlanguage" scope="session"/>
 
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>What do you want?</title>
+    <title><fmt:message key="all.mainName" bundle="${WDYWlanguage}"/></title>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
             crossorigin="anonymous"></script>
@@ -25,41 +27,44 @@
 </head>
 <body class="bg-dark">
 <div class="container">
-    <%@include file="header.jsp"%>
-    <%@include file="links.jsp"%>
+    <%@include file="header.jsp" %>
+    <%@include file="links.jsp" %>
     <%@include file="login-window.jsp" %>
-        <div>
-            <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
-                <div class="col-12">
-                    <h3 class="mx-auto">Dodaj kategorię do promowania.</h3>
-                    <form method="post" action="/add-category-promo">
-                        <label class="pt-2">Podaj Id wyszukiwanej kategorii: </label><br/>
-                        <input type="text" name="id"/><br/>
-                        <input type="submit" name="idSearch" class="pt-2" value="Dodaj kategorię"/>
-                    </form>
-                    <c:choose>
-                        <c:when test="${not empty errorMessageId}">
-                            <div class="errorMessage">${errorMessageId}</div>
-                        </c:when>
-                        <c:when test="${not empty okMessageId}">
-                            <div class="logtext">${okMessageId}</div>
-                        </c:when>
-                    </c:choose>
-                </div>
-                <div class="col-12">
-                    <form method="post" action="/add-category-promo">
-                        <label class="pt-2">Podaj nazwę wyszukiwanej kategorii: </label><br/>
-                        <input type="text" name="name"/><br/>
-                        <input type="submit" name="nameSearch" class="pt-2" value="Szukaj"/>
-                    </form>
-                    <c:choose>
-                        <c:when test="${not empty errorMessageName}">
-                            <div class="errorMessage">${errorMessageName}</div>
-                        </c:when>
-                        <c:when test="${not empty okMessageName}">
-                            <div class="logtext">${okMessageName}</div>
-                        </c:when>
-                    </c:choose>
+    <div>
+        <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
+            <div class="col-12">
+                <h3 class="mx-auto"><fmt:message key="addCategoryPromo.addCatToPromotion"
+                                                 bundle="${WDYWlanguage}"/></h3>
+                <form method="post" action="/add-category-promo">
+                    <label class="pt-2"><fmt:message key="addCategoryPromo.typePromotionId"
+                                                     bundle="${WDYWlanguage}"/></label><br/>
+                    <input type="text" name="id"/><br/>
+                    <input type="submit" name="idSearch" class="pt-2" value="Dodaj kategorię"/>
+                </form>
+                <c:choose>
+                    <c:when test="${not empty errorMessageId}">
+                        <div class="errorMessage">${errorMessageId}</div>
+                    </c:when>
+                    <c:when test="${not empty okMessageId}">
+                        <div class="logtext">${okMessageId}</div>
+                    </c:when>
+                </c:choose>
+            </div>
+            <div class="col-12">
+                <form method="post" action="/add-category-promo">
+                    <label class="pt-2"><fmt:message key="addCategoryPromo.typeNameSearchedCat"
+                                                     bundle="${WDYWlanguage}"/></label><br/>
+                    <input type="text" name="name"/><br/>
+                    <input type="submit" name="nameSearch" class="pt-2" value="Szukaj"/>
+                </form>
+                <c:choose>
+                    <c:when test="${not empty errorMessageName}">
+                        <div class="errorMessage">${errorMessageName}</div>
+                    </c:when>
+                    <c:when test="${not empty okMessageName}">
+                        <div class="logtext">${okMessageName}</div>
+                    </c:when>
+                </c:choose>
                 <c:choose>
                     <c:when test="${not empty categoriesMap}">
                         <c:forEach var="category" items="${categoriesMap}">
@@ -67,17 +72,17 @@
                                     <div class="py-2 text-center" style="border: 1px white;border-top-style: dotted;">
                                         <c:out value="${category.value}"/>
                                         <input type="hidden" name="addCategoryByName" value="${category.key.catId}">
-                                        <input type="submit" name="addCategory" value="Dodaj kategorię"/>
+                                        <input type="submit" name="addCategory" value="<fmt:message key="addCategoryPromo.addCategoryId" bundle="${WDYWlanguage}"/> "/>
                                     </div>
                                 </form>
                         </c:forEach>
                     </c:when>
                 </c:choose>
-                </div>
-            </div>
-            <div class="row m-0">
-                <span class="mx-auto p-2">&#169 infoShare Academy</span>
             </div>
         </div>
+        <div class="row m-0">
+            <span class="mx-auto p-2">&#169 infoShare Academy</span>
+        </div>
+    </div>
 </body>
 </html>

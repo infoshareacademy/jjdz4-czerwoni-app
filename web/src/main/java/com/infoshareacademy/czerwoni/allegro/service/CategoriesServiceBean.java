@@ -57,6 +57,7 @@ public class CategoriesServiceBean implements CategoriesService {
         Collections.reverse(breadCrumbs);
         return breadCrumbs;
     }
+
     @Override
     public AllegroCategory getParentCat(int parentId) {
         return allCategories.stream()
@@ -84,7 +85,7 @@ public class CategoriesServiceBean implements CategoriesService {
     @Override
     public boolean checkIfCategoryExists(int catId) {
         if (allCategories.stream()
-                .anyMatch(allegroCategory -> allegroCategory.getCatId() == catId)){
+                .anyMatch(allegroCategory -> allegroCategory.getCatId() == catId)) {
             return true;
         }
         return false;

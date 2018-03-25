@@ -1,3 +1,6 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<fmt:setBundle basename="what" var="WDYWlanguage" scope="session"/>
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -5,24 +8,24 @@
         <!-- Modal content-->
         <div id="login-modal" class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">WDYW Logowanie</h4>
+                <h4 class="modal-title"><span><fmt:message key="loginWindow.info" bundle="${WDYWlanguage}"/></span></h4>
             </div>
             <div class="modal-body">
                 <form method="post" action="login">
                     <input type="hidden" name="token" value="${authToken}"/>
                     <div class="form-group">
-                        <label for="login">Login:</label>
+                        <label for="login"><fmt:message key="loginWindow.login" bundle="${WDYWlanguage}"/></label>
                         <input type="text" class="form-control" id="login" minlength="3" name="login">
                     </div>
                     <div class="form-group">
-                        <label for="password">Hasło:</label>
+                        <label for="password"><fmt:message key="loginWindow.password" bundle="${WDYWlanguage}"/></label>
                         <input type="password" class="form-control" id="password" minlength="3"
                                name="password">
                     </div>
-                    <button type="submit" class="btn btn-default">Zaloguj</button>
+                    <button type="submit" class="btn btn-default"><fmt:message key="loginWindow.logIn" bundle="${WDYWlanguage}"/></button>
                     <br/>
                     <div class="questRadio">
-                        <p>lub zaloguj się po przez konto Google</p><br/>
+                        <p><fmt:message key="loginWindow.else" bundle="${WDYWlanguage}"/></p><br/>
                     </div>
                     <div class="g-signin2" data-onsuccess="onSignIn" id="myP"></div>
                     <img id="myImg"><br>
@@ -33,7 +36,7 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal"><fmt:message key="loginWindow.close" bundle="${WDYWlanguage}"/></button>
             </div>
         </div>
 

@@ -1,10 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<fmt:setBundle basename="what" var="WDYWlanguage" scope="session"/>
 
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>What do you want?</title>
+    <title><fmt:message key="all.mainName" bundle="${WDYWlanguage}"/></title>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
             crossorigin="anonymous"></script>
@@ -29,7 +32,7 @@
     <%@include file="login-window.jsp" %>
     <div>
         <div class="row mt-3 pl-2 pr-2 pt-3 border border-secondary">
-            <div class="title"><h4>Wybór kategorii na podstawie pytań</h4></div>
+            <div class="title"><h4><fmt:message key="helper.mainInfo" bundle="${WDYWlanguage}"/></h4></div>
             <div class="questionForm">
                 <form method="post" action="show-category">
                     <div id="questionName">${sessionScope.question.questionName}</div>
@@ -41,7 +44,8 @@
                         </div>
                     </c:forEach>
                     <div class="errorMessage">${noChoiceError}</div>
-                    <div><input class="questButton" type="submit" name="questions" value="Dalej"></div>
+                    <div><input class="questButton" type="submit" name="questions"
+                                value="<fmt:message key="helper.buttonNext" bundle="${WDYWlanguage}"/>"></div>
                 </form>
             </div>
         </div>
